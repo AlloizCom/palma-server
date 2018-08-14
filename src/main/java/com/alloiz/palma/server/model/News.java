@@ -6,11 +6,9 @@ import com.fasterxml.jackson.databind.deser.std.DateDeserializers;
 import com.fasterxml.jackson.databind.ser.std.DateSerializer;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import java.sql.Timestamp;
-import java.util.List;
 
 @Entity
 public class News extends BaseEntity<UserEntity> {
@@ -22,14 +20,19 @@ public class News extends BaseEntity<UserEntity> {
     private Timestamp datetime;
     private String picturePath;
 
+    public News() {
+    }
+
     @JsonSerialize(using = DateSerializer.class)
     public Timestamp getDatetime() {
         return datetime;
     }
 
-    public News() {
+    @JsonDeserialize(using = DateDeserializers.DateDeserializer.class)
+    public News setDatetime(Timestamp datetime) {
+        this.datetime = datetime;
+        return this;
     }
-
 
     public NewsDescription getNewsDescription() {
         return newsDescription;
@@ -37,12 +40,6 @@ public class News extends BaseEntity<UserEntity> {
 
     public News setNewsDescription(NewsDescription newsDescription) {
         this.newsDescription = newsDescription;
-        return this;
-    }
-
-    @JsonDeserialize(using = DateDeserializers.DateDeserializer.class)
-    public News setDatetime(Timestamp datetime) {
-        this.datetime = datetime;
         return this;
     }
 

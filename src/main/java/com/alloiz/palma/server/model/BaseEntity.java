@@ -10,8 +10,8 @@ public class BaseEntity <T extends BaseEntity>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private Boolean available;
+    protected Long id;
+    protected Boolean available;
 
     public BaseEntity() {
     }

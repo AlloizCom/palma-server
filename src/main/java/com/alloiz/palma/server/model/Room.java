@@ -1,11 +1,9 @@
 package com.alloiz.palma.server.model;
 
+import com.alloiz.palma.server.model.enums.RoomDescription;
 import com.alloiz.palma.server.model.enums.RoomType;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -18,8 +16,8 @@ public class Room extends BaseEntity<Room> {
     private Integer kidsPlaces;
     private Double square;
 
-    @Column(columnDefinition = "LONGTEXT")
-    private String description;
+    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL)
+    private List<RoomDescription> descriptions;
 
     private List<Option> options;
 

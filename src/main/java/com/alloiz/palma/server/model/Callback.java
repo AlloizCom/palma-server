@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 @Entity
 public class Callback extends BaseEntity<Callback> {
 
-    private String title;
+    private String name;
     private String Message;
     private String email;
     private String phone;
@@ -13,12 +13,12 @@ public class Callback extends BaseEntity<Callback> {
     public Callback() {
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
-    public Callback setTitle(String title) {
-        this.title = title;
+    public Callback setName(String name) {
+        this.name = name;
         return this;
     }
 
@@ -52,7 +52,7 @@ public class Callback extends BaseEntity<Callback> {
     @Override
     public String toString() {
         return "Callback{" +
-                "title='" + title + '\'' +
+                "name='" + name + '\'' +
                 ", Message='" + Message + '\'' +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +

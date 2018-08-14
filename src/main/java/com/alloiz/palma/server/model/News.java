@@ -13,12 +13,10 @@ import java.sql.Timestamp;
 import java.util.List;
 
 @Entity
-public class News extends BaseEntity<UserEntity>{
+public class News extends BaseEntity<UserEntity> {
 
-    @OneToMany(mappedBy = "news",cascade = CascadeType.ALL)
-    private List<NewsTitle> newsTitles;
 
-    @OneToMany(mappedBy = "news",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "news", cascade = CascadeType.ALL)
     private NewsDescription newsDescription;
 
     private Timestamp datetime;
@@ -32,14 +30,6 @@ public class News extends BaseEntity<UserEntity>{
     public News() {
     }
 
-    public List<NewsTitle> getNewsTitles() {
-        return newsTitles;
-    }
-
-    public News setNewsTitles(List<NewsTitle> newsTitles) {
-        this.newsTitles = newsTitles;
-        return this;
-    }
 
     public NewsDescription getNewsDescription() {
         return newsDescription;
@@ -68,10 +58,11 @@ public class News extends BaseEntity<UserEntity>{
     @Override
     public String toString() {
         return "News{" +
-                "newsTitles=" + newsTitles +
-                ", newsDescription=" + newsDescription +
+                "newsDescription=" + newsDescription +
                 ", datetime=" + datetime +
                 ", picturePath='" + picturePath + '\'' +
+                ", id=" + id +
+                ", available=" + available +
                 '}';
     }
 }

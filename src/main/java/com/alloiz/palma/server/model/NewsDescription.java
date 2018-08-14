@@ -8,13 +8,24 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class NewsDescription {
+public class NewsDescription extends BaseEntity<NewsDescription>{
 
     @ManyToOne(cascade = CascadeType.ALL)
     private News news;
     private Language language;
     @Column(columnDefinition = "LONGTEXT")
     private String description;
+
+    private String title;
+
+    public String getTitle() {
+        return title;
+    }
+
+    public NewsDescription setTitle(String title) {
+        this.title = title;
+        return this;
+    }
 
     public NewsDescription() {
     }
@@ -49,9 +60,12 @@ public class NewsDescription {
     @Override
     public String toString() {
         return "NewsDescription{" +
-                "news=" + news +
-                ", language=" + language +
+                "news=" + (news == null ? "null" : news) +
+                ", language=" + (language == null ? "null" : language) +
                 ", description='" + description + '\'' +
+                ", title='" + title + '\'' +
+                ", id=" + id +
+                ", available=" + available +
                 '}';
     }
 }

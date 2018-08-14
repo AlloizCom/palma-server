@@ -1,4 +1,4 @@
 package com.alloiz.palma.server.service;
 
-public class AmenityService {
+public interface AmenityService {
 }

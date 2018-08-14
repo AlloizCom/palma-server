@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
-public class BaseEntity {
+public class BaseEntity <T extends BaseEntity>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,18 +20,18 @@ public class BaseEntity {
         return id;
     }
 
-    public BaseEntity setId(Long id) {
+    public T setId(Long id) {
         this.id = id;
-        return this;
+        return (T)this;
     }
 
     public Boolean getAvailable() {
         return available;
     }
 
-    public BaseEntity setAvailable(Boolean available) {
+    public T setAvailable(Boolean available) {
         this.available = available;
-        return this;
+        return (T)this;
     }
 
     @Override

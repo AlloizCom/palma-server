@@ -1,7 +1,6 @@
-package com.alloiz.palma.server.model.enums;
+package com.alloiz.palma.server.model;
 
-import com.alloiz.palma.server.model.BaseEntity;
-import com.alloiz.palma.server.model.Room;
+import com.alloiz.palma.server.model.enums.Language;
 
 import javax.persistence.*;
 

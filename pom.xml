@@ -9,7 +9,6 @@
     <packaging>war</packaging>
 
     <name>server</name>
-    <title></title>
 
     <parent>
         <groupId>org.springframework.boot</groupId>

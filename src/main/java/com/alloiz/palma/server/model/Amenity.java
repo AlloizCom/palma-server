@@ -7,23 +7,23 @@ import javax.persistence.OneToMany;
 import java.util.List;
 
 @Entity
-public class Option extends BaseEntity<Option>{
+public class Amenity extends BaseEntity<Amenity>{
     private String imagePath;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     private Room room;
 
-    @OneToMany(mappedBy = "option", cascade = CascadeType.ALL)
-    private List<OptionName> optionNames;
+    @OneToMany(mappedBy = "amenity", cascade = CascadeType.ALL)
+    private List<AmenityName> amenityNames;
 
-    public Option() {
+    public Amenity() {
     }
 
     public String getImagePath() {
         return imagePath;
     }
 
-    public Option setImagePath(String imagePath) {
+    public Amenity setImagePath(String imagePath) {
         this.imagePath = imagePath;
         return this;
     }
@@ -32,26 +32,26 @@ public class Option extends BaseEntity<Option>{
         return room;
     }
 
-    public Option setRoom(Room room) {
+    public Amenity setRoom(Room room) {
         this.room = room;
         return this;
     }
 
-    public List<OptionName> getOptionNames() {
-        return optionNames;
+    public List<AmenityName> getAmenityNames() {
+        return amenityNames;
     }
 
-    public Option setOptionNames(List<OptionName> optionNames) {
-        this.optionNames = optionNames;
+    public Amenity setAmenityNames(List<AmenityName> amenityNames) {
+        this.amenityNames = amenityNames;
         return this;
     }
 
     @Override
     public String toString() {
-        return "Option{" +
+        return "Amenity{" +
                 "imagePath='" + imagePath + '\'' +
                 ", room=" + (room == null ? "null" : room)+
-                ", optionNames=" + (optionNames == null ? "null" : optionNames)+
+                ", amanityNames=" + (amenityNames == null ? "null" : amenityNames)+
                 ", id=" + id +
                 ", available=" + available +
                 '}';

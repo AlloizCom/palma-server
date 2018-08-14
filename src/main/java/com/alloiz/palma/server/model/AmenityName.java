@@ -5,38 +5,38 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class OptionName extends BaseEntity<OptionName>{
+public class AmenityName extends BaseEntity<AmenityName>{
     private String name;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    private Option option;
+    private Amenity amenity;
 
-    public OptionName() {
+    public AmenityName() {
     }
 
     public String getName() {
         return name;
     }
 
-    public OptionName setName(String name) {
+    public AmenityName setName(String name) {
         this.name = name;
         return this;
     }
 
-    public Option getOption() {
-        return option;
+    public Amenity getAmenity() {
+        return amenity;
     }
 
-    public OptionName setOption(Option option) {
-        this.option = option;
+    public AmenityName setAmenity(Amenity amenity) {
+        this.amenity = amenity;
         return this;
     }
 
     @Override
     public String toString() {
-        return "OptionName{" +
+        return "AmenityName{" +
                 "name='" + name + '\'' +
-                ", option=" + (option == null ? "null" : option) +
+                ", amenity=" + (amenity == null ? "null" : amenity) +
                 ", id=" + id +
                 ", available=" + available +
                 '}';

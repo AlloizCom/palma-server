@@ -14,13 +14,13 @@ public class Room extends BaseEntity<Room> {
     private Integer adultPlaces;
     private Integer kidsPlaces;
     private Double square;
-    private List<String> imagiesPath;
+    //private List<String> imagiesPath;
 
     @OneToMany(mappedBy = "room", cascade = CascadeType.ALL)
     private List<RoomDescription> descriptions;
 
     @OneToMany(mappedBy = "room", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
-    private List<Option> options;
+    private List<Amenity> amanities;
 
     public Room() {
     }
@@ -61,14 +61,14 @@ public class Room extends BaseEntity<Room> {
         return this;
     }
 
-    public List<String> getImagiesPath() {
-        return imagiesPath;
-    }
-
-    public Room setImagiesPath(List<String> imagiesPath) {
-        this.imagiesPath = imagiesPath;
-        return this;
-    }
+//    public List<String> getImagiesPath() {
+//        return imagiesPath;
+//    }
+//
+//    public Room setImagiesPath(List<String> imagiesPath) {
+//        this.imagiesPath = imagiesPath;
+//        return this;
+//    }
 
     public List<RoomDescription> getDescriptions() {
         return descriptions;
@@ -79,12 +79,12 @@ public class Room extends BaseEntity<Room> {
         return this;
     }
 
-    public List<Option> getOptions() {
-        return options;
+    public List<Amenity> getAmanities() {
+        return amanities;
     }
 
-    public Room setOptions(List<Option> options) {
-        this.options = options;
+    public Room setAmanities(List<Amenity> amanities) {
+        this.amanities = amanities;
         return this;
     }
 
@@ -95,9 +95,9 @@ public class Room extends BaseEntity<Room> {
                 ", adultPlaces=" + adultPlaces +
                 ", kidsPlaces=" + kidsPlaces +
                 ", square=" + square +
-                ", imagiesPath=" + imagiesPath +
+               // ", imagiesPath=" + imagiesPath +
                 ", descriptions=" + (descriptions == null ? "null" : descriptions) +
-                ", options=" + (options == null ? "null" : descriptions) +
+                ", amanities=" + (amanities == null ? "null" : amanities) +
                 ", id=" + id +
                 ", available=" + available +
                 '}';

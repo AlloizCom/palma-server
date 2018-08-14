@@ -9,13 +9,14 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import java.sql.Timestamp;
+import java.util.List;
 
 @Entity
-public class News extends BaseEntity<UserEntity> {
+public class News extends BaseEntity<News> {
 
 
     @OneToMany(mappedBy = "news", cascade = CascadeType.ALL)
-    private NewsDescription newsDescription;
+    private List<NewsDescription> newsDescriptions;
 
     private Timestamp datetime;
     private String picturePath;
@@ -34,12 +35,12 @@ public class News extends BaseEntity<UserEntity> {
         return this;
     }
 
-    public NewsDescription getNewsDescription() {
-        return newsDescription;
+    public List<NewsDescription> getNewsDescriptions() {
+        return newsDescriptions;
     }
 
-    public News setNewsDescription(NewsDescription newsDescription) {
-        this.newsDescription = newsDescription;
+    public News setNewsDescriptions(List<NewsDescription> newsDescriptions) {
+        this.newsDescriptions = newsDescriptions;
         return this;
     }
 
@@ -55,7 +56,7 @@ public class News extends BaseEntity<UserEntity> {
     @Override
     public String toString() {
         return "News{" +
-                "newsDescription=" + newsDescription +
+                "newsDescription=" + newsDescriptions +
                 ", datetime=" + datetime +
                 ", picturePath='" + picturePath + '\'' +
                 ", id=" + id +

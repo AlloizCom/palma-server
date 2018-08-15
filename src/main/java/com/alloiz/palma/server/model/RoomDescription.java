@@ -13,8 +13,8 @@ public class RoomDescription extends BaseEntity<RoomDescription> {
     @Column(columnDefinition = "LONGTEXT")
     private String description;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    private Room room;
+//    @ManyToOne(cascade = CascadeType.ALL)
+//    private Room room;
 
     public RoomDescription() {
     }
@@ -37,21 +37,21 @@ public class RoomDescription extends BaseEntity<RoomDescription> {
         return this;
     }
 
-    public Room getRoom() {
-        return room;
-    }
-
-    public RoomDescription setRoom(Room room) {
-        this.room = room;
-        return this;
-    }
+//    public Room getRoom() {
+//        return room;
+//    }
+//
+//    public RoomDescription setRoom(Room room) {
+//        this.room = room;
+//        return this;
+//    }
 
     @Override
     public String toString() {
         return "RoomDescription{" +
                 "language=" + (language == null ? "null" : language) +
                 ", description='" + description + '\'' +
-                ", room=" + (room == null ? "null" : room) +
+//                ", room=" + (room == null ? "null" : room) +
                 ", id=" + id +
                 ", available=" + available +
                 '}';

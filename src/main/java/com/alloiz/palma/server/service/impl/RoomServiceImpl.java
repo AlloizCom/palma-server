@@ -43,7 +43,10 @@ public class RoomServiceImpl implements RoomService {
     @Override
     public Room save(Room room) {
         checkSave(room);
-        return roomRepository.save(room.setAvailable(true));
+        room.getDescriptions().stream().forEach(roomDescription -> roomDescription.setAvailable(true));
+        roomRepository.save(room.setAvailable(true));
+
+        return room;
     }
 
     @Override

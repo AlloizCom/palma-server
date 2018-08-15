@@ -48,7 +48,7 @@ public class RoomServiceImpl implements RoomService {
         checkObjectExistsById(room.getId(),roomRepository);
         return roomRepository.save(findOne(room.getId())
                 .setAdultPlaces(room.getAdultPlaces())
-                .setAmanities(room.getAmanities())
+                .setAmenities(room.getAmenities())
                 .setAvailable(room.getAvailable())
                 .setDescriptions(room.getDescriptions())
                 .setKidsPlaces(room.getKidsPlaces())

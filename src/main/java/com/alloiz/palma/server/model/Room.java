@@ -20,7 +20,7 @@ public class Room extends BaseEntity<Room> {
     private List<RoomDescription> descriptions;
 
     @OneToMany(mappedBy = "room", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
-    private List<Amenity> amanities;
+    private List<Amenity> amenities;
 
     public Room() {
     }
@@ -79,12 +79,12 @@ public class Room extends BaseEntity<Room> {
         return this;
     }
 
-    public List<Amenity> getAmanities() {
-        return amanities;
+    public List<Amenity> getAmenities() {
+        return amenities;
     }
 
-    public Room setAmanities(List<Amenity> amanities) {
-        this.amanities = amanities;
+    public Room setAmenities(List<Amenity> amenities) {
+        this.amenities = amenities;
         return this;
     }
 
@@ -97,7 +97,7 @@ public class Room extends BaseEntity<Room> {
                 ", square=" + square +
                // ", imagiesPath=" + imagiesPath +
                 ", descriptions=" + (descriptions == null ? "null" : descriptions) +
-                ", amanities=" + (amanities == null ? "null" : amanities) +
+                ", amenities=" + (amenities == null ? "null" : amenities) +
                 ", id=" + id +
                 ", available=" + available +
                 '}';

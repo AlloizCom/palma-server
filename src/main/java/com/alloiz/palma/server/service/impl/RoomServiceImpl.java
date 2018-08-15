@@ -45,7 +45,6 @@ public class RoomServiceImpl implements RoomService {
         checkSave(room);
         room.getDescriptions().stream().forEach(roomDescription -> roomDescription.setAvailable(true));
         roomRepository.save(room.setAvailable(true));
-
         return room;
     }
 

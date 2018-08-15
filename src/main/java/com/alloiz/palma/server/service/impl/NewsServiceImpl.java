@@ -5,14 +5,17 @@ import com.alloiz.palma.server.repository.NewsRepository;
 import com.alloiz.palma.server.service.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import static com.alloiz.palma.server.config.mapper.JsonMapper.json;
 import static com.alloiz.palma.server.service.utils.Validation.checkId;
 import static com.alloiz.palma.server.service.utils.Validation.checkObjectExistsById;
 import static com.alloiz.palma.server.service.utils.Validation.checkSave;
+import static com.alloiz.palma.server.service.utils.Validation.checkJson;
 
 @Service
 public class NewsServiceImpl implements NewsService {
@@ -51,11 +54,25 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
+    public News save(String newsJson, MultipartFile multipartFile) {
+        checkJson(newsJson);
+        News news = json(newsJson,News.class);
+        return save(news);
+    }
+
+    @Override
     public News update(News news) {
         checkObjectExistsById(news.getId(), newsRepository);
         return newsRepository.save(findOne(news.getId())
                 .setNewsDescriptions(news.getNewsDescriptions())
                 .setAvailable(news.getAvailable()));
+    }
+
+    @Override
+    public News update(String newsJson, MultipartFile multipartFile) {
+        checkJson(newsJson);
+        News news = json(newsJson, News.class);
+        return update(news);
     }
 
     @Override

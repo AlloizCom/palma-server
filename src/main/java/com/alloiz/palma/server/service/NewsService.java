@@ -1,6 +1,7 @@
 package com.alloiz.palma.server.service;
 
 import com.alloiz.palma.server.model.News;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -16,7 +17,11 @@ public interface NewsService {
 
     News save(News news);
 
+    News save(String newsJson, MultipartFile multipartFile);
+
     News update(News update);
+
+    News update(String newsJson, MultipartFile multipartFile);
 
     Boolean delete(Long id);
 

@@ -16,7 +16,7 @@ public class Room extends BaseEntity<Room> {
     private Double square;
     //private List<String> imagiesPath;
 
-    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
     private List<RoomDescription> descriptions;
 
     @OneToMany(mappedBy = "room", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})

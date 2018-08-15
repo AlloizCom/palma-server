@@ -13,7 +13,7 @@ public class Amenity extends BaseEntity<Amenity>{
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     private Room room;
 
-    @OneToMany(mappedBy = "amenity", cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
     private List<AmenityName> amenityNames;
 
     public Amenity() {

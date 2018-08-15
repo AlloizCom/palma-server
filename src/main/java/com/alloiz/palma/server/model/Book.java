@@ -27,8 +27,8 @@ public class Book extends BaseEntity<Book> {
     private OrderStatus orderStatus;
 //    @OneToMany(mappedBy = "type", cascade = CascadeType.REFRESH)
 //    private List<Room> rooms;
-    @OneToMany(mappedBy = "amenity", cascade = CascadeType.REFRESH)
-    private List<AmenityName> amenities;
+//    @OneToMany(mappedBy = "amenity", cascade = CascadeType.REFRESH)
+//    private List<Amenity> amenities;
 
     public Book() {
     }
@@ -136,14 +136,14 @@ public class Book extends BaseEntity<Book> {
 //        return this;
 //    }
 
-    public List<AmenityName> getAmenities() {
-        return amenities;
-    }
-
-    public Book setAmenities(List<AmenityName> amenities) {
-        this.amenities = amenities;
-        return this;
-    }
+//    public List<Amenity> getAmenities() {
+//        return amenities;
+//    }
+//
+//    public Book setAmenities(List<Amenity> amenities) {
+//        this.amenities = amenities;
+//        return this;
+//    }
 
     @Override
     public String toString() {
@@ -159,7 +159,7 @@ public class Book extends BaseEntity<Book> {
                 ", kids=" + kids +
                 ", orderStatus=" + orderStatus +
 //                ", rooms=" + (rooms == null ? "null" : rooms) +
-                ", amenities=" + (amenities == null ? "null" : amenities) +
+//                ", amenities=" + (amenities == null ? "null" : amenities) +
                 ", id=" + id +
                 ", available=" + available +
                 '}';

@@ -5,9 +5,12 @@ import com.alloiz.palma.server.repository.RoomRepository;
 import com.alloiz.palma.server.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
 import java.util.List;
 
 import static com.alloiz.palma.server.service.utils.Validation.*;
+import static com.alloiz.palma.server.config.mapper.JsonMapper.json;
 
 @Service
 public class RoomServiceImpl implements RoomService {
@@ -44,6 +47,13 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
+    public Room save(String roomJson, MultipartFile[] multipartFiles) {
+        checkJson(roomJson);
+        Room room = json(roomJson, Room.class);
+        return save(room);
+        }
+
+    @Override
     public Room update(Room room) {
         checkObjectExistsById(room.getId(),roomRepository);
         return roomRepository.save(findOne(room.getId())
@@ -54,6 +64,13 @@ public class RoomServiceImpl implements RoomService {
                 .setKidsPlaces(room.getKidsPlaces())
                 .setSquare(room.getSquare())
                 .setType(room.getType()));
+    }
+
+    @Override
+    public Room update(String roomJson) {
+        checkJson(roomJson);
+        Room room = json(roomJson, Room.class);
+        return update(room);
     }
 
     @Override

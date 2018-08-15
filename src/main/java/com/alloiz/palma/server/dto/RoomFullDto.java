@@ -41,6 +41,6 @@ public class RoomFullDto extends RoomShortDto<RoomFullDto>{
                 ", adultPlaces=" + adultPlaces +
                 ", kidsPlaces=" + kidsPlaces +
                 ", square=" + square +
-                '}';
+                '}' ;
     }
 }

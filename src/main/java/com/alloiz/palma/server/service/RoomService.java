@@ -1,6 +1,7 @@
 package com.alloiz.palma.server.service;
 
 import com.alloiz.palma.server.model.Room;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -15,7 +16,11 @@ public interface RoomService {
 
     Room save(Room room);
 
-    Room update(Room update);
+    Room save(String roomJson,MultipartFile[] multipartFiles);
+
+    Room update(Room room);
+
+    Room update(String roomJson);
 
     Boolean delete(Long id);
 }

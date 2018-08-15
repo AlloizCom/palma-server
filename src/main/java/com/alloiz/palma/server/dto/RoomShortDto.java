@@ -5,6 +5,7 @@ import com.alloiz.palma.server.model.enums.RoomType;
 
 @Dto
 public class RoomShortDto <T extends RoomShortDto>{
+
     protected Long id;
     protected Boolean available;
     protected RoomType type;

@@ -43,15 +43,15 @@ public class CallbackController {
     }
 
     @PostMapping("/save")
-    private ResponseEntity<CallbackDto> save(@RequestBody CallbackDto book) {
+    private ResponseEntity<CallbackDto> save(@RequestBody CallbackDto callback) {
         return ResponseEntity
-                .ok(map(callbackService.save(map(book, Callback.class)), CallbackDto.class));
+                .ok(map(callbackService.save(map(callback, Callback.class)), CallbackDto.class));
     }
 
     @PostMapping("/update")
-    private ResponseEntity<CallbackDto> update(@RequestBody CallbackDto book) {
+    private ResponseEntity<CallbackDto> update(@RequestBody CallbackDto callback) {
         return ResponseEntity
-                .ok(map(callbackService.update(map(book, Callback.class)), CallbackDto.class));
+                .ok(map(callbackService.update(map(callback, Callback.class)), CallbackDto.class));
     }
 
     @DeleteMapping("/delete/{id}")

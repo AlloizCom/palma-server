@@ -1,7 +1,5 @@
 package com.alloiz.palma.server.dto.utils.impl;
 
-
-
 import com.alloiz.palma.server.dto.utils.DtoMapper;
 import com.alloiz.palma.server.dto.utils.annotations.Dto;
 import com.alloiz.palma.server.dto.utils.annotations.EnableMapper;

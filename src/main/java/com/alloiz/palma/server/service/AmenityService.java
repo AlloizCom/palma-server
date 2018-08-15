@@ -1,6 +1,7 @@
 package com.alloiz.palma.server.service;
 
 import com.alloiz.palma.server.model.Amenity;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -16,7 +17,13 @@ public interface AmenityService {
 
     Amenity save(Amenity amenity);
 
-    Amenity update(Amenity update);
+    Amenity save(String amenityJson, MultipartFile multipartFile);
+
+    Amenity update(Amenity amenity);
+
+    Amenity update(String amenityJson, MultipartFile multipartFile);
+
+    Amenity update(String amenityJson);
 
     Boolean delete(Long id);
 

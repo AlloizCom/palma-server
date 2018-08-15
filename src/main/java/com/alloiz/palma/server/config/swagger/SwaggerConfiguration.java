@@ -9,6 +9,11 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+/*
+SwaggerUI URL:
+http://<host>:<port>/swagger-ui.html
+ */
+
 @EnableSwagger2
 @Configuration
 public class SwaggerConfiguration {

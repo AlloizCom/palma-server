@@ -8,8 +8,8 @@ import javax.persistence.ManyToOne;
 public class AmenityName extends BaseEntity<AmenityName>{
     private String name;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    private Amenity amenity;
+//    @ManyToOne(cascade = CascadeType.ALL)
+//    private Amenity amenity;
 
     public AmenityName() {
     }
@@ -23,20 +23,20 @@ public class AmenityName extends BaseEntity<AmenityName>{
         return this;
     }
 
-    public Amenity getAmenity() {
-        return amenity;
-    }
-
-    public AmenityName setAmenity(Amenity amenity) {
-        this.amenity = amenity;
-        return this;
-    }
+//    public Amenity getAmenity() {
+//        return amenity;
+//    }
+//
+//    public AmenityName setAmenity(Amenity amenity) {
+//        this.amenity = amenity;
+//        return this;
+//    }
 
     @Override
     public String toString() {
         return "AmenityName{" +
                 "name='" + name + '\'' +
-                ", amenity=" + (amenity == null ? "null" : amenity) +
+         //       ", amenity=" + (amenity == null ? "null" : amenity) +
                 ", id=" + id +
                 ", available=" + available +
                 '}';

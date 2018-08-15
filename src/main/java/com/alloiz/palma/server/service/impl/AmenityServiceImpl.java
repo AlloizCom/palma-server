@@ -1,6 +1,7 @@
 package com.alloiz.palma.server.service.impl;
 
 import com.alloiz.palma.server.model.Amenity;
+import com.alloiz.palma.server.model.AmenityName;
 import com.alloiz.palma.server.repository.AmenityRepository;
 import com.alloiz.palma.server.service.AmenityService;
 import com.alloiz.palma.server.service.utils.FileBuilder;
@@ -47,8 +48,10 @@ public class AmenityServiceImpl implements AmenityService {
     @Override
     public Amenity save(Amenity amenity) {
         checkSave(amenity);
+        amenity.getAmenityNames().stream().forEach(name -> name.setAvailable(true));
         return amenityRepository.save(amenity.setAvailable(true));
     }
+
 
     @Override
     public Amenity save(String amenityJson, MultipartFile multipartFile) {

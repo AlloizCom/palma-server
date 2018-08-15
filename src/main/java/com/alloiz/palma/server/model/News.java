@@ -18,20 +18,20 @@ public class News extends BaseEntity<News> {
     @OneToMany(mappedBy = "news", cascade = CascadeType.ALL)
     private List<NewsDescription> newsDescriptions;
 
-    private Timestamp datetime;
+    private Timestamp dateTime;
     private String picturePath;
 
     public News() {
     }
 
     @JsonSerialize(using = DateSerializer.class)
-    public Timestamp getDatetime() {
-        return datetime;
+    public Timestamp getDateTime() {
+        return dateTime;
     }
 
     @JsonDeserialize(using = DateDeserializers.DateDeserializer.class)
-    public News setDatetime(Timestamp datetime) {
-        this.datetime = datetime;
+    public News setDateTime(Timestamp dateTime) {
+        this.dateTime = dateTime;
         return this;
     }
 
@@ -57,7 +57,7 @@ public class News extends BaseEntity<News> {
     public String toString() {
         return "News{" +
                 "newsDescription=" + newsDescriptions +
-                ", datetime=" + datetime +
+                ", dateTime=" + dateTime +
                 ", picturePath='" + picturePath + '\'' +
                 ", id=" + id +
                 ", available=" + available +

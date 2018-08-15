@@ -1,4 +1,4 @@
 package com.alloiz.palma.server.controller;
 
-public class OrderController {
+public class BookController {
 }

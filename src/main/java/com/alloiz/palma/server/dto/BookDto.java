@@ -1,11 +1,12 @@
 package com.alloiz.palma.server.dto;
 
 import com.alloiz.palma.server.dto.utils.annotations.Dto;
+import com.alloiz.palma.server.model.enums.OrderStatus;
 
 import java.sql.Timestamp;
 
 @Dto
-public class OrderDto {
+public class BookDto {
     protected Long id;
     protected Boolean available;
     protected String firstName;
@@ -17,15 +18,16 @@ public class OrderDto {
     protected String message;
     protected Integer adults;
     protected Integer kids;
+    protected OrderStatus orderStatus;
 
-    public OrderDto() {
+    public BookDto() {
     }
 
     public Long getId() {
         return id;
     }
 
-    public OrderDto setId(Long id) {
+    public BookDto setId(Long id) {
         this.id = id;
         return this;
     }
@@ -34,7 +36,7 @@ public class OrderDto {
         return available;
     }
 
-    public OrderDto setAvailable(Boolean available) {
+    public BookDto setAvailable(Boolean available) {
         this.available = available;
         return this;
     }
@@ -43,7 +45,7 @@ public class OrderDto {
         return firstName;
     }
 
-    public OrderDto setFirstName(String firstName) {
+    public BookDto setFirstName(String firstName) {
         this.firstName = firstName;
         return this;
     }
@@ -52,7 +54,7 @@ public class OrderDto {
         return lastName;
     }
 
-    public OrderDto setLastName(String lastName) {
+    public BookDto setLastName(String lastName) {
         this.lastName = lastName;
         return this;
     }
@@ -61,7 +63,7 @@ public class OrderDto {
         return phoneNumber;
     }
 
-    public OrderDto setPhoneNumber(String phoneNumber) {
+    public BookDto setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
         return this;
     }
@@ -70,7 +72,7 @@ public class OrderDto {
         return email;
     }
 
-    public OrderDto setEmail(String email) {
+    public BookDto setEmail(String email) {
         this.email = email;
         return this;
     }
@@ -79,7 +81,7 @@ public class OrderDto {
         return dateIn;
     }
 
-    public OrderDto setDateIn(Timestamp dateIn) {
+    public BookDto setDateIn(Timestamp dateIn) {
         this.dateIn = dateIn;
         return this;
     }
@@ -88,7 +90,7 @@ public class OrderDto {
         return dateOut;
     }
 
-    public OrderDto setDateOut(Timestamp dateOut) {
+    public BookDto setDateOut(Timestamp dateOut) {
         this.dateOut = dateOut;
         return this;
     }
@@ -97,7 +99,7 @@ public class OrderDto {
         return message;
     }
 
-    public OrderDto setMessage(String message) {
+    public BookDto setMessage(String message) {
         this.message = message;
         return this;
     }
@@ -106,7 +108,7 @@ public class OrderDto {
         return adults;
     }
 
-    public OrderDto setAdults(Integer adults) {
+    public BookDto setAdults(Integer adults) {
         this.adults = adults;
         return this;
     }
@@ -115,14 +117,23 @@ public class OrderDto {
         return kids;
     }
 
-    public OrderDto setKids(Integer kids) {
+    public BookDto setKids(Integer kids) {
         this.kids = kids;
+        return this;
+    }
+
+    public OrderStatus getOrderStatus() {
+        return orderStatus;
+    }
+
+    public BookDto setOrderStatus(OrderStatus orderStatus) {
+        this.orderStatus = orderStatus;
         return this;
     }
 
     @Override
     public String toString() {
-        return "OrderDto{" +
+        return "BookDto{" +
                 "id=" + id +
                 ", available=" + available +
                 ", firstName='" + firstName + '\'' +
@@ -134,6 +145,7 @@ public class OrderDto {
                 ", message='" + message + '\'' +
                 ", adults=" + adults +
                 ", kids=" + kids +
+                ", orderStatus=" + orderStatus +
                 '}';
     }
 }

@@ -1,6 +1,6 @@
 package com.alloiz.palma.server.model;
 
-import com.alloiz.palma.server.model.enums.Status;
+import com.alloiz.palma.server.model.enums.OrderStatus;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.deser.std.DateDeserializers;
@@ -11,7 +11,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 @Entity
-public class Order extends BaseEntity<Order> {
+public class Book extends BaseEntity<Book> {
 
     private String firstName;
     private String lastName;
@@ -24,21 +24,21 @@ public class Order extends BaseEntity<Order> {
     private Integer kids;
 
     @Enumerated(EnumType.STRING)
-    private Status status;
-    @OneToMany(mappedBy = "type", cascade = CascadeType.REFRESH)
-    private List<Room> rooms;
+    private OrderStatus orderStatus;
+//    @OneToMany(mappedBy = "type", cascade = CascadeType.REFRESH)
+//    private List<Room> rooms;
     @OneToMany(mappedBy = "amenity", cascade = CascadeType.REFRESH)
     private List<AmenityName> amenities;
 
-    public Order() {
+    public Book() {
     }
 
-    public Status getStatus() {
-        return status;
+    public OrderStatus getOrderStatus() {
+        return orderStatus;
     }
 
-    public Order setStatus(Status status) {
-        this.status = status;
+    public Book setOrderStatus(OrderStatus orderStatus) {
+        this.orderStatus = orderStatus;
         return this;
     }
 
@@ -46,7 +46,7 @@ public class Order extends BaseEntity<Order> {
         return firstName;
     }
 
-    public Order setFirstName(String firstName) {
+    public Book setFirstName(String firstName) {
         this.firstName = firstName;
         return this;
     }
@@ -55,7 +55,7 @@ public class Order extends BaseEntity<Order> {
         return lastName;
     }
 
-    public Order setLastName(String lastName) {
+    public Book setLastName(String lastName) {
         this.lastName = lastName;
         return this;
     }
@@ -64,7 +64,7 @@ public class Order extends BaseEntity<Order> {
         return phoneNumber;
     }
 
-    public Order setPhoneNumber(String phoneNumber) {
+    public Book setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
         return this;
     }
@@ -73,7 +73,7 @@ public class Order extends BaseEntity<Order> {
         return email;
     }
 
-    public Order setEmail(String email) {
+    public Book setEmail(String email) {
         this.email = email;
         return this;
     }
@@ -84,7 +84,7 @@ public class Order extends BaseEntity<Order> {
     }
 
     @JsonDeserialize(using = DateDeserializers.DateDeserializer.class)
-    public Order setDateIn(Timestamp dateIn) {
+    public Book setDateIn(Timestamp dateIn) {
         this.dateIn = dateIn;
         return this;
     }
@@ -95,7 +95,7 @@ public class Order extends BaseEntity<Order> {
     }
 
     @JsonDeserialize(using = DateDeserializers.DateDeserializer.class)
-    public Order setDateOut(Timestamp dateOut) {
+    public Book setDateOut(Timestamp dateOut) {
         this.dateOut = dateOut;
         return this;
     }
@@ -104,7 +104,7 @@ public class Order extends BaseEntity<Order> {
         return message;
     }
 
-    public Order setMessage(String message) {
+    public Book setMessage(String message) {
         this.message = message;
         return this;
     }
@@ -113,7 +113,7 @@ public class Order extends BaseEntity<Order> {
         return adults;
     }
 
-    public Order setAdults(Integer adults) {
+    public Book setAdults(Integer adults) {
         this.adults = adults;
         return this;
     }
@@ -122,32 +122,32 @@ public class Order extends BaseEntity<Order> {
         return kids;
     }
 
-    public Order setKids(Integer kids) {
+    public Book setKids(Integer kids) {
         this.kids = kids;
         return this;
     }
 
-    public List<Room> getRooms() {
-        return rooms;
-    }
-
-    public Order setRooms(List<Room> rooms) {
-        this.rooms = rooms;
-        return this;
-    }
+//    public List<Room> getRooms() {
+//        return rooms;
+//    }
+//
+//    public Book setRooms(List<Room> rooms) {
+//        this.rooms = rooms;
+//        return this;
+//    }
 
     public List<AmenityName> getAmenities() {
         return amenities;
     }
 
-    public Order setAmenities(List<AmenityName> amenities) {
+    public Book setAmenities(List<AmenityName> amenities) {
         this.amenities = amenities;
         return this;
     }
 
     @Override
     public String toString() {
-        return "Order{" +
+        return "Book{" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
@@ -157,8 +157,8 @@ public class Order extends BaseEntity<Order> {
                 ", message='" + message + '\'' +
                 ", adults=" + adults +
                 ", kids=" + kids +
-                ", status=" + status +
-                ", rooms=" + (rooms == null ? "null" : rooms) +
+                ", orderStatus=" + orderStatus +
+//                ", rooms=" + (rooms == null ? "null" : rooms) +
                 ", amenities=" + (amenities == null ? "null" : amenities) +
                 ", id=" + id +
                 ", available=" + available +

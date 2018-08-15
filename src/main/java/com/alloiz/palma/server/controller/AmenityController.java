@@ -47,22 +47,22 @@ public class AmenityController {
         return new ResponseEntity<>(map(amenityService.findOne(id), AmenityFullDto.class), HttpStatus.OK);
     }
 
-    @PostMapping("/save")
-    private ResponseEntity<AmenityFullDto> save(@RequestParam String amenityJson,
-                                               @RequestParam(required = false) MultipartFile multipartFile) {
-        return ResponseEntity.ok(map(amenityService.save(amenityJson, multipartFile), AmenityFullDto.class));
-    }
+//    @PostMapping("/save")
+//    private ResponseEntity<AmenityFullDto> save(@RequestParam String amenityJson,
+//                                               @RequestParam(required = false) MultipartFile multipartFile) {
+//        return ResponseEntity.ok(map(amenityService.save(amenityJson, multipartFile), AmenityFullDto.class));
+//    }
 
-    @PostMapping("/update")
-    private ResponseEntity<AmenityFullDto> update(@RequestParam String amenityJson, @RequestParam(required = false) MultipartFile multipartFile) {
-        if (multipartFile != null && !multipartFile.isEmpty()) {
-            LOGGER.info("file not null");
-            return ResponseEntity.ok(map(amenityService.update(amenityJson, multipartFile), AmenityFullDto.class));
-        } else {
-            LOGGER.info("file is null (in else clause)");
-            return ResponseEntity.ok(map(amenityService.update(amenityJson), AmenityFullDto.class));
-        }
-    }
+//    @PostMapping("/update")
+//    private ResponseEntity<AmenityFullDto> update(@RequestParam String amenityJson, @RequestParam(required = false) MultipartFile multipartFile) {
+//        if (multipartFile != null && !multipartFile.isEmpty()) {
+//            LOGGER.info("file not null");
+//            return ResponseEntity.ok(map(amenityService.update(amenityJson, multipartFile), AmenityFullDto.class));
+//        } else {
+//            LOGGER.info("file is null (in else clause)");
+//            return ResponseEntity.ok(map(amenityService.update(amenityJson), AmenityFullDto.class));
+//        }
+//    }
 
     @DeleteMapping("/delete/{id}")
     private ResponseEntity<Boolean> delete(@PathVariable Long id) {

@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 import static com.alloiz.palma.server.dto.utils.builder.Builder.map;
 
 @RestController
-@RequestMapping("/work")
+@RequestMapping("/room")
 public class RoomController {
 
     @Autowired

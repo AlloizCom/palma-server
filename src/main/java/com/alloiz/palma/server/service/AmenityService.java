@@ -17,11 +17,11 @@ public interface AmenityService {
 
     Amenity save(Amenity amenity);
 
-  //  Amenity save(String amenityJson, MultipartFile multipartFile);
+    Amenity save(String amenityJson, MultipartFile multipartFile);
 
     Amenity update(Amenity amenity);
 
-   // Amenity update(String amenityJson, MultipartFile multipartFile);
+    Amenity update(String amenityJson, MultipartFile multipartFile);
 
     Amenity update(String amenityJson);
 

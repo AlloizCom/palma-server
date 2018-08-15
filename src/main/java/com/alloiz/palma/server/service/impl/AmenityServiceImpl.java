@@ -19,8 +19,8 @@ public class AmenityServiceImpl implements AmenityService {
     @Autowired
     private AmenityRepository amenityRepository;
 
-//    @Autowired
-//    private FileBuilder fileBuilder;
+    @Autowired
+    private FileBuilder fileBuilder;
 
     @Override
     public Amenity findOneAvailable(Long id) {
@@ -50,15 +50,15 @@ public class AmenityServiceImpl implements AmenityService {
         return amenityRepository.save(amenity.setAvailable(true));
     }
 
-//    @Override
-//    public Amenity save(String amenityJson, MultipartFile multipartFile) {
-//        checkJson(amenityJson);
-//        Amenity amenity = json(amenityJson, Amenity.class);
-//        amenity.getAmenityNames().stream().forEach(name -> amenity.setAmenityNames(amenity.getAmenityNames()));
-//        if (multipartFile != null)
-//            amenity.setImagePath(fileBuilder.saveFile(multipartFile));
-//        return save(amenity);
-//    }
+    @Override
+    public Amenity save(String amenityJson, MultipartFile multipartFile) {
+        checkJson(amenityJson);
+        Amenity amenity = json(amenityJson, Amenity.class);
+        amenity.getAmenityNames().stream().forEach(name -> amenity.setAmenityNames(amenity.getAmenityNames()));
+        if (multipartFile != null)
+            amenity.setImagePath(fileBuilder.saveFile(multipartFile));
+        return save(amenity);
+    }
 
     @Override
     public Amenity update(Amenity amenity) {
@@ -69,18 +69,18 @@ public class AmenityServiceImpl implements AmenityService {
                 .setAvailable(amenity.getAvailable()));
     }
 
-//    @Override
-//    public Amenity update(String amenityJson, MultipartFile multipartFile) {
-//        checkJson(amenityJson);
-//        Amenity amenity = json(amenityJson, Amenity.class);
-//        checkObjectExistsById(amenity.getId(), amenityRepository);
-//        if (multipartFile != null && !multipartFile.isEmpty())
-//            amenity.setImagePath(fileBuilder.saveFile(multipartFile));
-//        return save(amenity.setAmenityNames(amenity.getAmenityNames())
-//                .setRoom(amenity.getRoom())
-//                .setAvailable(amenity.getAvailable())
-//                );
-//    }
+    @Override
+    public Amenity update(String amenityJson, MultipartFile multipartFile) {
+        checkJson(amenityJson);
+        Amenity amenity = json(amenityJson, Amenity.class);
+        checkObjectExistsById(amenity.getId(), amenityRepository);
+        if (multipartFile != null && !multipartFile.isEmpty())
+            amenity.setImagePath(fileBuilder.saveFile(multipartFile));
+        return save(amenity.setAmenityNames(amenity.getAmenityNames())
+                .setRoom(amenity.getRoom())
+                .setAvailable(amenity.getAvailable())
+                );
+    }
 
     @Override
     public Amenity update(String amenityJson) {

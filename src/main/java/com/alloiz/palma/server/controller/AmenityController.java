@@ -55,10 +55,10 @@ public class AmenityController {
     @PostMapping("/update")
     private ResponseEntity<AmenityFullDto> update(@RequestParam String amenityJson, @RequestParam(required = false) MultipartFile multipartFile) {
         if (multipartFile != null && !multipartFile.isEmpty()) {
-            LOGGER.info("file not null");
+            LOGGER.info("multipart file not null");
             return ResponseEntity.ok(map(amenityService.update(amenityJson, multipartFile), AmenityFullDto.class));
         } else {
-            LOGGER.info("file is null (in else clause)");
+            LOGGER.info("multipart file is null!");
             return ResponseEntity.ok(map(amenityService.update(amenityJson), AmenityFullDto.class));
         }
     }

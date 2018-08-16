@@ -110,7 +110,7 @@ public class RoomServiceImpl implements RoomService {
         checkId(imageId);
         Room room = findOne(roomId);
         List<Image> images = room.getImages();
-        ListIterator<Image> listIterator = images.listIterator();
+       // ListIterator<Image> listIterator = images.listIterator();
 //        while (listIterator.hasNext()){
 //            Image image = listIterator.next();
 //            if(image.getId().equals(imageId)) {
@@ -119,7 +119,8 @@ public class RoomServiceImpl implements RoomService {
 //            }
 //        }
         for (Image image : images){
-            if (image.getId().equals(imageId)){
+            if (image.getId().equals(imageId) || image.getId() == imageId){
+                System.out.println(image.getPath());
                 imageRepository.delete(imageId);
                 return true;
             }

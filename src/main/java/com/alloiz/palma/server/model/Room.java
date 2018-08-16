@@ -22,7 +22,7 @@ public class Room extends BaseEntity<Room> {
     @OneToMany(mappedBy = "room", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     private List<Amenity> amenities;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "room_id")
     private List<Image> images;
 

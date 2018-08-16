@@ -13,5 +13,4 @@ public interface ImageRepository extends JpaRepository<Image, Long> {
 
     Image findByAvailableAndId(Boolean available, Long id);
 
-    List<Image> findAllByPortfolioNull();
 }

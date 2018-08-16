@@ -62,8 +62,7 @@ public class RoomServiceImpl implements RoomService {
            List<Image> images = new ArrayList<>();
             for(MultipartFile multipartFile : multipartFiles){
                 Image image = new Image();
-                image.setPath(fileBuilder.saveFile(multipartFile));
-                System.out.println(image.getPath());
+                image.setPath(fileBuilder.saveFile(multipartFile)).setAvailable(true);
                 images.add(image);
             }
             room.setImages(images);

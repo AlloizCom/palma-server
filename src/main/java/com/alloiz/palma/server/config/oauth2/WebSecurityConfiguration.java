@@ -59,7 +59,19 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/node_modules/**").permitAll()
                 .antMatchers("/assets/**").permitAll()
                 .antMatchers("/oauth/token").permitAll()
-                .and().formLogin().loginPage("/login").permitAll();
+                .and().formLogin().loginPage("/login").permitAll()
+        ;
     }
+
+
+    //for swagger
+    private static final String[] AUTH_WHITELIST = {
+
+            // -- swagger ui
+            "/swagger-resources/**",
+            "/swagger-ui.html",
+            "/v2/api-docs",
+            "/webjars/**"
+    };
 
 }

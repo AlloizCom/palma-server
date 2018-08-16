@@ -1,9 +1,6 @@
 package com.alloiz.palma.server.model;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -14,6 +11,7 @@ public class Amenity extends BaseEntity<Amenity>{
     private Room room;
 
     @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "amenityName_id")
     private List<AmenityName> amenityNames;
 
     public Amenity() {

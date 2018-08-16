@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.ser.std.DateSerializer;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import java.sql.Timestamp;
 import java.util.List;
@@ -14,8 +15,8 @@ import java.util.List;
 @Entity
 public class News extends BaseEntity<News> {
 
-
-    @OneToMany(mappedBy = "news", cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "news_description_id")
     private List<NewsDescription> newsDescriptions;
 
     private Timestamp dateTime;

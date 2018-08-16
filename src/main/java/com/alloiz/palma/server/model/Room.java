@@ -17,6 +17,7 @@ public class Room extends BaseEntity<Room> {
     //private List<String> imagiesPath;
 
     @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "description_id")
     private List<RoomDescription> descriptions;
 
     @OneToMany(mappedBy = "room", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})

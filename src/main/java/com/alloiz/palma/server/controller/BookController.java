@@ -19,6 +19,7 @@ public class BookController {
     @Autowired
     private BookService bookService;
 
+
     @GetMapping("/find-all")
     private ResponseEntity<List<BookDto>> findAll() {
         return ResponseEntity.ok(bookService.findAll().stream()

@@ -2,6 +2,7 @@ package com.alloiz.palma.server.service.impl;
 
 import com.alloiz.palma.server.model.Image;
 import com.alloiz.palma.server.model.Room;
+import com.alloiz.palma.server.repository.ImageRepository;
 import com.alloiz.palma.server.repository.RoomRepository;
 import com.alloiz.palma.server.service.RoomService;
 import com.alloiz.palma.server.service.utils.FileBuilder;
@@ -21,6 +22,9 @@ public class RoomServiceImpl implements RoomService {
 
     @Autowired
     private RoomRepository roomRepository;
+
+    @Autowired
+    private ImageRepository imageRepository;
 
     @Autowired
     private FileBuilder fileBuilder;
@@ -107,11 +111,17 @@ public class RoomServiceImpl implements RoomService {
         Room room = findOne(roomId);
         List<Image> images = room.getImages();
         ListIterator<Image> listIterator = images.listIterator();
-        while (listIterator.hasNext()){
-            Image image = listIterator.next();
-            if(image.getId().equals(imageId)) {
-                listIterator.remove();
-                return false;
+//        while (listIterator.hasNext()){
+//            Image image = listIterator.next();
+//            if(image.getId().equals(imageId)) {
+//                listIterator.remove();
+//                return false;
+//            }
+//        }
+        for (Image image : images){
+            if (image.getId().equals(imageId)){
+                imageRepository.delete(imageId);
+                return true;
             }
         }
         return false;

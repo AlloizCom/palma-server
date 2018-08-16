@@ -23,4 +23,6 @@ public interface RoomService {
     Room update(String roomJson);
 
     Boolean delete(Long id);
+
+    Boolean deleteImage(Long roomId, Long imageId);
 }

@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 
 import static com.alloiz.palma.server.service.utils.Validation.*;
 import static com.alloiz.palma.server.config.mapper.JsonMapper.json;
@@ -98,5 +99,21 @@ public class RoomServiceImpl implements RoomService {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    @Override
+    public Boolean deleteImage(Long roomId, Long imageId) {
+        checkId(imageId);
+        Room room = findOne(roomId);
+        List<Image> images = room.getImages();
+        ListIterator<Image> listIterator = images.listIterator();
+        while (listIterator.hasNext()){
+            Image image = listIterator.next();
+            if(image.getId().equals(imageId)) {
+                listIterator.remove();
+                return false;
+            }
+        }
+        return false;
     }
 }

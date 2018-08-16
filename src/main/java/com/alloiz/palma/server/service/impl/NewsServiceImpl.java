@@ -80,7 +80,7 @@ public class NewsServiceImpl implements NewsService {
     public News update(String newsJson, MultipartFile multipartFile) {
         checkJson(newsJson);
         News news = json(newsJson, News.class);
-        if(!multipartFile.isEmpty() && multipartFile != null){
+        if( multipartFile != null && !multipartFile.isEmpty()){
             news.setPicturePath(fileBuilder.saveFile(multipartFile));
         }
         return update(news);

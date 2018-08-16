@@ -1,12 +1,15 @@
 package com.alloiz.palma.server.service.impl;
 
+import com.alloiz.palma.server.model.Image;
 import com.alloiz.palma.server.model.Room;
 import com.alloiz.palma.server.repository.RoomRepository;
 import com.alloiz.palma.server.service.RoomService;
+import com.alloiz.palma.server.service.utils.FileBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.alloiz.palma.server.service.utils.Validation.*;
@@ -17,6 +20,9 @@ public class RoomServiceImpl implements RoomService {
 
     @Autowired
     private RoomRepository roomRepository;
+
+    @Autowired
+    private FileBuilder fileBuilder;
 
     @Override
     public Room findOneAvailable(Long id) {
@@ -52,6 +58,16 @@ public class RoomServiceImpl implements RoomService {
     public Room save(String roomJson, MultipartFile[] multipartFiles) {
         checkJson(roomJson);
         Room room = json(roomJson, Room.class);
+        if( multipartFiles != null && multipartFiles.length != 0){
+           List<Image> images = new ArrayList<>();
+            for(MultipartFile multipartFile : multipartFiles){
+                Image image = new Image();
+                image.setPath(fileBuilder.saveFile(multipartFile));
+                System.out.println(image.getPath());
+                images.add(image);
+            }
+            room.setImages(images);
+        }
         return save(room);
         }
 

@@ -14,7 +14,6 @@ public class Room extends BaseEntity<Room> {
     private Integer adultPlaces;
     private Integer kidsPlaces;
     private Double square;
-    //private List<String> imagiesPath;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "description_id")
@@ -22,6 +21,10 @@ public class Room extends BaseEntity<Room> {
 
     @OneToMany(mappedBy = "room", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     private List<Amenity> amenities;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "room_id")
+    private List<Image> images;
 
     public Room() {
     }
@@ -62,15 +65,6 @@ public class Room extends BaseEntity<Room> {
         return this;
     }
 
-//    public List<String> getImagiesPath() {
-//        return imagiesPath;
-//    }
-//
-//    public Room setImagiesPath(List<String> imagiesPath) {
-//        this.imagiesPath = imagiesPath;
-//        return this;
-//    }
-
     public List<RoomDescription> getDescriptions() {
         return descriptions;
     }
@@ -89,6 +83,15 @@ public class Room extends BaseEntity<Room> {
         return this;
     }
 
+    public List<Image> getImages() {
+        return images;
+    }
+
+    public Room setImages(List<Image> images) {
+        this.images = images;
+        return this;
+    }
+
     @Override
     public String toString() {
         return "Room{" +
@@ -96,9 +99,9 @@ public class Room extends BaseEntity<Room> {
                 ", adultPlaces=" + adultPlaces +
                 ", kidsPlaces=" + kidsPlaces +
                 ", square=" + square +
-               // ", imagiesPath=" + imagiesPath +
                 ", descriptions=" + (descriptions == null ? "null" : descriptions) +
                 ", amenities=" + (amenities == null ? "null" : amenities) +
+                ", images=" + (images == null ? "null" : images)+
                 ", id=" + id +
                 ", available=" + available +
                 '}';

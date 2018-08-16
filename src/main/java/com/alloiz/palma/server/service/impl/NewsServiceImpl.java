@@ -3,6 +3,7 @@ package com.alloiz.palma.server.service.impl;
 import com.alloiz.palma.server.model.News;
 import com.alloiz.palma.server.repository.NewsRepository;
 import com.alloiz.palma.server.service.NewsService;
+import com.alloiz.palma.server.service.utils.FileBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -22,6 +23,9 @@ public class NewsServiceImpl implements NewsService {
 
     @Autowired
     private NewsRepository newsRepository;
+
+    @Autowired
+    private FileBuilder fileBuilder;
 
     @Override
     public News findOneAvailable(Long id) {
@@ -58,14 +62,15 @@ public class NewsServiceImpl implements NewsService {
         checkJson(newsJson);
         News news = json(newsJson,News.class);
         news.getNewsDescriptions().stream().forEach(newsDescription -> newsDescription.setAvailable(true));
+        if(!multipartFile.isEmpty() && multipartFile != null){
+            news.setPicturePath(fileBuilder.saveFile(multipartFile));
+        }
         return save(news);
     }
 
     @Override
     public News update(News news) {
         checkObjectExistsById(news.getId(), newsRepository);
-
-
         return newsRepository.save(findOne(news.getId())
                 .setNewsDescriptions(news.getNewsDescriptions())
                 .setAvailable(news.getAvailable()));
@@ -75,6 +80,9 @@ public class NewsServiceImpl implements NewsService {
     public News update(String newsJson, MultipartFile multipartFile) {
         checkJson(newsJson);
         News news = json(newsJson, News.class);
+        if(!multipartFile.isEmpty() && multipartFile != null){
+            news.setPicturePath(fileBuilder.saveFile(multipartFile));
+        }
         return update(news);
     }
 

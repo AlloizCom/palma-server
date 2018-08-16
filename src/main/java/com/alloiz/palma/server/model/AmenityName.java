@@ -1,12 +1,15 @@
 package com.alloiz.palma.server.model;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import com.alloiz.palma.server.model.enums.Language;
+
+import javax.persistence.*;
 
 @Entity
 public class AmenityName extends BaseEntity<AmenityName>{
     private String name;
+
+    @Enumerated(EnumType.STRING)
+    private Language language;
 
 //    @ManyToOne(cascade = CascadeType.ALL)
 //    private Amenity amenity;

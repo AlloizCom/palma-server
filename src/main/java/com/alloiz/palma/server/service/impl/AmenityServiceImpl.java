@@ -97,6 +97,13 @@ public class AmenityServiceImpl implements AmenityService {
     }
 
     @Override
+    public Amenity updateImage(MultipartFile multipartFile, Long id) {
+        checkId(id);
+        return findOne(id)
+                .setImagePath(fileBuilder.saveFile(multipartFile));
+    }
+
+    @Override
     public Boolean delete(Long id) {
         try {
             amenityRepository.delete(checkObjectExistsById(id, amenityRepository));

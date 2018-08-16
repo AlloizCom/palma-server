@@ -25,6 +25,8 @@ public interface AmenityService {
 
     Amenity update(String amenityJson);
 
+    Amenity updateImage(MultipartFile multipartFile, Long id);
+
     Boolean delete(Long id);
 
 }

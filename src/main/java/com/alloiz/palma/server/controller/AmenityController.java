@@ -30,7 +30,6 @@ public class AmenityController {
                 .map(amenity -> map(amenity, AmenityFullDto.class)).collect(Collectors.toList()), HttpStatus.OK);
     }
 
-
     @GetMapping("/find-all-available")
     private ResponseEntity<List<AmenityShortDto>> findAllAvailable() {
         return new ResponseEntity<>(amenityService.findAllAvailable().stream()
@@ -49,7 +48,7 @@ public class AmenityController {
 
     @PostMapping("/save")
     private ResponseEntity<AmenityFullDto> save(@RequestParam String amenityJson,
-                                               @RequestParam(required = false) MultipartFile multipartFile) {
+                                                @RequestParam(required = false) MultipartFile multipartFile) {
         return ResponseEntity.ok(map(amenityService.save(amenityJson, multipartFile), AmenityFullDto.class));
     }
 
@@ -64,10 +63,14 @@ public class AmenityController {
         }
     }
 
+    @PostMapping("/update-image/{id}")
+    private ResponseEntity<AmenityFullDto> updateImage(@RequestParam MultipartFile multipartFile, @PathVariable Long id) {
+        return ResponseEntity.ok(map(amenityService.updateImage(multipartFile, id), AmenityFullDto.class));
+    }
+
     @DeleteMapping("/delete/{id}")
     private ResponseEntity<Boolean> delete(@PathVariable Long id) {
         return ResponseEntity.ok(amenityService.delete(id));
     }
-
 
 }

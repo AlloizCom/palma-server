@@ -29,6 +29,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     /**
      * Initializes authentication manager.
      */
+
+
+
 //    @Override
 //    @Bean
 //    public AuthenticationManager authenticationManagerBean() throws Exception {
@@ -40,10 +43,10 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
      *
      * @return PAsswordEncoder instance.
      */
-//    @Bean
-//    public PasswordEncoder passwordEncoder() {
-//        return new BCryptPasswordEncoder();
-//    }
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
     /**
      * Configure access to specified urls.

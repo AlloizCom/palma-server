@@ -45,15 +45,15 @@ public class UserEntityController {
     }
 
     @PostMapping("/save")
-    private ResponseEntity<UserEntityDto> save(@RequestBody UserEntityDto callback) {
+    private ResponseEntity<UserEntityDto> save(@RequestBody UserEntityDto user) {
         return ResponseEntity
-                .ok(map(userEntityService.save(map(callback, UserEntity.class)), UserEntityDto.class));
+                .ok(map(userEntityService.save(map(user, UserEntity.class)), UserEntityDto.class));
     }
 
     @PostMapping("/update")
-    private ResponseEntity<UserEntityDto> update(@RequestBody UserEntityDto callback) {
+    private ResponseEntity<UserEntityDto> update(@RequestBody UserEntityDto user) {
         return ResponseEntity
-                .ok(map(userEntityService.update(map(callback, UserEntity.class)), UserEntityDto.class));
+                .ok(map(userEntityService.update(map(user, UserEntity.class)), UserEntityDto.class));
     }
 
     @DeleteMapping("/delete/{id}")

@@ -2,21 +2,25 @@ package com.alloiz.palma.server.model;
 
 import com.alloiz.palma.server.model.enums.Language;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 @Entity
-public class NewsDescription extends BaseEntity<NewsDescription>{
+public class NewsDescription extends BaseEntity<NewsDescription> {
 
-//    @ManyToOne(cascade = CascadeType.ALL)
+    //    @ManyToOne(cascade = CascadeType.ALL)
 //    private News news;
+    @Enumerated(EnumType.STRING)
     private Language language;
     @Column(columnDefinition = "LONGTEXT")
     private String description;
 
     private String title;
+
+    public NewsDescription() {
+    }
 
     public String getTitle() {
         return title;
@@ -25,9 +29,6 @@ public class NewsDescription extends BaseEntity<NewsDescription>{
     public NewsDescription setTitle(String title) {
         this.title = title;
         return this;
-    }
-
-    public NewsDescription() {
     }
 //
 //    public News getNews() {

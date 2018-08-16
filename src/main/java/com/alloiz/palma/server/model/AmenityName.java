@@ -2,10 +2,12 @@ package com.alloiz.palma.server.model;
 
 import com.alloiz.palma.server.model.enums.Language;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 @Entity
-public class AmenityName extends BaseEntity<AmenityName>{
+public class AmenityName extends BaseEntity<AmenityName> {
     private String name;
 
     @Enumerated(EnumType.STRING)

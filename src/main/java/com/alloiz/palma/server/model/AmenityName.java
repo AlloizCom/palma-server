@@ -9,6 +9,7 @@ public class AmenityName extends BaseEntity<AmenityName>{
     private String name;
 
     @Enumerated(EnumType.STRING)
+
     private Language language;
 
 //    @ManyToOne(cascade = CascadeType.ALL)
@@ -26,6 +27,15 @@ public class AmenityName extends BaseEntity<AmenityName>{
         return this;
     }
 
+    public Language getLanguage() {
+        return language;
+    }
+
+    public AmenityName setLanguage(Language language) {
+        this.language = language;
+        return this;
+    }
+
 //    public Amenity getAmenity() {
 //        return amenity;
 //    }
@@ -35,11 +45,12 @@ public class AmenityName extends BaseEntity<AmenityName>{
 //        return this;
 //    }
 
+
     @Override
     public String toString() {
         return "AmenityName{" +
                 "name='" + name + '\'' +
-         //       ", amenity=" + (amenity == null ? "null" : amenity) +
+                ", language=" + language +
                 ", id=" + id +
                 ", available=" + available +
                 '}';

@@ -14,6 +14,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.authentication.www.BasicAuthenticationEntryPoint;
 
 import java.util.ArrayList;
 
@@ -62,7 +63,24 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/node_modules/**").permitAll()
                 .antMatchers("/assets/**").permitAll()
                 .antMatchers("/oauth/token").permitAll()
-                .and().formLogin().loginPage("/login").permitAll();
+//                .antMatchers(AUTH_LIST).permitAll()
+//                .and()
+//                .httpBasic().authenticationEntryPoint(swaggerAuthenticationEntryPoint())
+                .and().formLogin().loginPage("/login").permitAll()
+        ;
     }
-
+//    private static final String[] AUTH_LIST = {
+//            // -- swagger ui
+//            "**/swagger-resources/**",
+//            "/swagger-ui.html",
+//            "/v2/api-docs",
+//            "/webjars/**"
+//    };
+//
+//    @Bean
+//    public BasicAuthenticationEntryPoint swaggerAuthenticationEntryPoint() {
+//        BasicAuthenticationEntryPoint entryPoint = new BasicAuthenticationEntryPoint();
+//        entryPoint.setRealmName("Swagger Realm");
+//        return entryPoint;
+//    }
 }

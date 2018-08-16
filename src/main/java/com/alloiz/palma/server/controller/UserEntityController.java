@@ -1,18 +1,16 @@
 package com.alloiz.palma.server.controller;
 
-import static com.alloiz.palma.server.dto.utils.builder.Builder.map;
-
 import com.alloiz.palma.server.dto.UserEntityDto;
 import com.alloiz.palma.server.model.UserEntity;
-import com.alloiz.palma.server.repository.UserEntityRepository;
 import com.alloiz.palma.server.service.UserEntityService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static com.alloiz.palma.server.dto.utils.builder.Builder.map;
 
 @RestController
 @RequestMapping("/user")
@@ -37,7 +35,6 @@ public class UserEntityController {
     private ResponseEntity<UserEntityDto> findOneAvailale(@PathVariable Long id) {
         return ResponseEntity.ok(map(userEntityService.findOneAvailable(id), UserEntityDto.class));
     }
-
 
     @GetMapping("/find-one/{id}")
     private ResponseEntity<UserEntityDto> findOne(@PathVariable Long id) {

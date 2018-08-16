@@ -9,8 +9,8 @@ public class NewsShortDto <T extends NewsShortDto>{
 
     protected Long id;
     protected Boolean available;
-    private Timestamp dateTime;
-    private String picturePath;
+    protected Timestamp dateTime;
+    protected String picturePath;
 
     public NewsShortDto() {
     }

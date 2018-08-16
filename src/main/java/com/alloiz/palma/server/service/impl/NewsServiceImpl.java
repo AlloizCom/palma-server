@@ -57,12 +57,15 @@ public class NewsServiceImpl implements NewsService {
     public News save(String newsJson, MultipartFile multipartFile) {
         checkJson(newsJson);
         News news = json(newsJson,News.class);
+        news.getNewsDescriptions().stream().forEach(newsDescription -> newsDescription.setAvailable(true));
         return save(news);
     }
 
     @Override
     public News update(News news) {
         checkObjectExistsById(news.getId(), newsRepository);
+
+
         return newsRepository.save(findOne(news.getId())
                 .setNewsDescriptions(news.getNewsDescriptions())
                 .setAvailable(news.getAvailable()));

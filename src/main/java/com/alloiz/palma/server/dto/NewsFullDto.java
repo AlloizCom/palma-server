@@ -5,14 +5,9 @@ import com.alloiz.palma.server.model.NewsDescription;
 
 import java.util.List;
 
-@Dto
 public class NewsFullDto extends NewsShortDto<NewsFullDto>{
 
-    protected List<NewsDescription> newsDescriptions;
-
-    public NewsFullDto(List<NewsDescription> newsDescriptions) {
-        this.newsDescriptions = newsDescriptions;
-    }
+    private List<NewsDescription> newsDescriptions;
 
     public List<NewsDescription> getNewsDescriptions() {
         return newsDescriptions;

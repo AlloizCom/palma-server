@@ -12,7 +12,7 @@ import java.sql.Timestamp;
 public class Callback extends BaseEntity<Callback> {
 
     private String name;
-    private String Message;
+    private String message;
     private String email;
     private String phone;
     private Timestamp dateTime;
@@ -41,11 +41,11 @@ public class Callback extends BaseEntity<Callback> {
     }
 
     public String getMessage() {
-        return Message;
+        return message;
     }
 
     public Callback setMessage(String message) {
-        Message = message;
+        this.message = message;
         return this;
     }
 
@@ -71,7 +71,7 @@ public class Callback extends BaseEntity<Callback> {
     public String toString() {
         return "Callback{" +
                 "name='" + name + '\'' +
-                ", Message='" + Message + '\'' +
+                ", message='" + message + '\'' +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
                 '}';

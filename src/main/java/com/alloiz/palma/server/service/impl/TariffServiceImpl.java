@@ -1,6 +1,7 @@
 package com.alloiz.palma.server.service.impl;
 
 import com.alloiz.palma.server.model.Tariff;
+import com.alloiz.palma.server.model.enums.RoomType;
 import com.alloiz.palma.server.repository.TariffRepository;
 import com.alloiz.palma.server.service.TariffService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,11 @@ public class TariffServiceImpl implements TariffService {
     public Tariff findOne(Long id) {
         checkId(id);
         return tariffRepository.findOne(id);
+    }
+
+    @Override
+    public List<Tariff> findByRoomType(RoomType roomType){
+        return tariffRepository.findAllByAvailableAndRoomType(true, roomType);
     }
 
     @Override

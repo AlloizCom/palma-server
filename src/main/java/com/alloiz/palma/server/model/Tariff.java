@@ -1,5 +1,6 @@
 package com.alloiz.palma.server.model;
 
+import com.alloiz.palma.server.model.enums.RoomType;
 import com.alloiz.palma.server.model.enums.TariffType;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -19,6 +20,9 @@ public class Tariff extends BaseEntity<Tariff> {
     private Integer price;
     private Timestamp dateFrom;
     private Timestamp dateTo;
+
+    @Enumerated(EnumType.STRING)
+    private RoomType roomType;
 
     public Tariff() {
     }
@@ -63,6 +67,15 @@ public class Tariff extends BaseEntity<Tariff> {
         return this;
     }
 
+    public RoomType getRoomType() {
+        return roomType;
+    }
+
+    public Tariff setRoomType(RoomType roomType) {
+        this.roomType = roomType;
+        return this;
+    }
+
     @Override
     public String toString() {
         return "Tariff{" +
@@ -70,6 +83,7 @@ public class Tariff extends BaseEntity<Tariff> {
                 ", price=" + price +
                 ", dateFrom=" + dateFrom +
                 ", dateTo=" + dateTo +
+                ", roomType=" + roomType +
                 ", id=" + id +
                 ", available=" + available +
                 '}';

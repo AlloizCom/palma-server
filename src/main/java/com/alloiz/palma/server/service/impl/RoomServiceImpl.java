@@ -100,7 +100,9 @@ public class RoomServiceImpl implements RoomService {
         Room room = findOne(roomId);
         List<Image> imageList = room.getImages();
         for (MultipartFile file : multipartFiles){
-            imageList.add(new Image().setPath(fileBuilder.saveFile(file)));
+            Image image = new Image().setPath(fileBuilder.saveFile(file)).setAvailable(true);
+            imageRepository.save(image);
+            imageList.add(image);
         }
         return roomRepository.save(room);
     }

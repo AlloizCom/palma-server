@@ -22,6 +22,8 @@ public interface RoomService {
 
     Room update(String roomJson);
 
+    Room addImages(Long roomId, MultipartFile[] multipartFiles);
+
     Boolean delete(Long id);
 
     Boolean deleteImage(Long roomId, Long imageId);

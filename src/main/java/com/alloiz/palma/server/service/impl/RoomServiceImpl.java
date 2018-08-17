@@ -96,6 +96,18 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
+    public Room addImages(Long roomId, MultipartFile[] multipartFiles) {
+        Room room = findOne(roomId);
+        List<Image> imageList = room.getImages();
+        for (MultipartFile file : multipartFiles){
+            Image image = new Image().setPath(fileBuilder.saveFile(file)).setAvailable(true);
+            imageRepository.save(image);
+            imageList.add(image);
+        }
+        return roomRepository.save(room);
+    }
+
+    @Override
     public Boolean delete(Long id) {
         try {
             roomRepository.delete(checkObjectExistsById(id, roomRepository));
@@ -110,14 +122,6 @@ public class RoomServiceImpl implements RoomService {
         checkId(imageId);
         Room room = findOne(roomId);
         List<Image> images = room.getImages();
-       // ListIterator<Image> listIterator = images.listIterator();
-//        while (listIterator.hasNext()){
-//            Image image = listIterator.next();
-//            if(image.getId().equals(imageId)) {
-//                listIterator.remove();
-//                return false;
-//            }
-//        }
         for (Image image : images){
             if (image.getId().equals(imageId) || image.getId() == imageId){
                 System.out.println(image.getPath());

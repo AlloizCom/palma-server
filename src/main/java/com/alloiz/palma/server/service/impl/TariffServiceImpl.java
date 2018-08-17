@@ -53,6 +53,12 @@ public class TariffServiceImpl implements TariffService {
     @Override
     public Tariff save(Tariff tariff) {
         checkSave(tariff);
+        if (tariff.getRoomType()==null){
+            tariff.setRoomType(RoomType.NONE);
+        }
+        if (tariff.getTariffType()==null){
+            tariff.setTariffType(TariffType.NONE);
+        }
         tariff.setAvailable(true);
         return tariffRepository.save(tariff);
     }

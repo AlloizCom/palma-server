@@ -3,6 +3,7 @@ package com.alloiz.palma.server.controller;
 import com.alloiz.palma.server.dto.TariffDto;
 import com.alloiz.palma.server.model.Tariff;
 import com.alloiz.palma.server.model.enums.RoomType;
+import com.alloiz.palma.server.model.enums.TariffType;
 import com.alloiz.palma.server.service.TariffService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -43,8 +44,14 @@ public class TariffController {
     }
 
     @GetMapping("/find-one-by-room-type/{roomType}")
-    private ResponseEntity<List<TariffDto>> findOne(@PathVariable RoomType roomType) {
+    private ResponseEntity<List<TariffDto>> findByRoomType(@PathVariable RoomType roomType) {
         return ResponseEntity.ok(tariffService.findByRoomType(roomType).stream()
+                .map(tariff -> map(tariff, TariffDto.class)).collect(Collectors.toList()));
+    }
+
+    @GetMapping("/find-one-by-tariff-type/{tariffType}")
+    private ResponseEntity<List<TariffDto>> findByTariffType(@PathVariable TariffType tariffType) {
+        return ResponseEntity.ok(tariffService.findByTariffType(tariffType).stream()
                 .map(tariff -> map(tariff, TariffDto.class)).collect(Collectors.toList()));
     }
 

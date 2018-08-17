@@ -2,6 +2,7 @@ package com.alloiz.palma.server.service;
 
 import com.alloiz.palma.server.model.Tariff;
 import com.alloiz.palma.server.model.enums.RoomType;
+import com.alloiz.palma.server.model.enums.TariffType;
 
 import java.util.List;
 
@@ -14,6 +15,8 @@ public interface TariffService {
     Tariff findOne(Long id);
 
     List<Tariff> findByRoomType (RoomType roomType);
+
+    List<Tariff> findByTariffType(TariffType tariffType);
 
     List<Tariff> findAll();
 

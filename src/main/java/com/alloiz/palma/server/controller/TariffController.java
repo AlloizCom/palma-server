@@ -55,6 +55,12 @@ public class TariffController {
                 .map(tariff -> map(tariff, TariffDto.class)).collect(Collectors.toList()));
     }
 
+    @GetMapping("/find-one-by-tariff-type-and-room-type/{tariffType}/room/{roomType}")
+    private ResponseEntity<List<TariffDto>> findByTariffTypeAndRoomType(@PathVariable TariffType tariffType, @PathVariable RoomType roomType) {
+        return ResponseEntity.ok(tariffService.findByTariffTypeAndRoomType(tariffType, roomType).stream()
+                .map(tariff -> map(tariff, TariffDto.class)).collect(Collectors.toList()));
+    }
+
     @PostMapping("/save")
     private ResponseEntity<TariffDto> save(@RequestBody TariffDto tariff) {
         return ResponseEntity

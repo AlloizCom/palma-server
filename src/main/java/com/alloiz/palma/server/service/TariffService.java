@@ -20,6 +20,8 @@ public interface TariffService {
 
     List<Tariff> findAll();
 
+    List<Tariff> findByTariffTypeAndRoomType(TariffType tariffType, RoomType roomType);
+
     Tariff save(Tariff tariff);
 
     Tariff update(Tariff tariff);

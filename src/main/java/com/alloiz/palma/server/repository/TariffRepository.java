@@ -18,4 +18,6 @@ public interface TariffRepository extends JpaRepository<Tariff,Long> {
     List<Tariff> findAllByAvailableAndRoomType(Boolean available, RoomType roomType);
 
     List<Tariff> findAllByAvailableAndTariffType (Boolean available, TariffType tariffType);
+
+    List<Tariff> findAllByAvailableAndTariffTypeAndRoomType (Boolean available, TariffType tariffType, RoomType roomType);
 }

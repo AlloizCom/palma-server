@@ -51,6 +51,11 @@ public class TariffServiceImpl implements TariffService {
     }
 
     @Override
+    public List<Tariff> findByTariffTypeAndRoomType(TariffType tariffType, RoomType roomType){
+        return tariffRepository.findAllByAvailableAndTariffTypeAndRoomType(true, tariffType, roomType);
+    }
+
+    @Override
     public Tariff save(Tariff tariff) {
         checkSave(tariff);
         if (tariff.getRoomType()==null){

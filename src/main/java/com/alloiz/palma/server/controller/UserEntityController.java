@@ -22,13 +22,13 @@ public class UserEntityController {
     @GetMapping("/find-all")
     private ResponseEntity<List<UserEntityDto>> findAll() {
         return ResponseEntity.ok(userEntityService.findAll().stream()
-                .map(callback -> map(callback, UserEntityDto.class)).collect(Collectors.toList()));
+                .map(userEntity -> map(userEntity, UserEntityDto.class)).collect(Collectors.toList()));
     }
 
     @GetMapping("/find-all-available")
     private ResponseEntity<List<UserEntityDto>> findAllAvailable() {
         return ResponseEntity.ok(userEntityService.findAllAvailable().stream()
-                .map(callback -> map(callback, UserEntityDto.class)).collect(Collectors.toList()));
+                .map(userEntity -> map(userEntity, UserEntityDto.class)).collect(Collectors.toList()));
     }
 
     @GetMapping("/find-one-available/{id}")

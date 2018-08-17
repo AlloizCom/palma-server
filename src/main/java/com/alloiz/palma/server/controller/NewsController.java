@@ -25,13 +25,13 @@ public class NewsController {
     @GetMapping("/find-all")
     private ResponseEntity<List<NewsShortDto>> findAll() {
         return new ResponseEntity<>(newsService.findAll().stream()
-                .map(worker -> map(worker, NewsShortDto.class)).collect(Collectors.toList()), HttpStatus.OK);
+                .map(news -> map(news, NewsShortDto.class)).collect(Collectors.toList()), HttpStatus.OK);
     }
 
     @GetMapping("/find-all-available")
     private ResponseEntity<List<NewsShortDto>> findAllAvailable() {
         return new ResponseEntity<>(newsService.findAllAvailable().stream()
-                .map(worker -> map(worker, NewsShortDto.class)).collect(Collectors.toList()), HttpStatus.OK);
+                .map(news -> map(news, NewsShortDto.class)).collect(Collectors.toList()), HttpStatus.OK);
     }
 
     @GetMapping("/find-one-available/{id}")

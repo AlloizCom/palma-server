@@ -33,7 +33,7 @@ public class AmenityController {
     @GetMapping("/find-all-available")
     private ResponseEntity<List<AmenityShortDto>> findAllAvailable() {
         return new ResponseEntity<>(amenityService.findAllAvailable().stream()
-                .map(worker -> map(worker, AmenityFullDto.class)).collect(Collectors.toList()), HttpStatus.OK);
+                .map(amenity -> map(amenity, AmenityFullDto.class)).collect(Collectors.toList()), HttpStatus.OK);
     }
 
     @GetMapping("/find-one-available/{id}")

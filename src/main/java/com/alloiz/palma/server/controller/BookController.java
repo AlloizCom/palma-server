@@ -23,13 +23,13 @@ public class BookController {
     @GetMapping("/find-all")
     private ResponseEntity<List<BookDto>> findAll() {
         return ResponseEntity.ok(bookService.findAll().stream()
-                .map(callback -> map(callback, BookDto.class)).collect(Collectors.toList()));
+                .map(book -> map(book, BookDto.class)).collect(Collectors.toList()));
     }
 
     @GetMapping("/find-all-available")
     private ResponseEntity<List<BookDto>> findAllAvailable() {
         return ResponseEntity.ok(bookService.findAllAvailable().stream()
-                .map(callback -> map(callback, BookDto.class)).collect(Collectors.toList()));
+                .map(book -> map(book, BookDto.class)).collect(Collectors.toList()));
     }
 
     @GetMapping("/find-one-available/{id}")

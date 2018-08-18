@@ -14,10 +14,14 @@ public class NewsDescription extends BaseEntity<NewsDescription> {
 //    private News news;
     @Enumerated(EnumType.STRING)
     private Language language;
-    @Column(columnDefinition = "LONGTEXT")
-    private String description;
 
     private String title;
+
+    @Column(columnDefinition = "LONGTEXT")
+    private String headerText;
+
+    @Column(columnDefinition = "LONGTEXT")
+    private String mainText;
 
     public NewsDescription() {
     }
@@ -49,22 +53,30 @@ public class NewsDescription extends BaseEntity<NewsDescription> {
         return this;
     }
 
-    public String getDescription() {
-        return description;
+    public String getHeaderText() {
+        return headerText;
     }
 
-    public NewsDescription setDescription(String description) {
-        this.description = description;
+    public NewsDescription setHeaderText(String headerText) {
+        this.headerText = headerText;
+        return this;
+    }
+
+    public String getMainText() {
+        return mainText;
+    }
+
+    public NewsDescription setMainText(String mainText) {
+        this.mainText = mainText;
         return this;
     }
 
     @Override
     public String toString() {
         return "NewsDescription{" +
-//                "news=" + (news == null ? "null" : news) +
-                ", language=" + (language == null ? "null" : language) +
-                ", description='" + description + '\'' +
-                ", title='" + title + '\'' +
+                ", language=" + (language == null ? "null" : language) +                ", title='" + title + '\'' +
+                ", headerText='" + headerText + '\'' +
+                ", mainText='" + mainText + '\'' +
                 ", id=" + id +
                 ", available=" + available +
                 '}';

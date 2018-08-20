@@ -72,7 +72,7 @@ public class RoomController {
 //        return ResponseEntity.ok(roomService.deleteImage(roomId, imageId));
 //    }
 
-    @PostMapping("/change-amount/{roomType}/amount/{amount}")
+    @GetMapping("/change-amount/{roomType}/amount/{amount}")
     private ResponseEntity<Boolean> changeAmount (@PathVariable RoomType roomType,
                                                   @PathVariable Integer amount) {
         return ResponseEntity.ok(roomService.changeAmount(roomType,amount));

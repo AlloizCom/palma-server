@@ -1,6 +1,7 @@
 package com.alloiz.palma.server.model;
 
 import com.alloiz.palma.server.model.enums.OrderStatus;
+import com.alloiz.palma.server.model.enums.RoomType;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.deser.std.DateDeserializers;
@@ -30,7 +31,19 @@ public class Book extends BaseEntity<Book> {
 //    @OneToMany(mappedBy = "amenity", cascade = CascadeType.REFRESH)
 //    private List<Amenity> amenities;
 
+    @Enumerated(EnumType.STRING)
+    private RoomType roomType;
+
     public Book() {
+    }
+
+    public RoomType getRoomType() {
+        return roomType;
+    }
+
+    public Book setRoomType(RoomType roomType) {
+        this.roomType = roomType;
+        return this;
     }
 
     public OrderStatus getOrderStatus() {
@@ -160,6 +173,7 @@ public class Book extends BaseEntity<Book> {
                 ", orderStatus=" + orderStatus +
 //                ", rooms=" + (rooms == null ? "null" : rooms) +
 //                ", amenities=" + (amenities == null ? "null" : amenities) +
+                ", roomType=" + roomType +
                 ", id=" + id +
                 ", available=" + available +
                 '}';

@@ -2,6 +2,7 @@ package com.alloiz.palma.server.dto;
 
 import com.alloiz.palma.server.dto.utils.annotations.Dto;
 import com.alloiz.palma.server.model.enums.OrderStatus;
+import com.alloiz.palma.server.model.enums.RoomType;
 
 import java.sql.Timestamp;
 
@@ -19,8 +20,18 @@ public class BookDto {
     protected Integer adults;
     protected Integer kids;
     protected OrderStatus orderStatus;
+    protected RoomType roomType;
 
     public BookDto() {
+    }
+
+    public RoomType getRoomType() {
+        return roomType;
+    }
+
+    public BookDto setRoomType(RoomType roomType) {
+        this.roomType = roomType;
+        return this;
     }
 
     public Long getId() {
@@ -146,6 +157,7 @@ public class BookDto {
                 ", adults=" + adults +
                 ", kids=" + kids +
                 ", orderStatus=" + orderStatus +
+                ", roomType=" + roomType +
                 '}';
     }
 }

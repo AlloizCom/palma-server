@@ -54,11 +54,11 @@ public class RoomController {
 
     @PostMapping("/update")
     private ResponseEntity<RoomFullDto> update(@RequestParam String roomJson, @RequestParam(required = false) MultipartFile[] multipartFiles) {
-        //if (multipartFiles != null && !multipartFile.isEmpty()) {
-          //  return ResponseEntity.ok(map(roomService.update(roomJson, multipartFile), WorkerFullDto.class));
-        //} else {
+        if (multipartFiles != null && multipartFiles.length != 0) {
+            return ResponseEntity.ok(map(roomService.update(roomJson, multipartFiles), RoomFullDto.class));
+        } else {
             return ResponseEntity.ok(map(roomService.update(roomJson), RoomFullDto.class));
-        //}
+        }
     }
 
     @PostMapping("/add-images")

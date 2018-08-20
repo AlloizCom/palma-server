@@ -20,6 +20,8 @@ public interface RoomService {
 
     Room update(Room room);
 
+    Room update(String roomJson, MultipartFile[] multipartFiles);
+
     Room update(String roomJson);
 
     Room addImages(Long roomId, MultipartFile[] multipartFiles);

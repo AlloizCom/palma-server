@@ -14,8 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 
-import static com.alloiz.palma.server.service.utils.Validation.*;
 import static com.alloiz.palma.server.config.mapper.JsonMapper.json;
+import static com.alloiz.palma.server.service.utils.Validation.*;
 
 @Service
 public class RoomServiceImpl implements RoomService {
@@ -63,9 +63,9 @@ public class RoomServiceImpl implements RoomService {
     public Room save(String roomJson, MultipartFile[] multipartFiles) {
         checkJson(roomJson);
         Room room = json(roomJson, Room.class);
-        if( multipartFiles != null && multipartFiles.length != 0){
-           List<Image> images = new ArrayList<>();
-            for(MultipartFile multipartFile : multipartFiles){
+        if (multipartFiles != null && multipartFiles.length != 0) {
+            List<Image> images = new ArrayList<>();
+            for (MultipartFile multipartFile : multipartFiles) {
                 Image image = new Image();
                 image.setPath(fileBuilder.saveFile(multipartFile)).setAvailable(true);
                 images.add(image);
@@ -73,11 +73,11 @@ public class RoomServiceImpl implements RoomService {
             room.setImages(images);
         }
         return save(room);
-        }
+    }
 
     @Override
     public Room update(Room room) {
-        checkObjectExistsById(room.getId(),roomRepository);
+        checkObjectExistsById(room.getId(), roomRepository);
         return roomRepository.save(findOne(room.getId())
                 .setAdultPlaces(room.getAdultPlaces())
                 .setAmenities(room.getAmenities())
@@ -86,6 +86,32 @@ public class RoomServiceImpl implements RoomService {
                 .setKidsPlaces(room.getKidsPlaces())
                 .setSquare(room.getSquare())
                 .setType(room.getType()));
+    }
+
+    @Override
+    public Room update(String roomJson, MultipartFile[] multipartFiles) {
+        checkJson(roomJson);
+        Room room = json(roomJson, Room.class);
+        checkObjectExistsById(room.getId(), roomRepository);
+        if (multipartFiles != null && multipartFiles.length != 0) {
+            List<Image> images = new ArrayList<>();
+            for (MultipartFile multipartFile : multipartFiles) {
+                Image image = new Image();
+                image.setPath(fileBuilder.saveFile(multipartFile)).setAvailable(true);
+                images.add(image);
+            }
+            room.setImages(images);
+        }
+        return roomRepository.save(findOne(room.getId())
+                .setAdultPlaces(room.getAdultPlaces())
+                .setAmenities(room.getAmenities())
+                .setAvailable(room.getAvailable())
+                .setDescriptions(room.getDescriptions())
+                .setKidsPlaces(room.getKidsPlaces())
+                .setSquare(room.getSquare())
+                .setType(room.getType()))
+                .setImages(room.getImages())
+                ;
     }
 
     @Override
@@ -99,7 +125,7 @@ public class RoomServiceImpl implements RoomService {
     public Room addImages(Long roomId, MultipartFile[] multipartFiles) {
         Room room = findOne(roomId);
         List<Image> imageList = room.getImages();
-        for (MultipartFile file : multipartFiles){
+        for (MultipartFile file : multipartFiles) {
             Image image = new Image().setPath(fileBuilder.saveFile(file)).setAvailable(true);
             imageRepository.save(image);
             imageList.add(image);
@@ -130,8 +156,8 @@ public class RoomServiceImpl implements RoomService {
 //            }
 //        }
         ListIterator<Image> imageListIterator = images.listIterator();
-        while (imageListIterator.hasNext()){
-            if (imageListIterator.next().getId().equals(imageId)){
+        while (imageListIterator.hasNext()) {
+            if (imageListIterator.next().getId().equals(imageId)) {
                 imageListIterator.remove();
                 imageRepository.delete(imageId);
                 return true;
@@ -139,4 +165,5 @@ public class RoomServiceImpl implements RoomService {
         }
         return false;
     }
+
 }

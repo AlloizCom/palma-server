@@ -23,6 +23,7 @@ public class Book extends BaseEntity<Book> {
     private String message;
     private Integer adults;
     private Integer kids;
+    private Integer amountOfRooms;
 
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
@@ -140,7 +141,16 @@ public class Book extends BaseEntity<Book> {
         return this;
     }
 
-//    public List<Room> getRooms() {
+    public Integer getAmountOfRooms() {
+        return amountOfRooms;
+    }
+
+    public Book setAmountOfRooms(Integer amountOfRooms) {
+        this.amountOfRooms = amountOfRooms;
+        return this;
+    }
+
+    //    public List<Room> getRooms() {
 //        return rooms;
 //    }
 //
@@ -174,6 +184,7 @@ public class Book extends BaseEntity<Book> {
 //                ", rooms=" + (rooms == null ? "null" : rooms) +
 //                ", amenities=" + (amenities == null ? "null" : amenities) +
                 ", roomType=" + roomType +
+                ", amountOfRooms=" + amountOfRooms +
                 ", id=" + id +
                 ", available=" + available +
                 '}';

@@ -1,13 +1,18 @@
 package com.alloiz.palma.server.service.impl;
 
 import com.alloiz.palma.server.model.Book;
+import com.alloiz.palma.server.model.Room;
 import com.alloiz.palma.server.repository.BookRepository;
+import com.alloiz.palma.server.repository.RoomRepository;
 import com.alloiz.palma.server.service.BookService;
+import com.alloiz.palma.server.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 import static com.alloiz.palma.server.service.utils.Validation.*;
+import static java.util.stream.Collectors.toList;
 
 @Service
 public class BookServiceImpl implements BookService {
@@ -15,10 +20,16 @@ public class BookServiceImpl implements BookService {
     @Autowired
     private BookRepository bookRepository;
 
+    @Autowired
+    private RoomRepository roomRepository;
+
+    @Autowired
+    private RoomService roomService;
+
     @Override
     public Book findOneAvailable(Long id) {
         checkId(id);
-        return bookRepository.findByAvailableAndId(true,id);
+        return bookRepository.findByAvailableAndId(true, id);
     }
 
     @Override
@@ -39,7 +50,37 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public Book save(Book book) {
+//        checkSave(book);
+//        List<Room> rooms = roomRepository.findAllByAvailableAndType(true, book.getRoomType());
+//        try {
+//            Room resRoom = rooms.stream()
+//                    .filter(room -> room.getType().equals(book.getRoomType()))
+//                    .map(room -> room.setAmount(room.getAmount() - book.getAmountOfRooms()))
+//                    .findFirst().orElseThrow(Exception::new);
+//            if(resRoom.getAmount()<0){
+//                throw new Exception();
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        for (Room room : rooms) {
+//            if (room.getType().equals(book.getRoomType())) {
+//                if (room.getAmount() >= book.getAmountOfRooms()) {
+//                    room.setAmount(room.getAmount() - book.getAmountOfRooms());
+//                }
+//            }
+//        }
         checkSave(book);
+        List<Room> rooms = roomRepository.findAllByAvailableAndType(true, book.getRoomType());
+        for (Room room : rooms) {
+            if (room.getType().equals(book.getRoomType())) {
+                if (room.getAmount() >= book.getAmountOfRooms()) {
+                    room.setAmount(room.getAmount() - book.getAmountOfRooms());
+                    roomService.changeAmount(room.getType(), book.getAmountOfRooms());
+                }
+            }
+        }
+
         return bookRepository.save(book.setAvailable(true));
     }
 

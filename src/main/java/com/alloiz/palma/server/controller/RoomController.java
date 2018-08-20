@@ -4,6 +4,7 @@ import com.alloiz.palma.server.dto.RoomFullDto;
 import com.alloiz.palma.server.dto.RoomShortDto;
 import com.alloiz.palma.server.model.Room;
 import com.alloiz.palma.server.model.UserEntity;
+import com.alloiz.palma.server.model.enums.RoomType;
 import com.alloiz.palma.server.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -71,7 +72,13 @@ public class RoomController {
 //        return ResponseEntity.ok(roomService.deleteImage(roomId, imageId));
 //    }
 
-    @DeleteMapping("/delete-image/{roomId}/image/{imageId}")
+    @GetMapping("/change-amount/{roomType}/amount/{amount}")
+    private ResponseEntity<Boolean> changeAmount (@PathVariable RoomType roomType,
+                                                  @PathVariable Integer amount) {
+        return ResponseEntity.ok(roomService.changeAmount(roomType,amount));
+    }
+
+    @DeleteMapping("/delete-image/{roomType}/image/{imageId}")
     private ResponseEntity<Boolean> deleteImage(
             @PathVariable Long roomId,
             @PathVariable Long imageId) {

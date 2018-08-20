@@ -21,6 +21,7 @@ public class BookDto {
     protected Integer kids;
     protected OrderStatus orderStatus;
     protected RoomType roomType;
+    protected Integer amountOfRooms;
 
     public BookDto() {
     }
@@ -142,6 +143,16 @@ public class BookDto {
         return this;
     }
 
+    public Integer getAmountOfRooms() {
+        return amountOfRooms;
+    }
+
+    public BookDto setAmountOfRooms(Integer amountOfRooms) {
+        this.amountOfRooms = amountOfRooms;
+        return this;
+    }
+
+
     @Override
     public String toString() {
         return "BookDto{" +
@@ -158,6 +169,7 @@ public class BookDto {
                 ", kids=" + kids +
                 ", orderStatus=" + orderStatus +
                 ", roomType=" + roomType +
+                ", amountOfRooms=" + amountOfRooms +
                 '}';
     }
 }

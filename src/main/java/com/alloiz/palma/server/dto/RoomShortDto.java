@@ -12,6 +12,7 @@ public class RoomShortDto <T extends RoomShortDto>{
     protected Integer adultPlaces;
     protected Integer kidsPlaces;
     protected Double square;
+    protected Integer amount;
 
     public RoomShortDto() {
     }
@@ -70,6 +71,15 @@ public class RoomShortDto <T extends RoomShortDto>{
         return (T) this;
     }
 
+    public Integer getAmount() {
+        return amount;
+    }
+
+    public RoomShortDto<T> setAmount(Integer amount) {
+        this.amount = amount;
+        return this;
+    }
+
     @Override
     public String toString() {
         return "RoomShortDto{" +
@@ -79,6 +89,7 @@ public class RoomShortDto <T extends RoomShortDto>{
                 ", adultPlaces=" + adultPlaces +
                 ", kidsPlaces=" + kidsPlaces +
                 ", square=" + square +
+                ", amount=" + amount +
                 '}';
     }
 }

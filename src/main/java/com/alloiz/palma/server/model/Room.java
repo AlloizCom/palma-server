@@ -14,6 +14,7 @@ public class Room extends BaseEntity<Room> {
     private Integer adultPlaces;
     private Integer kidsPlaces;
     private Double square;
+    private Integer amount;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "description_id")
@@ -92,6 +93,15 @@ public class Room extends BaseEntity<Room> {
         return this;
     }
 
+    public Integer getAmount() {
+        return amount;
+    }
+
+    public Room setAmount(Integer amount) {
+        this.amount = amount;
+        return this;
+    }
+
     @Override
     public String toString() {
         return "Room{" +
@@ -102,6 +112,7 @@ public class Room extends BaseEntity<Room> {
                 ", descriptions=" + (descriptions == null ? "null" : descriptions) +
                 ", amenities=" + (amenities == null ? "null" : amenities) +
                 ", images=" + (images == null ? "null" : images)+
+                ", amount=" + amount +
                 ", id=" + id +
                 ", available=" + available +
                 '}';

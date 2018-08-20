@@ -2,6 +2,7 @@ package com.alloiz.palma.server.service.impl;
 
 import com.alloiz.palma.server.model.Image;
 import com.alloiz.palma.server.model.Room;
+import com.alloiz.palma.server.model.enums.RoomType;
 import com.alloiz.palma.server.repository.ImageRepository;
 import com.alloiz.palma.server.repository.RoomRepository;
 import com.alloiz.palma.server.service.RoomService;
@@ -85,6 +86,7 @@ public class RoomServiceImpl implements RoomService {
                 .setDescriptions(room.getDescriptions())
                 .setKidsPlaces(room.getKidsPlaces())
                 .setSquare(room.getSquare())
+                .setAmount(room.getAmount())
                 .setType(room.getType()));
     }
 
@@ -110,6 +112,7 @@ public class RoomServiceImpl implements RoomService {
                 .setKidsPlaces(room.getKidsPlaces())
                 .setSquare(room.getSquare())
                 .setType(room.getType()))
+                .setAmount(room.getAmount())
                 .setImages(room.getImages())
                 ;
     }
@@ -141,6 +144,18 @@ public class RoomServiceImpl implements RoomService {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    @Override
+    public Boolean changeAmount (RoomType roomType, Integer amount){
+        List<Room> rooms = roomRepository.findAllByAvailableAndType(true, roomType);
+        for (Room room : rooms){
+            if (room.getType().equals(roomType)){
+                room.setAmount(amount);
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

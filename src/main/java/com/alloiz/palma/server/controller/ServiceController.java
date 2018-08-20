@@ -1,0 +1,61 @@
+package com.alloiz.palma.server.controller;
+
+import com.alloiz.palma.server.dto.ServiceFullDto;
+import com.alloiz.palma.server.dto.ServiceShortDto;
+import com.alloiz.palma.server.service.ServiceService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static com.alloiz.palma.server.dto.utils.builder.Builder.map;
+
+@RestController
+@RequestMapping("/service")
+public class ServiceController {
+
+    @Autowired
+    private ServiceService serviceService;
+
+    @GetMapping("/find-all")
+    private ResponseEntity<List<ServiceShortDto>> findAll() {
+        return new ResponseEntity<>(serviceService.findAll().stream()
+                .map(news -> map(news, ServiceShortDto.class))
+                .collect(Collectors.toList()), HttpStatus.OK);
+    }
+
+    @GetMapping("/find-all-available")
+    private ResponseEntity<List<ServiceShortDto>> findAllAvailable() {
+        return new ResponseEntity<>(serviceService.findAllAvailable().stream()
+                .map(news -> map(news, ServiceShortDto.class))
+                .collect(Collectors.toList()), HttpStatus.OK);
+    }
+
+    @GetMapping("/find-one-available/{id}")
+    private ResponseEntity<ServiceShortDto> findOneAvailale(@PathVariable Long id) {
+        return new ResponseEntity<>(map(serviceService.findOneAvailable(id), ServiceShortDto.class), HttpStatus.OK);
+    }
+
+    @GetMapping("/find-one/{id}")
+    private ResponseEntity<ServiceShortDto> findOne(@PathVariable Long id) {
+        return new ResponseEntity<>(map(serviceService.findOne(id), ServiceShortDto.class), HttpStatus.OK);
+    }
+
+    @PostMapping("/save")
+    private ResponseEntity<ServiceFullDto> save(@RequestParam String newsJson) {
+        return ResponseEntity.ok(map(serviceService.save(newsJson), ServiceFullDto.class));
+    }
+
+    @PostMapping("/update")
+    private ResponseEntity<ServiceFullDto> update(@RequestParam String newsJson) {
+        return ResponseEntity.ok(map(serviceService.update(newsJson), ServiceFullDto.class));
+    }
+
+    @DeleteMapping("/delete/{id}")
+    private ResponseEntity<Boolean> delete(@PathVariable Long id) {
+        return ResponseEntity.ok(serviceService.delete(id));
+    }
+}

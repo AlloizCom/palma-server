@@ -16,7 +16,10 @@ public class ServiceDescription extends BaseEntity<ServiceDescription>{
     private String title;
 
     @Column(columnDefinition = "LONGTEXT")
-    private String text;
+    private String headerText;
+
+    @Column(columnDefinition = "LONGTEXT")
+    private String mainText;
 
     public ServiceDescription() {
     }
@@ -39,12 +42,21 @@ public class ServiceDescription extends BaseEntity<ServiceDescription>{
         return this;
     }
 
-    public String getText() {
-        return text;
+    public String getHeaderText() {
+        return headerText;
     }
 
-    public ServiceDescription setText(String text) {
-        this.text = text;
+    public ServiceDescription setHeaderText(String headerText) {
+        this.headerText = headerText;
+        return this;
+    }
+
+    public String getMainText() {
+        return mainText;
+    }
+
+    public ServiceDescription setMainText(String mainText) {
+        this.mainText = mainText;
         return this;
     }
 
@@ -53,7 +65,8 @@ public class ServiceDescription extends BaseEntity<ServiceDescription>{
         return "ServiceDescription{" +
                 "language=" + (language == null ? "null" : language) +
                 ", title='" + title + '\'' +
-                ", text='" + text + '\'' +
+                ", headerText='" + headerText + '\'' +
+                ", mainText='" + mainText + '\'' +
                 ", id=" + id +
                 ", available=" + available +
                 '}';

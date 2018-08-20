@@ -122,9 +122,17 @@ public class RoomServiceImpl implements RoomService {
         checkId(imageId);
         Room room = findOne(roomId);
         List<Image> images = room.getImages();
-        for (Image image : images){
-            if (image.getId().equals(imageId) || image.getId() == imageId){
-                System.out.println(image.getPath());
+//        for (Image image : images){
+//            if (image.getId().equals(imageId) || image.getId() == imageId){
+//                System.out.println(image.getPath());
+//                imageRepository.delete(imageId);
+//                return true;
+//            }
+//        }
+        ListIterator<Image> imageListIterator = images.listIterator();
+        while (imageListIterator.hasNext()){
+            if (imageListIterator.next().getId().equals(imageId)){
+                imageListIterator.remove();
                 imageRepository.delete(imageId);
                 return true;
             }

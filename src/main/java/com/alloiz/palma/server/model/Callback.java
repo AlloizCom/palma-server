@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.deser.std.DateDeserializers;
 import com.fasterxml.jackson.databind.ser.std.DateSerializer;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import java.sql.Timestamp;
 
@@ -12,7 +13,10 @@ import java.sql.Timestamp;
 public class Callback extends BaseEntity<Callback> {
 
     private String name;
+
+    @Column(columnDefinition = "LONGTEXT")
     private String message;
+
     private String email;
     private String phone;
     private Timestamp dateTime;

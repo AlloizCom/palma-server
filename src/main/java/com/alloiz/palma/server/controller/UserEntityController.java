@@ -3,6 +3,7 @@ package com.alloiz.palma.server.controller;
 import com.alloiz.palma.server.dto.UserEntityDto;
 import com.alloiz.palma.server.model.UserEntity;
 import com.alloiz.palma.server.service.UserEntityService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,9 @@ import static com.alloiz.palma.server.dto.utils.builder.Builder.map;
 @RestController
 @RequestMapping("/user")
 public class UserEntityController {
+
+    private static final Logger LOGGER = Logger.getLogger(UserEntity.class);
+
 
     @Autowired
     private UserEntityService userEntityService;
@@ -43,12 +47,18 @@ public class UserEntityController {
 
     @PostMapping("/save")
     private ResponseEntity<UserEntityDto> save(@RequestBody UserEntityDto user) {
+        LOGGER.info("---------------------------User---------------------------");
+        LOGGER.info(user);
+        LOGGER.info("---------------------------User---------------------------");
         return ResponseEntity
                 .ok(map(userEntityService.save(map(user, UserEntity.class)), UserEntityDto.class));
     }
 
     @PostMapping("/update")
     private ResponseEntity<UserEntityDto> update(@RequestBody UserEntityDto user) {
+        LOGGER.info("---------------------------User---------------------------");
+        LOGGER.info(user);
+        LOGGER.info("---------------------------User---------------------------");
         return ResponseEntity
                 .ok(map(userEntityService.update(map(user, UserEntity.class)), UserEntityDto.class));
     }

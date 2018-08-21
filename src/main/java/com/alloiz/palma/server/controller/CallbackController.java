@@ -4,6 +4,7 @@ package com.alloiz.palma.server.controller;
 import com.alloiz.palma.server.dto.CallbackDto;
 import com.alloiz.palma.server.model.Callback;
 import com.alloiz.palma.server.service.CallbackService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +17,8 @@ import static com.alloiz.palma.server.dto.utils.builder.Builder.map;
 @RestController
 @RequestMapping("/callback")
 public class CallbackController {
+
+    private static final Logger LOGGER = Logger.getLogger(CallbackController.class);
 
     @Autowired
     private CallbackService callbackService;
@@ -44,12 +47,18 @@ public class CallbackController {
 
     @PostMapping("/save")
     private ResponseEntity<CallbackDto> save(@RequestBody CallbackDto callback) {
+        LOGGER.info("---------------------------Callback---------------------------");
+        LOGGER.info(callback);
+        LOGGER.info("---------------------------Callback---------------------------");
         return ResponseEntity
                 .ok(map(callbackService.save(map(callback, Callback.class)), CallbackDto.class));
     }
 
     @PostMapping("/update")
     private ResponseEntity<CallbackDto> update(@RequestBody CallbackDto callback) {
+        LOGGER.info("---------------------------Callback---------------------------");
+        LOGGER.info(callback);
+        LOGGER.info("---------------------------Callback---------------------------");
         return ResponseEntity
                 .ok(map(callbackService.update(map(callback, Callback.class)), CallbackDto.class));
     }

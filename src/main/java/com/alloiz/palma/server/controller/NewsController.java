@@ -4,6 +4,7 @@ import com.alloiz.palma.server.dto.NewsFullDto;
 import com.alloiz.palma.server.dto.NewsShortDto;
 import com.alloiz.palma.server.dto.RoomShortDto;
 import com.alloiz.palma.server.service.NewsService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,8 @@ import static com.alloiz.palma.server.dto.utils.builder.Builder.map;
 @RestController
 @RequestMapping("/news")
 public class NewsController {
+
+    private static final Logger LOGGER = Logger.getLogger(NewsController.class);
 
     @Autowired
     private NewsService newsService;
@@ -47,6 +50,10 @@ public class NewsController {
     @PostMapping("/save")
     private ResponseEntity<NewsFullDto> save(@RequestParam String newsJson,
                                              @RequestParam(required = false) MultipartFile multipartFile) {
+        LOGGER.info("---------------------------News---------------------------");
+        LOGGER.info(newsJson);
+        LOGGER.info(multipartFile);
+        LOGGER.info("---------------------------News---------------------------");
         return ResponseEntity.ok(map(newsService.save(newsJson, multipartFile), NewsFullDto.class));
     }
 
@@ -55,6 +62,10 @@ public class NewsController {
         //if (multipartFiles != null && !multipartFile.isEmpty()) {
         //  return ResponseEntity.ok(map(roomService.update(roomJson, multipartFile), WorkerFullDto.class));
         //} else {
+        LOGGER.info("---------------------------News---------------------------");
+        LOGGER.info(newsJson);
+        LOGGER.info(multipartFile);
+        LOGGER.info("---------------------------News---------------------------");
         return ResponseEntity.ok(map(newsService.update(newsJson, multipartFile), NewsFullDto.class));
         //}
     }

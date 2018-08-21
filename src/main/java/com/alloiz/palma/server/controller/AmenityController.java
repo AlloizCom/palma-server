@@ -49,11 +49,19 @@ public class AmenityController {
     @PostMapping("/save")
     private ResponseEntity<AmenityFullDto> save(@RequestParam String amenityJson,
                                                 @RequestParam(required = false) MultipartFile multipartFile) {
+        LOGGER.info("---------------------------Amenity---------------------------");
+        LOGGER.info(amenityJson);
+        LOGGER.info(multipartFile);
+        LOGGER.info("---------------------------Amenity---------------------------");
         return ResponseEntity.ok(map(amenityService.save(amenityJson, multipartFile), AmenityFullDto.class));
     }
 
     @PostMapping("/update")
     private ResponseEntity<AmenityFullDto> update(@RequestParam String amenityJson, @RequestParam(required = false) MultipartFile multipartFile) {
+        LOGGER.info("---------------------------Amenity---------------------------");
+        LOGGER.info(amenityJson);
+        LOGGER.info(multipartFile);
+        LOGGER.info("---------------------------Amenity---------------------------");
         if (multipartFile != null && !multipartFile.isEmpty()) {
             LOGGER.info("multipart file not null");
             return ResponseEntity.ok(map(amenityService.update(amenityJson, multipartFile), AmenityFullDto.class));

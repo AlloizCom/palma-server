@@ -3,6 +3,7 @@ package com.alloiz.palma.server.controller;
 import com.alloiz.palma.server.dto.MainPageFullDto;
 import com.alloiz.palma.server.dto.MainPageShortDto;
 import com.alloiz.palma.server.service.MainPageService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,9 @@ import static com.alloiz.palma.server.dto.utils.builder.Builder.map;
 @RestController
 @RequestMapping("/main-page")
 public class MainPageController {
+
+    private static final Logger LOGGER = Logger.getLogger(MainPageController.class);
+
 
     @Autowired
     private MainPageService mainPageService;
@@ -48,12 +52,20 @@ public class MainPageController {
     @PostMapping("/save")
     private ResponseEntity<MainPageFullDto> save(@RequestParam String mainPageJson,
                                                  @RequestParam(required = false) MultipartFile[] multipartFiles) {
+        LOGGER.info("---------------------------MainPage---------------------------");
+        LOGGER.info(mainPageJson);
+        LOGGER.info(multipartFiles.length);
+        LOGGER.info("---------------------------MainPage---------------------------");
         return ResponseEntity.ok(map(mainPageService.save(mainPageJson, multipartFiles), MainPageFullDto.class));
     }
 
     @PostMapping("/update")
     private ResponseEntity<MainPageFullDto> update(@RequestParam String mainPageJson,
                                                    @RequestParam(required = false) MultipartFile[] multipartFiles) {
+        LOGGER.info("---------------------------MainPage---------------------------");
+        LOGGER.info(mainPageJson);
+        LOGGER.info(multipartFiles.length);
+        LOGGER.info("---------------------------MainPage---------------------------");
         if (multipartFiles != null && multipartFiles.length != 0) {
             return ResponseEntity.ok(map(mainPageService.update(mainPageJson, multipartFiles), MainPageFullDto.class));
         } else {

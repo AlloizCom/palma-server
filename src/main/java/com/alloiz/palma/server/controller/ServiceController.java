@@ -3,6 +3,7 @@ package com.alloiz.palma.server.controller;
 import com.alloiz.palma.server.dto.ServiceFullDto;
 import com.alloiz.palma.server.dto.ServiceShortDto;
 import com.alloiz.palma.server.service.ServiceService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,8 @@ import static com.alloiz.palma.server.dto.utils.builder.Builder.map;
 @RestController
 @RequestMapping("/service")
 public class ServiceController {
+
+    private static final Logger LOGGER = Logger.getLogger(ServiceController.class);
 
     @Autowired
     private ServiceService serviceService;
@@ -45,13 +48,19 @@ public class ServiceController {
     }
 
     @PostMapping("/save")
-    private ResponseEntity<ServiceFullDto> save(@RequestParam String newsJson) {
-        return ResponseEntity.ok(map(serviceService.save(newsJson), ServiceFullDto.class));
+    private ResponseEntity<ServiceFullDto> save(@RequestParam String serviceJson) {
+        LOGGER.info("---------------------------Service---------------------------");
+        LOGGER.info(serviceJson);
+        LOGGER.info("---------------------------Service---------------------------");
+        return ResponseEntity.ok(map(serviceService.save(serviceJson), ServiceFullDto.class));
     }
 
     @PostMapping("/update")
-    private ResponseEntity<ServiceFullDto> update(@RequestParam String newsJson) {
-        return ResponseEntity.ok(map(serviceService.update(newsJson), ServiceFullDto.class));
+    private ResponseEntity<ServiceFullDto> update(@RequestParam String serviceJson) {
+        LOGGER.info("---------------------------Service---------------------------");
+        LOGGER.info(serviceJson);
+        LOGGER.info("---------------------------Service---------------------------");
+        return ResponseEntity.ok(map(serviceService.update(serviceJson), ServiceFullDto.class));
     }
 
     @DeleteMapping("/delete/{id}")

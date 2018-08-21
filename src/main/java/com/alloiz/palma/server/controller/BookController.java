@@ -3,6 +3,7 @@ package com.alloiz.palma.server.controller;
 import com.alloiz.palma.server.dto.BookDto;
 import com.alloiz.palma.server.model.Book;
 import com.alloiz.palma.server.service.BookService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +19,8 @@ public class BookController {
 
     @Autowired
     private BookService bookService;
+
+    private static final Logger LOGGER = Logger.getLogger(BookController.class);
 
 
     @GetMapping("/find-all")
@@ -44,12 +47,18 @@ public class BookController {
 
     @PostMapping("/save")
     private ResponseEntity<BookDto> save(@RequestBody BookDto book) {
+        LOGGER.info("---------------------------Book---------------------------");
+        LOGGER.info(book);
+        LOGGER.info("---------------------------Book---------------------------");
         return ResponseEntity
                 .ok(map(bookService.save(map(book, Book.class)), BookDto.class));
     }
 
     @PostMapping("/update")
     private ResponseEntity<BookDto> update(@RequestBody BookDto book) {
+        LOGGER.info("---------------------------Book---------------------------");
+        LOGGER.info(book);
+        LOGGER.info("---------------------------Book---------------------------");
         return ResponseEntity
                 .ok(map(bookService.update(map(book, Book.class)), BookDto.class));
     }

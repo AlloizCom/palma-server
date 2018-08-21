@@ -2,10 +2,9 @@ package com.alloiz.palma.server.controller;
 
 import com.alloiz.palma.server.dto.RoomFullDto;
 import com.alloiz.palma.server.dto.RoomShortDto;
-import com.alloiz.palma.server.model.Room;
-import com.alloiz.palma.server.model.UserEntity;
 import com.alloiz.palma.server.model.enums.RoomType;
 import com.alloiz.palma.server.service.RoomService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +19,8 @@ import static com.alloiz.palma.server.dto.utils.builder.Builder.map;
 @RestController
 @RequestMapping("/room")
 public class RoomController {
+
+    private static final Logger LOGGER = Logger.getLogger(RoomController.class);
 
     @Autowired
     private RoomService roomService;
@@ -48,13 +49,21 @@ public class RoomController {
 
     @PostMapping("/save")
     private ResponseEntity<RoomFullDto> save(@RequestParam String roomJson,
-                                               @RequestParam(required = false) MultipartFile[] multipartFiles) {
+                                             @RequestParam(required = false) MultipartFile[] multipartFiles) {
+        LOGGER.info("---------------------------Room---------------------------");
+        LOGGER.info(roomJson);
+        LOGGER.info(multipartFiles.length);
+        LOGGER.info("---------------------------Room---------------------------");
         return ResponseEntity.ok(map(roomService.save(roomJson, multipartFiles), RoomFullDto.class));
 //        return ResponseEntity.ok(map(workerService.save(workerJson, multipartFile), WorkerFullDto.class));
     }
 
     @PostMapping("/update")
     private ResponseEntity<RoomFullDto> update(@RequestParam String roomJson, @RequestParam(required = false) MultipartFile[] multipartFiles) {
+        LOGGER.info("---------------------------Room---------------------------");
+        LOGGER.info(roomJson);
+        LOGGER.info(multipartFiles.length);
+        LOGGER.info("---------------------------Room---------------------------");
         if (multipartFiles != null && multipartFiles.length != 0) {
             return ResponseEntity.ok(map(roomService.update(roomJson, multipartFiles), RoomFullDto.class));
         } else {
@@ -73,9 +82,9 @@ public class RoomController {
 //    }
 
     @GetMapping("/change-amount/{roomType}/amount/{amount}")
-    private ResponseEntity<Boolean> changeAmount (@PathVariable RoomType roomType,
-                                                  @PathVariable Integer amount) {
-        return ResponseEntity.ok(roomService.changeAmount(roomType,amount));
+    private ResponseEntity<Boolean> changeAmount(@PathVariable RoomType roomType,
+                                                 @PathVariable Integer amount) {
+        return ResponseEntity.ok(roomService.changeAmount(roomType, amount));
     }
 
     @DeleteMapping("/delete-image/{roomId}/image/{imageId}")

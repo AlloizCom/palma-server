@@ -5,6 +5,7 @@ import com.alloiz.palma.server.model.Tariff;
 import com.alloiz.palma.server.model.enums.RoomType;
 import com.alloiz.palma.server.model.enums.TariffType;
 import com.alloiz.palma.server.service.TariffService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,8 @@ import static com.alloiz.palma.server.dto.utils.builder.Builder.map;
 @RestController
 @RequestMapping("/tariff")
 public class TariffController {
+
+    private static final Logger LOGGER = Logger.getLogger(TariffController.class);
 
     @Autowired
     private TariffService tariffService;
@@ -63,12 +66,18 @@ public class TariffController {
 
     @PostMapping("/save")
     private ResponseEntity<TariffDto> save(@RequestBody TariffDto tariff) {
+        LOGGER.info("---------------------------Tariff---------------------------");
+        LOGGER.info(tariff);
+        LOGGER.info("---------------------------Tariff---------------------------");
         return ResponseEntity
                 .ok(map(tariffService.save(map(tariff, Tariff.class)), TariffDto.class));
     }
 
     @PostMapping("/update")
     private ResponseEntity<TariffDto> update(@RequestBody TariffDto tariff) {
+        LOGGER.info("---------------------------Tariff---------------------------");
+        LOGGER.info(tariff);
+        LOGGER.info("---------------------------Tariff---------------------------");
         return ResponseEntity
                 .ok(map(tariffService.update(map(tariff, Tariff.class)), TariffDto.class));
     }

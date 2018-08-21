@@ -6,6 +6,8 @@ import com.alloiz.palma.server.repository.BookRepository;
 import com.alloiz.palma.server.repository.RoomRepository;
 import com.alloiz.palma.server.service.BookService;
 import com.alloiz.palma.server.service.RoomService;
+import com.alloiz.palma.server.service.exceptions.NotEnoughFreePlacesException;
+import com.alloiz.palma.server.service.exceptions.RoomTypeNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -77,7 +79,11 @@ public class BookServiceImpl implements BookService {
                 if (room.getAmount() >= book.getAmountOfRooms()) {
                     room.setAmount(room.getAmount() - book.getAmountOfRooms());
                     roomService.changeAmount(room.getType(), book.getAmountOfRooms());
+                } else {
+                    throw new NotEnoughFreePlacesException("Not Enough Free Places !");
                 }
+            } else {
+                throw new RoomTypeNotFoundException("Room Type Not Found !");
             }
         }
 

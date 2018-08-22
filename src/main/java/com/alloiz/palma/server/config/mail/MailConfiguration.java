@@ -16,13 +16,13 @@ import java.util.Properties;
 @Configuration
 public class MailConfiguration {
 
-    @Value("${spring.mail.host}")
+    @Value("smtp.gmail.com")
     private String host;
-    @Value("${spring.mail.port}")
+    @Value("587")
     private int port;
-    @Value("${spring.mail.username}")
+    @Value("some@gmail.com")
     private String username;
-    @Value("${spring.mail.password}")
+    @Value("password")
     private String password;
 
     public static JavaMailSender generateMailSender(String username,

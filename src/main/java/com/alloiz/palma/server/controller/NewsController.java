@@ -26,25 +26,25 @@ public class NewsController {
     private NewsService newsService;
 
     @GetMapping("/find-all")
-    private ResponseEntity<List<NewsShortDto>> findAll() {
+    private ResponseEntity<List<NewsFullDto>> findAll() {
         return new ResponseEntity<>(newsService.findAll().stream()
-                .map(news -> map(news, NewsShortDto.class)).collect(Collectors.toList()), HttpStatus.OK);
+                .map(news -> map(news, NewsFullDto.class)).collect(Collectors.toList()), HttpStatus.OK);
     }
 
     @GetMapping("/find-all-available")
-    private ResponseEntity<List<NewsShortDto>> findAllAvailable() {
+    private ResponseEntity<List<NewsFullDto>> findAllAvailable() {
         return new ResponseEntity<>(newsService.findAllAvailable().stream()
-                .map(news -> map(news, NewsShortDto.class)).collect(Collectors.toList()), HttpStatus.OK);
+                .map(news -> map(news, NewsFullDto.class)).collect(Collectors.toList()), HttpStatus.OK);
     }
 
     @GetMapping("/find-one-available/{id}")
-    private ResponseEntity<RoomShortDto> findOneAvailale(@PathVariable Long id) {
-        return new ResponseEntity<>(map(newsService.findOneAvailable(id), RoomShortDto.class), HttpStatus.OK);
+    private ResponseEntity<NewsFullDto> findOneAvailale(@PathVariable Long id) {
+        return new ResponseEntity<>(map(newsService.findOneAvailable(id), NewsFullDto.class), HttpStatus.OK);
     }
 
     @GetMapping("/find-one/{id}")
-    private ResponseEntity<RoomShortDto> findOne(@PathVariable Long id) {
-        return new ResponseEntity<>(map(newsService.findOne(id), RoomShortDto.class), HttpStatus.OK);
+    private ResponseEntity<NewsFullDto> findOne(@PathVariable Long id) {
+        return new ResponseEntity<>(map(newsService.findOne(id), NewsFullDto.class), HttpStatus.OK);
     }
 
     @PostMapping("/save")

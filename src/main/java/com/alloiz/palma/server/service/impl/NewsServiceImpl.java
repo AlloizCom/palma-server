@@ -73,7 +73,8 @@ public class NewsServiceImpl implements NewsService {
         checkObjectExistsById(news.getId(), newsRepository);
         return newsRepository.save(findOne(news.getId())
                 .setNewsDescriptions(news.getNewsDescriptions())
-                .setAvailable(news.getAvailable()));
+                .setAvailable(news.getAvailable())
+                .setPicturePath(news.getPicturePath()));
     }
 
     @Override

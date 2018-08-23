@@ -63,24 +63,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/node_modules/**").permitAll()
                 .antMatchers("/assets/**").permitAll()
                 .antMatchers("/oauth/token").permitAll()
-//                .antMatchers(AUTH_LIST).permitAll()
-//                .and()
-//                .httpBasic().authenticationEntryPoint(swaggerAuthenticationEntryPoint())
                 .and().formLogin().loginPage("/login").permitAll()
         ;
     }
-//    private static final String[] AUTH_LIST = {
-//            // -- swagger ui
-//            "**/swagger-resources/**",
-//            "/swagger-ui.html",
-//            "/v2/api-docs",
-//            "/webjars/**"
-//    };
-//
-//    @Bean
-//    public BasicAuthenticationEntryPoint swaggerAuthenticationEntryPoint() {
-//        BasicAuthenticationEntryPoint entryPoint = new BasicAuthenticationEntryPoint();
-//        entryPoint.setRealmName("Swagger Realm");
-//        return entryPoint;
-//    }
 }

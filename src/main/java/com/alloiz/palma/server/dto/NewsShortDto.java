@@ -1,6 +1,10 @@
 package com.alloiz.palma.server.dto;
 
 import com.alloiz.palma.server.dto.utils.annotations.Dto;
+import com.alloiz.palma.server.model.utils.DateDeserializer;
+import com.alloiz.palma.server.model.utils.DateSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import java.sql.Timestamp;
 
@@ -33,10 +37,12 @@ public class NewsShortDto <T extends NewsShortDto>{
         return (T) this;
     }
 
+    @JsonSerialize(using = DateSerializer.class)
     public Timestamp getDateTime() {
         return dateTime;
     }
 
+    @JsonDeserialize(using = DateDeserializer.class)
     public T setDateTime(Timestamp dateTime) {
         this.dateTime = dateTime;
         return (T) this;

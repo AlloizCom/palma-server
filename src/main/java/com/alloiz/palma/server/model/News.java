@@ -1,9 +1,10 @@
 package com.alloiz.palma.server.model;
 
+import com.alloiz.palma.server.model.utils.DateDeserializer;
 import com.alloiz.palma.server.model.utils.DateSerializer;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.databind.deser.std.DateDeserializers;
+//import com.fasterxml.jackson.databind.deser.std.DateDeserializers;
 //import com.fasterxml.jackson.databind.deser.std.DateDeserializers;
 //import com.fasterxml.jackson.databind.ser.std.DateSerializer;
 
@@ -32,7 +33,7 @@ public class News extends BaseEntity<News> {
         return dateTime;
     }
 
-    @JsonDeserialize(using = DateDeserializers.DateDeserializer.class)
+    @JsonDeserialize(using = DateDeserializer.class)
     public News setDateTime(Timestamp dateTime) {
         this.dateTime = dateTime;
         return this;

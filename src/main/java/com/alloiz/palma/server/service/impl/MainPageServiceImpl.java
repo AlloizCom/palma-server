@@ -136,13 +136,16 @@ public class MainPageServiceImpl implements MainPageService {
         checkId(imageId);
         MainPage mainPage = findOne(mainPageId);
         List<Image> images = mainPage.getImages();
-        ListIterator<Image> imageListIterator = images.listIterator();
-        while (imageListIterator.hasNext()) {
-            if (imageListIterator.next().getId().equals(imageId)) {
-                imageListIterator.remove();
-                imageRepository.delete(imageId);
-                return true;
-            }
+//        ListIterator<Image> imageListIterator = images.listIterator();
+//        while (imageListIterator.hasNext()) {
+//            if (imageListIterator.next().getId().equals(imageId)) {
+//                imageListIterator.remove();
+//                imageRepository.delete(imageId);
+//                return true;
+//            }
+//        }
+        if (ImageSaver.removeImage(images,imageId)){
+            return true;
         }
         return false;
     }

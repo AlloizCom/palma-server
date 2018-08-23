@@ -179,13 +179,16 @@ public class RoomServiceImpl implements RoomService {
 //                return true;
 //            }
 //        }
-        ListIterator<Image> imageListIterator = images.listIterator();
-        while (imageListIterator.hasNext()) {
-            if (imageListIterator.next().getId().equals(imageId)) {
-                imageListIterator.remove();
-                imageRepository.delete(imageId);
-                return true;
-            }
+//        ListIterator<Image> imageListIterator = images.listIterator();
+//        while (imageListIterator.hasNext()) {
+//            if (imageListIterator.next().getId().equals(imageId)) {
+//                imageListIterator.remove();
+//                imageRepository.delete(imageId);
+//                return true;
+//            }
+//        }
+        if (ImageSaver.removeImage(images,roomId)){
+            return true;
         }
         return false;
     }

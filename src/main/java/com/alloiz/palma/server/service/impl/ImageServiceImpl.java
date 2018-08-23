@@ -1,16 +1,20 @@
-package com.alloiz.palma.server.service.utils;
+package com.alloiz.palma.server.service.impl;
 
 import com.alloiz.palma.server.model.Image;
 import com.alloiz.palma.server.model.Room;
 import com.alloiz.palma.server.repository.ImageRepository;
+import com.alloiz.palma.server.service.ImageService;
+import com.alloiz.palma.server.service.utils.FileBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 
-public class ImageSaver {
+@Service
+public class ImageServiceImpl implements ImageService {
 
     @Autowired
     private static FileBuilder fileBuilder;
@@ -18,7 +22,8 @@ public class ImageSaver {
     @Autowired
     private static ImageRepository imageRepository;
 
-    public static List<Image> saveMultiImage (MultipartFile[] multipartFiles){
+    @Override
+    public List<Image> saveMultiImage (MultipartFile[] multipartFiles){
         List<Image> images = new ArrayList<>();
         for (MultipartFile multipartFile : multipartFiles) {
             Image image = new Image();
@@ -28,7 +33,8 @@ public class ImageSaver {
         return images;
     }
 
-    public static Boolean removeImage(List<Image> images, Long imageId){
+    @Override
+    public Boolean removeImage(List<Image> images, Long imageId){
         ListIterator<Image> imageListIterator = images.listIterator();
         while (imageListIterator.hasNext()) {
             if (imageListIterator.next().getId().equals(imageId)) {

@@ -6,16 +6,14 @@ import com.alloiz.palma.server.model.enums.RoomType;
 import com.alloiz.palma.server.repository.ImageRepository;
 import com.alloiz.palma.server.repository.RoomRepository;
 import com.alloiz.palma.server.service.AmenityService;
+import com.alloiz.palma.server.service.ImageService;
 import com.alloiz.palma.server.service.RoomService;
 import com.alloiz.palma.server.service.utils.FileBuilder;
-import com.alloiz.palma.server.service.utils.ImageSaver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.ListIterator;
 
 import static com.alloiz.palma.server.config.mapper.JsonMapper.json;
 import static com.alloiz.palma.server.service.utils.Validation.*;
@@ -34,6 +32,9 @@ public class RoomServiceImpl implements RoomService {
 
     @Autowired
     private FileBuilder fileBuilder;
+
+    @Autowired
+    private ImageService imageService;
 
     @Override
     public Room findOneAvailable(Long id) {
@@ -79,7 +80,7 @@ public class RoomServiceImpl implements RoomService {
 //                images.add(image);
 //            }
 //            room.setImages(images);
-            room.setImages(ImageSaver.saveMultiImage(multipartFiles));
+            room.setImages(imageService.saveMultiImage(multipartFiles));
         }
         return save(room);
     }
@@ -111,7 +112,7 @@ public class RoomServiceImpl implements RoomService {
 //                images.add(image);
 //            }
 //            room.setImages(images);
-            room.setImages(ImageSaver.saveMultiImage(multipartFiles));
+            room.setImages(imageService.saveMultiImage(multipartFiles));
         }
         return roomRepository.save(findOne(room.getId())
                 .setAdultPlaces(room.getAdultPlaces())
@@ -187,7 +188,7 @@ public class RoomServiceImpl implements RoomService {
 //                return true;
 //            }
 //        }
-        if (ImageSaver.removeImage(images,roomId)){
+        if (imageService.removeImage(images,roomId)){
             return true;
         }
         return false;

@@ -4,16 +4,14 @@ import com.alloiz.palma.server.model.Image;
 import com.alloiz.palma.server.model.MainPage;
 import com.alloiz.palma.server.repository.ImageRepository;
 import com.alloiz.palma.server.repository.MainPageRepository;
+import com.alloiz.palma.server.service.ImageService;
 import com.alloiz.palma.server.service.MainPageService;
 import com.alloiz.palma.server.service.utils.FileBuilder;
-import com.alloiz.palma.server.service.utils.ImageSaver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.ListIterator;
 
 import static com.alloiz.palma.server.config.mapper.JsonMapper.json;
 import static com.alloiz.palma.server.service.utils.Validation.*;
@@ -29,6 +27,9 @@ public class MainPageServiceImpl implements MainPageService {
 
     @Autowired
     private FileBuilder fileBuilder;
+
+    @Autowired
+    private ImageService imageService;
 
     @Override
     public MainPage findOneAvailable(Long id) {
@@ -71,7 +72,7 @@ public class MainPageServiceImpl implements MainPageService {
 //                images.add(image);
 //            }
 //            mainPage.setImages(images);
-            mainPage.setImages(ImageSaver.saveMultiImage(multipartFiles));
+            mainPage.setImages(imageService.saveMultiImage(multipartFiles));
         }
         return save(mainPage);
     }
@@ -96,7 +97,7 @@ public class MainPageServiceImpl implements MainPageService {
 //                images.add(image);
 //            }
 //            mainPage.setImages(images);
-            mainPage.setImages(ImageSaver.saveMultiImage(multipartFiles));
+            mainPage.setImages(imageService.saveMultiImage(multipartFiles));
         }
         return mainPageRepository.save(findOne(mainPage.getId())
                 .setAvailable(mainPage.getAvailable()));
@@ -144,7 +145,7 @@ public class MainPageServiceImpl implements MainPageService {
 //                return true;
 //            }
 //        }
-        if (ImageSaver.removeImage(images,imageId)){
+        if (imageService.removeImage(images,imageId)){
             return true;
         }
         return false;

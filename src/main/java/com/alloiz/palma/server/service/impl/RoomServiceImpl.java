@@ -8,6 +8,7 @@ import com.alloiz.palma.server.repository.RoomRepository;
 import com.alloiz.palma.server.service.AmenityService;
 import com.alloiz.palma.server.service.RoomService;
 import com.alloiz.palma.server.service.utils.FileBuilder;
+import com.alloiz.palma.server.service.utils.ImageSaver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -71,13 +72,14 @@ public class RoomServiceImpl implements RoomService {
         // For ManyToMany
 //        room.getAmenities().stream().forEach(amenity -> amenityService.save(amenity));
         if (multipartFiles != null && multipartFiles.length != 0) {
-            List<Image> images = new ArrayList<>();
-            for (MultipartFile multipartFile : multipartFiles) {
-                Image image = new Image();
-                image.setPath(fileBuilder.saveFile(multipartFile)).setAvailable(true);
-                images.add(image);
-            }
-            room.setImages(images);
+//            List<Image> images = new ArrayList<>();
+//            for (MultipartFile multipartFile : multipartFiles) {
+//                Image image = new Image();
+//                image.setPath(fileBuilder.saveFile(multipartFile)).setAvailable(true);
+//                images.add(image);
+//            }
+//            room.setImages(images);
+            room.setImages(ImageSaver.saveMultiImage(multipartFiles));
         }
         return save(room);
     }
@@ -102,13 +104,14 @@ public class RoomServiceImpl implements RoomService {
         Room room = json(roomJson, Room.class);
         checkObjectExistsById(room.getId(), roomRepository);
         if (multipartFiles != null && multipartFiles.length != 0) {
-            List<Image> images = new ArrayList<>();
-            for (MultipartFile multipartFile : multipartFiles) {
-                Image image = new Image();
-                image.setPath(fileBuilder.saveFile(multipartFile)).setAvailable(true);
-                images.add(image);
-            }
-            room.setImages(images);
+//            List<Image> images = new ArrayList<>();
+//            for (MultipartFile multipartFile : multipartFiles) {
+//                Image image = new Image();
+//                image.setPath(fileBuilder.saveFile(multipartFile)).setAvailable(true);
+//                images.add(image);
+//            }
+//            room.setImages(images);
+            room.setImages(ImageSaver.saveMultiImage(multipartFiles));
         }
         return roomRepository.save(findOne(room.getId())
                 .setAdultPlaces(room.getAdultPlaces())
@@ -186,5 +189,7 @@ public class RoomServiceImpl implements RoomService {
         }
         return false;
     }
+
+
 
 }

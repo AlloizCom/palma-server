@@ -6,6 +6,7 @@ import com.alloiz.palma.server.repository.ImageRepository;
 import com.alloiz.palma.server.repository.MainPageRepository;
 import com.alloiz.palma.server.service.MainPageService;
 import com.alloiz.palma.server.service.utils.FileBuilder;
+import com.alloiz.palma.server.service.utils.ImageSaver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -63,13 +64,14 @@ public class MainPageServiceImpl implements MainPageService {
         checkJson(mainPageJson);
         MainPage mainPage = json(mainPageJson, MainPage.class);
         if (multipartFiles != null && multipartFiles.length != 0) {
-            List<Image> images = new ArrayList<>();
-            for (MultipartFile multipartFile : multipartFiles) {
-                Image image = new Image();
-                image.setPath(fileBuilder.saveFile(multipartFile)).setAvailable(true);
-                images.add(image);
-            }
-            mainPage.setImages(images);
+//            List<Image> images = new ArrayList<>();
+//            for (MultipartFile multipartFile : multipartFiles) {
+//                Image image = new Image();
+//                image.setPath(fileBuilder.saveFile(multipartFile)).setAvailable(true);
+//                images.add(image);
+//            }
+//            mainPage.setImages(images);
+            mainPage.setImages(ImageSaver.saveMultiImage(multipartFiles));
         }
         return save(mainPage);
     }
@@ -87,13 +89,14 @@ public class MainPageServiceImpl implements MainPageService {
         MainPage mainPage = json(mainPageJson, MainPage.class);
         checkObjectExistsById(mainPage.getId(), mainPageRepository);
         if (multipartFiles != null && multipartFiles.length != 0) {
-            List<Image> images = new ArrayList<>();
-            for (MultipartFile multipartFile : multipartFiles) {
-                Image image = new Image();
-                image.setPath(fileBuilder.saveFile(multipartFile)).setAvailable(true);
-                images.add(image);
-            }
-            mainPage.setImages(images);
+//            List<Image> images = new ArrayList<>();
+//            for (MultipartFile multipartFile : multipartFiles) {
+//                Image image = new Image();
+//                image.setPath(fileBuilder.saveFile(multipartFile)).setAvailable(true);
+//                images.add(image);
+//            }
+//            mainPage.setImages(images);
+            mainPage.setImages(ImageSaver.saveMultiImage(multipartFiles));
         }
         return mainPageRepository.save(findOne(mainPage.getId())
                 .setAvailable(mainPage.getAvailable()));

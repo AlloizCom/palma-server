@@ -3,6 +3,10 @@ package com.alloiz.palma.server.dto;
 import com.alloiz.palma.server.dto.utils.annotations.Dto;
 import com.alloiz.palma.server.model.enums.RoomType;
 import com.alloiz.palma.server.model.enums.TariffType;
+import com.alloiz.palma.server.model.utils.DateDeserializer;
+import com.alloiz.palma.server.model.utils.DateSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import java.sql.Timestamp;
 
@@ -56,19 +60,23 @@ public class TariffDto {
         return this;
     }
 
+    @JsonSerialize(using = DateSerializer.class)
     public Timestamp getDateFrom() {
         return dateFrom;
     }
 
+    @JsonDeserialize(using = DateDeserializer.class)
     public TariffDto setDateFrom(Timestamp dateFrom) {
         this.dateFrom = dateFrom;
         return this;
     }
 
+    @JsonSerialize(using = DateSerializer.class)
     public Timestamp getDateTo() {
         return dateTo;
     }
 
+    @JsonDeserialize(using = DateDeserializer.class)
     public TariffDto setDateTo(Timestamp dateTo) {
         this.dateTo = dateTo;
         return this;

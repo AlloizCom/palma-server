@@ -3,6 +3,10 @@ package com.alloiz.palma.server.dto;
 import com.alloiz.palma.server.dto.utils.annotations.Dto;
 import com.alloiz.palma.server.model.enums.OrderStatus;
 import com.alloiz.palma.server.model.enums.RoomType;
+import com.alloiz.palma.server.model.utils.DateDeserializer;
+import com.alloiz.palma.server.model.utils.DateSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import java.sql.Timestamp;
 
@@ -89,19 +93,23 @@ public class BookDto {
         return this;
     }
 
+    @JsonSerialize(using = DateSerializer.class)
     public Timestamp getDateIn() {
         return dateIn;
     }
 
+    @JsonDeserialize(using = DateDeserializer.class)
     public BookDto setDateIn(Timestamp dateIn) {
         this.dateIn = dateIn;
         return this;
     }
 
+    @JsonSerialize(using = DateSerializer.class)
     public Timestamp getDateOut() {
         return dateOut;
     }
 
+    @JsonDeserialize(using = DateDeserializer.class)
     public BookDto setDateOut(Timestamp dateOut) {
         this.dateOut = dateOut;
         return this;

@@ -5,6 +5,7 @@ import com.alloiz.palma.server.model.Room;
 import com.alloiz.palma.server.model.enums.RoomType;
 import com.alloiz.palma.server.repository.ImageRepository;
 import com.alloiz.palma.server.repository.RoomRepository;
+import com.alloiz.palma.server.service.AmenityService;
 import com.alloiz.palma.server.service.RoomService;
 import com.alloiz.palma.server.service.utils.FileBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,9 @@ public class RoomServiceImpl implements RoomService {
 
     @Autowired
     private ImageRepository imageRepository;
+
+    @Autowired
+    private AmenityService amenityService;
 
     @Autowired
     private FileBuilder fileBuilder;
@@ -64,6 +68,8 @@ public class RoomServiceImpl implements RoomService {
     public Room save(String roomJson, MultipartFile[] multipartFiles) {
         checkJson(roomJson);
         Room room = json(roomJson, Room.class);
+        // For ManyToMany
+//        room.getAmenities().stream().forEach(amenity -> amenityService.save(amenity));
         if (multipartFiles != null && multipartFiles.length != 0) {
             List<Image> images = new ArrayList<>();
             for (MultipartFile multipartFile : multipartFiles) {

@@ -2,10 +2,11 @@ package com.alloiz.palma.server.model;
 
 import com.alloiz.palma.server.model.enums.RoomType;
 import com.alloiz.palma.server.model.enums.TariffType;
+import com.alloiz.palma.server.model.utils.DateDeserializer;
+import com.alloiz.palma.server.model.utils.DateSerializer;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.databind.deser.std.DateDeserializers;
-import com.fasterxml.jackson.databind.ser.std.DateSerializer;
+
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -50,7 +51,7 @@ public class Tariff extends BaseEntity<Tariff> {
         return dateFrom;
     }
 
-    @JsonDeserialize(using = DateDeserializers.DateDeserializer.class)
+    @JsonDeserialize(using = DateDeserializer.class)
     public Tariff setDateFrom(Timestamp dateFrom) {
         this.dateFrom = dateFrom;
         return this;
@@ -61,7 +62,7 @@ public class Tariff extends BaseEntity<Tariff> {
         return dateTo;
     }
 
-    @JsonDeserialize(using = DateDeserializers.DateDeserializer.class)
+    @JsonDeserialize(using = DateDeserializer.class)
     public Tariff setDateTo(Timestamp dateTo) {
         this.dateTo = dateTo;
         return this;

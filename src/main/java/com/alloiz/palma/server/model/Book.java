@@ -2,10 +2,10 @@ package com.alloiz.palma.server.model;
 
 import com.alloiz.palma.server.model.enums.OrderStatus;
 import com.alloiz.palma.server.model.enums.RoomType;
+import com.alloiz.palma.server.model.utils.DateDeserializer;
+import com.alloiz.palma.server.model.utils.DateSerializer;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.databind.deser.std.DateDeserializers;
-import com.fasterxml.jackson.databind.ser.std.DateSerializer;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -97,7 +97,7 @@ public class Book extends BaseEntity<Book> {
         return dateIn;
     }
 
-    @JsonDeserialize(using = DateDeserializers.DateDeserializer.class)
+    @JsonDeserialize(using = DateDeserializer.class)
     public Book setDateIn(Timestamp dateIn) {
         this.dateIn = dateIn;
         return this;
@@ -108,7 +108,7 @@ public class Book extends BaseEntity<Book> {
         return dateOut;
     }
 
-    @JsonDeserialize(using = DateDeserializers.DateDeserializer.class)
+    @JsonDeserialize(using = DateDeserializer.class)
     public Book setDateOut(Timestamp dateOut) {
         this.dateOut = dateOut;
         return this;

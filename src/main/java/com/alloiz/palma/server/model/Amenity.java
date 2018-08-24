@@ -7,8 +7,8 @@ import java.util.List;
 public class Amenity extends BaseEntity<Amenity>{
     private String imagePath;
 
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
-    private Room room;
+//    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+//    private Room room;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "amenityName_id")
@@ -26,14 +26,14 @@ public class Amenity extends BaseEntity<Amenity>{
         return this;
     }
 
-    public Room getRoom() {
-        return room;
-    }
-
-    public Amenity setRoom(Room room) {
-        this.room = room;
-        return this;
-    }
+//    public Room getRoom() {
+//        return room;
+//    }
+//
+//    public Amenity setRoom(Room room) {
+//        this.room = room;
+//        return this;
+//    }
 
     public List<AmenityName> getAmenityNames() {
         return amenityNames;
@@ -48,7 +48,7 @@ public class Amenity extends BaseEntity<Amenity>{
     public String toString() {
         return "Amenity{" +
                 "imagePath='" + imagePath + '\'' +
-                ", room=" + (room == null ? "null" : room)+
+//                ", room=" + (room == null ? "null" : room)+
                 ", amanityNames=" + (amenityNames == null ? "null" : amenityNames)+
                 ", id=" + id +
                 ", available=" + available +

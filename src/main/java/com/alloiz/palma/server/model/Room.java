@@ -20,14 +20,14 @@ public class Room extends BaseEntity<Room> {
     @JoinColumn(name = "description_id")
     private List<RoomDescription> descriptions;
 
-    @OneToMany(mappedBy = "room", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
-    private List<Amenity> amenities;
-
-//    @ManyToMany(cascade = {CascadeType.REFRESH,
-//            CascadeType.DETACH,
-//            CascadeType.MERGE,
-//            CascadeType.PERSIST})
+//    @OneToMany(mappedBy = "room", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
 //    private List<Amenity> amenities;
+
+    @ManyToMany(cascade = {CascadeType.REFRESH,
+            CascadeType.DETACH,
+            CascadeType.MERGE,
+            CascadeType.PERSIST})
+    private List<Amenity> amenities;
 
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     @JoinColumn(name = "room_id")

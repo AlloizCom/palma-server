@@ -9,20 +9,20 @@ import java.util.List;
 @Dto
 public class AmenityFullDto extends AmenityShortDto<AmenityFullDto>{
 
-    protected Room room;
+    //protected Room room;
     protected List<AmenityName> amenityNames;
 
     public AmenityFullDto() {
     }
 
-    public Room getRoom() {
-        return room;
-    }
-
-    public AmenityFullDto setRoom(Room room) {
-        this.room = room;
-        return this;
-    }
+//    public Room getRoom() {
+//        return room;
+//    }
+//
+//    public AmenityFullDto setRoom(Room room) {
+//        this.room = room;
+//        return this;
+//    }
 
     public List<AmenityName> getAmenityNames() {
         return amenityNames;
@@ -36,7 +36,7 @@ public class AmenityFullDto extends AmenityShortDto<AmenityFullDto>{
     @Override
     public String toString() {
         return "AmenityFullDto{" +
-                "room=" + room +
+//                "room=" + room +
                 ", amenityNames=" + amenityNames +
                 ", id=" + id +
                 ", imagePath='" + imagePath + '\'' +

@@ -68,7 +68,7 @@ public class AmenityServiceImpl implements AmenityService {
         checkObjectExistsById(amenity.getId(), amenityRepository);
         return amenityRepository.save(findOne(amenity.getId())
                 .setAmenityNames(amenity.getAmenityNames())
-                .setRoom(amenity.getRoom())
+                //.setRoom(amenity.getRoom())
                 .setAvailable(amenity.getAvailable()));
     }
 
@@ -80,7 +80,7 @@ public class AmenityServiceImpl implements AmenityService {
         if (multipartFile != null && !multipartFile.isEmpty())
             amenity.setImagePath(fileBuilder.saveFile(multipartFile));
         return save(amenity.setAmenityNames(amenity.getAmenityNames())
-                .setRoom(amenity.getRoom())
+                //.setRoom(amenity.getRoom())
                 .setAvailable(amenity.getAvailable())
                 );
     }
@@ -91,7 +91,7 @@ public class AmenityServiceImpl implements AmenityService {
         Amenity amenity = json(amenityJson, Amenity.class);
         checkObjectExistsById(amenity.getId(), amenityRepository);
         return save(amenity.setAmenityNames(amenity.getAmenityNames())
-                .setRoom(amenity.getRoom())
+                //.setRoom(amenity.getRoom())
                 .setAvailable(amenity.getAvailable())
         );
     }

@@ -18,7 +18,7 @@ import java.util.List;
 @Entity
 public class News extends BaseEntity<News> {
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "news_description_id")
     private List<NewsDescription> newsDescriptions;
 

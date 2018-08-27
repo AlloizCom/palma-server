@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -48,11 +49,12 @@ public class ServiceController {
     }
 
     @PostMapping("/save")
-    private ResponseEntity<ServiceFullDto> save(@RequestParam String serviceJson) {
+    private ResponseEntity<ServiceFullDto> save(@RequestParam String serviceJson,
+                                                @RequestParam(required = false) MultipartFile multipartFile) {
         LOGGER.info("---------------------------Service---------------------------");
         LOGGER.info(serviceJson);
         LOGGER.info("---------------------------Service---------------------------");
-        return ResponseEntity.ok(map(serviceService.save(serviceJson), ServiceFullDto.class));
+        return ResponseEntity.ok(map(serviceService.save(serviceJson,multipartFile), ServiceFullDto.class));
     }
 
     @PostMapping("/update")

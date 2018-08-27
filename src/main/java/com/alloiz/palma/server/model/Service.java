@@ -10,6 +10,7 @@ import java.util.List;
 public class Service extends BaseEntity<Service>{
 
     private String name;
+    private String picturePath;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "service_description_id")
@@ -27,6 +28,15 @@ public class Service extends BaseEntity<Service>{
         return this;
     }
 
+    public String getPicturePath() {
+        return picturePath;
+    }
+
+    public Service setPicturePath(String picturePath) {
+        this.picturePath = picturePath;
+        return this;
+    }
+
     public List<ServiceDescription> getServiceDescriptions() {
         return serviceDescriptions;
     }
@@ -36,10 +46,23 @@ public class Service extends BaseEntity<Service>{
         return this;
     }
 
+//    @Override
+//    public String toString() {
+//        return "Service{" +
+//                "name='" + name + '\'' +
+//                ", serviceDescriptions=" +
+//                (serviceDescriptions == null ? "null" : serviceDescriptions) +
+//                ", id=" + id +
+//                ", available=" + available +
+//                '}';
+//    }
+
+
     @Override
     public String toString() {
         return "Service{" +
                 "name='" + name + '\'' +
+                ", picturePath='" + picturePath + '\'' +
                 ", serviceDescriptions=" +
                 (serviceDescriptions == null ? "null" : serviceDescriptions) +
                 ", id=" + id +

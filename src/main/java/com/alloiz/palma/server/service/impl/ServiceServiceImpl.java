@@ -3,7 +3,9 @@ package com.alloiz.palma.server.service.impl;
 import com.alloiz.palma.server.model.Service;
 import com.alloiz.palma.server.repository.ServiceRepository;
 import com.alloiz.palma.server.service.ServiceService;
+import com.alloiz.palma.server.service.utils.FileBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -15,6 +17,9 @@ public class ServiceServiceImpl implements ServiceService {
 
     @Autowired
     private ServiceRepository serviceRepository;
+
+    @Autowired
+    private FileBuilder fileBuilder;
 
     @Override
     public Service findOneAvailable(Long id) {
@@ -54,6 +59,17 @@ public class ServiceServiceImpl implements ServiceService {
                 .forEach(serviceDescription -> serviceDescription.setAvailable(true));
         return serviceRepository.save(service
                 .setAvailable(true));
+    }
+
+    @Override
+    public Service save(String serviceJson, MultipartFile multipartFile) {
+        checkJson(serviceJson);
+        Service service = json(serviceJson,Service.class);
+        service.getServiceDescriptions().stream().forEach(newsDescription -> newsDescription.setAvailable(true));
+        if( multipartFile != null && !multipartFile.isEmpty()){
+            service.setPicturePath(fileBuilder.saveFile(multipartFile));
+        }
+        return save(service);
     }
 
     @Override

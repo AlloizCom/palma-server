@@ -8,6 +8,7 @@ public class ServiceShortDto <T extends ServiceShortDto>{
     protected Long id;
     protected Boolean available;
     protected String name;
+    protected String picturePath;
 
     public ServiceShortDto() {
     }
@@ -39,12 +40,22 @@ public class ServiceShortDto <T extends ServiceShortDto>{
         return (T)this;
     }
 
+    public String getPicturePath() {
+        return picturePath;
+    }
+
+    public T setPicturePath(String picturePath) {
+        this.picturePath = picturePath;
+        return (T)this;
+    }
+
     @Override
     public String toString() {
         return "ServiceShortDto{" +
                 "id=" + id +
                 ", available=" + available +
                 ", name='" + name + '\'' +
+                ", picturePath='" + picturePath + '\'' +
                 '}';
     }
 }

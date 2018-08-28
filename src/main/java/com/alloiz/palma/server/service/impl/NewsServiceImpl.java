@@ -4,12 +4,15 @@ import com.alloiz.palma.server.model.News;
 import com.alloiz.palma.server.repository.NewsRepository;
 import com.alloiz.palma.server.service.NewsService;
 import com.alloiz.palma.server.service.utils.FileBuilder;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static com.alloiz.palma.server.config.mapper.JsonMapper.json;
@@ -23,6 +26,9 @@ public class NewsServiceImpl implements NewsService {
 
     @Autowired
     private FileBuilder fileBuilder;
+
+    private static final Logger LOGGER = Logger.getLogger(NewsServiceImpl.class);
+
 
     @Override
     public News findOneAvailable(Long id) {
@@ -96,5 +102,27 @@ public class NewsServiceImpl implements NewsService {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    @Override
+    public List<Integer> generateRandomArray(int length) {
+        List<Integer> list = new ArrayList<>();
+        int maxIndex = newsRepository.findAllByAvailable(true).size();
+        if(maxIndex >= length) {
+            for (int i = 0; i < length; i++) {
+                while (true){
+                    Integer temp = (int) Math.floor(Math.random() * maxIndex);
+                   if(list.indexOf(temp) == -1){
+                       list.add(temp);
+                       break;
+                   }
+                }
+            }
+        }else
+            list.stream().forEach(elem -> elem = maxIndex);
+
+        LOGGER.info("-----------ARRAY-------" + list);
+//
+        return list;
     }
 }

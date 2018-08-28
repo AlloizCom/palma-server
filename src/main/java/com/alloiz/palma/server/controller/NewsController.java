@@ -20,7 +20,7 @@ import static com.alloiz.palma.server.dto.utils.builder.Builder.map;
 @RequestMapping("/news")
 public class NewsController {
 
-    private static final Logger LOGGER = Logger.getLogger(NewsController.class);
+        private static final Logger LOGGER = Logger.getLogger(NewsController.class);
 
     @Autowired
     private NewsService newsService;
@@ -45,6 +45,11 @@ public class NewsController {
     @GetMapping("/find-one/{id}")
     private ResponseEntity<NewsFullDto> findOne(@PathVariable Long id) {
         return new ResponseEntity<>(map(newsService.findOne(id), NewsFullDto.class), HttpStatus.OK);
+    }
+
+    @GetMapping("/get-random-array/{length}")
+    private ResponseEntity<List<Integer>> getRandomArray(@PathVariable Integer length){
+        return new ResponseEntity<>(newsService.generateRandomArray(length),HttpStatus.OK);
     }
 
     @PostMapping("/save")

@@ -3,6 +3,7 @@ package com.alloiz.palma.server.service.impl;
 import com.alloiz.palma.server.model.Callback;
 import com.alloiz.palma.server.repository.CallbackRepository;
 import com.alloiz.palma.server.service.CallbackService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,8 @@ public class CallbackServiceImpl implements CallbackService {
 
     @Autowired
     private CallbackRepository callbackRepository;
+
+    private static final Logger LOGGER = Logger.getLogger(CallbackServiceImpl.class);
 
     @Override
     public Callback findOneAvailable(Long id) {
@@ -42,10 +45,16 @@ public class CallbackServiceImpl implements CallbackService {
 
     @Override
     public Callback save(Callback callback) {
+
         checkSave(callback);
-        return callbackRepository.save(callback
+        LOGGER.info(callback);
+        Callback callbackSave = callbackRepository.save(callback
                 .setDateTime(Timestamp.valueOf(LocalDateTime.now()))
                 .setAvailable(true));
+
+        LOGGER.info("-------------------------Save--------------------------");
+        LOGGER.info(callbackSave);
+        return callbackSave;
     }
 
     @Override

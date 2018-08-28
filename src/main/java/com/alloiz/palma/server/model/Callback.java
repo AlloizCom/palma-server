@@ -78,6 +78,9 @@ public class Callback extends BaseEntity<Callback> {
                 ", message='" + message + '\'' +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
+                ", dateTime=" + dateTime +
+                ", id=" + id +
+                ", available=" + available +
                 '}';
     }
 }

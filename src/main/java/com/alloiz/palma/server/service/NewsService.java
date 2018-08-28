@@ -25,4 +25,6 @@ public interface NewsService {
 
     Boolean delete(Long id);
 
+    List<Integer> generateRandomArray(int length);
+
 }

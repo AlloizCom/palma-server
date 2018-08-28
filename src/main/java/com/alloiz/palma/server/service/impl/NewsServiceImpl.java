@@ -58,11 +58,9 @@ public class NewsServiceImpl implements NewsService {
     public News save(String newsJson, MultipartFile multipartFile) {
         checkJson(newsJson);
         News news = json(newsJson, News.class);
-        if (news.getNewsDescriptions() != null) {
             news.getNewsDescriptions()
                     .stream()
                     .forEach(newsDescription -> newsDescription.setAvailable(true));
-        }
         if (multipartFile != null && !multipartFile.isEmpty()) {
             news.setPicturePath(fileBuilder.saveFile(multipartFile));
         }

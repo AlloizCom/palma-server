@@ -65,11 +65,9 @@ public class ServiceServiceImpl implements ServiceService {
     public Service save(String serviceJson, MultipartFile multipartFile) {
         checkJson(serviceJson);
         Service service = json(serviceJson, Service.class);
-        if (service.getServiceDescriptions().size() != 0) {
             service.getServiceDescriptions()
                     .stream()
                     .forEach(newsDescription -> newsDescription.setAvailable(true));
-        }
         if (multipartFile != null && !multipartFile.isEmpty()) {
             service.setPicturePath(fileBuilder.saveFile(multipartFile));
         }

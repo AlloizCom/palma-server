@@ -48,13 +48,23 @@ public class ServiceController {
         return new ResponseEntity<>(map(serviceService.findOne(id), ServiceShortDto.class), HttpStatus.OK);
     }
 
+//    @PostMapping("/save")
+//    private ResponseEntity<ServiceFullDto> save(@RequestParam String serviceJson,
+//                                                @RequestParam(required = false) MultipartFile multipartFile) {
+//        LOGGER.info("---------------------------Service---------------------------");
+//        LOGGER.info(serviceJson);
+//        LOGGER.info("---------------------------Service---------------------------");
+//        return ResponseEntity.ok(map(serviceService.save(serviceJson,multipartFile), ServiceFullDto.class));
+//    }
+
     @PostMapping("/save")
     private ResponseEntity<ServiceFullDto> save(@RequestParam String serviceJson,
-                                                @RequestParam(required = false) MultipartFile multipartFile) {
-        LOGGER.info("---------------------------Service---------------------------");
+                                             @RequestParam(required = false) MultipartFile multipartFile) {
+        LOGGER.info("---------------------------News---------------------------");
         LOGGER.info(serviceJson);
-        LOGGER.info("---------------------------Service---------------------------");
-        return ResponseEntity.ok(map(serviceService.save(serviceJson,multipartFile), ServiceFullDto.class));
+        LOGGER.info(multipartFile);
+        LOGGER.info("---------------------------News---------------------------");
+        return ResponseEntity.ok(map(serviceService.save(serviceJson, multipartFile), ServiceFullDto.class));
     }
 
     @PostMapping("/update")

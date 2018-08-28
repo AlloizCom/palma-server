@@ -65,15 +65,30 @@ public class ServiceServiceImpl implements ServiceService {
                 .setAvailable(true));
     }
 
+//    @Override
+//    public Service save(String serviceJson, MultipartFile multipartFile) {
+//        checkJson(serviceJson);
+//        Service service = json(serviceJson, Service.class);
+//        LOGGER.info("----SERVICE--SAVE----");
+//        LOGGER.info(service);
+//            service.getServiceDescriptions()
+//                    .stream()
+//                    .forEach(serviceDescription -> serviceDescription.setAvailable(true));
+//        if (multipartFile != null && !multipartFile.isEmpty()) {
+//            service.setPicturePath(fileBuilder.saveFile(multipartFile));
+//        }
+//        return save(service);
+//    }
+
     @Override
     public Service save(String serviceJson, MultipartFile multipartFile) {
         checkJson(serviceJson);
         Service service = json(serviceJson, Service.class);
         LOGGER.info("----SERVICE--SAVE----");
         LOGGER.info(service);
-            service.getServiceDescriptions()
-                    .stream()
-                    .forEach(serviceDescription -> serviceDescription.setAvailable(true));
+        service.getServiceDescriptions()
+                .stream()
+                .forEach(serviceDescription -> serviceDescription.setAvailable(true));
         if (multipartFile != null && !multipartFile.isEmpty()) {
             service.setPicturePath(fileBuilder.saveFile(multipartFile));
         }

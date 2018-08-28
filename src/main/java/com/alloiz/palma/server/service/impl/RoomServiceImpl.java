@@ -71,7 +71,7 @@ public class RoomServiceImpl implements RoomService {
         checkJson(roomJson);
         Room room = json(roomJson, Room.class);
         // For ManyToMany
-//        room.getAmenities().stream().forEach(amenity -> amenityService.save(amenity));
+        room.getAmenities().stream().forEach(amenity -> amenityService.save(amenity));
         if (multipartFiles != null && multipartFiles.length != 0) {
 //            List<Image> images = new ArrayList<>();
 //            for (MultipartFile multipartFile : multipartFiles) {

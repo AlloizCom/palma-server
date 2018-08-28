@@ -53,7 +53,7 @@ public class ServiceServiceImpl implements ServiceService {
     @Override
     public Service save(String serviceJson) {
         checkJson(serviceJson);
-        Service service = json(serviceJson,Service.class);
+        Service service = json(serviceJson, Service.class);
         service.getServiceDescriptions()
                 .stream()
                 .forEach(serviceDescription -> serviceDescription.setAvailable(true));
@@ -64,9 +64,12 @@ public class ServiceServiceImpl implements ServiceService {
     @Override
     public Service save(String serviceJson, MultipartFile multipartFile) {
         checkJson(serviceJson);
-        Service service = json(serviceJson,Service.class);
-        service.getServiceDescriptions().stream().forEach(newsDescription -> newsDescription.setAvailable(true));
-        if( multipartFile != null && !multipartFile.isEmpty()){
+        Service service = json(serviceJson, Service.class);
+        if (service.getServiceDescriptions() != null) {
+            service.getServiceDescriptions().stream()
+                    .forEach(newsDescription -> newsDescription.setAvailable(true));
+        }
+        if (multipartFile != null && !multipartFile.isEmpty()) {
             service.setPicturePath(fileBuilder.saveFile(multipartFile));
         }
         return save(service);
@@ -83,7 +86,7 @@ public class ServiceServiceImpl implements ServiceService {
     @Override
     public Service update(String serviceJson) {
         checkJson(serviceJson);
-        Service service = json(serviceJson,Service.class);
+        Service service = json(serviceJson, Service.class);
         return update(service);
     }
 

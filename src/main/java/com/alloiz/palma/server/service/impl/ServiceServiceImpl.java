@@ -67,7 +67,7 @@ public class ServiceServiceImpl implements ServiceService {
         Service service = json(serviceJson, Service.class);
             service.getServiceDescriptions()
                     .stream()
-                    .forEach(newsDescription -> newsDescription.setAvailable(true));
+                    .forEach(serviceDescription -> serviceDescription.setAvailable(true));
         if (multipartFile != null && !multipartFile.isEmpty()) {
             service.setPicturePath(fileBuilder.saveFile(multipartFile));
         }

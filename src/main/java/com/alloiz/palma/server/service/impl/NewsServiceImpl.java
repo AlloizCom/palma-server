@@ -13,10 +13,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import static com.alloiz.palma.server.config.mapper.JsonMapper.json;
-import static com.alloiz.palma.server.service.utils.Validation.checkId;
-import static com.alloiz.palma.server.service.utils.Validation.checkObjectExistsById;
-import static com.alloiz.palma.server.service.utils.Validation.checkSave;
-import static com.alloiz.palma.server.service.utils.Validation.checkJson;
+import static com.alloiz.palma.server.service.utils.Validation.*;
 
 @Service
 public class NewsServiceImpl implements NewsService {
@@ -60,9 +57,13 @@ public class NewsServiceImpl implements NewsService {
     @Override
     public News save(String newsJson, MultipartFile multipartFile) {
         checkJson(newsJson);
-        News news = json(newsJson,News.class);
-        news.getNewsDescriptions().stream().forEach(newsDescription -> newsDescription.setAvailable(true));
-        if( multipartFile != null && !multipartFile.isEmpty()){
+        News news = json(newsJson, News.class);
+        if (news.getNewsDescriptions() != null) {
+            news.getNewsDescriptions()
+                    .stream()
+                    .forEach(newsDescription -> newsDescription.setAvailable(true));
+        }
+        if (multipartFile != null && !multipartFile.isEmpty()) {
             news.setPicturePath(fileBuilder.saveFile(multipartFile));
         }
         return save(news);
@@ -81,7 +82,7 @@ public class NewsServiceImpl implements NewsService {
     public News update(String newsJson, MultipartFile multipartFile) {
         checkJson(newsJson);
         News news = json(newsJson, News.class);
-        if( multipartFile != null && !multipartFile.isEmpty()){
+        if (multipartFile != null && !multipartFile.isEmpty()) {
             news.setPicturePath(fileBuilder.saveFile(multipartFile));
         }
         return update(news);

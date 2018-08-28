@@ -66,7 +66,8 @@ public class ServiceServiceImpl implements ServiceService {
         checkJson(serviceJson);
         Service service = json(serviceJson, Service.class);
         if (service.getServiceDescriptions() != null) {
-            service.getServiceDescriptions().stream()
+            service.getServiceDescriptions()
+                    .stream()
                     .forEach(newsDescription -> newsDescription.setAvailable(true));
         }
         if (multipartFile != null && !multipartFile.isEmpty()) {

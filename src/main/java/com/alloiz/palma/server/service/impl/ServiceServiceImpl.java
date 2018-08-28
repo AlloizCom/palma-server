@@ -4,6 +4,7 @@ import com.alloiz.palma.server.model.Service;
 import com.alloiz.palma.server.repository.ServiceRepository;
 import com.alloiz.palma.server.service.ServiceService;
 import com.alloiz.palma.server.service.utils.FileBuilder;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -14,6 +15,9 @@ import static com.alloiz.palma.server.service.utils.Validation.*;
 
 @org.springframework.stereotype.Service
 public class ServiceServiceImpl implements ServiceService {
+
+    private static final Logger LOGGER = Logger.getLogger(ServiceServiceImpl.class);
+
 
     @Autowired
     private ServiceRepository serviceRepository;
@@ -65,6 +69,8 @@ public class ServiceServiceImpl implements ServiceService {
     public Service save(String serviceJson, MultipartFile multipartFile) {
         checkJson(serviceJson);
         Service service = json(serviceJson, Service.class);
+        LOGGER.info("----SERVICE--SAVE----");
+        LOGGER.info(service);
             service.getServiceDescriptions()
                     .stream()
                     .forEach(serviceDescription -> serviceDescription.setAvailable(true));

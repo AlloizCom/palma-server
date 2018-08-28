@@ -77,6 +77,11 @@ public class NewsController {
 
     @DeleteMapping("/delete/{id}")
     private ResponseEntity<Boolean> delete(@PathVariable Long id) {
+        LOGGER.info("---------------------------News---------------------------");
+        LOGGER.info("--------------------------DELETE--------------------------");
+        LOGGER.info("------------------------CONTROLLER------------------------");
+        LOGGER.info("News ID:" + id);
+        LOGGER.info("---------------------------News---------------------------");
         return ResponseEntity.ok(newsService.delete(id));
     }
 }

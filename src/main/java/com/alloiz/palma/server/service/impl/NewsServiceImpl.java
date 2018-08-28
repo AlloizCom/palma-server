@@ -94,6 +94,11 @@ public class NewsServiceImpl implements NewsService {
 
     @Override
     public Boolean delete(Long id) {
+        LOGGER.info("---------------------------News---------------------------");
+        LOGGER.info("--------------------------DELETE--------------------------");
+        LOGGER.info("--------------------------SERVICE-------------------------");
+        LOGGER.info("News ID:" + id);
+        LOGGER.info("---------------------------News---------------------------");
         try {
             newsRepository.delete(checkObjectExistsById(id, newsRepository));
             return true;

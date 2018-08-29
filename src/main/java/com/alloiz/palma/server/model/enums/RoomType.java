@@ -5,6 +5,8 @@ public enum RoomType {
     STANDARD,
     SUPERIOR,
     DELUXE,
+    STANDARD_IMPROVED,
+    SUPERIOR_IMPROVED,
     NONE
 
 }

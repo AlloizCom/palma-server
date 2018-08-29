@@ -1,11 +1,14 @@
 package com.alloiz.palma.server.controller;
 
+import com.alloiz.palma.server.dto.NewsByPages;
 import com.alloiz.palma.server.dto.NewsFullDto;
 import com.alloiz.palma.server.dto.NewsShortDto;
 import com.alloiz.palma.server.dto.RoomShortDto;
 import com.alloiz.palma.server.service.NewsService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +18,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.alloiz.palma.server.dto.utils.builder.Builder.map;
+import static java.util.stream.Collectors.toList;
 
 @RestController
 @RequestMapping("/news")
@@ -25,16 +29,30 @@ public class NewsController {
     @Autowired
     private NewsService newsService;
 
+    @GetMapping("/find-all-news-by-page/{page}/{count}")
+    private ResponseEntity<List<NewsFullDto>> findAllPageable(@PathVariable Integer page, @PathVariable Integer count) {
+        return ResponseEntity.ok(newsService
+                .findAll(new PageRequest(page, count))
+                .stream().map(article -> map(article, NewsFullDto.class))
+                .collect(toList()));
+    }
+
+    @GetMapping("/find-all-news-by-page-available/{page}/{count}")
+    private ResponseEntity<NewsByPages> findAllPageableAvailable(@PathVariable Integer page, @PathVariable Integer count) {
+        return ResponseEntity.ok(newsService
+                .findAllByAvailable(new PageRequest(page, count,new Sort(new Sort.Order(Sort.Direction.DESC,"datetime")))));
+    }
+
     @GetMapping("/find-all")
     private ResponseEntity<List<NewsFullDto>> findAll() {
         return new ResponseEntity<>(newsService.findAll().stream()
-                .map(news -> map(news, NewsFullDto.class)).collect(Collectors.toList()), HttpStatus.OK);
+                .map(news -> map(news, NewsFullDto.class)).collect(toList()), HttpStatus.OK);
     }
 
     @GetMapping("/find-all-available")
     private ResponseEntity<List<NewsFullDto>> findAllAvailable() {
         return new ResponseEntity<>(newsService.findAllAvailable().stream()
-                .map(news -> map(news, NewsFullDto.class)).collect(Collectors.toList()), HttpStatus.OK);
+                .map(news -> map(news, NewsFullDto.class)).collect(toList()), HttpStatus.OK);
     }
 
     @GetMapping("/find-one-available/{id}")

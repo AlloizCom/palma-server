@@ -10,27 +10,28 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 @Service
 public class ImageServiceImpl implements ImageService {
 
     @Autowired
-    private static FileBuilder fileBuilder;
+    private FileBuilder fileBuilder;
 
     @Autowired
-    private static ImageRepository imageRepository;
+    private ImageRepository imageRepository;
 
     @Override
     public List<Image> saveMultiImage (MultipartFile[] multipartFiles){
-        List<Image> images = new ArrayList<>();
-        for (MultipartFile multipartFile : multipartFiles) {
-            Image image = new Image();
-            image.setPath(fileBuilder.saveFile(multipartFile)).setAvailable(true);
-            images.add(image);
-        }
-        return images;
+        return Arrays.stream(multipartFiles)
+                .map(multipartFile ->
+                new Image().setPath(fileBuilder.saveFile(multipartFile))
+                .setAvailable(true)).collect(toList());
     }
 
     @Override

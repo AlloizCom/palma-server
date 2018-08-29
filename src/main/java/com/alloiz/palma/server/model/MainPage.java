@@ -10,7 +10,7 @@ import java.util.List;
 public class MainPage extends BaseEntity<MainPage>{
 
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-    @JoinColumn(name = "room_id")
+    @JoinColumn(name = "main_page_id")
     private List<Image> images;
 
     public MainPage() {

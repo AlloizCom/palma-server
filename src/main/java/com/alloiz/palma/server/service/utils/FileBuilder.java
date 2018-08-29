@@ -32,6 +32,9 @@ public class FileBuilder {
 
     public String saveFile(MultipartFile multipartFile) {
         String path = "";
+        if(multipartFile.isEmpty()){
+            return path;
+        }
         String tag = getFileTeg(multipartFile.getOriginalFilename());
         logger.info("got file with extension : [" + tag + "]");
         switch (tag) {

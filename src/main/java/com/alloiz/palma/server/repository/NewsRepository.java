@@ -18,4 +18,6 @@ public interface NewsRepository extends JpaRepository<News, Long> {
     Page<News> findAllByAvailable(Boolean available, Pageable pageable);
 
     Page<News> findAll(Pageable pageable);
+
+    Integer countAllByAvailable(Boolean available);
 }

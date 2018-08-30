@@ -16,6 +16,6 @@ public class DateSerializer extends JsonSerializer<Timestamp> {
 
     @Override
     public void serialize(Timestamp timestamp, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException, JsonProcessingException {
-        jsonGenerator.writeString(timestamp.toLocalDateTime() != null ? timestamp.toLocalDateTime().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME) : "null");
+        jsonGenerator.writeString(timestamp.toLocalDateTime() != null ? timestamp.toLocalDateTime().format(DateTimeFormatter.ISO_LOCAL_DATE) : "null");
     }
 }

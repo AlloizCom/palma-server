@@ -23,10 +23,14 @@ public class Room extends BaseEntity<Room> {
 //    @OneToMany(mappedBy = "room", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
 //    private List<Amenity> amenities;
 
-    @ManyToMany(cascade = {CascadeType.REFRESH,
-            CascadeType.DETACH,
-            CascadeType.MERGE,
-            CascadeType.PERSIST})
+//    @ManyToMany(cascade = {CascadeType.REFRESH,
+//            CascadeType.DETACH,
+//            CascadeType.MERGE,
+//            CascadeType.PERSIST})
+@ManyToMany(cascade = {CascadeType.REFRESH,
+        CascadeType.DETACH,
+        CascadeType.MERGE,
+        })
     private List<Amenity> amenities;
 
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})

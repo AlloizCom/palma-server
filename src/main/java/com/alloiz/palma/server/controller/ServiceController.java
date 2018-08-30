@@ -25,27 +25,27 @@ public class ServiceController {
     private ServiceService serviceService;
 
     @GetMapping("/find-all")
-    private ResponseEntity<List<ServiceShortDto>> findAll() {
+    private ResponseEntity<List<ServiceFullDto>> findAll() {
         return new ResponseEntity<>(serviceService.findAll().stream()
-                .map(news -> map(news, ServiceShortDto.class))
+                .map(news -> map(news, ServiceFullDto.class))
                 .collect(Collectors.toList()), HttpStatus.OK);
     }
 
     @GetMapping("/find-all-available")
-    private ResponseEntity<List<ServiceShortDto>> findAllAvailable() {
+    private ResponseEntity<List<ServiceFullDto>> findAllAvailable() {
         return new ResponseEntity<>(serviceService.findAllAvailable().stream()
-                .map(news -> map(news, ServiceShortDto.class))
+                .map(news -> map(news, ServiceFullDto.class))
                 .collect(Collectors.toList()), HttpStatus.OK);
     }
 
     @GetMapping("/find-one-available/{id}")
-    private ResponseEntity<ServiceShortDto> findOneAvailale(@PathVariable Long id) {
-        return new ResponseEntity<>(map(serviceService.findOneAvailable(id), ServiceShortDto.class), HttpStatus.OK);
+    private ResponseEntity<ServiceFullDto> findOneAvailale(@PathVariable Long id) {
+        return new ResponseEntity<>(map(serviceService.findOneAvailable(id), ServiceFullDto.class), HttpStatus.OK);
     }
 
     @GetMapping("/find-one/{id}")
-    private ResponseEntity<ServiceShortDto> findOne(@PathVariable Long id) {
-        return new ResponseEntity<>(map(serviceService.findOne(id), ServiceShortDto.class), HttpStatus.OK);
+    private ResponseEntity<ServiceFullDto> findOne(@PathVariable Long id) {
+        return new ResponseEntity<>(map(serviceService.findOne(id), ServiceFullDto.class), HttpStatus.OK);
     }
 
 //    @PostMapping("/save")

@@ -9,6 +9,7 @@ import com.alloiz.palma.server.service.AmenityService;
 import com.alloiz.palma.server.service.ImageService;
 import com.alloiz.palma.server.service.RoomService;
 import com.alloiz.palma.server.service.utils.FileBuilder;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -35,6 +36,9 @@ public class RoomServiceImpl implements RoomService {
 
     @Autowired
     private ImageService imageService;
+
+    private static final Logger LOGGER = Logger.getLogger(RoomServiceImpl.class);
+
 
     @Override
     public Room findOneAvailable(Long id) {
@@ -72,6 +76,9 @@ public class RoomServiceImpl implements RoomService {
         Room room = json(roomJson, Room.class);
         // For ManyToMany
         //room.getAmenities().stream().forEach(amenity -> amenityService.save(amenity));
+        LOGGER.info("----------------");
+        LOGGER.info(room.getAmenities());
+        LOGGER.info("----------------");
         room.setAmenities(room.getAmenities());
         if (multipartFiles != null || multipartFiles.length != 0) {
 //            List<Image> images = new ArrayList<>();

@@ -153,43 +153,51 @@ public class NewsServiceImpl implements NewsService {
 //        return randomNews;
 //    }
 
+//    @Override
+//    public List<News> findRandomNews(int amount) {
+//        LOGGER.info("---amount:" + amount);
+//        List<Integer> listOfIntegers = new ArrayList<>();
+//        List<News> randomNews = new ArrayList<>();
+//        Boolean runGeneration = true;
+////        int greatestId = newsRepository.findAllByAvailable(true).size();
+//        Long greatestId = Long.valueOf(newsRepository.returnGreatestId(true));
+//        LOGGER.info("---greatestId:" + greatestId);
+//        if (greatestId >= amount){
+//            while (runGeneration){
+//                for (int i = 0; i<amount; i++){
+//                    Integer randomIndex = (int) Math.floor(Math.random() * greatestId);
+//                    if (checkIdWithBolleanReturnStatement(Long.valueOf(randomIndex))){
+//                        if (!listOfIntegers.contains(randomIndex)){
+//                            listOfIntegers.add(randomIndex);
+//                            LOGGER.info("---Index add:" + randomIndex);
+//                            if (listOfIntegers.size() == amount){
+//                                runGeneration = false;
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//            ListIterator<Integer> listIterator = listOfIntegers.listIterator();
+//            while (listIterator.hasNext()){
+//            LOGGER.info("---Iterator id:" + listIterator.next());
+//            randomNews.add(newsRepository
+//                    .findOne(
+//                            Long.valueOf(listIterator.next())));
+//        }
+//        }
+//        LOGGER.info("---List of Random News:" + randomNews);
+////        randomNews = newsRepository.findAllByAvailable(true);
+////        Collections.shuffle(randomNews);
+////        return randomNews.subList(0,amount);
+//        return randomNews;
+//    }
+
     @Override
     public List<News> findRandomNews(int amount) {
-        LOGGER.info("---amount:" + amount);
-        List<Integer> listOfIntegers = new ArrayList<>();
-        List<News> randomNews = new ArrayList<>();
-        Boolean runGeneration = true;
-//        int greatestId = newsRepository.findAllByAvailable(true).size();
-        Long greatestId = Long.valueOf(newsRepository.returnGreatestId(true));
-        LOGGER.info("---greatestId:" + greatestId);
-        if (greatestId >= amount){
-            while (runGeneration){
-                for (int i = 0; i<amount; i++){
-                    Integer randomIndex = (int) Math.floor(Math.random() * greatestId);
-                    if (checkIdWithBolleanReturnStatement(Long.valueOf(randomIndex))){
-                        if (!listOfIntegers.contains(randomIndex)){
-                            listOfIntegers.add(randomIndex);
-                            LOGGER.info("---Index add:" + randomIndex);
-                            if (listOfIntegers.size() == amount){
-                                runGeneration = false;
-                            }
-                        }
-                    }
-                }
-            }
-            ListIterator<Integer> listIterator = listOfIntegers.listIterator();
-            while (listIterator.hasNext()){
-            LOGGER.info("---Iterator id:" + listIterator.next());
-            randomNews.add(newsRepository
-                    .findOne(
-                            Long.valueOf(listIterator.next())));
-        }
-        }
-        LOGGER.info("---List of Random News:" + randomNews);
-//        randomNews = newsRepository.findAllByAvailable(true);
-//        Collections.shuffle(randomNews);
-//        return randomNews.subList(0,amount);
-        return randomNews;
+        List<News> randomNews;
+        randomNews = newsRepository.findAllByAvailable(true);
+        Collections.shuffle(randomNews);
+        return randomNews.subList(0,amount);
     }
 
 

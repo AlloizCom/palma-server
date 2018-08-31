@@ -8,7 +8,7 @@ import java.util.List;
 
 public class RoomFullDto extends RoomShortDto<RoomFullDto>{
     private List<RoomDescription> descriptions;
-//    private List<Amenity> amenities;
+    private List<Amenity> amenities;
     private List<Image> images;
 
     public RoomFullDto() {
@@ -23,14 +23,14 @@ public class RoomFullDto extends RoomShortDto<RoomFullDto>{
         return this;
     }
 
-//    public List<Amenity> getAmenities() {
-//        return amenities;
-//    }
-//
-//    public RoomFullDto setAmenities(List<Amenity> amenities) {
-//        this.amenities = amenities;
-//        return this;
-//    }
+    public List<Amenity> getAmenities() {
+        return amenities;
+    }
+
+    public RoomFullDto setAmenities(List<Amenity> amenities) {
+        this.amenities = amenities;
+        return this;
+    }
 
     public List<Image> getImages() {
         return images;
@@ -45,7 +45,7 @@ public class RoomFullDto extends RoomShortDto<RoomFullDto>{
     public String toString() {
         return "RoomFullDto{" +
                 "descriptions=" + descriptions +
-//                ", amenities=" + amenities +
+                ", amenities=" + amenities +
                 ", images=" + images +
                 ", id=" + id +
                 ", available=" + available +

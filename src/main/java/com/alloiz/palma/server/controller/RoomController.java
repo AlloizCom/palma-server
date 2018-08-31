@@ -76,6 +76,11 @@ public class RoomController {
         return ResponseEntity.ok(map(roomService.addImages(roomId, multipartFiles), RoomFullDto.class));
     }
 
+    @PostMapping("/add-images/{roomId}")
+    private ResponseEntity<RoomFullDto> addImagesPV(@RequestParam MultipartFile[] multipartFiles, @PathVariable Long roomId) {
+        return ResponseEntity.ok(map(roomService.addImages(roomId, multipartFiles), RoomFullDto.class));
+    }
+
 //    @PostMapping("/delete-image")
 //    private ResponseEntity<Boolean> deleteImage(@RequestParam Long roomId,@RequestParam Long imageId) {
 //        return ResponseEntity.ok(roomService.deleteImage(roomId, imageId));

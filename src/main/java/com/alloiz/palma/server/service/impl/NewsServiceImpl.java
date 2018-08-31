@@ -155,7 +155,7 @@ public class NewsServiceImpl implements NewsService {
 
     @Override
     public List<News> findRandomNews(int amount) {
-        List<Integer> listOfIntegers = getRandomArray(amount);
+        List<Integer> listOfIntegers = new ArrayList<>();
         List<News> randomNews = new ArrayList<>();
         Boolean runGeneration = true;
         int greatestId = newsRepository.findAllByAvailable(true).size();

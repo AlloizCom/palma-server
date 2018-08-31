@@ -4,6 +4,7 @@ import com.alloiz.palma.server.model.News;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -20,4 +21,10 @@ public interface NewsRepository extends JpaRepository<News, Long> {
     Page<News> findAll(Pageable pageable);
 
     Integer countAllByAvailable(Boolean available);
+
+    @Query("SELECT MAX(id) FROM news")
+    Integer returnGreatestId(Boolean get);
+
+    @Query("SELECT MIN(id) FROM news")
+    Integer returnLovestId(Boolean get);
 }

@@ -167,6 +167,9 @@ public class NewsServiceImpl implements NewsService {
                         if (!listOfIntegers.contains(randomIndex)){
                             listOfIntegers.add(randomIndex);
                             LOGGER.info("---Index add:" + randomIndex);
+                            if (listOfIntegers.size() == amount){
+                                runGeneration = false;
+                            }
                         }
                     }
                 }

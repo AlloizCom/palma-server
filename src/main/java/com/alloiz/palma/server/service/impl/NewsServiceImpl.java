@@ -159,7 +159,7 @@ public class NewsServiceImpl implements NewsService {
         List<News> randomNews = new ArrayList<>();
         Boolean runGeneration = true;
 //        int greatestId = newsRepository.findAllByAvailable(true).size();
-        int greatestId = newsRepository.returnGreatestId(true);
+        Long greatestId = newsRepository.returnGreatestId(true);
         if (greatestId >= amount){
             while (runGeneration){
                 for (int i = 0; i<amount; i++){

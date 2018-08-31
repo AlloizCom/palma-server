@@ -23,8 +23,8 @@ public interface NewsRepository extends JpaRepository<News, Long> {
     Integer countAllByAvailable(Boolean available);
 
     @Query("SELECT MAX(id) FROM News")
-    Integer returnGreatestId(Boolean get);
+    Long returnGreatestId(Boolean get);
 
     @Query("SELECT MIN(id) FROM News")
-    Integer returnLovestId(Boolean get);
+    Long returnLovestId(Boolean get);
 }

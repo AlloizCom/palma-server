@@ -12,6 +12,13 @@ public class Validation {
             throw new RuntimeException("invalid id");
     }
 
+    public static Boolean checkIdWithBolleanReturnStatement(Long id) {
+        if (id == null || id < 0){
+            return false;
+        }
+        return true;
+    }
+
     public static void checkString(String string) {
         if (string == null)
             throw new RuntimeException(string + " must be not null");

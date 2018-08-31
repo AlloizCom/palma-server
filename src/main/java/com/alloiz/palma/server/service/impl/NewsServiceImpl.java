@@ -138,16 +138,46 @@ public class NewsServiceImpl implements NewsService {
 //        return list;
 //    }
 
+//    @Override
+//    public List<News> findRandomNews(int amount) {
+//        List<Integer> listOfIntegers = getRandomArray(amount);
+//        List<News> randomNews = new ArrayList<>();
+//        ListIterator<Integer> listIterator = listOfIntegers.listIterator();
+//        while (listIterator.hasNext()){
+//            LOGGER.info("---Iterator id:" + listIterator.next());
+//            randomNews.add(newsRepository
+//                    .findOne(
+//                            Long.valueOf(listIterator.next())));
+//        }
+//        LOGGER.info("---List of Random News:" + randomNews);
+//        return randomNews;
+//    }
+
     @Override
     public List<News> findRandomNews(int amount) {
         List<Integer> listOfIntegers = getRandomArray(amount);
         List<News> randomNews = new ArrayList<>();
-        ListIterator<Integer> listIterator = listOfIntegers.listIterator();
-        while (listIterator.hasNext()){
+        Boolean runGeneration = true;
+        int greatestId = newsRepository.findAllByAvailable(true).size();
+        if (greatestId >= amount){
+            while (runGeneration){
+                for (int i = 0; i<amount; i++){
+                    Integer randomIndex = (int) Math.floor(Math.random() * greatestId);
+                    if (checkIdWithBolleanReturnStatement(Long.valueOf(randomIndex))){
+                        if (!listOfIntegers.contains(randomIndex)){
+                            listOfIntegers.add(randomIndex);
+                            LOGGER.info("---Index add:" + randomIndex);
+                        }
+                    }
+                }
+            }
+            ListIterator<Integer> listIterator = listOfIntegers.listIterator();
+            while (listIterator.hasNext()){
             LOGGER.info("---Iterator id:" + listIterator.next());
             randomNews.add(newsRepository
                     .findOne(
                             Long.valueOf(listIterator.next())));
+        }
         }
         LOGGER.info("---List of Random News:" + randomNews);
         return randomNews;

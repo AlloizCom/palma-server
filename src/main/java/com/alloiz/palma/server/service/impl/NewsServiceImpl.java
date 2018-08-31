@@ -14,9 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 import static com.alloiz.palma.server.config.mapper.JsonMapper.json;
 import static com.alloiz.palma.server.service.utils.Validation.*;
@@ -115,23 +113,64 @@ public class NewsServiceImpl implements NewsService {
 
     @Override
     public List<Integer> generateRandomArray(int length) {
+        List<Integer> list = getRandomArray(length);
+        return list;
+    }
+
+//    @Override
+//    public List<Integer> generateRandomArray(int length) {
+//        List<Integer> list = new ArrayList<>();
+//        int maxIndex = newsRepository.findAllByAvailable(true).size();
+//        if(maxIndex >= length) {
+//            for (int i = 0; i < length; i++) {
+//                while (true){
+//                    Integer temp = (int) Math.floor(Math.random() * maxIndex);
+//                    if(list.indexOf(temp) == -1){
+//                        list.add(temp);
+//                        break;
+//                    }
+//                }
+//            }
+//        }else
+//            list.stream().forEach(elem -> elem = maxIndex);
+//
+//        LOGGER.info("-----------ARRAY-------" + list);
+//        return list;
+//    }
+
+    @Override
+    public List<News> findRandomNews(int amount) {
+        List<Integer> listOfIntegers = getRandomArray(amount);
+        List<News> randomNews = new ArrayList<>();
+        ListIterator<Integer> listIterator = listOfIntegers.listIterator();
+        while (listIterator.hasNext()){
+            LOGGER.info("---Iterator id:" + listIterator.next());
+            randomNews.add(newsRepository
+                    .findOne(
+                            Long.valueOf(listIterator.next())));
+        }
+        LOGGER.info("---List of Random News:" + randomNews);
+        return randomNews;
+    }
+
+
+    private List<Integer> getRandomArray (int length){
         List<Integer> list = new ArrayList<>();
         int maxIndex = newsRepository.findAllByAvailable(true).size();
         if(maxIndex >= length) {
             for (int i = 0; i < length; i++) {
                 while (true){
                     Integer temp = (int) Math.floor(Math.random() * maxIndex);
-                   if(list.indexOf(temp) == -1){
-                       list.add(temp);
-                       break;
-                   }
+                    if(list.indexOf(temp) == -1){
+                        list.add(temp);
+                        break;
+                    }
                 }
             }
         }else
             list.stream().forEach(elem -> elem = maxIndex);
 
         LOGGER.info("-----------ARRAY-------" + list);
-//
         return list;
     }
 

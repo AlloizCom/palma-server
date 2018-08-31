@@ -29,6 +29,8 @@ public interface NewsService {
 
     List<Integer> generateRandomArray(int length);
 
+    List<News> findRandomNews(int amount);
+
     List<News> findAll(Pageable pageable);
 
     NewsByPages findAllByAvailable(Pageable pageable);

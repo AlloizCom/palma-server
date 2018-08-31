@@ -26,13 +26,13 @@ public class RoomController {
     private RoomService roomService;
 
     @GetMapping("/find-all")
-    private ResponseEntity<List<RoomShortDto>> findAll() {
+    private ResponseEntity<List<RoomFullDto>> findAll() {
         return new ResponseEntity<>(roomService.findAll().stream()
                 .map(room -> map(room, RoomFullDto.class)).collect(Collectors.toList()), HttpStatus.OK);
     }
 
     @GetMapping("/find-all-available")
-    private ResponseEntity<List<RoomShortDto>> findAllAvailable() {
+    private ResponseEntity<List<RoomFullDto>> findAllAvailable() {
         return new ResponseEntity<>(roomService.findAllAvailable().stream()
                 .map(room -> map(room, RoomFullDto.class)).collect(Collectors.toList()), HttpStatus.OK);
     }

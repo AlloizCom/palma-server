@@ -65,10 +65,10 @@ public class NewsController {
         return new ResponseEntity<>(map(newsService.findOne(id), NewsFullDto.class), HttpStatus.OK);
     }
 
-//    @GetMapping("/get-random-array/{length}")
-//    private ResponseEntity<List<Integer>> getRandomArray(@PathVariable Integer length){
-//        return new ResponseEntity<>(newsService.generateRandomArray(length),HttpStatus.OK);
-//    }
+    @GetMapping("/get-random-array/{length}")
+    private ResponseEntity<List<Integer>> getRandomArray(@PathVariable Integer length){
+        return new ResponseEntity<>(newsService.generateRandomArray(length),HttpStatus.OK);
+    }
 
     @GetMapping("/get-random-array/{amount}")
     private ResponseEntity<List<NewsFullDto>> getRandomNews(@PathVariable Integer amount) {
@@ -76,10 +76,10 @@ public class NewsController {
                 .map(news -> map(news, NewsFullDto.class)).collect(toList()), HttpStatus.OK);
     }
 
-    @GetMapping("/get-list-of-random-news/{length}")
-    private ResponseEntity<List<NewsFullDto>> getRandomArray(@PathVariable Integer length){
-        return new ResponseEntity<>(newsService.findRandomNews(length),HttpStatus.OK);
-    }
+//    @GetMapping("/get-list-of-random-news/{length}")
+//    private ResponseEntity<List<NewsFullDto>> getRandomArray(@PathVariable Integer length){
+//        return new ResponseEntity<>(newsService.findRandomNews(length),HttpStatus.OK);
+//    }
 
     @PostMapping("/save")
     private ResponseEntity<NewsFullDto> save(@RequestParam String newsJson,

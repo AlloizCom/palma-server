@@ -39,7 +39,7 @@ public class RoomController {
     }
 
 
-    @GetMapping("/find-all")
+    @GetMapping("/find-all-only-with-images")
     private ResponseEntity<List<RoomMiddleDto>> findAllOnlyWithImages() {
         return new ResponseEntity<>(roomService
                 .findAll()
@@ -48,7 +48,7 @@ public class RoomController {
                 .collect(Collectors.toList()), HttpStatus.OK);
     }
 
-    @GetMapping("/find-all-available")
+    @GetMapping("/find-all-available-only-with-images")
     private ResponseEntity<List<RoomMiddleDto>> findAllAvailableOnlyWithImages() {
         return new ResponseEntity<>(roomService
                 .findAllAvailable()

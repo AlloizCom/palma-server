@@ -155,11 +155,13 @@ public class NewsServiceImpl implements NewsService {
 
     @Override
     public List<News> findRandomNews(int amount) {
+        LOGGER.info("---amount:" + amount);
         List<Integer> listOfIntegers = new ArrayList<>();
         List<News> randomNews = new ArrayList<>();
         Boolean runGeneration = true;
 //        int greatestId = newsRepository.findAllByAvailable(true).size();
         Long greatestId = newsRepository.returnGreatestId(true);
+        LOGGER.info("---greatestId:" + greatestId);
         if (greatestId >= amount){
             while (runGeneration){
                 for (int i = 0; i<amount; i++){

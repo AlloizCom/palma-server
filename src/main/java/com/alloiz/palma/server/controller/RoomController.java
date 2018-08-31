@@ -1,6 +1,7 @@
 package com.alloiz.palma.server.controller;
 
 import com.alloiz.palma.server.dto.RoomFullDto;
+import com.alloiz.palma.server.dto.RoomMiddleDto;
 import com.alloiz.palma.server.dto.RoomShortDto;
 import com.alloiz.palma.server.model.enums.RoomType;
 import com.alloiz.palma.server.service.RoomService;
@@ -36,6 +37,26 @@ public class RoomController {
         return new ResponseEntity<>(roomService.findAllAvailable().stream()
                 .map(room -> map(room, RoomFullDto.class)).collect(Collectors.toList()), HttpStatus.OK);
     }
+
+
+    @GetMapping("/find-all")
+    private ResponseEntity<List<RoomMiddleDto>> findAllOnlyWithImages() {
+        return new ResponseEntity<>(roomService
+                .findAll()
+                .stream()
+                .map(room -> map(room, RoomMiddleDto.class))
+                .collect(Collectors.toList()), HttpStatus.OK);
+    }
+
+    @GetMapping("/find-all-available")
+    private ResponseEntity<List<RoomMiddleDto>> findAllAvailableOnlyWithImages() {
+        return new ResponseEntity<>(roomService
+                .findAllAvailable()
+                .stream()
+                .map(room -> map(room, RoomMiddleDto.class))
+                .collect(Collectors.toList()), HttpStatus.OK);
+    }
+
 
     @GetMapping("/find-one-available/{id}")
     private ResponseEntity<RoomFullDto> findOneAvailale(@PathVariable Long id) {

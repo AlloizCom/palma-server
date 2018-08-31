@@ -186,6 +186,9 @@ public class NewsServiceImpl implements NewsService {
         }
         }
         LOGGER.info("---List of Random News:" + randomNews);
+//        randomNews = newsRepository.findAllByAvailable(true);
+//        Collections.shuffle(randomNews);
+//        return randomNews.subList(0,amount);
         return randomNews;
     }
 

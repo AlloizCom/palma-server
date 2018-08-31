@@ -70,7 +70,7 @@ public class NewsController {
         return new ResponseEntity<>(newsService.generateRandomArray(length),HttpStatus.OK);
     }
 
-    @GetMapping("/get-random-array/{amount}")
+    @GetMapping("/get-list-of-random-news/{amount}")
     private ResponseEntity<List<NewsFullDto>> getRandomNews(@PathVariable Integer amount) {
         return new ResponseEntity<>(newsService.findRandomNews(amount).stream()
                 .map(news -> map(news, NewsFullDto.class)).collect(toList()), HttpStatus.OK);

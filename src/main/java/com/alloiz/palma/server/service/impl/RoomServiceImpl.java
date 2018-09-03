@@ -112,7 +112,7 @@ public class RoomServiceImpl implements RoomService {
         checkJson(roomJson);
         Room room = json(roomJson, Room.class);
         checkObjectExistsById(room.getId(), roomRepository);
-        room.setImages(room.getImages());
+//        room.setImages(room.getImages());
         if (multipartFiles != null && multipartFiles.length != 0) {
 //            List<Image> images = new ArrayList<>();
 //            for (MultipartFile multipartFile : multipartFiles) {
@@ -121,7 +121,8 @@ public class RoomServiceImpl implements RoomService {
 //                images.add(image);
 //            }
 //            room.setImages(images);
-            room.setImages(imageService.saveMultiImage(multipartFiles));
+            //room.setImages(imageService.saveMultiImage(multipartFiles));
+            addImages(room.getId(),multipartFiles);
         }
         return roomRepository.save(findOne(room.getId())
                 .setAdultPlaces(room.getAdultPlaces())

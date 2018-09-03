@@ -83,7 +83,7 @@ public class RoomController {
     private ResponseEntity<RoomFullDto> update(@RequestParam String roomJson, @RequestParam(required = false) MultipartFile[] multipartFiles) {
         LOGGER.info("---------------------------Room---------------------------");
         LOGGER.info(roomJson);
-        LOGGER.info(multipartFiles.length);
+        LOGGER.info("Img: " + multipartFiles.length);
         LOGGER.info("---------------------------Room---------------------------");
         if (multipartFiles != null && multipartFiles.length != 0) {
             return ResponseEntity.ok(map(roomService.update(roomJson, multipartFiles), RoomFullDto.class));

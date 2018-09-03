@@ -112,6 +112,7 @@ public class RoomServiceImpl implements RoomService {
         checkJson(roomJson);
         Room room = json(roomJson, Room.class);
         checkObjectExistsById(room.getId(), roomRepository);
+        room.setImages(room.getImages());
         if (multipartFiles != null && multipartFiles.length != 0) {
 //            List<Image> images = new ArrayList<>();
 //            for (MultipartFile multipartFile : multipartFiles) {

@@ -33,7 +33,7 @@ public class Room extends BaseEntity<Room> {
         })
     private List<Amenity> amenities;
 
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @OneToMany(cascade = {CascadeType.PERSIST}, orphanRemoval=true)
     @JoinColumn(name = "room_id")
     private List<Image> images;
 

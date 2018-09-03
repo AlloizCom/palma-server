@@ -180,6 +180,7 @@ public class RoomServiceImpl implements RoomService {
 
     @Override
     public Boolean deleteImage(Long roomId, Long imageId) {
+        LOGGER.info("----DELETE----roomID:" + roomId + "imageId:" + imageId);
         checkId(imageId);
         Room room = findOne(roomId);
         List<Image> images = room.getImages();
@@ -198,10 +199,7 @@ public class RoomServiceImpl implements RoomService {
 //                return true;
 //            }
 //        }
-        if (imageService.removeImage(images,roomId)){
-            return true;
-        }
-        return false;
+        return imageService.removeImage(images,imageId);
     }
 
 

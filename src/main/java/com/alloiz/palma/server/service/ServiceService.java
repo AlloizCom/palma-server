@@ -21,6 +21,8 @@ public interface ServiceService {
 
     Service save(String newsJson, MultipartFile multipartFile);
 
+    Service update(String serviceJson, MultipartFile multipartFile);
+
     Service update(Service service);
 
     Service update(String serviceJson);

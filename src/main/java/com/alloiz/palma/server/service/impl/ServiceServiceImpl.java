@@ -96,6 +96,18 @@ public class ServiceServiceImpl implements ServiceService {
     }
 
     @Override
+    public Service update(String serviceJson, MultipartFile multipartFile) {
+        checkJson(serviceJson);
+        Service service = json(serviceJson, Service.class);
+        checkObjectExistsById(service.getId(), serviceRepository);
+        if (multipartFile != null && !multipartFile.isEmpty())
+            service.setPicturePath(fileBuilder.saveFile(multipartFile));
+        return save(service.setName(service.getName()))
+                .setAvailable(service.getAvailable()
+        );
+    }
+
+    @Override
     public Service update(Service service) {
         checkObjectExistsById(service.getId(), serviceRepository);
         return serviceRepository.save(findOne(service.getId())

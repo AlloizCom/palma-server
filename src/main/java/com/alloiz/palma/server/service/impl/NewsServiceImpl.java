@@ -14,25 +14,24 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import static com.alloiz.palma.server.config.mapper.JsonMapper.json;
+import static com.alloiz.palma.server.dto.utils.builder.Builder.map;
 import static com.alloiz.palma.server.service.utils.Validation.*;
 import static java.util.stream.Collectors.toList;
-import static com.alloiz.palma.server.dto.utils.builder.Builder.map;
 
 
 @Service
 public class NewsServiceImpl implements NewsService {
 
+    private static final Logger LOGGER = Logger.getLogger(NewsServiceImpl.class);
     @Autowired
     private NewsRepository newsRepository;
-
     @Autowired
     private FileBuilder fileBuilder;
-
-    private static final Logger LOGGER = Logger.getLogger(NewsServiceImpl.class);
-
 
     @Override
     public News findOneAvailable(Long id) {
@@ -68,9 +67,9 @@ public class NewsServiceImpl implements NewsService {
     public News save(String newsJson, MultipartFile multipartFile) {
         checkJson(newsJson);
         News news = json(newsJson, News.class);
-            news.getNewsDescriptions()
-                    .stream()
-                    .forEach(newsDescription -> newsDescription.setAvailable(true));
+        news.getNewsDescriptions()
+                .stream()
+                .forEach(newsDescription -> newsDescription.setAvailable(true));
         if (multipartFile != null && !multipartFile.isEmpty()) {
             news.setPicturePath(fileBuilder.saveFile(multipartFile));
         }
@@ -194,27 +193,31 @@ public class NewsServiceImpl implements NewsService {
 
     @Override
     public List<News> findRandomNews(int amount) {
-        List<News> randomNews;
-        randomNews = newsRepository.findAllByAvailable(true);
-        Collections.shuffle(randomNews);
-        return randomNews.subList(0,amount);
+        if (newsRepository.findAllByAvailable(true).size() >= 6) {
+            List<News> randomNews;
+            randomNews = newsRepository.findAllByAvailable(true);
+            Collections.shuffle(randomNews);
+            return randomNews.subList(0, amount);
+        } else {
+            return newsRepository.findAllByAvailable(true);
+        }
     }
 
 
-    private List<Integer> getRandomArray (int length){
+    private List<Integer> getRandomArray(int length) {
         List<Integer> list = new ArrayList<>();
         int maxIndex = newsRepository.findAllByAvailable(true).size();
-        if(maxIndex >= length) {
+        if (maxIndex >= length) {
             for (int i = 0; i < length; i++) {
-                while (true){
+                while (true) {
                     Integer temp = (int) Math.floor(Math.random() * maxIndex);
-                    if(list.indexOf(temp) == -1){
+                    if (list.indexOf(temp) == -1) {
                         list.add(temp);
                         break;
                     }
                 }
             }
-        }else
+        } else
             list.stream().forEach(elem -> elem = maxIndex);
 
         LOGGER.info("-----------ARRAY-------" + list);
@@ -231,7 +234,7 @@ public class NewsServiceImpl implements NewsService {
     public NewsByPages findAllByAvailable(Pageable pageable) {
         return new NewsByPages()
                 .setNews(newsRepository.findAllByAvailable(true, pageable).getContent()
-                .stream().map(news -> map(news, NewsShortDto.class)).collect(toList()))
+                        .stream().map(news -> map(news, NewsShortDto.class)).collect(toList()))
                 .setCurrentPage(pageable.getPageNumber())
                 .setNumberOfItems(pageable.getPageSize())
                 .setNumberOfPages((newsRepository.countAllByAvailable(true) / pageable.getPageSize()) + 1);

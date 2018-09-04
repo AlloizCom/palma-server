@@ -3,6 +3,7 @@ package com.alloiz.palma.server.controller;
 import com.alloiz.palma.server.dto.BookDto;
 import com.alloiz.palma.server.model.Book;
 import com.alloiz.palma.server.service.BookService;
+import com.alloiz.palma.server.service.PayService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,8 +21,10 @@ public class BookController {
     @Autowired
     private BookService bookService;
 
-    private static final Logger LOGGER = Logger.getLogger(BookController.class);
+    @Autowired
+    private PayService payService;
 
+    private static final Logger LOGGER = Logger.getLogger(BookController.class);
 
     @GetMapping("/find-all")
     private ResponseEntity<List<BookDto>> findAll() {
@@ -52,6 +55,11 @@ public class BookController {
         LOGGER.info("---------------------------Book---------------------------");
         return ResponseEntity
                 .ok(map(bookService.save(map(book, Book.class)), BookDto.class));
+    }
+
+    @PostMapping("/pay")
+    private ResponseEntity<String> pay(){
+        return ResponseEntity.ok(payService.getButton());
     }
 
     @PostMapping("/update")

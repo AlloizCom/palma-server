@@ -2,11 +2,13 @@ package com.alloiz.palma.server.service.impl;
 
 import com.alloiz.palma.server.service.MailService;
 import com.alloiz.palma.server.service.PayService;
+import com.alloiz.palma.server.service.utils.liqpay.LiqPay;
 import org.apache.log4j.Logger;
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -15,6 +17,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Base64;
 import java.util.HashMap;
 
+@Service
 public class PayServiceImpl implements PayService {
 
     private static final Logger logger = Logger.getLogger(PayServiceImpl.class);
@@ -26,7 +29,6 @@ public class PayServiceImpl implements PayService {
 
     @Autowired
     private MailService mailService;
-
 
     //todo add properties
     @Value("${liqpay.public.key}")
@@ -43,7 +45,7 @@ public class PayServiceImpl implements PayService {
 //        String uuid = buyTickets(binWrapper).get(0).getOrderId();
         params.put("sandbox", "1");
         params.put("action", "pay");
-//        params.put("amount", calcPrice(binWrapper.getSeats()) + "");
+        params.put("amount", 1 + "");
         params.put("currency", "UAH");
         params.put("description", "Ticket buying");
 //        params.put("result_url", url + "/payment/server/" + uuid);//forward after click 'back'
@@ -51,8 +53,8 @@ public class PayServiceImpl implements PayService {
 //        params.put("order_id", uuid);
         params.put("version", "3");
 //        params.put("expired_date", getExpiresIn(uuid));
-//        return new StringWrapper().setValue(new LiqPay(liqpayPublicKey, liqpayPrivateKey).cnb_form(params));
-        return null;
+        return new LiqPay(liqpayPublicKey, liqpayPrivateKey).cnb_form(params);
+//        return null;
     }
 
     @Override

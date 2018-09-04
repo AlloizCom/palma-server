@@ -32,4 +32,13 @@ public interface RoomService {
     Boolean changeAmount (RoomType roomType, Integer amount);
 
     Boolean deleteImage(Long roomId, Long imageId);
+
+    List<Room> findAllByAdultPlacesAndKidsPlacesAndAvailable (Boolean available,
+                                                              Integer kidsPlaces,
+                                                              Integer adultPlaces);
+
+    List<Room> findAllByAdultPlacesAndKidsPlacesAndAmountAndAvailable(Boolean available,
+                                                                      Integer kidsPlaces,
+                                                                      Integer adultPlaces,
+                                                                      Integer amount);
 }

@@ -2,7 +2,6 @@ package com.alloiz.palma.server.controller;
 
 import com.alloiz.palma.server.dto.RoomFullDto;
 import com.alloiz.palma.server.dto.RoomMiddleDto;
-import com.alloiz.palma.server.dto.RoomShortDto;
 import com.alloiz.palma.server.model.enums.RoomType;
 import com.alloiz.palma.server.service.RoomService;
 import org.apache.log4j.Logger;
@@ -36,6 +35,36 @@ public class RoomController {
     private ResponseEntity<List<RoomFullDto>> findAllAvailable() {
         return new ResponseEntity<>(roomService.findAllAvailable().stream()
                 .map(room -> map(room, RoomFullDto.class)).collect(Collectors.toList()), HttpStatus.OK);
+    }
+
+    @GetMapping("/find-all-available-kids-adult/{kidsPlaces}/{adultPlaces}")
+    private ResponseEntity<List<RoomFullDto>> findAllByAdultPlacesAndKidsPlacesAndAvailable(
+            @PathVariable Integer kidsPlaces,
+            @PathVariable Integer adultPlaces
+    ) {
+        return new ResponseEntity<>(roomService.findAllByAdultPlacesAndKidsPlacesAndAvailable(
+                true,
+                kidsPlaces,
+                adultPlaces
+        ).stream()
+                .map(room -> map(room, RoomFullDto.class))
+                .collect(Collectors.toList()), HttpStatus.OK);
+    }
+
+    @GetMapping("/find-all-available-kids-adult/{kidsPlaces}/{adultPlaces}/{amount}")
+    private ResponseEntity<List<RoomFullDto>> findAllByAdultPlacesAndKidsPlacesAAndAmountAndAvailable(
+            @PathVariable Integer kidsPlaces,
+            @PathVariable Integer adultPlaces,
+            @PathVariable Integer amount
+    ) {
+        return new ResponseEntity<>(roomService.findAllByAdultPlacesAndKidsPlacesAndAmountAndAvailable(
+                true,
+                kidsPlaces,
+                adultPlaces,
+                amount
+        ).stream()
+                .map(room -> map(room, RoomFullDto.class))
+                .collect(Collectors.toList()), HttpStatus.OK);
     }
 
 

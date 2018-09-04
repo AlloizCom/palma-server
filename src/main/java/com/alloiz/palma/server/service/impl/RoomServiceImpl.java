@@ -202,6 +202,26 @@ public class RoomServiceImpl implements RoomService {
         return imageService.removeImage(images,imageId);
     }
 
+    @Override
+    public List<Room> findAllByAdultPlacesAndKidsPlacesAndAvailable(Boolean available,
+                                                                    Integer kidsPlaces,
+                                                                    Integer adultPlaces) {
+        return roomRepository.findAllByAdultPlacesAndKidsPlacesAndAvailable(available,
+                                                                            kidsPlaces,
+                                                                            adultPlaces);
+    }
+
+    @Override
+    public List<Room> findAllByAdultPlacesAndKidsPlacesAndAmountAndAvailable(Boolean available,
+                                                                             Integer kidsPlaces,
+                                                                             Integer adultPlaces,
+                                                                             Integer amount) {
+        return roomRepository.findAllByAdultPlacesAndKidsPlacesAndAmountAndAvailable(available,
+                kidsPlaces,
+                adultPlaces,
+                amount
+                );
+    }
 
 
 }

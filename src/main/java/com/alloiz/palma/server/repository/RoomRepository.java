@@ -14,4 +14,13 @@ public interface RoomRepository extends JpaRepository<Room,Long> {
     Room findByAvailableAndId(Boolean available, Long id);
 
     List<Room> findAllByAvailableAndType (Boolean available, RoomType roomType);
+
+    List<Room> findAllByAdultPlacesAndKidsPlacesAndAvailable (Boolean available,
+                                                              Integer kidsPlaces,
+                                                              Integer adultPlaces);
+
+    List<Room> findAllByAdultPlacesAndKidsPlacesAndAmountAndAvailable(Boolean available,
+                                                                      Integer kidsPlaces,
+                                                                      Integer adultPlaces,
+                                                                      Integer amount);
 }

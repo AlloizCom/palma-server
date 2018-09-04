@@ -67,12 +67,28 @@ public class ServiceController {
         return ResponseEntity.ok(map(serviceService.save(serviceJson, multipartFile), ServiceFullDto.class));
     }
 
+//    @PostMapping("/update")
+//    private ResponseEntity<ServiceFullDto> update(@RequestParam String serviceJson) {
+//        LOGGER.info("---------------------------Service---------------------------");
+//        LOGGER.info(serviceJson);
+//        LOGGER.info("---------------------------Service---------------------------");
+//        return ResponseEntity.ok(map(serviceService.update(serviceJson), ServiceFullDto.class));
+//    }
+
     @PostMapping("/update")
-    private ResponseEntity<ServiceFullDto> update(@RequestParam String serviceJson) {
+    private ResponseEntity<ServiceFullDto> update(@RequestParam String serviceJson,
+                                                  @RequestParam(required = false) MultipartFile multipartFile) {
         LOGGER.info("---------------------------Service---------------------------");
         LOGGER.info(serviceJson);
+        LOGGER.info(multipartFile);
         LOGGER.info("---------------------------Service---------------------------");
-        return ResponseEntity.ok(map(serviceService.update(serviceJson), ServiceFullDto.class));
+        if (multipartFile != null && !multipartFile.isEmpty()) {
+            LOGGER.info("multipart file not null");
+            return ResponseEntity.ok(map(serviceService.update(serviceJson, multipartFile), ServiceFullDto.class));
+        } else {
+            LOGGER.info("multipart file is null!");
+            return ResponseEntity.ok(map(serviceService.update(serviceJson), ServiceFullDto.class));
+        }
     }
 
     @DeleteMapping("/delete/{id}")

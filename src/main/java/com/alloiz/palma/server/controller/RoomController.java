@@ -51,8 +51,8 @@ public class RoomController {
                 .collect(Collectors.toList()), HttpStatus.OK);
     }
 
-    @GetMapping("/find-all-available-kids-adult/{kidsPlaces}/{adultPlaces}/{amount}")
-    private ResponseEntity<List<RoomFullDto>> findAllByAdultPlacesAndKidsPlacesAAndAmountAndAvailable(
+    @GetMapping("/find-all-available-kids-adult-amount/{kidsPlaces}/{adultPlaces}/{amount}")
+    private ResponseEntity<List<RoomFullDto>> findAllByAdultPlacesAndKidsPlacesAndAmountAndAvailable(
             @PathVariable Integer kidsPlaces,
             @PathVariable Integer adultPlaces,
             @PathVariable Integer amount

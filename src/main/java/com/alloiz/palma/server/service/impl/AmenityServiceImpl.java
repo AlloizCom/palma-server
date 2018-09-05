@@ -1,15 +1,16 @@
 package com.alloiz.palma.server.service.impl;
 
 import com.alloiz.palma.server.model.Amenity;
-import com.alloiz.palma.server.model.AmenityName;
 import com.alloiz.palma.server.repository.AmenityRepository;
 import com.alloiz.palma.server.service.AmenityService;
+import com.alloiz.palma.server.service.RoomService;
 import com.alloiz.palma.server.service.utils.FileBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.alloiz.palma.server.config.mapper.JsonMapper.json;
 import static com.alloiz.palma.server.service.utils.Validation.*;
@@ -19,6 +20,9 @@ public class AmenityServiceImpl implements AmenityService {
 
     @Autowired
     private AmenityRepository amenityRepository;
+
+    @Autowired
+    private RoomService roomService;
 
     @Autowired
     private FileBuilder fileBuilder;
@@ -82,7 +86,7 @@ public class AmenityServiceImpl implements AmenityService {
         return save(amenity.setAmenityNames(amenity.getAmenityNames())
                 //.setRoom(amenity.getRoom())
                 .setAvailable(amenity.getAvailable())
-                );
+        );
     }
 
     @Override
@@ -106,6 +110,20 @@ public class AmenityServiceImpl implements AmenityService {
     @Override
     public Boolean delete(Long id) {
         try {
+            checkObjectExistsById(id, amenityRepository);
+            roomService.findAll().stream()
+                    .filter(room ->
+                            room.getAmenities().stream()
+                                    .anyMatch(amenity ->
+                                            amenity.getId().equals(id)
+                                    )
+                    ).forEach(room ->
+                    roomService.save(room.setAmenities(
+                            room.getAmenities().stream()
+                                    .filter(amenity ->
+                                            !amenity.getId().equals(id)
+                                    ).collect(Collectors.toList())
+                    )));
             amenityRepository.delete(checkObjectExistsById(id, amenityRepository));
             return true;
         } catch (Exception e) {

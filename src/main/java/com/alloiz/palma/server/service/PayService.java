@@ -1,9 +1,11 @@
 package com.alloiz.palma.server.service;
 
+import com.alloiz.palma.server.model.Book;
+
 public interface PayService {
 
     //todo add entity
-    String getButton();
+    String getButton(Book book);
 
     //todo add entity
     void buy();

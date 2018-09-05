@@ -18,13 +18,11 @@ import static com.alloiz.palma.server.dto.utils.builder.Builder.map;
 @RequestMapping("/book")
 public class BookController {
 
+    private static final Logger LOGGER = Logger.getLogger(BookController.class);
     @Autowired
     private BookService bookService;
-
     @Autowired
     private PayService payService;
-
-    private static final Logger LOGGER = Logger.getLogger(BookController.class);
 
     @GetMapping("/find-all")
     private ResponseEntity<List<BookDto>> findAll() {
@@ -58,8 +56,8 @@ public class BookController {
     }
 
     @PostMapping("/pay")
-    private ResponseEntity<String> pay(){
-        return ResponseEntity.ok(payService.getButton());
+    private ResponseEntity<String> pay(@RequestBody BookDto book) {
+        return ResponseEntity.ok(payService.getButton(map(book, Book.class)));
     }
 
     @PostMapping("/update")

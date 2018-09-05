@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static com.alloiz.palma.server.service.utils.GenerateUuid.generateUuid;
 import static com.alloiz.palma.server.service.utils.Validation.*;
 import static java.util.stream.Collectors.toList;
 
@@ -87,7 +88,7 @@ public class BookServiceImpl implements BookService {
             }
         }
 
-        return bookRepository.save(book.setAvailable(true));
+        return bookRepository.save(generateUuid(book.setAvailable(true)));
     }
 
     @Override
@@ -106,5 +107,11 @@ public class BookServiceImpl implements BookService {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    @Override
+    public Book findByUuid(String uuid) {
+        checkString(uuid);
+        return bookRepository.findByUuid(uuid);
     }
 }

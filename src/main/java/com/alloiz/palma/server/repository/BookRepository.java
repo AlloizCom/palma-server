@@ -8,7 +8,10 @@ import java.util.List;
 
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long> {
+
     List<Book> findAllByAvailable(Boolean available);
 
     Book findByAvailableAndId(Boolean available, Long id);
+
+    Book findByUuid(String uuid);
 }

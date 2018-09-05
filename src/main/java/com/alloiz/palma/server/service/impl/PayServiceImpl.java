@@ -1,5 +1,6 @@
 package com.alloiz.palma.server.service.impl;
 
+import com.alloiz.palma.server.model.Book;
 import com.alloiz.palma.server.service.MailService;
 import com.alloiz.palma.server.service.PayService;
 import com.alloiz.palma.server.service.utils.liqpay.LiqPay;
@@ -35,26 +36,24 @@ public class PayServiceImpl implements PayService {
     private String liqpayPublicKey;
     @Value("${liqpay.private.key}")
     private String liqpayPrivateKey;
-    @Value("${base.server.ulr}")
+    @Value("${base.server.url}")
     private String url;
 
-
     @Override
-    public String getButton() {
+    public String getButton(Book book) {
         HashMap<String, String> params = new HashMap<>();
-//        String uuid = buyTickets(binWrapper).get(0).getOrderId();
+        String uuid = book.getUuid();
         params.put("sandbox", "1");
         params.put("action", "pay");
-        params.put("amount", 1 + "");
+        params.put("amount", 1+"");
         params.put("currency", "UAH");
         params.put("description", "Ticket buying");
-//        params.put("result_url", url + "/payment/server/" + uuid);//forward after click 'back'
-//        params.put("server_url", url + "/payment/server/" + uuid);
-//        params.put("order_id", uuid);
+        params.put("result_url", url + "/payment/server/" + uuid);//forward after click 'back'
+        params.put("server_url", url + "/payment/server/" + uuid);
+        params.put("order_id", uuid);
         params.put("version", "3");
-//        params.put("expired_date", getExpiresIn(uuid));
+        params.put("expired_date", getExpiresIn(uuid));
         return new LiqPay(liqpayPublicKey, liqpayPrivateKey).cnb_form(params);
-//        return null;
     }
 
     @Override
@@ -83,7 +82,6 @@ public class PayServiceImpl implements PayService {
     public void revertPayment(String orderID) {
 //        seatService.findAllByTicketOrderId(orderID).forEach(seat -> seatService.update(seat.getId(), Bought.AVAILABLE));
 //        logger.info("revertPayment:[" + orderID + "]");
-//        historyService.save("revertPayment:[" + orderID + "]", "PayService");//todo
     }
 
     @Override

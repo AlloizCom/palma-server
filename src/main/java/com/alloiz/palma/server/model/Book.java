@@ -24,6 +24,7 @@ public class Book extends BaseEntity<Book> {
     private Integer adults;
     private Integer kids;
     private Integer amountOfRooms;
+    private String uuid;
 
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
@@ -89,6 +90,15 @@ public class Book extends BaseEntity<Book> {
 
     public Book setEmail(String email) {
         this.email = email;
+        return this;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public Book setUuid(String uuid) {
+        this.uuid = uuid;
         return this;
     }
 
@@ -186,6 +196,7 @@ public class Book extends BaseEntity<Book> {
                 ", roomType=" + roomType +
                 ", amountOfRooms=" + amountOfRooms +
                 ", id=" + id +
+                ", uuid=" + uuid +
                 ", available=" + available +
                 '}';
     }

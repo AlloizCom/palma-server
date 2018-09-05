@@ -18,4 +18,6 @@ public interface BookService {
     Book update(Book update);
 
     Boolean delete(Long id);
+
+    Book findByUuid(String uuid);
 }

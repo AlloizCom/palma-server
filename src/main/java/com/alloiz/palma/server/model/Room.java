@@ -30,6 +30,7 @@ public class Room extends BaseEntity<Room> {
 @ManyToMany(cascade = {CascadeType.REFRESH,
         CascadeType.DETACH,
         CascadeType.MERGE,
+        CascadeType.REMOVE
         })
     private List<Amenity> amenities;
 

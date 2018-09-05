@@ -8,10 +8,16 @@ import com.alloiz.palma.server.service.TariffService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static com.alloiz.palma.server.service.utils.Validation.*;
 
+
+/**
+ * {@inheritDoc}
+ */
 @Service
 public class TariffServiceImpl implements TariffService {
 
@@ -41,27 +47,52 @@ public class TariffServiceImpl implements TariffService {
     }
 
     @Override
-    public List<Tariff> findByRoomType(RoomType roomType){
+    public List<Tariff> findByRoomType(RoomType roomType) {
         return tariffRepository.findAllByAvailableAndRoomType(true, roomType);
     }
 
     @Override
-    public List<Tariff> findByTariffType(TariffType tariffType){
+    public List<Tariff> findByTariffType(TariffType tariffType) {
         return tariffRepository.findAllByAvailableAndTariffType(true, tariffType);
     }
 
     @Override
-    public List<Tariff> findByTariffTypeAndRoomType(TariffType tariffType, RoomType roomType){
+    public List<Tariff> findByTariffTypeAndRoomType(TariffType tariffType, RoomType roomType) {
         return tariffRepository.findAllByAvailableAndTariffTypeAndRoomType(true, tariffType, roomType);
+    }
+
+    @Override
+    public Tariff findByRoomTypeAndDateBetween(RoomType roomType, Timestamp date) {
+        List<Tariff> ret = tariffRepository.findAllByAvailableAndRoomTypeAndDateFromBeforeAndDateToAfterAndTariffType(true, roomType, date, date, TariffType.SPECIAL);
+        return ret.stream().findFirst().orElse(tariffRepository.findAllByAvailableAndTariffTypeAndRoomType(true, TariffType.REGULAR,roomType).get(0));
+    }
+
+    @Override
+    public Tariff findByRoomTypeAndDateNow(RoomType roomType) {
+        return findByRoomTypeAndDateBetween(roomType, Timestamp.valueOf(LocalDateTime.now()));
+    }
+
+    @Override
+    public List<Tariff> findAllDateNow() {
+        return findAllDateBetween(Timestamp.valueOf(LocalDateTime.now()));
+    }
+
+    @Override
+    public List<Tariff> findAllDateBetween(Timestamp date) {
+        List<Tariff> ret = tariffRepository.findAllByAvailableAndDateFromBeforeAndDateToAfterAndTariffType(true,date,date, TariffType.SPECIAL);
+        if(ret.size()<1){
+            ret = tariffRepository.findAllByAvailableAndTariffType(true, TariffType.REGULAR);
+        }
+        return ret;
     }
 
     @Override
     public Tariff save(Tariff tariff) {
         checkSave(tariff);
-        if (tariff.getRoomType()==null){
+        if (tariff.getRoomType() == null) {
             tariff.setRoomType(RoomType.NONE);
         }
-        if (tariff.getTariffType()==null){
+        if (tariff.getTariffType() == null) {
             tariff.setTariffType(TariffType.NONE);
         }
         tariff.setAvailable(true);

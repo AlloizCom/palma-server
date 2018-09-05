@@ -35,7 +35,7 @@ public class PayServiceImpl implements PayService {
     private String liqpayPublicKey;
     @Value("${liqpay.private.key}")
     private String liqpayPrivateKey;
-    @Value("${base.server.ulr}")
+    @Value("${base.server.url}")
     private String url;
 
 

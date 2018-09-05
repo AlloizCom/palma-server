@@ -12,14 +12,14 @@ import java.security.Principal;
 
 public class PayController {
 
-//    private static final Logger logger = Logger.getLogger(PayController.class);
-//
+    private static final Logger logger = Logger.getLogger(PayController.class);
+
 //    @Autowired
 //    private HistoryService historyService;
 //
 //    @Autowired
 //    private PayService payService;
-//    @Value("${base.server.ulr}")
+//    @Value("${base.server.url}")
 //    private String url;
 //    @Autowired
 //    private ValidService validService;

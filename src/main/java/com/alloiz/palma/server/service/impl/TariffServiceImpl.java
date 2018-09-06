@@ -130,7 +130,7 @@ public class TariffServiceImpl implements TariffService {
     @Override
     public Boolean createDefaultTariffs(boolean create){
         if (tariffRepository.findAllByAvailableAndTariffType(true,TariffType.REGULAR)
-                .size()<RoomType.values().length-1){
+                .size()<RoomType.values().length-2){
             for (RoomType roomType: RoomType.values()
                  ) {
                 if(!roomType.equals(RoomType.NONE)){

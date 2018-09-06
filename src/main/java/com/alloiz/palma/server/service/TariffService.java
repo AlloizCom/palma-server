@@ -40,4 +40,6 @@ public interface TariffService {
     Tariff update(Tariff tariff);
 
     Boolean delete(Long id);
+
+    Boolean createDefaultTariffs(boolean create);
 }

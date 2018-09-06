@@ -126,4 +126,23 @@ public class TariffServiceImpl implements TariffService {
         }
     }
 
+    @Override
+    public Boolean createDefaultTariffs(boolean create){
+        if (tariffRepository.findAllByAvailableAndTariffType(true,TariffType.REGULAR)
+                .size()<RoomType.values().length-1){
+            for (RoomType roomType: RoomType.values()
+                 ) {
+                if(!roomType.equals(RoomType.NONE)){
+                    tariffRepository.save(new Tariff()
+                            .setPrice(999)
+                            .setRoomType(roomType)
+                            .setTariffType(TariffType.REGULAR)
+                    );
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
 }

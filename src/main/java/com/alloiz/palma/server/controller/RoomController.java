@@ -2,8 +2,11 @@ package com.alloiz.palma.server.controller;
 
 import com.alloiz.palma.server.dto.RoomFullDto;
 import com.alloiz.palma.server.dto.RoomMiddleDto;
+import com.alloiz.palma.server.dto.RoomWithTariff;
+import com.alloiz.palma.server.model.Tariff;
 import com.alloiz.palma.server.model.enums.RoomType;
 import com.alloiz.palma.server.service.RoomService;
+import com.alloiz.palma.server.service.TariffService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,6 +27,9 @@ public class RoomController {
 
     @Autowired
     private RoomService roomService;
+
+    @Autowired
+    private TariffService tariffService;
 
     @GetMapping("/find-all")
     private ResponseEntity<List<RoomFullDto>> findAll() {
@@ -152,5 +158,13 @@ public class RoomController {
     @DeleteMapping("/delete/{id}")
     private ResponseEntity<Boolean> delete(@PathVariable Long id) {
         return ResponseEntity.ok(roomService.delete(id));
+    }
+
+    @GetMapping("/find-room-with-price")
+    private ResponseEntity<List<RoomWithTariff>> findAllRoomWithPrice() {
+        return new ResponseEntity<>(roomService.findAllAvailable().stream()
+                .map(room -> map(room, RoomWithTariff.class)
+                        .setPrice(tariffService.findByRoomTypeAndDateNow(room.getType())
+                                .getPrice())).collect(Collectors.toList()), HttpStatus.OK);
     }
 }

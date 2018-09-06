@@ -7,7 +7,6 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import java.util.Arrays;
 
 @Component
 public class TariffCreator {

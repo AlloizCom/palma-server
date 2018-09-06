@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 import static com.alloiz.palma.server.service.utils.Validation.*;
@@ -137,6 +138,9 @@ public class TariffServiceImpl implements TariffService {
                             .setPrice(999)
                             .setRoomType(roomType)
                             .setTariffType(TariffType.REGULAR)
+                            .setAvailable(true)
+                            .setDateFrom(Timestamp.valueOf(LocalDateTime.of(2000,1,1,0,0,0)))
+                            .setDateTo(Timestamp.valueOf(LocalDateTime.of(2038,1,1,0,0,0)))
                     );
                 }
             }

@@ -64,7 +64,11 @@ public class TariffServiceImpl implements TariffService {
     @Override
     public Tariff findByRoomTypeAndDateBetween(RoomType roomType, Timestamp date) {
         List<Tariff> ret = tariffRepository.findAllByAvailableAndRoomTypeAndDateFromBeforeAndDateToAfterAndTariffType(true, roomType, date, date, TariffType.SPECIAL);
-        return ret.stream().findFirst().orElse(tariffRepository.findAllByAvailableAndTariffTypeAndRoomType(true, TariffType.REGULAR,roomType).get(0));
+        return ret.stream().findFirst().orElse(tariffRepository.findAllByAvailableAndTariffTypeAndRoomType(true, TariffType.REGULAR,roomType).stream().findFirst().orElse(new Tariff()
+                .setPrice(1)
+                .setTariffType(TariffType.REGULAR)
+                .setRoomType(roomType)
+        ));
     }
 
     @Override

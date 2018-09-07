@@ -36,6 +36,17 @@ public class TariffController {
                 .map(tariff -> map(tariff, TariffDto.class)).collect(Collectors.toList()));
     }
 
+    @GetMapping("/find-relative/{type}")
+    private ResponseEntity<TariffDto> findRelative(@PathVariable String type) {
+        return ResponseEntity.ok(map(tariffService.findByRoomTypeAndDateNow(RoomType.valueOf(type)), TariffDto.class));
+    }
+
+    @GetMapping("/find-all-relative")
+    private ResponseEntity<List<TariffDto>> findAllRelative() {
+        return ResponseEntity.ok(tariffService.findAllDateNow().stream()
+                .map(tariff -> map(tariff, TariffDto.class)).collect(Collectors.toList()));
+    }
+
     @GetMapping("/find-one-available/{id}")
     private ResponseEntity<TariffDto> findOneAvailale(@PathVariable Long id) {
         return ResponseEntity.ok(map(tariffService.findOneAvailable(id), TariffDto.class));

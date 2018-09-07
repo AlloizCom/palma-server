@@ -11,6 +11,8 @@ public interface RoomService {
 
     List<Room> findAllAvailable();
 
+    List<Room> findAllAvailableAndType(RoomType roomType);
+
     Room findOne(Long id);
 
     List<Room> findAll();

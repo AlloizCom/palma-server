@@ -2,8 +2,14 @@ package com.alloiz.palma.server.controller;
 
 import com.alloiz.palma.server.dto.RoomFullDto;
 import com.alloiz.palma.server.dto.RoomMiddleDto;
+import com.alloiz.palma.server.dto.RoomWithTariff;
+import com.alloiz.palma.server.model.Book;
+import com.alloiz.palma.server.model.Room;
+import com.alloiz.palma.server.model.Tariff;
 import com.alloiz.palma.server.model.enums.RoomType;
+import com.alloiz.palma.server.service.BookService;
 import com.alloiz.palma.server.service.RoomService;
+import com.alloiz.palma.server.service.TariffService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,6 +17,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,6 +32,12 @@ public class RoomController {
 
     @Autowired
     private RoomService roomService;
+
+    @Autowired
+    private TariffService tariffService;
+
+    @Autowired
+    private BookService bookService;
 
     @GetMapping("/find-all")
     private ResponseEntity<List<RoomFullDto>> findAll() {
@@ -51,20 +65,71 @@ public class RoomController {
                 .collect(Collectors.toList()), HttpStatus.OK);
     }
 
+//    @GetMapping("/find-all-available-kids-adult-amount/{kidsPlaces}/{adultPlaces}/{amount}")
+//    private ResponseEntity<List<RoomFullDto>> findAllByAdultPlacesAndKidsPlacesAndAmountAndAvailable(
+//            @PathVariable Integer kidsPlaces,
+//            @PathVariable Integer adultPlaces,
+//            @PathVariable Integer amount
+//    ) {
+//        return new ResponseEntity<>(roomService.findAllByAdultPlacesAndKidsPlacesAndAmountAndAvailable(
+//                true,
+//                kidsPlaces,
+//                adultPlaces,
+//                amount
+//        ).stream()
+//                .map(room -> map(room, RoomFullDto.class))
+//                .collect(Collectors.toList()), HttpStatus.OK);
+//    }
+
+    /**
+     *
+     * @param kidsPlaces
+     * @param adultPlaces
+     * @param amount
+     * @return list of room
+     */
     @GetMapping("/find-all-available-kids-adult-amount/{kidsPlaces}/{adultPlaces}/{amount}")
-    private ResponseEntity<List<RoomFullDto>> findAllByAdultPlacesAndKidsPlacesAndAmountAndAvailable(
+    private ResponseEntity<List<RoomWithTariff>> findAllByAdultPlacesAndKidsPlacesAndAmountAndAvailable(
             @PathVariable Integer kidsPlaces,
             @PathVariable Integer adultPlaces,
             @PathVariable Integer amount
     ) {
-        return new ResponseEntity<>(roomService.findAllByAdultPlacesAndKidsPlacesAndAmountAndAvailable(
-                true,
-                kidsPlaces,
-                adultPlaces,
-                amount
-        ).stream()
-                .map(room -> map(room, RoomFullDto.class))
-                .collect(Collectors.toList()), HttpStatus.OK);
+        return new ResponseEntity<>(roomService.findAllAvailable().stream()
+                .filter(room -> room.getKidsPlaces()*amount>kidsPlaces)
+                .filter(room -> room.getAdultPlaces()*amount>adultPlaces)
+                .filter(room -> room.getAmount()>amount)
+                .map(room -> map(room, RoomWithTariff.class)
+                        .setPrice(tariffService.findByRoomTypeAndDateNow(room.getType())
+                                .getPrice())).collect(Collectors.toList()),HttpStatus.OK);
+    }
+
+    @GetMapping("/find-all-available-kids-adult-amount-date/{kidsPlaces}/{adultPlaces}/{amount}/{dateFrom}/{dateTo}")
+    private ResponseEntity<List<RoomWithTariff>> findAllByAdultPlacesAndKidsPlacesAndAmountAndAvailableAndDate(
+            @PathVariable Integer kidsPlaces,
+            @PathVariable Integer adultPlaces,
+            @PathVariable Integer amount,
+            @PathVariable String dateFrom,
+            @PathVariable String dateTo
+    ) {
+        Timestamp dateF = Timestamp.valueOf(dateFrom);
+        Timestamp dateT = Timestamp.valueOf(dateTo);
+        List<Room> rooms = new ArrayList<>();
+        List<Book> books = bookService.findAllAvailable();
+        for (Book book: books
+             ) {
+            if((book.getDateIn().after(dateT) && book.getDateIn().after(dateF))
+                    || (book.getDateOut().before(dateF) && book.getDateOut().before(dateT))
+                    ){
+                rooms.addAll(roomService.findAllAvailableAndType(book.getRoomType()));
+            }
+        }
+        return new ResponseEntity<>(rooms.stream()
+                .filter(room -> room.getKidsPlaces()*amount>kidsPlaces)
+                .filter(room -> room.getAdultPlaces()*amount>adultPlaces)
+                .filter(room -> room.getAmount()>amount)
+                .map(room -> map(room, RoomWithTariff.class)
+                        .setPrice(tariffService.findByRoomTypeAndDateNow(room.getType())
+                                .getPrice())).collect(Collectors.toList()),HttpStatus.OK);
     }
 
 
@@ -95,6 +160,19 @@ public class RoomController {
     @GetMapping("/find-one/{id}")
     private ResponseEntity<RoomFullDto> findOne(@PathVariable Long id) {
         return new ResponseEntity<>(map(roomService.findOne(id), RoomFullDto.class), HttpStatus.OK);
+    }
+
+    /**
+     *
+     * @param id
+     * @return one room with price
+     */
+    @GetMapping("/find-one-with-price/{id}")
+    private ResponseEntity<RoomWithTariff> findOneWithPrice(@PathVariable Long id) {
+        Room room = roomService.findOne(id);
+        Tariff tariffs = tariffService.findByRoomTypeAndDateNow(room.getType());
+        return new ResponseEntity<>(map(room, RoomWithTariff.class)
+                .setPrice(tariffs.getPrice()), HttpStatus.OK);
     }
 
     @PostMapping("/save")
@@ -152,5 +230,13 @@ public class RoomController {
     @DeleteMapping("/delete/{id}")
     private ResponseEntity<Boolean> delete(@PathVariable Long id) {
         return ResponseEntity.ok(roomService.delete(id));
+    }
+
+    @GetMapping("/find-room-with-price")
+    private ResponseEntity<List<RoomWithTariff>> findAllRoomWithPrice() {
+        return new ResponseEntity<>(roomService.findAllAvailable().stream()
+                .map(room -> map(room, RoomWithTariff.class)
+                        .setPrice(tariffService.findByRoomTypeAndDateNow(room.getType())
+                                .getPrice())).collect(Collectors.toList()), HttpStatus.OK);
     }
 }

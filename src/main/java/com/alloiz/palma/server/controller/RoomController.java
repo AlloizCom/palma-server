@@ -57,20 +57,42 @@ public class RoomController {
                 .collect(Collectors.toList()), HttpStatus.OK);
     }
 
+//    @GetMapping("/find-all-available-kids-adult-amount/{kidsPlaces}/{adultPlaces}/{amount}")
+//    private ResponseEntity<List<RoomFullDto>> findAllByAdultPlacesAndKidsPlacesAndAmountAndAvailable(
+//            @PathVariable Integer kidsPlaces,
+//            @PathVariable Integer adultPlaces,
+//            @PathVariable Integer amount
+//    ) {
+//        return new ResponseEntity<>(roomService.findAllByAdultPlacesAndKidsPlacesAndAmountAndAvailable(
+//                true,
+//                kidsPlaces,
+//                adultPlaces,
+//                amount
+//        ).stream()
+//                .map(room -> map(room, RoomFullDto.class))
+//                .collect(Collectors.toList()), HttpStatus.OK);
+//    }
+
+    /**
+     *
+     * @param kidsPlaces
+     * @param adultPlaces
+     * @param amount
+     * @return list of room
+     */
     @GetMapping("/find-all-available-kids-adult-amount/{kidsPlaces}/{adultPlaces}/{amount}")
-    private ResponseEntity<List<RoomFullDto>> findAllByAdultPlacesAndKidsPlacesAndAmountAndAvailable(
+    private ResponseEntity<List<RoomWithTariff>> findAllByAdultPlacesAndKidsPlacesAndAmountAndAvailable(
             @PathVariable Integer kidsPlaces,
             @PathVariable Integer adultPlaces,
             @PathVariable Integer amount
     ) {
-        return new ResponseEntity<>(roomService.findAllByAdultPlacesAndKidsPlacesAndAmountAndAvailable(
-                true,
-                kidsPlaces,
-                adultPlaces,
-                amount
-        ).stream()
-                .map(room -> map(room, RoomFullDto.class))
-                .collect(Collectors.toList()), HttpStatus.OK);
+        return new ResponseEntity<>(roomService.findAllAvailable().stream()
+                .filter(room -> room.getKidsPlaces()>kidsPlaces)
+                .filter(room -> room.getAdultPlaces()>adultPlaces)
+                .filter(room -> room.getAmount()>amount)
+                .map(room -> map(room, RoomWithTariff.class)
+                        .setPrice(tariffService.findByRoomTypeAndDateNow(room.getType())
+                                .getPrice())).collect(Collectors.toList()),HttpStatus.OK);
     }
 
 

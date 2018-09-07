@@ -87,8 +87,8 @@ public class RoomController {
             @PathVariable Integer amount
     ) {
         return new ResponseEntity<>(roomService.findAllAvailable().stream()
-                .filter(room -> room.getKidsPlaces()>kidsPlaces)
-                .filter(room -> room.getAdultPlaces()>adultPlaces)
+                .filter(room -> room.getKidsPlaces()*amount>kidsPlaces)
+                .filter(room -> room.getAdultPlaces()*amount>adultPlaces)
                 .filter(room -> room.getAmount()>amount)
                 .map(room -> map(room, RoomWithTariff.class)
                         .setPrice(tariffService.findByRoomTypeAndDateNow(room.getType())

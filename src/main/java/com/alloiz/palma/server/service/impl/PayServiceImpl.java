@@ -29,6 +29,7 @@ public class PayServiceImpl implements PayService {
     private static final String ORDER_ID = "order_id";
     private static final String DATE_TIME_PATTERN = "YYYY-MM-dd HH:mm:ss";
     private static final Long EXPIRES_IN_MINUTES = 15L;
+    private static final String SANDBOX_FLAG = "1";
 
     @Autowired
     private MailService mailService;
@@ -53,22 +54,23 @@ public class PayServiceImpl implements PayService {
     public String getButton(Book book) {
         HashMap<String, String> params = new HashMap<>();
         String uuid = book.getUuid();
-        params.put("sandbox", "1");
+        params.put("sandbox", SANDBOX_FLAG);
         params.put("action", "pay");
-        params.put("amount", 1 + "");
+        params.put("amount", setPrice(book) + "");
         params.put("currency", "UAH");
-        params.put("description", "Ticket buying");
+        params.put("description", "Room booking");
         params.put("result_url", url + "/payment/server/" + uuid);//forward after click 'back'
         params.put("server_url", url + "/payment/server/" + uuid);
         params.put("order_id", uuid);
         params.put("version", "3");
+        params.put("language", "uk");
         params.put("expired_date", setExpiresIn());
         return new LiqPay(liqpayPublicKey, liqpayPrivateKey).cnb_form(params);
     }
 
     @Override
     public Integer setPrice(Book book) {
-        return null;
+        return tariffService.findByRoomTypeAndDateNow(book.getRoomType()).getPrice() * book.getAmountOfRooms();
     }
 
     @Override

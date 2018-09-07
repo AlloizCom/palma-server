@@ -162,6 +162,26 @@ public class RoomController {
         return new ResponseEntity<>(map(roomService.findOne(id), RoomFullDto.class), HttpStatus.OK);
     }
 
+    /**
+     *
+     * @param id
+     * @return one room with price
+     */
+    @GetMapping("/find-one-with-price/{id}")
+    private ResponseEntity<RoomWithTariff> findOneWithPrice(@PathVariable Long id) {
+        Room room = roomService.findOne(id);
+        Integer price = 0;
+        List<Tariff> tariffs = tariffService.findByRoomType(room.getType());
+        for (Tariff tariff: tariffs
+             ) {
+            if (tariff.getAvailable()){
+                price = tariff.getPrice();
+            }
+        }
+        return new ResponseEntity<>(map(roomService.findOne(id), RoomWithTariff.class)
+                .setPrice(price), HttpStatus.OK);
+    }
+
     @PostMapping("/save")
     private ResponseEntity<RoomFullDto> save(@RequestParam String roomJson,
                                              @RequestParam(required = false) MultipartFile[] multipartFiles) {

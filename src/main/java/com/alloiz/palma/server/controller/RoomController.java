@@ -170,16 +170,9 @@ public class RoomController {
     @GetMapping("/find-one-with-price/{id}")
     private ResponseEntity<RoomWithTariff> findOneWithPrice(@PathVariable Long id) {
         Room room = roomService.findOne(id);
-        Integer price = 0;
-        List<Tariff> tariffs = tariffService.findByRoomType(room.getType());
-        for (Tariff tariff: tariffs
-             ) {
-            if (tariff.getAvailable()){
-                price = tariff.getPrice();
-            }
-        }
-        return new ResponseEntity<>(map(roomService.findOne(id), RoomWithTariff.class)
-                .setPrice(price), HttpStatus.OK);
+        Tariff tariffs = tariffService.findByRoomTypeAndDateNow(room.getType());
+        return new ResponseEntity<>(map(room, RoomWithTariff.class)
+                .setPrice(tariffs.getPrice()), HttpStatus.OK);
     }
 
     @PostMapping("/save")

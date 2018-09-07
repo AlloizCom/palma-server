@@ -117,7 +117,7 @@ public class RoomController {
         List<Book> books = bookService.findAllAvailable();
         for (Book book: books
              ) {
-            if(book.getDateIn().before(dateF) && book.getDateOut().after(dateT)){
+            if(book.getDateIn().after(dateF) || book.getDateOut().before(dateT)){
                 rooms.addAll(roomService.findAllAvailableAndType(book.getRoomType()));
             }
         }

@@ -52,6 +52,11 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
+    public List<Room> findAllAvailableAndType(RoomType roomType) {
+        return roomRepository.findAllByAvailableAndType(true, roomType);
+    }
+
+    @Override
     public Room findOne(Long id) {
         checkId(id);
         return roomRepository.findOne(id);

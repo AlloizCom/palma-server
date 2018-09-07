@@ -3,8 +3,11 @@ package com.alloiz.palma.server.controller;
 import com.alloiz.palma.server.dto.RoomFullDto;
 import com.alloiz.palma.server.dto.RoomMiddleDto;
 import com.alloiz.palma.server.dto.RoomWithTariff;
+import com.alloiz.palma.server.model.Book;
+import com.alloiz.palma.server.model.Room;
 import com.alloiz.palma.server.model.Tariff;
 import com.alloiz.palma.server.model.enums.RoomType;
+import com.alloiz.palma.server.service.BookService;
 import com.alloiz.palma.server.service.RoomService;
 import com.alloiz.palma.server.service.TariffService;
 import org.apache.log4j.Logger;
@@ -14,6 +17,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,6 +35,9 @@ public class RoomController {
 
     @Autowired
     private TariffService tariffService;
+
+    @Autowired
+    private BookService bookService;
 
     @GetMapping("/find-all")
     private ResponseEntity<List<RoomFullDto>> findAll() {
@@ -87,6 +95,33 @@ public class RoomController {
             @PathVariable Integer amount
     ) {
         return new ResponseEntity<>(roomService.findAllAvailable().stream()
+                .filter(room -> room.getKidsPlaces()*amount>kidsPlaces)
+                .filter(room -> room.getAdultPlaces()*amount>adultPlaces)
+                .filter(room -> room.getAmount()>amount)
+                .map(room -> map(room, RoomWithTariff.class)
+                        .setPrice(tariffService.findByRoomTypeAndDateNow(room.getType())
+                                .getPrice())).collect(Collectors.toList()),HttpStatus.OK);
+    }
+
+    @GetMapping("/find-all-available-kids-adult-amount-date/{kidsPlaces}/{adultPlaces}/{amount}/{dateFrom}/{dateTo}")
+    private ResponseEntity<List<RoomWithTariff>> findAllByAdultPlacesAndKidsPlacesAndAmountAndAvailableAndDate(
+            @PathVariable Integer kidsPlaces,
+            @PathVariable Integer adultPlaces,
+            @PathVariable Integer amount,
+            @PathVariable String dateFrom,
+            @PathVariable String dateTo
+    ) {
+        Timestamp dateF = Timestamp.valueOf(dateFrom);
+        Timestamp dateT = Timestamp.valueOf(dateTo);
+        List<Room> rooms = new ArrayList<>();
+        List<Book> books = bookService.findAllAvailable();
+        for (Book book: books
+             ) {
+            if(book.getDateIn().before(dateF) && book.getDateOut().after(dateT)){
+                rooms.addAll(roomService.findAllAvailableAndType(book.getRoomType()));
+            }
+        }
+        return new ResponseEntity<>(rooms.stream()
                 .filter(room -> room.getKidsPlaces()*amount>kidsPlaces)
                 .filter(room -> room.getAdultPlaces()*amount>adultPlaces)
                 .filter(room -> room.getAmount()>amount)

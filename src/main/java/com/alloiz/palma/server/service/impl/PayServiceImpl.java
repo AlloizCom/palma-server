@@ -1,8 +1,8 @@
 package com.alloiz.palma.server.service.impl;
 
 import com.alloiz.palma.server.model.Book;
-import com.alloiz.palma.server.service.MailService;
-import com.alloiz.palma.server.service.PayService;
+import com.alloiz.palma.server.model.enums.OrderStatus;
+import com.alloiz.palma.server.service.*;
 import com.alloiz.palma.server.service.utils.liqpay.LiqPay;
 import org.apache.log4j.Logger;
 import org.codehaus.jackson.JsonNode;
@@ -27,11 +27,21 @@ public class PayServiceImpl implements PayService {
     private static final String SUCCESS = "success";
     private static final String SANDBOX = "sandbox";
     private static final String ORDER_ID = "order_id";
+    private static final String DATE_TIME_PATTERN = "YYYY-MM-dd HH:mm:ss";
+    private static final Long EXPIRES_IN_MINUTES = 15L;
 
     @Autowired
     private MailService mailService;
 
-    //todo add properties
+    @Autowired
+    private BookService bookService;
+
+    @Autowired
+    private RoomService roomService;
+
+    @Autowired
+    private TariffService tariffService;
+
     @Value("${liqpay.public.key}")
     private String liqpayPublicKey;
     @Value("${liqpay.private.key}")
@@ -45,19 +55,20 @@ public class PayServiceImpl implements PayService {
         String uuid = book.getUuid();
         params.put("sandbox", "1");
         params.put("action", "pay");
-        params.put("amount", 1+"");
+        params.put("amount", 1 + "");
         params.put("currency", "UAH");
         params.put("description", "Ticket buying");
         params.put("result_url", url + "/payment/server/" + uuid);//forward after click 'back'
         params.put("server_url", url + "/payment/server/" + uuid);
         params.put("order_id", uuid);
         params.put("version", "3");
-        params.put("expired_date", getExpiresIn(uuid));
+        params.put("expired_date", setExpiresIn());
         return new LiqPay(liqpayPublicKey, liqpayPrivateKey).cnb_form(params);
     }
 
     @Override
-    public void buy() {
+    public Integer setPrice(Book book) {
+        return null;
     }
 
     @Override
@@ -80,28 +91,25 @@ public class PayServiceImpl implements PayService {
 
     @Override
     public void revertPayment(String orderID) {
-//        seatService.findAllByTicketOrderId(orderID).forEach(seat -> seatService.update(seat.getId(), Bought.AVAILABLE));
-//        logger.info("revertPayment:[" + orderID + "]");
+        Book book = bookService.findByUuid(orderID);
+        bookService.update(book.setOrderStatus(OrderStatus.CANCELED));
+        roomService.addAmount(book.getRoomType(), book.getAmountOfRooms());
+        logger.info("revertPayment:[" + orderID + "]");
     }
 
     @Override
     public void completePayment(String orderID) {
-//        List<Ticket> tickets = ticketService.findAllByOrderId(orderID);
-//        mailService.sendTickets(tickets.get(0).getUser(), orderID);
-//        logger.info("completePayment:[" + orderID + "]");
-//        historyService.save("completePayment:[" + orderID + "]", "PayService");//todo
-//        seatService.findAllByTicketOrderId(orderID).forEach(seat -> seatService.update(seat.getId(), Bought.BOUGHT));
+        Book book = bookService.findByUuid(orderID);
+//        mailService.sendTickets(tickets.get(0).getUser(), orderID);todo
+        bookService.update(book.setOrderStatus(OrderStatus.AVAILABLE));
+        logger.info("completePayment:[" + orderID + "]");
     }
 
 
-    private String getExpiresIn(String uuid) {
-//        List<Seat> seatList = seatService.findAllByTicketOrderId(uuid);
-        LocalDateTime dateTime = LocalDateTime.now().plusDays(3);
-//        for (Seat seat : seatList) {
-//            dateTime = seat.getLockedUntil().isBefore(dateTime) ? seat.getLockedUntil() : dateTime;
-//        }
-//        logger.info(dateTime.atZone(ZoneId.of("UTC")).minusHours(2).format(DateTimeFormatter.ofPattern("YYYY-MM-dd HH:mm:ss")));
-        return dateTime.atZone(ZoneId.of("UTC")).minusHours(2).format(DateTimeFormatter.ofPattern("YYYY-MM-dd HH:mm:ss"));
+    private String setExpiresIn() {
+        LocalDateTime dateTime = LocalDateTime.now();
+        logger.info(dateTime.atZone(ZoneId.of("UTC")).plusMinutes(EXPIRES_IN_MINUTES).format(DateTimeFormatter.ofPattern(DATE_TIME_PATTERN)));
+        return dateTime.atZone(ZoneId.of("UTC")).plusMinutes(EXPIRES_IN_MINUTES).format(DateTimeFormatter.ofPattern(DATE_TIME_PATTERN));
     }
 
 }

@@ -2,6 +2,7 @@ package com.alloiz.palma.server.service.impl;
 
 import com.alloiz.palma.server.model.Book;
 import com.alloiz.palma.server.model.Room;
+import com.alloiz.palma.server.model.enums.OrderStatus;
 import com.alloiz.palma.server.repository.BookRepository;
 import com.alloiz.palma.server.repository.RoomRepository;
 import com.alloiz.palma.server.service.BookService;

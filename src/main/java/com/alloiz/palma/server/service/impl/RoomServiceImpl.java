@@ -179,6 +179,19 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
+    public Boolean addAmount(RoomType roomType, Integer amount) {
+        List<Room> rooms = roomRepository.findAllByAvailableAndType(true, roomType);
+        for (Room room : rooms){
+            if (room.getType().equals(roomType)){
+                room.setAmount(room.getAmount() + amount);
+                return true;
+            }
+        }
+        return false;
+
+    }
+
+    @Override
     public Boolean deleteImage(Long roomId, Long imageId) {
         LOGGER.info("----DELETE----roomID:" + roomId + "imageId:" + imageId);
         checkId(imageId);

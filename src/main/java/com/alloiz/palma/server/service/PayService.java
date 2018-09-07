@@ -4,11 +4,9 @@ import com.alloiz.palma.server.model.Book;
 
 public interface PayService {
 
-    //todo add entity
     String getButton(Book book);
 
-    //todo add entity
-    void buy();
+    Integer setPrice(Book book);
 
     Boolean checkSuccess(String data);
 

@@ -7,6 +7,7 @@ import com.alloiz.palma.server.model.Book;
 import com.alloiz.palma.server.model.Room;
 import com.alloiz.palma.server.model.Tariff;
 import com.alloiz.palma.server.model.enums.RoomType;
+import com.alloiz.palma.server.repository.utils.RoomParams;
 import com.alloiz.palma.server.service.BookService;
 import com.alloiz.palma.server.service.RoomService;
 import com.alloiz.palma.server.service.TariffService;
@@ -63,6 +64,18 @@ public class RoomController {
         ).stream()
                 .map(room -> map(room, RoomFullDto.class))
                 .collect(Collectors.toList()), HttpStatus.OK);
+    }
+
+    @PostMapping("/find-by-book-params")
+    private ResponseEntity<List<RoomWithTariff>> findRyRoomsParams(@RequestBody RoomParams roomParams){
+        LOGGER.info("-----------------FIND ROOM BY PARAMS---------------------");
+        LOGGER.info(roomParams);
+        return new ResponseEntity<>(roomService.findRoomsByRoomParams(roomParams)
+                .stream()
+                    .map(room -> map(room, RoomWithTariff.class)
+                        .setPrice(tariffService.findByRoomTypeAndDateNow(room.getType()).getPrice()))
+                .collect(Collectors.toList()), HttpStatus.OK);
+
     }
 
 //    @GetMapping("/find-all-available-kids-adult-amount/{kidsPlaces}/{adultPlaces}/{amount}")

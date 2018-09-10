@@ -2,6 +2,7 @@ package com.alloiz.palma.server.service;
 
 import com.alloiz.palma.server.model.Room;
 import com.alloiz.palma.server.model.enums.RoomType;
+import com.alloiz.palma.server.repository.utils.RoomParams;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -45,4 +46,6 @@ public interface RoomService {
                                                                       Integer kidsPlaces,
                                                                       Integer adultPlaces,
                                                                       Integer amount);
+
+    List<Room> findRoomsByRoomParams(RoomParams roomParams);
 }

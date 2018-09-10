@@ -3,8 +3,10 @@ package com.alloiz.palma.server.service.impl;
 import com.alloiz.palma.server.model.Image;
 import com.alloiz.palma.server.model.Room;
 import com.alloiz.palma.server.model.enums.RoomType;
+import com.alloiz.palma.server.repository.BookRepository;
 import com.alloiz.palma.server.repository.ImageRepository;
 import com.alloiz.palma.server.repository.RoomRepository;
+import com.alloiz.palma.server.repository.utils.RoomParams;
 import com.alloiz.palma.server.service.AmenityService;
 import com.alloiz.palma.server.service.ImageService;
 import com.alloiz.palma.server.service.RoomService;
@@ -29,13 +31,13 @@ public class RoomServiceImpl implements RoomService {
     private ImageRepository imageRepository;
 
     @Autowired
-    private AmenityService amenityService;
-
-    @Autowired
     private FileBuilder fileBuilder;
 
     @Autowired
     private ImageService imageService;
+
+    @Autowired
+    private BookRepository bookRepository;
 
     private static final Logger LOGGER = Logger.getLogger(RoomServiceImpl.class);
 
@@ -242,6 +244,17 @@ public class RoomServiceImpl implements RoomService {
                 amount
                 );
     }
+
+
+    @Override
+    public List<Room> findRoomsByRoomParams(RoomParams roomParams) {
+        return roomRepository.findAllByTypeIn(
+                roomParams.getNumbersOfRooms(),
+                roomParams.getAdults(),
+                roomParams.getChildrens());
+    }
+
+
 
 
 }

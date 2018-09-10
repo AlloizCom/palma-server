@@ -2,9 +2,14 @@ package com.alloiz.palma.server.repository;
 
 import com.alloiz.palma.server.model.Room;
 import com.alloiz.palma.server.model.enums.RoomType;
+import com.alloiz.palma.server.repository.utils.RoomParams;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Collection;
 import java.util.List;
 
 @Repository
@@ -23,4 +28,13 @@ public interface RoomRepository extends JpaRepository<Room,Long> {
                                                                       Integer kidsPlaces,
                                                                       Integer adultPlaces,
                                                                       Integer amount);
+
+    @Query("SELECT r FROM Room r " +
+            "WHERE r.amount >= :numberOfRooms " +
+            "AND r.adultPlaces >= :adults " +
+            "AND r.kidsPlaces >= :children" )
+    List<Room> findAllByTypeIn(@Param("numberOfRooms")Integer numberOfRooms,
+                               @Param("adults")Integer adults,
+                               @Param("children")Integer children);
+
 }

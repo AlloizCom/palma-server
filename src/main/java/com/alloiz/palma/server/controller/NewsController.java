@@ -39,8 +39,7 @@ public class NewsController {
 
     @GetMapping("/find-all-news-by-page-available/{page}/{count}")
     private ResponseEntity<NewsByPages> findAllPageableAvailable(@PathVariable Integer page, @PathVariable Integer count) {
-        return ResponseEntity.ok(newsService
-                .findAllByAvailable(new PageRequest(page, count,new Sort(new Sort.Order(Sort.Direction.DESC,"datetime")))));
+        return ResponseEntity.ok(newsService.findAllByAvailable(new PageRequest(page, count)));
     }
 
     @GetMapping("/find-all")

@@ -1,6 +1,7 @@
 package com.alloiz.palma.server.service.impl;
 
 import com.alloiz.palma.server.dto.NewsByPages;
+import com.alloiz.palma.server.dto.NewsFullDto;
 import com.alloiz.palma.server.dto.NewsShortDto;
 import com.alloiz.palma.server.model.News;
 import com.alloiz.palma.server.repository.NewsRepository;
@@ -15,8 +16,10 @@ import org.springframework.web.multipart.MultipartFile;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.alloiz.palma.server.config.mapper.JsonMapper.json;
 import static com.alloiz.palma.server.dto.utils.builder.Builder.map;
@@ -232,11 +235,18 @@ public class NewsServiceImpl implements NewsService {
 
     @Override
     public NewsByPages findAllByAvailable(Pageable pageable) {
+        List<NewsFullDto> newsList = newsRepository.findAllByAvailable(true, pageable).getContent()
+                .stream().map(news -> map(news, NewsFullDto.class)).collect(toList());
+        LOGGER.info("-------------News Page---------------");
+        newsList.stream().forEach(n -> LOGGER.info(n.getId()));
+        Collections.reverse(newsList);
+        LOGGER.info("-----------------------------------");
+        newsList.stream().forEach(n -> LOGGER.info(n.getId()));
         return new NewsByPages()
-                .setNews(newsRepository.findAllByAvailable(true, pageable).getContent()
-                        .stream().map(news -> map(news, NewsShortDto.class)).collect(toList()))
+                .setNews(newsList)
                 .setCurrentPage(pageable.getPageNumber())
                 .setNumberOfItems(pageable.getPageSize())
                 .setNumberOfPages((newsRepository.countAllByAvailable(true) / pageable.getPageSize()) + 1);
+
     }
 }

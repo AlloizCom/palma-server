@@ -6,7 +6,7 @@ import static java.util.stream.Collectors.toList;
 
 public class NewsByPages {
 
-    private List<NewsShortDto> news;
+    private List<NewsFullDto> news;
     private Integer currentPage;
     private Integer numberOfPages;
     private Integer numberOfItems;
@@ -14,11 +14,11 @@ public class NewsByPages {
     public NewsByPages() {
     }
 
-    public List<NewsShortDto> getNews() {
+    public List<NewsFullDto> getNews() {
         return news;
     }
 
-    public NewsByPages setNews(List<NewsShortDto> news) {
+    public NewsByPages setNews(List<NewsFullDto> news) {
         this.news = news;
         return this;
     }
@@ -53,7 +53,7 @@ public class NewsByPages {
     @Override
     public String toString() {
         return "NewsByPages{" +
-                "news=" + news.stream().map(NewsShortDto::getId).collect(toList()) +
+                "news=" + news.stream().map(NewsFullDto::getId).collect(toList()) +
                 ", currentPage=" + (currentPage == null ? "null" : currentPage) +
                 ", numberOfPages=" + (numberOfPages == null ? "null" : numberOfPages) +
                 ", numberOfItems=" + (numberOfItems == null ? "null" : numberOfItems) +

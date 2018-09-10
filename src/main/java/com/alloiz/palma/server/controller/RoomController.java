@@ -111,14 +111,14 @@ public class RoomController {
             @PathVariable String dateFrom,
             @PathVariable String dateTo
     ) {
-        Timestamp dateF = Timestamp.valueOf(dateFrom);
-        Timestamp dateT = Timestamp.valueOf(dateTo);
+        Timestamp dateFromTS = Timestamp.valueOf(dateFrom);
+        Timestamp dateToTS = Timestamp.valueOf(dateTo);
         List<Room> rooms = new ArrayList<>();
         List<Book> books = bookService.findAllAvailable();
         for (Book book: books
              ) {
-            if((book.getDateIn().after(dateT) && book.getDateIn().after(dateF))
-                    || (book.getDateOut().before(dateF) && book.getDateOut().before(dateT))
+            if((book.getDateIn().after(dateToTS) && book.getDateIn().after(dateFromTS))
+                    || (book.getDateOut().before(dateFromTS) && book.getDateOut().before(dateToTS))
                     ){
                 rooms.addAll(roomService.findAllAvailableAndType(book.getRoomType()));
             }

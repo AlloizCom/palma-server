@@ -192,7 +192,7 @@ public class RoomController {
         LOGGER.info(roomJson);
         LOGGER.info("Img: " + multipartFiles.length);
         LOGGER.info("---------------------------Room---------------------------");
-        if (multipartFiles != null && multipartFiles.length != 0) {
+        if (multipartFiles != null && multipartFiles.length != 0&&!multipartFiles[0].isEmpty()) {
             return ResponseEntity.ok(map(roomService.update(roomJson, multipartFiles), RoomFullDto.class));
         } else {
             return ResponseEntity.ok(map(roomService.update(roomJson), RoomFullDto.class));

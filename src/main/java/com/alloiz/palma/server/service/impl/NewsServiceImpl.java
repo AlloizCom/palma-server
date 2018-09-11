@@ -243,26 +243,26 @@ public class NewsServiceImpl implements NewsService {
                 .map(news -> map(news, NewsFullDto.class))
                 .collect(toList());
         LOGGER.info("-------------News Page---------------");
-        List<NewsFullDto> forReturn = new ArrayList<>();
+//        List<NewsFullDto> forReturn = new ArrayList<>();
         newsList.stream().forEach(n -> LOGGER.info(n.getId()));
-        for (int i = 0; i < pageable.getPageSize(); i+=6){
-            List<NewsFullDto> news = new ArrayList<>();
-            try {
-                news = newsList.subList(i, pageable.getPageSize());
-                Collections.reverse(news);
-            } catch (Exception e){
-                news = newsList.subList(i, newsList.size()-1);
-                Collections.reverse(news);
-            } finally {
-                forReturn.addAll(news);
-            }
-        }
+//        for (int i = 0; i < pageable.getPageSize(); i+=6){
+//            List<NewsFullDto> news = new ArrayList<>();
+//            try {
+//                news = newsList.subList(i, pageable.getPageSize());
+//                Collections.reverse(news);
+//            } catch (Exception e){
+//                news = newsList.subList(i, newsList.size()-1);
+//                Collections.reverse(news);
+//            } finally {
+//                forReturn.addAll(news);
+//            }
+//        }
         //Collections.reverse(newsList);
         LOGGER.info("-----------------------------------");
         newsList.stream().forEach(n -> LOGGER.info(n.getId()));
         return new NewsByPages()
- //               .setNews(newsList)
-                .setNews(forReturn)
+                .setNews(newsList)
+//                .setNews(forReturn)
                 .setCurrentPage(pageable.getPageNumber())
                 .setNumberOfItems(pageable.getPageSize())
                 .setNumberOfPages((newsRepository.countAllByAvailable(true) / pageable.getPageSize()) + 1);

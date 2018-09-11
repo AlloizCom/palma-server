@@ -16,7 +16,7 @@ public interface NewsRepository extends JpaRepository<News, Long> {
 
     News findByAvailableAndId(Boolean available, Long id);
 
-    Page<News> findAllByAvailable(Boolean available, Pageable pageable);
+    Page<News> findAllByAvailableOrderByDateTimeDesc(Boolean available, Pageable pageable);
 
     Page<News> findAll(Pageable pageable);
 

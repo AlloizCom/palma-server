@@ -7,6 +7,7 @@ import com.alloiz.palma.server.model.News;
 import com.alloiz.palma.server.repository.NewsRepository;
 import com.alloiz.palma.server.service.NewsService;
 import com.alloiz.palma.server.service.utils.FileBuilder;
+import com.google.common.collect.Lists;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -237,32 +238,17 @@ public class NewsServiceImpl implements NewsService {
     public NewsByPages findAllByAvailable(Pageable pageable) {
         LOGGER.info(">>>" + pageable.getPageNumber());
         LOGGER.info(">>>" + pageable.getPageSize());
-        List<NewsFullDto> newsList = newsRepository.findAllByAvailable(true, pageable)
+        List<NewsFullDto> newsList = newsRepository.findAllByAvailableOrderByDateTimeDesc(true, pageable)
                 .getContent()
                 .stream()
                 .map(news -> map(news, NewsFullDto.class))
                 .collect(toList());
         LOGGER.info("-------------News Page---------------");
-//        List<NewsFullDto> forReturn = new ArrayList<>();
         newsList.stream().forEach(n -> LOGGER.info(n.getId()));
-//        for (int i = 0; i < pageable.getPageSize(); i+=6){
-//            List<NewsFullDto> news = new ArrayList<>();
-//            try {
-//                news = newsList.subList(i, pageable.getPageSize());
-//                Collections.reverse(news);
-//            } catch (Exception e){
-//                news = newsList.subList(i, newsList.size()-1);
-//                Collections.reverse(news);
-//            } finally {
-//                forReturn.addAll(news);
-//            }
-//        }
-        Collections.reverse(newsList);
         LOGGER.info("-----------------------------------");
         newsList.stream().forEach(n -> LOGGER.info(n.getId()));
         return new NewsByPages()
                 .setNews(newsList)
-//                .setNews(forReturn)
                 .setCurrentPage(pageable.getPageNumber())
                 .setNumberOfItems(pageable.getPageSize())
                 .setNumberOfPages((newsRepository.countAllByAvailable(true) / pageable.getPageSize()) + 1);

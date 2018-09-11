@@ -257,7 +257,7 @@ public class NewsServiceImpl implements NewsService {
 //                forReturn.addAll(news);
 //            }
 //        }
-        //Collections.reverse(newsList);
+        Collections.reverse(newsList);
         LOGGER.info("-----------------------------------");
         newsList.stream().forEach(n -> LOGGER.info(n.getId()));
         return new NewsByPages()

@@ -18,4 +18,6 @@ public interface UserEntityService {
     UserEntity update(UserEntity update);
 
     Boolean delete(Long id);
+
+    Boolean createDefaultUser();
 }

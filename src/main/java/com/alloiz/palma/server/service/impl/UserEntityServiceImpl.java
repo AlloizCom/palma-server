@@ -1,6 +1,7 @@
 package com.alloiz.palma.server.service.impl;
 
 import com.alloiz.palma.server.model.UserEntity;
+import com.alloiz.palma.server.model.enums.Role;
 import com.alloiz.palma.server.repository.UserEntityRepository;
 import com.alloiz.palma.server.service.UserEntityService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,5 +67,45 @@ public class UserEntityServiceImpl implements UserEntityService {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    @Override
+    public Boolean createDefaultUser(){
+        Boolean existAdmin = false;
+        Boolean existModerator = false;
+        List<UserEntity> users = userEntityRepository.findAllByAvailable(true);
+        for (UserEntity user: users
+             ) {
+            if (user.getRole().equals(Role.ADMIN)){
+                existAdmin = true;
+            }
+            if (user.getRole().equals(Role.MODERATOR)){
+                existModerator = true;
+            }
+        }
+        if (!existAdmin || !existModerator){
+            if (!existAdmin){
+                userEntityRepository.save(new UserEntity()
+                        .setFirstName("Admin")
+                        .setLastName("Admin")
+                        .setLogin("admin")
+                        .setPassword("admin")
+                        .setRole(Role.ADMIN)
+                        .setAvailable(true)
+                );
+            }
+            if (!existModerator){
+                userEntityRepository.save(new UserEntity()
+                        .setFirstName("Moderator")
+                        .setLastName("Moderator")
+                        .setLogin("moderator")
+                        .setPassword("moderator")
+                        .setRole(Role.MODERATOR)
+                        .setAvailable(true)
+                );
+            }
+            return true;
+        }
+        return false;
     }
 }

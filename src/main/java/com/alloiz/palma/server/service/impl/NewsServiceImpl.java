@@ -237,15 +237,25 @@ public class NewsServiceImpl implements NewsService {
     public NewsByPages findAllByAvailable(Pageable pageable) {
         LOGGER.info(">>>" + pageable.getPageNumber());
         LOGGER.info(">>>" + pageable.getPageSize());
-        List<NewsFullDto> newsList = newsRepository.findAllByAvailable(true, pageable).getContent()
-                .stream().map(news -> map(news, NewsFullDto.class)).collect(toList());
+        List<NewsFullDto> newsList = newsRepository.findAllByAvailable(true, pageable)
+                .getContent()
+                .stream()
+                .map(news -> map(news, NewsFullDto.class))
+                .collect(toList());
         LOGGER.info("-------------News Page---------------");
+        List<NewsFullDto> forReturn = new ArrayList<>();
         newsList.stream().forEach(n -> LOGGER.info(n.getId()));
-        Collections.reverse(newsList);
+        for (int i = 0; i < pageable.getPageSize(); i+=pageable.getPageSize()){
+            List<NewsFullDto> news = newsList.subList(i, pageable.getPageSize());
+            Collections.reverse(news);
+            forReturn.addAll(news);
+        }
+        //Collections.reverse(newsList);
         LOGGER.info("-----------------------------------");
         newsList.stream().forEach(n -> LOGGER.info(n.getId()));
         return new NewsByPages()
-                .setNews(newsList)
+ //               .setNews(newsList)
+                .setNews(forReturn)
                 .setCurrentPage(pageable.getPageNumber())
                 .setNumberOfItems(pageable.getPageSize())
                 .setNumberOfPages((newsRepository.countAllByAvailable(true) / pageable.getPageSize()) + 1);

@@ -245,7 +245,7 @@ public class NewsServiceImpl implements NewsService {
         LOGGER.info("-------------News Page---------------");
         List<NewsFullDto> forReturn = new ArrayList<>();
         newsList.stream().forEach(n -> LOGGER.info(n.getId()));
-        for (int i = 0; i < pageable.getPageSize(); i+=pageable.getPageSize()){
+        for (int i = 0; i < pageable.getPageSize(); i+=6){
             List<NewsFullDto> news = new ArrayList<>();
             try {
                 news = newsList.subList(i, pageable.getPageSize());
@@ -253,8 +253,9 @@ public class NewsServiceImpl implements NewsService {
             } catch (Exception e){
                 news = newsList.subList(i, newsList.size()-1);
                 Collections.reverse(news);
+            } finally {
+                forReturn.addAll(news);
             }
-            forReturn.addAll(news);
         }
         //Collections.reverse(newsList);
         LOGGER.info("-----------------------------------");

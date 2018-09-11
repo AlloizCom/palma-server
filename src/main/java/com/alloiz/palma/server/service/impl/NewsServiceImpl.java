@@ -235,6 +235,8 @@ public class NewsServiceImpl implements NewsService {
 
     @Override
     public NewsByPages findAllByAvailable(Pageable pageable) {
+        LOGGER.info(">>>" + pageable.getPageNumber());
+        LOGGER.info(">>>" + pageable.getPageSize());
         List<NewsFullDto> newsList = newsRepository.findAllByAvailable(true, pageable).getContent()
                 .stream().map(news -> map(news, NewsFullDto.class)).collect(toList());
         LOGGER.info("-------------News Page---------------");

@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.List;
 
@@ -32,9 +33,13 @@ public interface RoomRepository extends JpaRepository<Room,Long> {
     @Query("SELECT r FROM Room r " +
             "WHERE r.amount >= :numberOfRooms " +
             "AND r.adultPlaces >= :adults " +
-            "AND r.kidsPlaces >= :children" )
+            "AND r.kidsPlaces >= :children " +
+            "AND r.type NOT IN (SELECT b.roomType FROM Book b " +
+                    "WHERE b.dateIn  )" )
     List<Room> findAllByTypeIn(@Param("numberOfRooms")Integer numberOfRooms,
                                @Param("adults")Integer adults,
-                               @Param("children")Integer children);
+                               @Param("children")Integer children,
+                               @Param("dateFrom")Timestamp dateFrom,
+                               @Param("dateTo")Timestamp dateTo);
 
 }

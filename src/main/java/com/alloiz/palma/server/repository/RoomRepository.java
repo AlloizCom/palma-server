@@ -33,9 +33,7 @@ public interface RoomRepository extends JpaRepository<Room,Long> {
     @Query("SELECT r FROM Room r " +
             "WHERE r.amount >= :numberOfRooms " +
             "AND r.adultPlaces >= :adults " +
-            "AND r.kidsPlaces >= :children " +
-            "AND r.type NOT IN (SELECT b.roomType FROM Book b " +
-                    "WHERE b.dateIn  )" )
+            "AND r.kidsPlaces >= :children ")
     List<Room> findAllByTypeIn(@Param("numberOfRooms")Integer numberOfRooms,
                                @Param("adults")Integer adults,
                                @Param("children")Integer children);

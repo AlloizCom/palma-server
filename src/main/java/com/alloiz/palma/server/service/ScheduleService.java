@@ -14,9 +14,9 @@ public interface ScheduleService {
 
     List<Schedule> findAll();
 
-    Schedule save(Schedule Schedule);
+    Schedule save(Schedule schedule);
 
-    Schedule update(Schedule update);
+    Schedule update(Schedule schedule);
 
     Boolean delete(Long id);
 

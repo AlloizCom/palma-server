@@ -6,6 +6,8 @@ import com.alloiz.palma.server.service.ScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static com.alloiz.palma.server.service.utils.Validation.*;
@@ -39,17 +41,26 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
-    public Schedule save(Schedule Schedule) {
-        return null;
+    public Schedule save(Schedule schedule) {
+        checkSave(schedule);
+        return scheduleRepository.save(schedule.setAvailable(true)
+                .setToday(Timestamp.valueOf(LocalDateTime.now())));
     }
 
     @Override
-    public Schedule update(Schedule update) {
-        return null;
+    public Schedule update(Schedule schedule) {
+        checkObjectExistsById(schedule.getId(),scheduleRepository);
+        return scheduleRepository.save(findOne(schedule.getId())
+                    .setForSale(schedule.getForSale()));
     }
 
     @Override
     public Boolean delete(Long id) {
-        return null;
+        try {
+            scheduleRepository.delete(checkObjectExistsById(id, scheduleRepository));
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

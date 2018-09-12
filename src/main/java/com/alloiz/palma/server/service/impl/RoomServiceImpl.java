@@ -250,7 +250,7 @@ public class RoomServiceImpl implements RoomService {
     public List<Room> findRoomsByRoomParams(RoomParams roomParams) {
         return roomRepository.findAllByTypeIn(
                 roomParams.getNumbersOfRooms(),
-                roomParams.getAdults(),
+                roomParams.getChildrens(),
                 roomParams.getChildrens());
     }
 

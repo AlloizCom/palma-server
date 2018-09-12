@@ -38,8 +38,6 @@ public interface RoomRepository extends JpaRepository<Room,Long> {
                     "WHERE b.dateIn  )" )
     List<Room> findAllByTypeIn(@Param("numberOfRooms")Integer numberOfRooms,
                                @Param("adults")Integer adults,
-                               @Param("children")Integer children,
-                               @Param("dateFrom")Timestamp dateFrom,
-                               @Param("dateTo")Timestamp dateTo);
+                               @Param("children")Integer children);
 
 }

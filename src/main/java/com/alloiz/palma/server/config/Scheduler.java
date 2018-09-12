@@ -23,8 +23,9 @@ public class Scheduler {
      *  1 hr   = 3600000 ms
      *  1 day  = 86400000 ms
      *  1 week = 604800000 ms
+     *  Cron Pattern "second, minute, hour, day of month, month, day(s) of week"
      */
-    @Scheduled(initialDelay = 1000, fixedRate = 86400000)
+    @Scheduled(cron = "0 0 11 * * *")
     public void run() {
         LOGGER.warn(">>> Scheduler start");
 

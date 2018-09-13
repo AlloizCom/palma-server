@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -49,6 +50,15 @@ public class ScheduleController {
     private ResponseEntity<ScheduleDto> findOneAvailale(@PathVariable Long id) {
         return ResponseEntity
                 .ok(map(scheduleService.findOneAvailable(id), ScheduleDto.class));
+    }
+
+    @GetMapping("/find-by-date-places/{date}/{places}")
+    private ResponseEntity<List<ScheduleDto>> findByDateAndPlaces(@PathVariable Timestamp date,
+                                                                  @PathVariable Integer places) {
+        return ResponseEntity.ok(scheduleService.findAllByDateAndPlaces(date,places)
+                .stream()
+                .map(callback -> map(callback, ScheduleDto.class))
+                .collect(Collectors.toList()));
     }
 
     @PostMapping("/save")

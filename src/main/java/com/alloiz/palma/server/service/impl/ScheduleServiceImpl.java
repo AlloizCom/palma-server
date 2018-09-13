@@ -41,6 +41,12 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
+    public List<Schedule> findAllByDateAndPlaces(Timestamp today, Integer places){
+        return scheduleRepository
+                .findAllByTodayAndForSaleAndAvailable(today,places,true);
+    }
+
+    @Override
     public Schedule save(Schedule schedule) {
         checkSave(schedule);
         return scheduleRepository.save(schedule.setAvailable(true)

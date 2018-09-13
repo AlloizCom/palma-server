@@ -20,10 +20,10 @@ public interface ScheduleRepository extends JpaRepository<Schedule,Long> {
                                                          Boolean available
                                                          );
     @Query("SELECT s FROM Schedule s " +
-    "WHERE s.forSale >= :forSale " +
+    "WHERE s.free >= :free " +
             "AND s.today = :today"
     )
     List<Schedule> findByTodayAndForSale (@Param("today") Timestamp today,
-                                          @Param("forSale")Integer forSale
+                                          @Param("free")Integer free
     );
 }

@@ -26,4 +26,21 @@ public interface ScheduleRepository extends JpaRepository<Schedule,Long> {
     List<Schedule> findByTodayAndForSale (@Param("today") Timestamp today,
                                           @Param("free")Integer free
     );
+
+    /**
+     * Find all schedule with date between dateIn and dateOut and free places from Book
+     * @param dateIn
+     * @param dateOut
+     * @param free
+     * @return List<Schedule>
+     */
+    @Query("SELECT s FROM Schedule s " +
+            "WHERE s.today BETWEEN :dateIn AND :dateOut " +
+            "AND s.free >= :free"
+    )
+    List<Schedule> findRoomByDate (@Param("dateIn") Timestamp dateIn,
+                                   @Param("dateOut") Timestamp dateOut,
+                                   @Param("free") Integer free
+    );
+
 }

@@ -2,6 +2,8 @@ package com.alloiz.palma.server.repository;
 
 import com.alloiz.palma.server.model.Schedule;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Timestamp;
@@ -17,4 +19,11 @@ public interface ScheduleRepository extends JpaRepository<Schedule,Long> {
                                                          Integer forSale,
                                                          Boolean available
                                                          );
+    @Query("SELECT s FROM Schedule s " +
+    "WHERE s.forSale >= :forSale " +
+            "AND s.today = :today"
+    )
+    List<Schedule> findByTodayAndForSale (@Param("today") Timestamp today,
+                                          @Param("forSale")Integer forSale
+    );
 }

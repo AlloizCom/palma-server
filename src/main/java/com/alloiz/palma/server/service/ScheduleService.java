@@ -17,6 +17,8 @@ public interface ScheduleService {
 
     List<Schedule> findAllByDateAndPlaces(Timestamp today, Integer places);
 
+    List<Schedule> findByParam(Timestamp today, Integer places);
+
     Schedule save(Schedule schedule);
 
     Schedule update(Schedule schedule);

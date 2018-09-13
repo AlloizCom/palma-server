@@ -20,4 +20,5 @@ public interface ScheduleService {
 
     Boolean delete(Long id);
 
+    Boolean runBySchedule();
 }

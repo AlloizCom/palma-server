@@ -23,9 +23,6 @@ public class Schedule extends BaseEntity<Schedule> {
     private Integer free;
 
     public Schedule() {
-//        forSale = 6;
-//        forSale = 0;
-//        free = forSale - active;
     }
 
     @JsonSerialize(using = DateSerializer.class)

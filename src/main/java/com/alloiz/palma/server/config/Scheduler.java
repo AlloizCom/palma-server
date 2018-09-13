@@ -1,6 +1,8 @@
 package com.alloiz.palma.server.config;
 
+import com.alloiz.palma.server.service.ScheduleService;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -16,6 +18,8 @@ public class Scheduler {
     private static final Logger LOGGER
             = Logger.getLogger(Scheduler.class);
 
+    @Autowired
+    private ScheduleService scheduleService;
 
     /**
      *  1 sec  = 1000 ms
@@ -28,7 +32,9 @@ public class Scheduler {
     @Scheduled(cron = "0 0 11 * * *")
     public void run() {
         LOGGER.warn(">>> Scheduler start");
-
+        if (scheduleService.runBySchedule()){
+            LOGGER.warn(">>> Scheduler finished");
+        }
         LOGGER.warn("-------------------");
     }
 }

@@ -63,4 +63,9 @@ public class ScheduleServiceImpl implements ScheduleService {
             return false;
         }
     }
+
+    @Override
+    public Boolean runBySchedule(){
+        return true;
+    }
 }

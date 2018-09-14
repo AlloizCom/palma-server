@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.alloiz.palma.server.dto.utils.builder.Builder.map;
+import static java.util.stream.Collectors.toList;
 
 /**
  * Controller for Schedule
@@ -61,6 +62,15 @@ public class ScheduleController {
                 .stream()
                 .map(callback -> map(callback, ScheduleDto.class))
                 .collect(Collectors.toList()));
+    }
+
+    @GetMapping("/find-all-schedule-by-page/{page}/{count}")
+    private ResponseEntity<List<ScheduleDto>> findAllPageable(@PathVariable Integer page,
+                                                              @PathVariable Integer count) {
+        return ResponseEntity.ok(scheduleService
+                .findAll(new PageRequest(page, count))
+                .stream().map(schedule -> map(schedule, ScheduleDto.class))
+                .collect(toList()));
     }
 
     @GetMapping("/find-all-schedule-by-page-available/{page}/{count}")

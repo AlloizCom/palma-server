@@ -91,6 +91,12 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
+    public List<Schedule> findAll(Pageable pageable) {
+        List<Schedule> schedules = scheduleRepository.findAll(pageable).getContent();
+        return schedules;
+    }
+
+    @Override
     public ScheduleByPages findAllByAvailable(Pageable pageable) {
         LOGGER.info(">>> Page number:" + pageable.getPageNumber());
         LOGGER.info(">>> Page size:" + pageable.getPageSize());

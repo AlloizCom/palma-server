@@ -25,6 +25,8 @@ public interface ScheduleRepository extends JpaRepository<Schedule,Long> {
 
     Page<Schedule> findAllByAvailable (Boolean available, Pageable pageable);
 
+    Page<Schedule> findAll(Pageable pageable);
+
     Integer countAllByAvailable(Boolean available);
 
     @Query("SELECT s FROM Schedule s " +

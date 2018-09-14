@@ -33,7 +33,7 @@ public class NewsController {
     private ResponseEntity<List<NewsFullDto>> findAllPageable(@PathVariable Integer page, @PathVariable Integer count) {
         return ResponseEntity.ok(newsService
                 .findAll(new PageRequest(page, count))
-                .stream().map(article -> map(article, NewsFullDto.class))
+                .stream().map(news -> map(news, NewsFullDto.class))
                 .collect(toList()));
     }
 

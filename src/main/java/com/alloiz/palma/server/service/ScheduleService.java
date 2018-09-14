@@ -29,6 +29,8 @@ public interface ScheduleService {
 
     Boolean delete(Long id);
 
+    List<Schedule> findAll(Pageable pageable);
+
     ScheduleByPages findAllByAvailable(Pageable pageable);
 
     Boolean runBySchedule();

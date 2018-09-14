@@ -1,10 +1,12 @@
 package com.alloiz.palma.server.controller;
 
+import com.alloiz.palma.server.dto.ScheduleByPages;
 import com.alloiz.palma.server.dto.ScheduleDto;
 import com.alloiz.palma.server.model.Schedule;
 import com.alloiz.palma.server.service.ScheduleService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -59,6 +61,13 @@ public class ScheduleController {
                 .stream()
                 .map(callback -> map(callback, ScheduleDto.class))
                 .collect(Collectors.toList()));
+    }
+
+    @GetMapping("/find-all-schedule-by-page-available/{page}/{count}")
+    private ResponseEntity<ScheduleByPages> findAllPageableAvailable(@PathVariable Integer page,
+                                                                     @PathVariable Integer count) {
+        return ResponseEntity.ok(scheduleService
+                .findAllByAvailable(new PageRequest(page, count)));
     }
 
     @PostMapping("/save")

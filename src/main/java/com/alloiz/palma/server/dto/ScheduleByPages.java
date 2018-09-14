@@ -4,6 +4,9 @@ import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
+/**
+ * Schedule DTO for Pageble
+ */
 public class ScheduleByPages {
 
     private List<ScheduleDto> shedules;

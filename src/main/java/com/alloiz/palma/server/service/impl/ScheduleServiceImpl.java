@@ -1,19 +1,27 @@
 package com.alloiz.palma.server.service.impl;
 
+import com.alloiz.palma.server.dto.ScheduleByPages;
+import com.alloiz.palma.server.dto.ScheduleDto;
 import com.alloiz.palma.server.model.Schedule;
 import com.alloiz.palma.server.repository.ScheduleRepository;
 import com.alloiz.palma.server.service.ScheduleService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import static com.alloiz.palma.server.dto.utils.builder.Builder.map;
 import static com.alloiz.palma.server.service.utils.Validation.*;
+import static java.util.stream.Collectors.toList;
 
 @Service
 public class ScheduleServiceImpl implements ScheduleService {
+
+    private static final Logger LOGGER = Logger.getLogger(ScheduleServiceImpl.class);
 
     @Autowired
     private ScheduleRepository scheduleRepository;
@@ -80,6 +88,28 @@ public class ScheduleServiceImpl implements ScheduleService {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    @Override
+    public ScheduleByPages findAllByAvailable(Pageable pageable) {
+        LOGGER.info(">>> Page number:" + pageable.getPageNumber());
+        LOGGER.info(">>> Page size:" + pageable.getPageSize());
+        List<ScheduleDto> scheduleList = scheduleRepository
+                .findAllByAvailable(true, pageable)
+                .getContent()
+                .stream()
+                .map(schedule -> map(schedule, ScheduleDto.class))
+                .collect(toList());
+        LOGGER.info("-------------Schedule Page---------------");
+        scheduleList.stream().forEach(n -> LOGGER.info(n.getId()));
+        LOGGER.info("-----------------------------------------");
+        scheduleList.stream().forEach(n -> LOGGER.info(n.getId()));
+        return new ScheduleByPages()
+                .setShedules(scheduleList)
+                .setCurrentPage(pageable.getPageNumber())
+                .setNumberOfItems(pageable.getPageSize())
+                .setNumberOfPages((scheduleRepository
+                .countAllByAvailable(true) / pageable.getPageSize()) + 1);
     }
 
     @Override

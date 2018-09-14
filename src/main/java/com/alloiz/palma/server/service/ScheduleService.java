@@ -1,6 +1,8 @@
 package com.alloiz.palma.server.service;
 
+import com.alloiz.palma.server.dto.ScheduleByPages;
 import com.alloiz.palma.server.model.Schedule;
+import org.springframework.data.domain.Pageable;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -26,6 +28,8 @@ public interface ScheduleService {
     Schedule update(Schedule schedule);
 
     Boolean delete(Long id);
+
+    ScheduleByPages findAllByAvailable(Pageable pageable);
 
     Boolean runBySchedule();
 }

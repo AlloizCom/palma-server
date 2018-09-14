@@ -21,6 +21,8 @@ public interface ScheduleService {
 
     Schedule save(Schedule schedule);
 
+    Schedule saveDefault(Schedule schedule);
+
     Schedule update(Schedule schedule);
 
     Boolean delete(Long id);

@@ -38,8 +38,8 @@ public interface ScheduleRepository extends JpaRepository<Schedule,Long> {
             "WHERE s.today BETWEEN :dateIn AND :dateOut " +
             "AND s.free >= :free"
     )
-    List<Schedule> findRoomByDate (@Param("dateIn") Timestamp dateIn,
-                                   @Param("dateOut") Timestamp dateOut,
+        List<Schedule> findRoomByDate (@Param("dateIn") Timestamp dateIn,
+                                       @Param("dateOut") Timestamp dateOut,
                                    @Param("free") Integer free
     );
 

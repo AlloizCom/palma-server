@@ -59,10 +59,17 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
+    public Schedule saveDefault(Schedule schedule) {
+        return scheduleRepository.save(schedule.setAvailable(true));
+    }
+
+    @Override
     public Schedule update(Schedule schedule) {
         checkObjectExistsById(schedule.getId(),scheduleRepository);
         return scheduleRepository.save(findOne(schedule.getId())
-                    .setForSale(schedule.getForSale()));
+                    .setForSale(schedule.getForSale())
+                    .setActive(schedule.getActive())
+                    .setFree(schedule.getForSale() - schedule.getActive()));
     }
 
     @Override

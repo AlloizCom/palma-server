@@ -2,6 +2,7 @@ package com.alloiz.palma.server.service.impl;
 
 import com.alloiz.palma.server.model.Book;
 import com.alloiz.palma.server.model.Room;
+import com.alloiz.palma.server.model.Schedule;
 import com.alloiz.palma.server.model.enums.OrderStatus;
 import com.alloiz.palma.server.repository.BookRepository;
 import com.alloiz.palma.server.repository.RoomRepository;
@@ -96,8 +97,21 @@ public class BookServiceImpl implements BookService {
 //            }
 //        }
 
-        checkSave(book);
+//        checkSave(book);
+//        List<Schedule> scheduleForUpdate = scheduleService.findByParamForBook(book.getDateIn(),
+//                                                                            book.getDateOut());
+//        for (Schedule schedule: scheduleForUpdate
+//             ) {
+//            scheduleService.update(schedule.setFree(schedule.getFree() - book.getAmountOfRooms()));
+//        }
 
+        checkSave(book);
+        scheduleService.findByParamForBook(book.getDateIn(),book.getDateOut())
+                .stream()
+                .filter(schedule -> schedule.getRoomType().equals(book.getRoomType()))
+                .forEach(schedule -> scheduleService.update(schedule.setFree(
+                        schedule.getFree() - book.getAmountOfRooms()
+                )));
 
         return bookRepository.save(generateUuid(book.setAvailable(true)));
     }

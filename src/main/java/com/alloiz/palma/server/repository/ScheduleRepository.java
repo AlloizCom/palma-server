@@ -1,6 +1,8 @@
 package com.alloiz.palma.server.repository;
 
 import com.alloiz.palma.server.model.Schedule;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -11,6 +13,7 @@ import java.util.List;
 
 @Repository
 public interface ScheduleRepository extends JpaRepository<Schedule,Long> {
+
     List<Schedule> findAllByAvailable(Boolean available);
 
     Schedule findByAvailableAndId(Boolean available, Long id);
@@ -19,6 +22,9 @@ public interface ScheduleRepository extends JpaRepository<Schedule,Long> {
                                                          Integer forSale,
                                                          Boolean available
                                                          );
+
+    Page<Schedule> findAllByAvailable (Boolean available, Pageable pageable);
+
     @Query("SELECT s FROM Schedule s " +
     "WHERE s.free >= :free " +
             "AND s.today = :today"

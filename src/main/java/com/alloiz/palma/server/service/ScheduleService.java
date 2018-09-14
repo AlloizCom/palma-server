@@ -33,5 +33,7 @@ public interface ScheduleService {
 
     ScheduleByPages findAllByAvailable(Pageable pageable);
 
+    List<Schedule> findByParamForBook(Timestamp dateIn, Timestamp dateOut);
+
     Boolean runBySchedule();
 }

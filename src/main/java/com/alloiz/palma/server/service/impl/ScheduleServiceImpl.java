@@ -119,7 +119,19 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
+    public List<Schedule> findByParamForBook(Timestamp dateIn, Timestamp dateOut){
+        return scheduleRepository.findRoomBetweenDate(dateIn,dateOut);
+    }
+
+    @Override
     public Boolean runBySchedule(){
+        return true;
+    }
+
+    public Boolean refreshSchedule(){
+        LOGGER.info("-------------Schedule Refresh---------------");
+
+
         return true;
     }
 }

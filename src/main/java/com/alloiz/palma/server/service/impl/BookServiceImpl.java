@@ -7,6 +7,7 @@ import com.alloiz.palma.server.repository.BookRepository;
 import com.alloiz.palma.server.repository.RoomRepository;
 import com.alloiz.palma.server.service.BookService;
 import com.alloiz.palma.server.service.RoomService;
+import com.alloiz.palma.server.service.ScheduleService;
 import com.alloiz.palma.server.service.exceptions.NotEnoughFreePlacesException;
 import com.alloiz.palma.server.service.exceptions.RoomTypeNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,10 @@ public class BookServiceImpl implements BookService {
 
     @Autowired
     private RoomService roomService;
+
+    @Autowired
+    private ScheduleService scheduleService;
+
 
     @Override
     public Book findOneAvailable(Long id) {
@@ -74,20 +79,25 @@ public class BookServiceImpl implements BookService {
 //                }
 //            }
 //        }
+
+
+//        checkSave(book);
+//        List<Room> rooms = roomRepository.findAllByAvailableAndType(true, book.getRoomType());
+//        for (Room room : rooms) {
+//            if (room.getType().equals(book.getRoomType())) {
+//                if (room.getAmount() >= book.getAmountOfRooms()) {
+//                    room.setAmount(room.getAmount() - book.getAmountOfRooms());
+//                    roomService.changeAmount(room.getType(), book.getAmountOfRooms());
+//                } else {
+//                    throw new NotEnoughFreePlacesException("Not Enough Free Places !");
+//                }
+//            } else {
+//                throw new RoomTypeNotFoundException("Room Type Not Found !");
+//            }
+//        }
+
         checkSave(book);
-        List<Room> rooms = roomRepository.findAllByAvailableAndType(true, book.getRoomType());
-        for (Room room : rooms) {
-            if (room.getType().equals(book.getRoomType())) {
-                if (room.getAmount() >= book.getAmountOfRooms()) {
-                    room.setAmount(room.getAmount() - book.getAmountOfRooms());
-                    roomService.changeAmount(room.getType(), book.getAmountOfRooms());
-                } else {
-                    throw new NotEnoughFreePlacesException("Not Enough Free Places !");
-                }
-            } else {
-                throw new RoomTypeNotFoundException("Room Type Not Found !");
-            }
-        }
+
 
         return bookRepository.save(generateUuid(book.setAvailable(true)));
     }

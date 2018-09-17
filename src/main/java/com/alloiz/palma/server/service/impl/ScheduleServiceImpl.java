@@ -138,7 +138,8 @@ public class ScheduleServiceImpl implements ScheduleService {
         saveDefault(new Schedule().setForSale(5).setActive(0).setFree(5).setRoomType(RoomType.SUPERIOR_IMPROVED)
                 .setToday(Timestamp.valueOf(LocalDateTime.now().plusMonths(1))));
 
-
+        scheduleRepository.findByTodayDate(Timestamp.valueOf(LocalDateTime.now().minusDays(1)))
+                .stream().forEach(schedule -> schedule.setAvailable(false));
 
         return true;
     }

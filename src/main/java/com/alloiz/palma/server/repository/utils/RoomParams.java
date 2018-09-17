@@ -10,9 +10,7 @@ import java.sql.Timestamp;
 public class RoomParams {
 
     private Timestamp dateFrom;
-
     private Timestamp dateTo;
-
     private Integer numbersOfRooms;
     private Integer adults;
     private Integer childrens;

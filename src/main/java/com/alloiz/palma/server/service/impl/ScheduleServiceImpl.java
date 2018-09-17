@@ -3,6 +3,7 @@ package com.alloiz.palma.server.service.impl;
 import com.alloiz.palma.server.dto.ScheduleByPages;
 import com.alloiz.palma.server.dto.ScheduleDto;
 import com.alloiz.palma.server.model.Schedule;
+import com.alloiz.palma.server.model.enums.RoomType;
 import com.alloiz.palma.server.repository.ScheduleRepository;
 import com.alloiz.palma.server.service.ScheduleService;
 import org.apache.log4j.Logger;
@@ -125,6 +126,20 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     @Override
     public Boolean runBySchedule(){
+
+        saveDefault(new Schedule().setForSale(5).setActive(0).setFree(5).setRoomType(RoomType.DELUXE)
+                .setToday(Timestamp.valueOf(LocalDateTime.now().plusMonths(1))));
+        saveDefault(new Schedule().setForSale(5).setActive(0).setFree(5).setRoomType(RoomType.STANDARD)
+                .setToday(Timestamp.valueOf(LocalDateTime.now().plusMonths(1))));
+        saveDefault(new Schedule().setForSale(5).setActive(0).setFree(5).setRoomType(RoomType.STANDARD_IMPROVED)
+                .setToday(Timestamp.valueOf(LocalDateTime.now().plusMonths(1))));
+        saveDefault(new Schedule().setForSale(5).setActive(0).setFree(5).setRoomType(RoomType.SUPERIOR)
+                .setToday(Timestamp.valueOf(LocalDateTime.now().plusMonths(1))));
+        saveDefault(new Schedule().setForSale(5).setActive(0).setFree(5).setRoomType(RoomType.SUPERIOR_IMPROVED)
+                .setToday(Timestamp.valueOf(LocalDateTime.now().plusMonths(1))));
+
+
+
         return true;
     }
 

@@ -128,15 +128,20 @@ public class ScheduleServiceImpl implements ScheduleService {
     public Boolean runBySchedule(){
 
         saveDefault(new Schedule().setForSale(5).setActive(0).setFree(5).setRoomType(RoomType.DELUXE)
-                .setToday(Timestamp.valueOf(LocalDateTime.now().plusMonths(1))));
+                .setToday(Timestamp
+                        .valueOf(LocalDateTime.now().withHour(0).withMinute(0).withSecond(0).withNano(0).plusMonths(1))));
         saveDefault(new Schedule().setForSale(5).setActive(0).setFree(5).setRoomType(RoomType.STANDARD)
-                .setToday(Timestamp.valueOf(LocalDateTime.now().plusMonths(1))));
+                .setToday(Timestamp
+                        .valueOf(LocalDateTime.now().withHour(0).withMinute(0).withSecond(0).withNano(0).plusMonths(1))));
         saveDefault(new Schedule().setForSale(5).setActive(0).setFree(5).setRoomType(RoomType.STANDARD_IMPROVED)
-                .setToday(Timestamp.valueOf(LocalDateTime.now().plusMonths(1))));
+                .setToday(Timestamp
+                        .valueOf(LocalDateTime.now().withHour(0).withMinute(0).withSecond(0).withNano(0).plusMonths(1))));
         saveDefault(new Schedule().setForSale(5).setActive(0).setFree(5).setRoomType(RoomType.SUPERIOR)
-                .setToday(Timestamp.valueOf(LocalDateTime.now().plusMonths(1))));
+                .setToday(Timestamp
+                        .valueOf(LocalDateTime.now().withHour(0).withMinute(0).withSecond(0).withNano(0).plusMonths(1))));
         saveDefault(new Schedule().setForSale(5).setActive(0).setFree(5).setRoomType(RoomType.SUPERIOR_IMPROVED)
-                .setToday(Timestamp.valueOf(LocalDateTime.now().plusMonths(1))));
+                .setToday(Timestamp
+                        .valueOf(LocalDateTime.now().withHour(0).withMinute(0).withSecond(0).withNano(0).plusMonths(1))));
 
         scheduleRepository.findByTodayDate(Timestamp.valueOf(LocalDateTime.now().minusDays(1)))
                 .stream().forEach(schedule -> schedule.setAvailable(false));

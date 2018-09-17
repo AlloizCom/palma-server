@@ -66,4 +66,9 @@ public interface ScheduleRepository extends JpaRepository<Schedule,Long> {
                                    @Param("dateOut") Timestamp dateOut
     );
 
+    @Query("SELECT s FROM Schedule s " +
+            "WHERE s.today = :yesterday "
+    )
+    List<Schedule> findByTodayDate (@Param("yesterday") Timestamp yesterday);
+
 }

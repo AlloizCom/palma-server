@@ -72,6 +72,6 @@ public interface ScheduleRepository extends JpaRepository<Schedule,Long> {
     )
     List<Schedule> findByTodayDate (@Param("yesterday") Timestamp yesterday);
 
-    List<Schedule> findAllByAvailableAndTodayAfterAndRoomType(Boolean available, Timestamp today, RoomType roomType);
+    List<Schedule> findAllByAvailableAndTodayAfterAndTodayBeforeAndRoomType(Boolean available, Timestamp today, Timestamp today2, RoomType roomType);
 
 }

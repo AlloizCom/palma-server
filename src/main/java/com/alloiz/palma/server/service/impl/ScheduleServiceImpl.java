@@ -122,7 +122,7 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     @Override
     public List<Schedule> findAllByAvailableAndTodayAfterAndRoomType(Timestamp today, RoomType roomType) {
-        return scheduleRepository.findAllByAvailableAndTodayAfterAndRoomType(true, today, roomType);
+        return scheduleRepository.findAllByAvailableAndTodayAfterAndTodayBeforeAndRoomType(true, today, Timestamp.valueOf(today.toLocalDateTime().plusMonths(1L)), roomType);
     }
 
     @Override

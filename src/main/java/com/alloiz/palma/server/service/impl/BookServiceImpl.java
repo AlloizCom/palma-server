@@ -14,6 +14,8 @@ import com.alloiz.palma.server.service.exceptions.RoomTypeNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static com.alloiz.palma.server.service.utils.GenerateUuid.generateUuid;
@@ -113,7 +115,10 @@ public class BookServiceImpl implements BookService {
                         schedule.getFree() - book.getAmountOfRooms()
                 )));
 
-        return bookRepository.save(generateUuid(book.setAvailable(true)));
+        return bookRepository.save(generateUuid(book
+                .setAvailable(true)
+                .setBookingDay(Timestamp.valueOf(LocalDateTime.now()))
+        ));
     }
 
     @Override

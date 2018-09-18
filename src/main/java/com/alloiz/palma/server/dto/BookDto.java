@@ -12,6 +12,7 @@ import java.sql.Timestamp;
 
 @Dto
 public class BookDto {
+
     protected Long id;
     protected Boolean available;
     protected String firstName;
@@ -26,6 +27,7 @@ public class BookDto {
     protected OrderStatus orderStatus;
     protected RoomType roomType;
     protected Integer amountOfRooms;
+    protected Timestamp bookingDay;
 
     public BookDto() {
     }
@@ -115,6 +117,17 @@ public class BookDto {
         return this;
     }
 
+    @JsonSerialize(using = DateSerializer.class)
+    public Timestamp getBookingDay() {
+        return bookingDay;
+    }
+
+    @JsonDeserialize(using = DateDeserializer.class)
+    public BookDto setBookingDay(Timestamp bookingDay) {
+        this.bookingDay = bookingDay;
+        return this;
+    }
+
     public String getMessage() {
         return message;
     }
@@ -160,7 +173,6 @@ public class BookDto {
         return this;
     }
 
-
     @Override
     public String toString() {
         return "BookDto{" +
@@ -172,6 +184,7 @@ public class BookDto {
                 ", email='" + email + '\'' +
                 ", dateIn=" + dateIn +
                 ", dateOut=" + dateOut +
+                ", bookingDay=" + bookingDay +
                 ", message='" + message + '\'' +
                 ", adults=" + adults +
                 ", kids=" + kids +

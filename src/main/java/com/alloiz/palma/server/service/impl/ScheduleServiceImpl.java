@@ -78,7 +78,8 @@ public class ScheduleServiceImpl implements ScheduleService {
         return scheduleRepository.save(findOne(schedule.getId())
                     .setForSale(schedule.getForSale())
                     .setActive(schedule.getActive())
-                    .setFree(schedule.getForSale() - schedule.getActive()));
+                    .setFree(schedule.getForSale() - schedule.getActive())
+                    .setAvailable(schedule.getAvailable()));
     }
 
     @Override
@@ -143,8 +144,9 @@ public class ScheduleServiceImpl implements ScheduleService {
                 .setToday(Timestamp
                         .valueOf(LocalDateTime.now().withHour(0).withMinute(0).withSecond(0).withNano(0).plusMonths(1))));
 
-        scheduleRepository.findByTodayDate(Timestamp.valueOf(LocalDateTime.now().minusDays(1)))
-                .stream().forEach(schedule -> schedule.setAvailable(false));
+        scheduleRepository.findByTodayDate(Timestamp.valueOf(LocalDateTime.now().minusDays(1)
+                .withHour(0).withMinute(0).withSecond(0).withNano(0)))
+                .stream().forEach(schedule -> update(schedule.setAvailable(false)));
 
         return true;
     }

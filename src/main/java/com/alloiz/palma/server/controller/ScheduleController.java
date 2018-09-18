@@ -3,6 +3,7 @@ package com.alloiz.palma.server.controller;
 import com.alloiz.palma.server.dto.ScheduleByPages;
 import com.alloiz.palma.server.dto.ScheduleDto;
 import com.alloiz.palma.server.model.Schedule;
+import com.alloiz.palma.server.model.enums.RoomType;
 import com.alloiz.palma.server.service.ScheduleService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,7 +59,7 @@ public class ScheduleController {
     @GetMapping("/find-by-date-places/{date}/{places}")
     private ResponseEntity<List<ScheduleDto>> findByDateAndPlaces(@PathVariable Timestamp date,
                                                                   @PathVariable Integer places) {
-        return ResponseEntity.ok(scheduleService.findAllByDateAndPlaces(date,places)
+        return ResponseEntity.ok(scheduleService.findAllByDateAndPlaces(date, places)
                 .stream()
                 .map(callback -> map(callback, ScheduleDto.class))
                 .collect(Collectors.toList()));
@@ -78,6 +79,12 @@ public class ScheduleController {
                                                                      @PathVariable Integer count) {
         return ResponseEntity.ok(scheduleService
                 .findAllByAvailable(new PageRequest(page, count)));
+    }
+
+    @GetMapping("/find-all-schedule-by-date-type")
+    private ResponseEntity<List<ScheduleDto>> findAllPageableAvailable(@RequestParam Timestamp date, @RequestParam RoomType type) {
+        return ResponseEntity.ok(scheduleService
+                .findAllByAvailableAndTodayAfterAndRoomType(date, type).stream().map(schedule -> map(schedule, ScheduleDto.class)).collect(toList()));
     }
 
     @PostMapping("/save")

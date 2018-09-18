@@ -121,6 +121,11 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
+    public List<Schedule> findAllByAvailableAndTodayAfterAndRoomType(Timestamp today, RoomType roomType) {
+        return scheduleRepository.findAllByAvailableAndTodayAfterAndRoomType(true, today, roomType);
+    }
+
+    @Override
     public List<Schedule> findByParamForBook(Timestamp dateIn, Timestamp dateOut){
         return scheduleRepository.findRoomBetweenDate(dateIn,dateOut);
     }

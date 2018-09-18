@@ -1,6 +1,7 @@
 package com.alloiz.palma.server.repository;
 
 import com.alloiz.palma.server.model.Schedule;
+import com.alloiz.palma.server.model.enums.RoomType;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -70,5 +71,7 @@ public interface ScheduleRepository extends JpaRepository<Schedule,Long> {
             "WHERE s.today = :yesterday "
     )
     List<Schedule> findByTodayDate (@Param("yesterday") Timestamp yesterday);
+
+    List<Schedule> findAllByAvailableAndTodayAfterAndRoomType(Boolean available, Timestamp today, RoomType roomType);
 
 }

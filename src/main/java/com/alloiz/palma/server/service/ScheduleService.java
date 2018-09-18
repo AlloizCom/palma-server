@@ -2,6 +2,7 @@ package com.alloiz.palma.server.service;
 
 import com.alloiz.palma.server.dto.ScheduleByPages;
 import com.alloiz.palma.server.model.Schedule;
+import com.alloiz.palma.server.model.enums.RoomType;
 import org.springframework.data.domain.Pageable;
 
 import java.sql.Timestamp;
@@ -32,6 +33,8 @@ public interface ScheduleService {
     List<Schedule> findAll(Pageable pageable);
 
     ScheduleByPages findAllByAvailable(Pageable pageable);
+
+    List<Schedule> findAllByAvailableAndTodayAfterAndRoomType(Timestamp today, RoomType roomType);
 
     List<Schedule> findByParamForBook(Timestamp dateIn, Timestamp dateOut);
 

@@ -4,7 +4,9 @@ import com.alloiz.palma.server.dto.ScheduleByPages;
 import com.alloiz.palma.server.dto.ScheduleDto;
 import com.alloiz.palma.server.model.Schedule;
 import com.alloiz.palma.server.model.enums.RoomType;
+import com.alloiz.palma.server.model.utils.DateDeserializer;
 import com.alloiz.palma.server.service.ScheduleService;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -82,7 +84,7 @@ public class ScheduleController {
     }
 
     @GetMapping("/find-all-schedule-by-date-type")
-    private ResponseEntity<List<ScheduleDto>> findAllPageableAvailable(@RequestParam Timestamp date, @RequestParam RoomType type) {
+    private ResponseEntity<List<ScheduleDto>> findAllPageableAvailable(@JsonDeserialize(using = DateDeserializer.class)@RequestParam Timestamp date, @RequestParam RoomType type) {
         return ResponseEntity.ok(scheduleService
                 .findAllByAvailableAndTodayAfterAndRoomType(date, type).stream().map(schedule -> map(schedule, ScheduleDto.class)).collect(toList()));
     }

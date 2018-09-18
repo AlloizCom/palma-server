@@ -25,6 +25,7 @@ public class Book extends BaseEntity<Book> {
     private Integer kids;
     private Integer amountOfRooms;
     private String uuid;
+    private Timestamp bookingDay;
 
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
@@ -37,6 +38,17 @@ public class Book extends BaseEntity<Book> {
     private RoomType roomType;
 
     public Book() {
+    }
+
+    @JsonSerialize(using = DateSerializer.class)
+    public Timestamp getBookingDay() {
+        return bookingDay;
+    }
+
+    @JsonDeserialize(using = DateDeserializer.class)
+    public Book setBookingDay(Timestamp bookingDay) {
+        this.bookingDay = bookingDay;
+        return this;
     }
 
     public RoomType getRoomType() {
@@ -197,6 +209,7 @@ public class Book extends BaseEntity<Book> {
                 ", amountOfRooms=" + amountOfRooms +
                 ", id=" + id +
                 ", uuid=" + uuid +
+                ", dateOut=" + dateOut +
                 ", available=" + available +
                 '}';
     }

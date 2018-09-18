@@ -13,7 +13,7 @@ public class Proposal extends BaseEntity<Proposal>{
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "proposal_id")
-    private List<ServiceDescription> proposalDescriptions;
+    private List<ProposalDescription> proposalDescriptions;
 
     public Proposal() {
     }
@@ -27,11 +27,11 @@ public class Proposal extends BaseEntity<Proposal>{
         return this;
     }
 
-    public List<ServiceDescription> getProposalDescriptions() {
+    public List<ProposalDescription> getProposalDescriptions() {
         return proposalDescriptions;
     }
 
-    public Proposal setProposalDescriptions(List<ServiceDescription> proposalDescriptions) {
+    public Proposal setProposalDescriptions(List<ProposalDescription> proposalDescriptions) {
         this.proposalDescriptions = proposalDescriptions;
         return this;
     }

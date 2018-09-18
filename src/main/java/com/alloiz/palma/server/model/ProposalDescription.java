@@ -8,7 +8,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
 @Entity
-public class ProposalDescription {
+public class ProposalDescription extends BaseEntity<ProposalDescription>{
 
     @Enumerated(EnumType.STRING)
     private Language language;

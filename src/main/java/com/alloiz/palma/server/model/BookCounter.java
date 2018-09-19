@@ -8,7 +8,6 @@ public class BookCounter extends BaseEntity<BookCounter>{
     private Long numberOfBooking;
 
     public BookCounter() {
-        this.numberOfBooking = 0L;
     }
 
     public Long getNumberOfBooking() {

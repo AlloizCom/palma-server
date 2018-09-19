@@ -72,6 +72,11 @@ public interface ScheduleRepository extends JpaRepository<Schedule,Long> {
     )
     List<Schedule> findByTodayDate (@Param("yesterday") Timestamp yesterday);
 
+    @Query("SELECT s FROM Schedule s " +
+            "WHERE s.roomType = :roomType "
+    )
+    List<Schedule> findAllByRoomType(@Param("roomType") RoomType roomType);
+
     List<Schedule> findAllByAvailableAndTodayAfterAndTodayBeforeAndRoomType(Boolean available, Timestamp today, Timestamp today2, RoomType roomType);
 
 }

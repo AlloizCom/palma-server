@@ -47,6 +47,7 @@ public class BookCounterServiceImpl implements BookCounterService {
             BookCounter counter = new BookCounter();
             counter.setAvailable(true);
             counter.setNumberOfBooking(0L);
+            bookCounterRepository.save(counter);
             return true;
         }
         return false;

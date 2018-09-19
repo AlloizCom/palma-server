@@ -1,11 +1,13 @@
 package com.alloiz.palma.server.controller;
 
+import com.alloiz.palma.server.dto.BookByPage;
 import com.alloiz.palma.server.dto.BookDto;
 import com.alloiz.palma.server.model.Book;
 import com.alloiz.palma.server.service.BookService;
 import com.alloiz.palma.server.service.PayService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +15,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.alloiz.palma.server.dto.utils.builder.Builder.map;
+import static java.util.stream.Collectors.toList;
 
 @RestController
 @RequestMapping("/book")
@@ -44,6 +47,22 @@ public class BookController {
     @GetMapping("/find-one/{id}")
     private ResponseEntity<BookDto> findOne(@PathVariable Long id) {
         return ResponseEntity.ok(map(bookService.findOne(id), BookDto.class));
+    }
+
+    @GetMapping("/find-all-book-by-page/{page}/{count}")
+    private ResponseEntity<List<BookDto>> findAllPageable(@PathVariable Integer page,
+                                                          @PathVariable Integer count) {
+        return ResponseEntity.ok(bookService
+                .findAll(new PageRequest(page, count))
+                .stream().map(schedule -> map(schedule, BookDto.class))
+                .collect(toList()));
+    }
+
+    @GetMapping("/find-all-book-by-page-available/{page}/{count}")
+    private ResponseEntity<BookByPage> findAllPageableAvailable(@PathVariable Integer page,
+                                                                @PathVariable Integer count) {
+        return ResponseEntity.ok(bookService
+                .findAllByAvailable(new PageRequest(page, count)));
     }
 
     @PostMapping("/save")

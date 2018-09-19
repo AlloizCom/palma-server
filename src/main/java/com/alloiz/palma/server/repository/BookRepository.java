@@ -18,7 +18,7 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     Book findByUuid(String uuid);
 
     /**
-     * For pagable
+     * For pageable
      * @param available
      * @param pageable
      * @return

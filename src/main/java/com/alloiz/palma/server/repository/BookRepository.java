@@ -1,6 +1,8 @@
 package com.alloiz.palma.server.repository;
 
 import com.alloiz.palma.server.model.Book;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -14,4 +16,16 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     Book findByAvailableAndId(Boolean available, Long id);
 
     Book findByUuid(String uuid);
+
+    /**
+     * For pagable
+     * @param available
+     * @param pageable
+     * @return
+     */
+    Page<Book> findAllByAvailable (Boolean available, Pageable pageable);
+
+    Page<Book> findAll(Pageable pageable);
+
+    Integer countAllByAvailable(Boolean available);
 }

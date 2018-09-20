@@ -2,9 +2,11 @@ package com.alloiz.palma.server.service.impl;
 
 import com.alloiz.palma.server.model.Callback;
 import com.alloiz.palma.server.repository.CallbackRepository;
+import com.alloiz.palma.server.service.BookCounterService;
 import com.alloiz.palma.server.service.CallbackService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
@@ -15,6 +17,14 @@ import static com.alloiz.palma.server.service.utils.Validation.*;
 
 @Service
 public class CallbackServiceImpl implements CallbackService {
+
+    /**
+     * only for test websocket
+     */
+    @Autowired
+    private SimpMessagingTemplate template;
+    @Autowired
+    private BookCounterService bookCounterService;
 
     @Autowired
     private CallbackRepository callbackRepository;
@@ -45,6 +55,10 @@ public class CallbackServiceImpl implements CallbackService {
 
     @Override
     public Callback save(Callback callback) {
+        /**
+         * only for test websocket
+         */
+        template.convertAndSend("/booking",100);
 
         checkSave(callback);
         LOGGER.info(callback);

@@ -11,4 +11,8 @@ public interface BookCounterService {
     Boolean delete(Long id);
 
     Boolean createDefaultCounter();
+
+    BookCounter resetCounter(Long id);
+
+    BookCounter incrementCounter(Long id);
 }

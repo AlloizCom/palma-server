@@ -52,4 +52,15 @@ public class BookCounterServiceImpl implements BookCounterService {
         }
         return false;
     }
+
+    @Override
+    public BookCounter resetCounter(Long id) {
+        return update(getCounter(id).setNumberOfBooking(0L));
+    }
+
+    @Override
+    public BookCounter incrementCounter(Long id) {
+        BookCounter counter = getCounter(id);
+        return update(counter.setNumberOfBooking(counter.getNumberOfBooking()+1));
+    }
 }

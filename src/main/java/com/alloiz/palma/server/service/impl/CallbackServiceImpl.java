@@ -63,7 +63,7 @@ public class CallbackServiceImpl implements CallbackService {
         bookCounter.setId(1L);
         bookCounter.setNumberOfBooking(100L);
         bookCounterService.update(bookCounter);
-        template.convertAndSend("/booking",bookCounterService.getCounter(1L));
+        template.convertAndSend("/booking/not",bookCounterService.getCounter(1L));
 
         checkSave(callback);
         LOGGER.info(callback);

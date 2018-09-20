@@ -33,7 +33,7 @@ public class WebSocketConfiguration extends AbstractWebSocketMessageBrokerConfig
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
         registry.setApplicationDestinationPrefixes("/app")
-                .enableSimpleBroker("/booking");
+                .enableSimpleBroker("/booking","/callback");
     }
     @Override
     public void configureClientInboundChannel(ChannelRegistration registration) {

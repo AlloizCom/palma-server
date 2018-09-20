@@ -50,7 +50,7 @@ public class BookController {
         return ResponseEntity.ok(map(bookService.findOne(id), BookDto.class));
     }
 
-    @GetMapping("/find-one-available/{id}")
+    @GetMapping("/change-order-status/{id}")
     private ResponseEntity<BookDto> changeStatus(@PathVariable Long id,
                                                  @PathVariable OrderStatus orderStatus) {
         return ResponseEntity.ok(map(bookService.changeStatus(id,orderStatus), BookDto.class));

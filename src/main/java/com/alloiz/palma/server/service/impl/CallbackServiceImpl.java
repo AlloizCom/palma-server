@@ -1,5 +1,6 @@
 package com.alloiz.palma.server.service.impl;
 
+import com.alloiz.palma.server.model.BookCounter;
 import com.alloiz.palma.server.model.Callback;
 import com.alloiz.palma.server.repository.CallbackRepository;
 import com.alloiz.palma.server.service.BookCounterService;
@@ -58,7 +59,11 @@ public class CallbackServiceImpl implements CallbackService {
         /**
          * only for test websocket
          */
-        template.convertAndSend("/booking",100);
+        BookCounter bookCounter = new BookCounter();
+        bookCounter.setId(1L);
+        bookCounter.setNumberOfBooking(100L);
+        bookCounterService.update(bookCounter);
+        template.convertAndSend("/booking",bookCounterService.getCounter(1L));
 
         checkSave(callback);
         LOGGER.info(callback);

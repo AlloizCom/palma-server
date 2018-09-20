@@ -1,6 +1,7 @@
 package com.alloiz.palma.server.config;
 
 import com.alloiz.palma.server.service.BookCounterService;
+import com.alloiz.palma.server.service.CallbackCounterService;
 import com.alloiz.palma.server.service.TariffService;
 import com.alloiz.palma.server.service.UserEntityService;
 import org.apache.log4j.Logger;
@@ -29,6 +30,9 @@ public class DefaultDataCreator {
     private BookCounterService bookCounterService;
 
     @Autowired
+    private CallbackCounterService callbackCounterService;
+
+    @Autowired
     private TariffService tariffService;
 
     /**
@@ -47,6 +51,13 @@ public class DefaultDataCreator {
         LOGGER.warn("----------------------------------");
         LOGGER.warn("---Creating Counter for Booking---");
         if (bookCounterService.createDefaultCounter()){
+            LOGGER.warn(">>>---Counter was created---");
+        } else {
+            LOGGER.warn(">>>---Counter already exists---");
+        }
+        LOGGER.warn("----------------------------------");
+        LOGGER.warn("---Creating Counter for Callbacks---");
+        if (callbackCounterService.createDefaultCounter()){
             LOGGER.warn(">>>---Counter was created---");
         } else {
             LOGGER.warn(">>>---Counter already exists---");

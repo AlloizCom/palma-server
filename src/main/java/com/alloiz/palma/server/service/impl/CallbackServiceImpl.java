@@ -19,14 +19,6 @@ import static com.alloiz.palma.server.service.utils.Validation.*;
 @Service
 public class CallbackServiceImpl implements CallbackService {
 
-    /**
-     * only for test websocket
-     */
-    @Autowired
-    private SimpMessagingTemplate template;
-    @Autowired
-    private BookCounterService bookCounterService;
-
     @Autowired
     private CallbackRepository callbackRepository;
 
@@ -56,15 +48,6 @@ public class CallbackServiceImpl implements CallbackService {
 
     @Override
     public Callback save(Callback callback) {
-        /**
-         * only for test websocket
-         */
-        BookCounter bookCounter = new BookCounter();
-        bookCounter.setId(1L);
-        bookCounter.setNumberOfBooking(100L);
-        bookCounterService.update(bookCounter);
-        template.convertAndSend("/booking/not",bookCounterService.getCounter(1L));
-
         checkSave(callback);
         LOGGER.info(callback);
         Callback callbackSave = callbackRepository.save(callback

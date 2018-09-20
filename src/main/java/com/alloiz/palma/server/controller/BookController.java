@@ -3,6 +3,7 @@ package com.alloiz.palma.server.controller;
 import com.alloiz.palma.server.dto.BookByPage;
 import com.alloiz.palma.server.dto.BookDto;
 import com.alloiz.palma.server.model.Book;
+import com.alloiz.palma.server.model.enums.OrderStatus;
 import com.alloiz.palma.server.service.BookService;
 import com.alloiz.palma.server.service.PayService;
 import org.apache.log4j.Logger;
@@ -47,6 +48,12 @@ public class BookController {
     @GetMapping("/find-one/{id}")
     private ResponseEntity<BookDto> findOne(@PathVariable Long id) {
         return ResponseEntity.ok(map(bookService.findOne(id), BookDto.class));
+    }
+
+    @GetMapping("/find-one-available/{id}")
+    private ResponseEntity<BookDto> changeStatus(@PathVariable Long id,
+                                                 @PathVariable OrderStatus orderStatus) {
+        return ResponseEntity.ok(map(bookService.changeStatus(id,orderStatus), BookDto.class));
     }
 
     @GetMapping("/find-all-book-by-page/{page}/{count}")

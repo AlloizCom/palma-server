@@ -29,7 +29,7 @@ public class CallbackCounterServiceImpl implements CallbackCounterService {
     public CallbackCounter update(CallbackCounter counter) {
         checkObjectExistsById(counter.getId(), callbackCounterRepository);
         return callbackCounterRepository.save(getCounter(counter.getId())
-                .setNumberOfBooking(counter.getNumberOfBooking())
+                .setNumberOfCallbacks(counter.getNumberOfCallbacks())
                 .setAvailable(counter.getAvailable()));
     }
 
@@ -50,7 +50,7 @@ public class CallbackCounterServiceImpl implements CallbackCounterService {
                 || callbackCounterRepository.findAllByAvailable(true).size() == 0){
             CallbackCounter counter = new CallbackCounter();
             counter.setAvailable(true);
-            counter.setNumberOfBooking(0L);
+            counter.setNumberOfCallbacks(0L);
             callbackCounterRepository.save(counter);
             return true;
         }
@@ -59,7 +59,7 @@ public class CallbackCounterServiceImpl implements CallbackCounterService {
 
     @Override
     public CallbackCounter resetCounter(Long id) {
-        CallbackCounter counter = update(getCounter(id).setNumberOfBooking(0L));
+        CallbackCounter counter = update(getCounter(id).setNumberOfCallbacks(0L));
         template.convertAndSend("/callback/not",counter);
         return counter;
     }
@@ -67,7 +67,7 @@ public class CallbackCounterServiceImpl implements CallbackCounterService {
     @Override
     public CallbackCounter incrementCounter(Long id) {
         CallbackCounter counter = getCounter(id);
-        counter = update(counter.setNumberOfBooking(counter.getNumberOfBooking()+1));
+        counter = update(counter.setNumberOfCallbacks(counter.getNumberOfCallbacks()+1));
         template.convertAndSend("/callback/not",counter);
         return counter;
     }

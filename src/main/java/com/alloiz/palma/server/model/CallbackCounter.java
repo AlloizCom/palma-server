@@ -5,24 +5,24 @@ import javax.persistence.Entity;
 @Entity
 public class CallbackCounter extends BaseEntity<CallbackCounter> {
 
-    private Long numberOfBooking;
+    private Long numberOfCallbacks;
 
     public CallbackCounter() {
     }
 
-    public Long getNumberOfBooking() {
-        return numberOfBooking;
+    public Long getNumberOfCallbacks() {
+        return numberOfCallbacks;
     }
 
-    public CallbackCounter setNumberOfBooking(Long numberOfBooking) {
-        this.numberOfBooking = numberOfBooking;
+    public CallbackCounter setNumberOfCallbacks(Long numberOfCallbacks) {
+        this.numberOfCallbacks = numberOfCallbacks;
         return this;
     }
 
     @Override
     public String toString() {
         return "CallbackCounter{" +
-                "numberOfBooking=" + numberOfBooking +
+                "numberOfCallbacks=" + numberOfCallbacks +
                 ", id=" + id +
                 ", available=" + available +
                 '}';

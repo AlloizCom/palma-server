@@ -5,6 +5,7 @@ import com.alloiz.palma.server.repository.BookCounterRepository;
 import com.alloiz.palma.server.service.BookCounterService;
 import com.alloiz.palma.server.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 
 import static com.alloiz.palma.server.service.utils.Validation.checkId;
@@ -15,6 +16,12 @@ public class BookCounterServiceImpl implements BookCounterService {
 
     @Autowired
     private BookCounterRepository bookCounterRepository;
+
+    @Autowired
+    private SimpMessagingTemplate template;
+
+    @Autowired
+    private BookCounterService bookCounterService;
 
     @Override
     public BookCounter getCounter(Long id) {
@@ -55,12 +62,16 @@ public class BookCounterServiceImpl implements BookCounterService {
 
     @Override
     public BookCounter resetCounter(Long id) {
-        return update(getCounter(id).setNumberOfBooking(0L));
+        BookCounter counter = update(getCounter(id).setNumberOfBooking(0L));
+        template.convertAndSend("/booking/not",counter);
+        return counter;
     }
 
     @Override
     public BookCounter incrementCounter(Long id) {
         BookCounter counter = getCounter(id);
-        return update(counter.setNumberOfBooking(counter.getNumberOfBooking()+1));
+        counter = update(counter.setNumberOfBooking(counter.getNumberOfBooking()+1));
+        template.convertAndSend("/booking/not",counter);
+        return counter;
     }
 }

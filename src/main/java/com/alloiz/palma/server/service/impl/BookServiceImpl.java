@@ -187,4 +187,25 @@ public class BookServiceImpl implements BookService {
                 .setNumberOfPages((bookRepository
                         .countAllByAvailable(true) / pageable.getPageSize()) + 1);
     }
+
+    @Override
+    public Book changeStatus(Long id, OrderStatus orderStatus) {
+        Book book = findOne(id);
+        book.setOrderStatus(orderStatus);
+        return bookRepository.save(findOne(book.getId())
+                .setOrderStatus(book.getOrderStatus())
+                .setAvailable(book.getAvailable())
+                .setBookingDay(book.getBookingDay())
+                .setUuid(book.getUuid())
+                .setEmail(book.getEmail())
+                .setAdults(book.getAdults())
+                .setDateIn(book.getDateIn())
+                .setDateOut(book.getDateOut())
+                .setFirstName(book.getFirstName())
+                .setLastName(book.getLastName())
+                .setKids(book.getKids())
+                .setPhoneNumber(book.getPhoneNumber())
+                .setMessage(book.getMessage())
+        );
+    }
 }

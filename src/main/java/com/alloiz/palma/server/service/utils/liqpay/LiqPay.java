@@ -154,6 +154,9 @@ public class LiqPay implements LiqPayApi {
     }
 
     protected String createSignature(String base64EncodedData) {
+        System.err.println("==========================Liqpay signature==========================");
+        System.err.println(str_to_sign(privateKey + base64EncodedData + privateKey));
+        System.err.println("============End==============Liqpay signature=============End=============");
         return str_to_sign(privateKey + base64EncodedData + privateKey);
     }
 }

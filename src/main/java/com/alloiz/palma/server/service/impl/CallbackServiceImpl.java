@@ -6,6 +6,7 @@ import com.alloiz.palma.server.model.BookCounter;
 import com.alloiz.palma.server.model.Callback;
 import com.alloiz.palma.server.repository.CallbackRepository;
 import com.alloiz.palma.server.service.BookCounterService;
+import com.alloiz.palma.server.service.CallbackCounterService;
 import com.alloiz.palma.server.service.CallbackService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,9 @@ public class CallbackServiceImpl implements CallbackService {
 
     @Autowired
     private CallbackRepository callbackRepository;
+
+    @Autowired
+    private CallbackCounterService callbackCounterService;
 
     private static final Logger LOGGER = Logger.getLogger(CallbackServiceImpl.class);
 
@@ -55,6 +59,7 @@ public class CallbackServiceImpl implements CallbackService {
     public Callback save(Callback callback) {
         checkSave(callback);
         LOGGER.info(callback);
+        callbackCounterService.incrementCounter(1L);
         Callback callbackSave = callbackRepository.save(callback
                 .setDateTime(Timestamp.valueOf(LocalDateTime.now()))
                 .setAvailable(true));

@@ -8,6 +8,7 @@ import com.alloiz.palma.server.model.Schedule;
 import com.alloiz.palma.server.model.enums.OrderStatus;
 import com.alloiz.palma.server.repository.BookRepository;
 import com.alloiz.palma.server.repository.RoomRepository;
+import com.alloiz.palma.server.service.BookCounterService;
 import com.alloiz.palma.server.service.BookService;
 import com.alloiz.palma.server.service.RoomService;
 import com.alloiz.palma.server.service.ScheduleService;
@@ -43,6 +44,9 @@ public class BookServiceImpl implements BookService {
 
     @Autowired
     private ScheduleService scheduleService;
+
+    @Autowired
+    private BookCounterService bookCounterService;
 
 
     @Override
@@ -115,6 +119,7 @@ public class BookServiceImpl implements BookService {
 //        }
 
         checkSave(book);
+        bookCounterService.incrementCounter(1L);
         scheduleService.findByParamForBook(book.getDateIn(),book.getDateOut())
                 .stream()
                 .filter(schedule -> schedule.getRoomType().equals(book.getRoomType()))

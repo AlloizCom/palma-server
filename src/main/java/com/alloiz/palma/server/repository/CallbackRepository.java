@@ -17,6 +17,8 @@ public interface CallbackRepository extends JpaRepository<Callback, Long> {
 
     Page<Callback> findAllByAvailable (Boolean available, Pageable pageable);
 
+    Page<Callback> findAllByAvailableOrderByDateTimeDesc (Boolean available, Pageable pageable);
+
     Page<Callback> findAll(Pageable pageable);
 
     Integer countAllByAvailable(Boolean available);

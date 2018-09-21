@@ -1,5 +1,7 @@
 package com.alloiz.palma.server.service.impl;
 
+import com.alloiz.palma.server.dto.CallbackByPage;
+import com.alloiz.palma.server.dto.CallbackDto;
 import com.alloiz.palma.server.model.BookCounter;
 import com.alloiz.palma.server.model.Callback;
 import com.alloiz.palma.server.repository.CallbackRepository;
@@ -7,6 +9,7 @@ import com.alloiz.palma.server.service.BookCounterService;
 import com.alloiz.palma.server.service.CallbackService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +17,9 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import static com.alloiz.palma.server.dto.utils.builder.Builder.map;
 import static com.alloiz.palma.server.service.utils.Validation.*;
+import static java.util.stream.Collectors.toList;
 
 @Service
 public class CallbackServiceImpl implements CallbackService {
@@ -78,5 +83,32 @@ public class CallbackServiceImpl implements CallbackService {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    @Override
+    public List<Callback> findAll(Pageable pageable) {
+        List<Callback> callbacks = callbackRepository.findAll(pageable).getContent();
+        return callbacks;
+    }
+
+    @Override
+    public CallbackByPage findAllByAvailable(Pageable pageable) {
+        LOGGER.info(">>> Page number:" + pageable.getPageNumber());
+        LOGGER.info(">>> Page size:" + pageable.getPageSize());
+        List<CallbackDto> callbacks = callbackRepository
+                .findAllByAvailable(true, pageable)
+                .getContent()
+                .stream()
+                .map(callback -> map(callback, CallbackDto.class))
+                .collect(toList());
+        LOGGER.info("-------------Callback Page---------------");
+        callbacks.stream().forEach(n -> LOGGER.info(n.getId()));
+        LOGGER.info("-----------------------------------------");
+        return new CallbackByPage()
+                .setCallbacks(callbacks)
+                .setCurrentPage(pageable.getPageNumber())
+                .setNumberOfItems(pageable.getPageSize())
+                .setNumberOfPages((callbackRepository
+                        .countAllByAvailable(true) / pageable.getPageSize()) + 1);
     }
 }

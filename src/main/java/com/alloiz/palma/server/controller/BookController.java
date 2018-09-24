@@ -83,6 +83,7 @@ public class BookController {
 
     @PostMapping("/pay")
     private ResponseEntity<String> pay(@RequestBody BookDto book) {
+        bookService.save(map(book, Book.class));
         return ResponseEntity.ok(payService.getButton(map(book, Book.class)));
     }
 

@@ -251,7 +251,7 @@ public class RoomServiceImpl implements RoomService {
                 roomParams.getDateFrom(),
                 roomParams.getDateTo(),
                 roomParams.getNumbersOfRooms(),
-                roomParams.getChildrens(),
+                roomParams.getAdults(),
                 roomParams.getChildrens());
     }
 }

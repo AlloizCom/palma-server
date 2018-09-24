@@ -3,7 +3,9 @@ package com.alloiz.palma.server.model;
 import com.alloiz.palma.server.model.enums.OrderStatus;
 import com.alloiz.palma.server.model.enums.RoomType;
 import com.alloiz.palma.server.model.utils.DateDeserializer;
+import com.alloiz.palma.server.model.utils.DateDeserializerForBook;
 import com.alloiz.palma.server.model.utils.DateSerializer;
+import com.alloiz.palma.server.model.utils.DateSerializerForBook;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
@@ -40,12 +42,12 @@ public class Book extends BaseEntity<Book> {
     public Book() {
     }
 
-    @JsonSerialize(using = DateSerializer.class)
+    @JsonSerialize(using = DateSerializerForBook.class)
     public Timestamp getBookingDay() {
         return bookingDay;
     }
 
-    @JsonDeserialize(using = DateDeserializer.class)
+    @JsonDeserialize(using = DateDeserializerForBook.class)
     public Book setBookingDay(Timestamp bookingDay) {
         this.bookingDay = bookingDay;
         return this;

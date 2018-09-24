@@ -84,9 +84,9 @@ public class MailServiceImpl implements MailService {
         map.put("adults", book.getAdults());
         map.put("kids", book.getKids());
         map.put("message", book.getMessage());
-        send(ADMIN_MAIL,TITLE,"supportAdmin.html",map);
-        send(MODERATOR_MAIL,TITLE,"supportAdmin.html",map);
-        send(book.getEmail(),TITLE,"supportAdmin.html",map);
+        send(ADMIN_MAIL,TITLE,"bookForStuff.html",map);
+        send(MODERATOR_MAIL,TITLE,"bookForStuff.html",map);
+        send(book.getEmail(),TITLE,"bookForUser.html",map);
     }
 
 }

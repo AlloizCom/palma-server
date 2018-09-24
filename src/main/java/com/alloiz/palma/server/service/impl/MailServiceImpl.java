@@ -18,6 +18,7 @@ public class MailServiceImpl implements MailService {
 
     private static final String ADMIN_MAIL = "admin@gmail.com";
     private static final String MODERATOR_MAIL = "moderator@gmail.com";
+    private static final String TITLE = "Palma Hotel Lviv";
 
     @Autowired
     private JavaMailSender mailSender;
@@ -56,5 +57,17 @@ public class MailServiceImpl implements MailService {
     public String getModeratorMail(){
         return MODERATOR_MAIL;
     }
+
+    @Override
+    public void sendCallbackMailForStuff(Callback callback) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("email", callback.getEmail());
+        map.put("phone", callback.getPhone());
+        map.put("datetime", LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy о hh:mm:ss")));
+        map.put("message",callback.getMessage());
+        send(ADMIN_MAIL,TITLE,"supportAdmin.html",map);
+        send(MODERATOR_MAIL,TITLE,"supportAdmin.html",map);
+    }
+
 
 }

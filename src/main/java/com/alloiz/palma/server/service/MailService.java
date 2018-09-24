@@ -9,4 +9,6 @@ public interface MailService {
     String getAdminMail();
 
     String getModeratorMail();
+
+    void sendCallbackMailForStuff(Callback callback);
 }

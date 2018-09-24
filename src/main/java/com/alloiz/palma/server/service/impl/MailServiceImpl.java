@@ -16,6 +16,9 @@ import java.util.Map;
 @Service
 public class MailServiceImpl implements MailService {
 
+    private static final String ADMIN_MAIL = "admin@gmail.com";
+    private static final String MODERATOR_MAIL = "moderator@gmail.com";
+
     @Autowired
     private JavaMailSender mailSender;
 
@@ -33,7 +36,6 @@ public class MailServiceImpl implements MailService {
         return text;
     }
 
-
     @Override
     public Callback sendCallback(Callback callback) {
         Map<String, Object> map = new HashMap<>();
@@ -43,6 +45,16 @@ public class MailServiceImpl implements MailService {
         send("some@gmail.com", "Title", "supportAdmin.html", map);
         send(callback.getEmail(), "Title", "supportUser.html", map);
         return callback;
+    }
+
+    @Override
+    public String getAdminMail(){
+        return ADMIN_MAIL;
+    }
+
+    @Override
+    public String getModeratorMail(){
+        return MODERATOR_MAIL;
     }
 
 }

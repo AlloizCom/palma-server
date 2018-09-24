@@ -4,20 +4,18 @@
 </head>
 <body>
 <table border="0" cellpadding="0" cellspacing="0"
-       style="margin:0; padding:0; height: 200px; background-color: #00a3c6;" width="100%">
+       style="margin:0; padding:0; height: 200px; background-color: rgb(84, 255, 237)" width="100%">
     <tr>
         <td height="100%" style="text-align: center">
-            <table border="1" style="margin:0; border-collapse: collapse; padding:0; background-color: #ffffff;"
+            <table border="1" style="margin:0; border-collapse: collapse; padding:0;"
                    width="100%">
                 <tr>
-                    <td style="width: 30%">${name}</td>
-                    <td rowspan="3" style="width: 70%">${text}</td>
+                    <td style="width: 30%; text-align: left">Email: ${email}</td>
+                    <td style="width: 30%; text-align: left">Name: ${name}</td>
+                    <td style="width: 30%; text-align: left">Date: ${dateTime}</td>
                 </tr>
                 <tr>
-                    <td style="width: 30%">${email}</td>
-                </tr>
-                <tr>
-                    <td colspan="2" style="text-align: right">${datetime}</td>
+                    <td colspan="3" style="text-align: center">${message}</td>
                 </tr>
             </table>
         </td>

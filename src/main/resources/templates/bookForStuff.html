@@ -1,10 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
 </head>
 <body>
-
+<table border="0" cellpadding="0" cellspacing="0"
+       style="margin:0; padding:0; height: 200px; background-color: rgb(84, 255, 237)" width="100%">
+    <tr>
+        <td height="100%" style="text-align: center">
+            <table border="1" style="margin:0; border-collapse: collapse; padding:0;"
+                   width="100%">
+                <tr>
+                    <td style="width: 25%; text-align: left">First name: ${firstName}</td>
+                    <td style="width: 25%; text-align: left">Last name: ${lastName}</td>
+                </tr>
+                <tr>
+                    <td style="width: 25%; text-align: left">Phone: ${phone}</td>
+                    <td style="width: 25%; text-align: left">Email: ${email}</td>
+                </tr>
+                <tr>
+                    <td style="width: 30%; text-align: left">Date In: ${dateIn}</td>
+                    <td style="width: 30%; text-align: left">Date Out: ${dateOut}</td>
+                </tr>
+                <tr>
+                    <td style="width: 30%; text-align: left">Room Type: ${roomType}</td>
+                    <td style="width: 30%; text-align: left">Amount of rooms: ${amountOfRoom}</td>
+                </tr>
+                <tr>
+                    <td style="width: 30%; text-align: left">Adults: ${adults}</td>
+                    <td style="width: 30%; text-align: left">Kids: ${kids}</td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="text-align: center">${message}</td>
+                </tr>
+                <tr>
+                    <td style="width: 30%; text-align: left">Booking date: ${bookingDay}</td>
+                    <td style="width: 30%; text-align: left">Order status: ${orderStatus}</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
 </body>
 </html>

@@ -1,5 +1,6 @@
 package com.alloiz.palma.server.service.impl;
 
+import com.alloiz.palma.server.model.Book;
 import com.alloiz.palma.server.model.Callback;
 import com.alloiz.palma.server.service.utils.MailContentBuilder;
 import com.alloiz.palma.server.service.MailService;
@@ -69,5 +70,23 @@ public class MailServiceImpl implements MailService {
         send(MODERATOR_MAIL,TITLE,"supportAdmin.html",map);
     }
 
+    @Override
+    public void sendBookMailForStuffAndUser(Book book){
+        Map<String, Object> map = new HashMap<>();
+        map.put("lastName", book.getLastName());
+        map.put("firstName", book.getFirstName());
+        map.put("phone", book.getPhoneNumber());
+        map.put("email", book.getEmail());
+        map.put("dateIn", book.getDateIn());
+        map.put("dateOut", book.getDateOut());
+        map.put("roomType", book.getRoomType());
+        map.put("amountOfRoom", book.getAmountOfRooms());
+        map.put("adults", book.getAdults());
+        map.put("kids", book.getKids());
+        map.put("message", book.getMessage());
+        send(ADMIN_MAIL,TITLE,"supportAdmin.html",map);
+        send(MODERATOR_MAIL,TITLE,"supportAdmin.html",map);
+        send(book.getEmail(),TITLE,"supportAdmin.html",map);
+    }
 
 }

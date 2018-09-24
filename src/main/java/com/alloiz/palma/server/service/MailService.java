@@ -1,5 +1,6 @@
 package com.alloiz.palma.server.service;
 
+import com.alloiz.palma.server.model.Book;
 import com.alloiz.palma.server.model.Callback;
 
 public interface MailService {
@@ -11,4 +12,6 @@ public interface MailService {
     String getModeratorMail();
 
     void sendCallbackMailForStuff(Callback callback);
+
+    void sendBookMailForStuffAndUser(Book book);
 }

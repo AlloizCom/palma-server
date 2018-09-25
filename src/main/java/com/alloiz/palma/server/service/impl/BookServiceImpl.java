@@ -3,8 +3,6 @@ package com.alloiz.palma.server.service.impl;
 import com.alloiz.palma.server.dto.BookByPage;
 import com.alloiz.palma.server.dto.BookDto;
 import com.alloiz.palma.server.model.Book;
-import com.alloiz.palma.server.model.Room;
-import com.alloiz.palma.server.model.Schedule;
 import com.alloiz.palma.server.model.enums.OrderStatus;
 import com.alloiz.palma.server.repository.BookRepository;
 import com.alloiz.palma.server.repository.RoomRepository;
@@ -12,8 +10,6 @@ import com.alloiz.palma.server.service.BookCounterService;
 import com.alloiz.palma.server.service.BookService;
 import com.alloiz.palma.server.service.RoomService;
 import com.alloiz.palma.server.service.ScheduleService;
-import com.alloiz.palma.server.service.exceptions.NotEnoughFreePlacesException;
-import com.alloiz.palma.server.service.exceptions.RoomTypeNotFoundException;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -57,7 +53,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<Book> findAllAvailable() {
-        return bookRepository.findAllByAvailable(true);
+        return bookRepository.findAllByAvailableOrderByDateTimeDesc(true);
     }
 
     @Override
@@ -178,7 +174,7 @@ public class BookServiceImpl implements BookService {
         LOGGER.info(">>> Page number:" + pageable.getPageNumber());
         LOGGER.info(">>> Page size:" + pageable.getPageSize());
         List<BookDto> bookList = bookRepository
-                .findAllByAvailable(true, pageable)
+                .findAllByAvailableOrderByDateTimeDesc(true, pageable)
                 .getContent()
                 .stream()
                 .map(book -> map(book, BookDto.class))

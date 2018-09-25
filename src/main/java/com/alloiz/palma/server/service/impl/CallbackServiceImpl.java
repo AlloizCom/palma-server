@@ -103,7 +103,7 @@ public class CallbackServiceImpl implements CallbackService {
         LOGGER.info(">>> Page number:" + pageable.getPageNumber());
         LOGGER.info(">>> Page size:" + pageable.getPageSize());
         List<CallbackDto> callbacks = callbackRepository
-                //.findAllByAvailable(true, pageable)
+                //.findAllByAvailableOrderByDateTimeDesc(true, pageable)
                 .findAllByAvailableOrderByDateTimeDesc(true,pageable)
                 .getContent()
                 .stream()

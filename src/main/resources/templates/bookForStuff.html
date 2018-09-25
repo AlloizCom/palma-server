@@ -1,44 +1,43 @@
 <!DOCTYPE html>
 <html lang="uk">
+
+<style>
+    body {background-color: #F8F6F6}
+    img {width: 250px}
+    h3 {margin-left: 120px; margin-bottom: 1px; margin-top: 1px}
+    hr {height:3px; border-width:0; color:#53D7B7; background-color:#53D7B7}
+</style>
+
 <head>
+    <meta charset="UTF-8">
+    <h3 align="center"><img src="pictures/palma-hotel-logo.svg"></h3>
 </head>
 <body>
-<table border="0" cellpadding="0" cellspacing="0"
-       style="margin:0; padding:0; height: 200px; background-color: rgb(84, 255, 237)" width="100%">
-    <tr>
-        <td height="100%" style="text-align: center">
-            <table border="1" style="margin:0; border-collapse: collapse; padding:0;"
-                   width="100%">
-                <tr>
-                    <td style="width: 25%; text-align: left">First name: ${firstName}</td>
-                    <td style="width: 25%; text-align: left">Last name: ${lastName}</td>
-                </tr>
-                <tr>
-                    <td style="width: 25%; text-align: left">Phone: ${phone}</td>
-                    <td style="width: 25%; text-align: left">Email: ${email}</td>
-                </tr>
-                <tr>
-                    <td style="width: 30%; text-align: left">Date In: ${dateIn}</td>
-                    <td style="width: 30%; text-align: left">Date Out: ${dateOut}</td>
-                </tr>
-                <tr>
-                    <td style="width: 30%; text-align: left">Room Type: ${roomType}</td>
-                    <td style="width: 30%; text-align: left">Amount of rooms: ${amountOfRoom}</td>
-                </tr>
-                <tr>
-                    <td style="width: 30%; text-align: left">Adults: ${adults}</td>
-                    <td style="width: 30%; text-align: left">Kids: ${kids}</td>
-                </tr>
-                <tr>
-                    <td colspan="4" style="text-align: center">${message}</td>
-                </tr>
-                <tr>
-                    <td style="width: 30%; text-align: left">Booking date: ${bookingDay}</td>
-                    <td style="width: 30%; text-align: left">Order status: ${orderStatus}</td>
-                </tr>
-            </table>
-        </td>
-    </tr>
+<table border="0" style="margin:0; padding:0;" width="75%">
+    <hr>
+    <tr style="width: 25%; text-align: left"><h3>Ім'я name: ${firstName}</h3></tr> <br>
+    <tr style="width: 25%; text-align: left"><h3>Прізвище: ${lastName}</h3></tr> <br>
+
+    <tr style="width: 25%; text-align: left"><h3>Телефон: ${phone}</h3></tr> <br>
+    <tr style="width: 25%; text-align: left"><h3>Email: ${email}</h3></tr> <br>
+    <hr>
+    <tr style="width: 30%; text-align: left"><h3>Дата заїзду: ${dateIn}</h3></tr> <br>
+    <tr style="width: 30%; text-align: left"><h3>Дата від'їзду: ${dateOut}</h3></tr> <br>
+    <hr>
+    <tr style="width: 30%; text-align: left"><h3>Тип кімнати: ${roomType}</h3></tr> <br>
+    <tr style="width: 30%; text-align: left"><h3>Кількість кімнат: ${amountOfRoom}</h3></tr> <br>
+
+    <tr style="width: 30%; text-align: left"><h3>Кількість дорослих: ${adults}</h3></tr> <br>
+    <tr style="width: 30%; text-align: left"><h3>Кількість дітей: ${kids}</h3></tr> <br>
+    <hr>
+    <tr style="text-align: left"><h3>Повідомлення: ${message}</h3></tr> <br>
+    <hr>
+    <tr style="text-align: left"><h3>Дата замовлення: ${bookingDay}</h3></tr> <br>
+    <tr style="text-align: left"><h3>Статус замовлення: ${orderStatus}</h3></tr> <br>
+
+    <hr>
+
 </table>
+
 </body>
 </html>

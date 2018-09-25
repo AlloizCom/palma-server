@@ -11,7 +11,7 @@ public interface MailService {
 
     String getModeratorMail();
 
-    void sendCallbackMailForStuff(Callback callback);
+    void sendCallbackLetterForStuff(Callback callback);
 
     void sendBookMailForStuffAndUser(Book book);
 }

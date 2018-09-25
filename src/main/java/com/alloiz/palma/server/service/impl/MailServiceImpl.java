@@ -60,7 +60,7 @@ public class MailServiceImpl implements MailService {
     }
 
     @Override
-    public void sendCallbackMailForStuff(Callback callback) {
+    public void sendCallbackLetterForStuff(Callback callback) {
         Map<String, Object> map = new HashMap<>();
         map.put("email", callback.getEmail());
         map.put("phone", callback.getPhone());

@@ -53,7 +53,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<Book> findAllAvailable() {
-        return bookRepository.findAllByAvailableOrderByDateTimeDesc(true);
+        return bookRepository.findAllByAvailableOrderByBookingDayDesc(true);
     }
 
     @Override
@@ -174,7 +174,7 @@ public class BookServiceImpl implements BookService {
         LOGGER.info(">>> Page number:" + pageable.getPageNumber());
         LOGGER.info(">>> Page size:" + pageable.getPageSize());
         List<BookDto> bookList = bookRepository
-                .findAllByAvailableOrderByDateTimeDesc(true, pageable)
+                .findAllByAvailableOrderByBookingDayDesc(true, pageable)
                 .getContent()
                 .stream()
                 .map(book -> map(book, BookDto.class))

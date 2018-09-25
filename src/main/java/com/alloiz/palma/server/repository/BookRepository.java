@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long> {
 
-    List<Book> findAllByAvailableOrderByDateTimeDesc(Boolean available);
+    List<Book> findAllByAvailableOrderByBookingDayDesc(Boolean available);
 
     Book findByAvailableAndId(Boolean available, Long id);
 
@@ -23,7 +23,7 @@ public interface BookRepository extends JpaRepository<Book, Long> {
      * @param pageable
      * @return
      */
-    Page<Book> findAllByAvailableOrderByDateTimeDesc(Boolean available, Pageable pageable);
+    Page<Book> findAllByAvailableOrderByBookingDayDesc(Boolean available, Pageable pageable);
 
     Page<Book> findAll(Pageable pageable);
 

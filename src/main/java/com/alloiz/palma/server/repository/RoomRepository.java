@@ -43,7 +43,7 @@ public interface RoomRepository extends JpaRepository<Room,Long> {
                                @Param("children")Integer children);
 
     @Query("SELECT r FROM Room r " +
-            "WHERE r.type >= :roomType " +
+            "WHERE r.type = :roomType " +
             "AND r.adultPlaces >= :adults " +
             "AND r.kidsPlaces >= :children " +
             "AND r.type IN (SELECT s.roomType FROM Schedule s " +

@@ -73,7 +73,8 @@ public class RoomController {
         return new ResponseEntity<>(roomService.findRoomsByRoomParams(roomParams)
                 .stream()
                     .map(room -> map(room, RoomWithTariff.class)
-                        .setPrice(tariffService.findByRoomTypeAndDateNow(room.getType()).getPrice()))
+                        .setPrice(tariffService.findByRoomTypeAndDateNow(room.getType()).getPrice())
+                    .setImages(room.getImages().subList(0,1)))
                 .collect(Collectors.toList()), HttpStatus.OK);
 
     }

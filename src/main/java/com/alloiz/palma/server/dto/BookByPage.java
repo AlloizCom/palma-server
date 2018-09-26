@@ -9,7 +9,7 @@ import static java.util.stream.Collectors.toList;
  */
 public class BookByPage {
 
-    private List<BookDto> bookDtoList;
+    private List<BookDto> books;
     private Integer currentPage;
     private Integer numberOfPages;
     private Integer numberOfItems;
@@ -17,12 +17,12 @@ public class BookByPage {
     public BookByPage() {
     }
 
-    public List<BookDto> getBookDtoList() {
-        return bookDtoList;
+    public List<BookDto> getBooks() {
+        return books;
     }
 
-    public BookByPage setBookDtoList(List<BookDto> bookDtoList) {
-        this.bookDtoList = bookDtoList;
+    public BookByPage setBooks(List<BookDto> books) {
+        this.books = books;
         return this;
     }
 
@@ -56,7 +56,7 @@ public class BookByPage {
     @Override
     public String toString() {
         return "BookByPage{" +
-                "bookDtoList=" + bookDtoList.stream().map(BookDto::getId).collect(toList()) +
+                "books=" + books.stream().map(BookDto::getId).collect(toList()) +
                 ", currentPage=" + (currentPage == null ? "null" : currentPage) +
                 ", numberOfPages=" + (numberOfPages == null ? "null" : numberOfPages) +
                 ", numberOfItems=" + (numberOfItems == null ? "null" : numberOfItems) +

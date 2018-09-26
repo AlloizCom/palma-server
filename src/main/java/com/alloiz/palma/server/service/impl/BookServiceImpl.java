@@ -182,7 +182,7 @@ public class BookServiceImpl implements BookService {
         LOGGER.info("-------------Book Page---------------");
         bookList.stream().forEach(bookDto -> LOGGER.info(bookDto.getId()));
         return new BookByPage()
-                .setBookDtoList(bookList)
+                .setBooks(bookList)
                 .setCurrentPage(pageable.getPageNumber())
                 .setNumberOfItems(pageable.getPageSize())
                 .setNumberOfPages((bookRepository

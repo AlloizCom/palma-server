@@ -254,4 +254,15 @@ public class RoomServiceImpl implements RoomService {
                 roomParams.getAdults(),
                 roomParams.getChildrens());
     }
+
+    @Override
+    public List<Room> findRoomsByRoomParamsWithRoomType(RoomParams roomParams) {
+        return roomRepository.findAllByTypeInWithRoomType(
+                roomParams.getDateFrom(),
+                roomParams.getDateTo(),
+                roomParams.getNumbersOfRooms(),
+                roomParams.getAdults(),
+                roomParams.getChildrens(),
+                roomParams.getRoomType());
+    }
 }

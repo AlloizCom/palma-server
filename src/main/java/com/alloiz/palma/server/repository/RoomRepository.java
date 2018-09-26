@@ -42,4 +42,19 @@ public interface RoomRepository extends JpaRepository<Room,Long> {
                                @Param("adults")Integer adults,
                                @Param("children")Integer children);
 
+    @Query("SELECT r FROM Room r " +
+            "WHERE r.type >= :roomType " +
+            "AND r.adultPlaces >= :adults " +
+            "AND r.kidsPlaces >= :children " +
+            "AND r.type IN (SELECT s.roomType FROM Schedule s " +
+            "WHERE s.today BETWEEN :dateIn AND :dateOut " +
+            "AND s.free >= :free)")
+    List<Room> findAllByTypeInWithRoomType(@Param("dateIn") Timestamp dateIn,
+                               @Param("dateOut") Timestamp dateOut,
+                               @Param("free")Integer free,
+                               @Param("adults")Integer adults,
+                               @Param("children")Integer children,
+                                           @Param("roomType") RoomType roomType
+    );
+
 }

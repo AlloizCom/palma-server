@@ -79,6 +79,18 @@ public class RoomController {
 
     }
 
+    @PostMapping("/find-by-book-params-with-room-type")
+    private ResponseEntity<List<RoomWithTariff>> findRyRoomsParamsWithRoomType(@RequestBody RoomParams roomParams){
+        LOGGER.info("-----------------FIND ROOM BY PARAMS WITH ROOM TYPE---------------------");
+        LOGGER.info(roomParams);
+        return new ResponseEntity<>(roomService.findRoomsByRoomParamsWithRoomType(roomParams)
+                .stream()
+                .map(room -> map(room, RoomWithTariff.class)
+                        .setPrice(tariffService.findByRoomTypeAndDateNow(room.getType()).getPrice()))
+                .collect(Collectors.toList()), HttpStatus.OK);
+
+    }
+
 //    @GetMapping("/find-all-available-kids-adult-amount/{kidsPlaces}/{adultPlaces}/{amount}")
 //    private ResponseEntity<List<RoomFullDto>> findAllByAdultPlacesAndKidsPlacesAndAmountAndAvailable(
 //            @PathVariable Integer kidsPlaces,

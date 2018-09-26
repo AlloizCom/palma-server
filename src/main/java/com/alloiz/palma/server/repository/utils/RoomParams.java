@@ -1,5 +1,6 @@
 package com.alloiz.palma.server.repository.utils;
 
+import com.alloiz.palma.server.model.enums.RoomType;
 import com.alloiz.palma.server.model.utils.DateDeserializer;
 import com.alloiz.palma.server.model.utils.DateSerializer;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -14,6 +15,7 @@ public class RoomParams {
     private Integer numbersOfRooms;
     private Integer adults;
     private Integer childrens;
+    private RoomType roomType;
 
     public RoomParams() {
     }
@@ -67,14 +69,39 @@ public class RoomParams {
         return this;
     }
 
+    public RoomParams setNumbersOfRooms(Integer numbersOfRooms) {
+        this.numbersOfRooms = numbersOfRooms;
+        return this;
+    }
+
+    public RoomParams setAdults(Integer adults) {
+        this.adults = adults;
+        return this;
+    }
+
+    public RoomParams setChildrens(Integer childrens) {
+        this.childrens = childrens;
+        return this;
+    }
+
+    public RoomType getRoomType() {
+        return roomType;
+    }
+
+    public RoomParams setRoomType(RoomType roomType) {
+        this.roomType = roomType;
+        return this;
+    }
+
     @Override
     public String toString() {
         return "RoomParams{" +
                 "dateFrom=" + dateFrom +
                 ", dateTo=" + dateTo +
-                ", numberOfRooms=" + numbersOfRooms +
+                ", numbersOfRooms=" + numbersOfRooms +
                 ", adults=" + adults +
                 ", childrens=" + childrens +
+                ", roomType=" + roomType +
                 '}';
     }
 }

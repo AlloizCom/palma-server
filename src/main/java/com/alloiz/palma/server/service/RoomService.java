@@ -48,4 +48,6 @@ public interface RoomService {
                                                                       Integer amount);
 
     List<Room> findRoomsByRoomParams(RoomParams roomParams);
+
+    List<Room> findRoomsByRoomParamsWithRoomType(RoomParams roomParams);
 }

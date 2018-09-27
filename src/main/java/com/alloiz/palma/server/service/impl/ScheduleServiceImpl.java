@@ -75,10 +75,11 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Override
     public Schedule update(Schedule schedule) {
         checkObjectExistsById(schedule.getId(),scheduleRepository);
+        Integer free = schedule.getFree() - schedule.getActive();
         return scheduleRepository.save(findOne(schedule.getId())
                     .setForSale(schedule.getForSale())
                     .setActive(schedule.getActive())
-                    .setFree(schedule.getFree())
+                    .setFree(free)
                     .setAvailable(schedule.getAvailable()));
     }
 

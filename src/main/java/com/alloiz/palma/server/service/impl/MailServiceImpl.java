@@ -66,8 +66,9 @@ public class MailServiceImpl implements MailService {
         map.put("phone", callback.getPhone());
         map.put("datetime", LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy о hh:mm:ss")));
         map.put("message",callback.getMessage());
-        send(ADMIN_MAIL,TITLE,"callbackLetter.html",map);
-        send(MODERATOR_MAIL,TITLE,"callbackLetter.html",map);
+//        send(ADMIN_MAIL,TITLE,"callbackLetter.html",map);
+//        send(MODERATOR_MAIL,TITLE,"callbackLetter.html",map);
+        send("xandriy58@gmail.com",TITLE,"callbackLetter.html",map);
     }
 
     @Override

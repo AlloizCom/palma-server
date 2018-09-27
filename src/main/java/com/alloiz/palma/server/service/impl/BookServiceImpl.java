@@ -3,6 +3,7 @@ package com.alloiz.palma.server.service.impl;
 import com.alloiz.palma.server.dto.BookByPage;
 import com.alloiz.palma.server.dto.BookDto;
 import com.alloiz.palma.server.model.Book;
+import com.alloiz.palma.server.model.Schedule;
 import com.alloiz.palma.server.model.enums.OrderStatus;
 import com.alloiz.palma.server.repository.BookRepository;
 import com.alloiz.palma.server.repository.RoomRepository;
@@ -117,12 +118,18 @@ public class BookServiceImpl implements BookService {
         checkSave(book);
         bookCounterService.incrementCounter(1L);
         LOGGER.info("Book service:" + book);
-        scheduleService.findByParamForBook(book.getDateIn(),book.getDateOut())
-                .stream()
-                .filter(schedule -> schedule.getRoomType().equals(book.getRoomType()))
-                .forEach(schedule -> scheduleService.update(schedule.setFree(
-                        schedule.getFree() - book.getAmountOfRooms()
-                )));
+//        scheduleService.findByParamForBook(book.getDateIn(),book.getDateOut())
+//                .stream()
+//                .filter(schedule -> schedule.getRoomType().equals(book.getRoomType()))
+//                .forEach(schedule -> scheduleService.update(schedule.setFree(
+//                        schedule.getFree() - book.getAmountOfRooms()
+//                )));
+
+        List<Schedule> schedules = scheduleService.findByParamForBook(book.getDateIn(),book.getDateOut());
+        for (Schedule s: schedules
+             ) {
+            LOGGER.warn(s);
+        }
 
         return bookRepository.save(generateUuid(book
                 .setAvailable(true)

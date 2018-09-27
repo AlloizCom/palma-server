@@ -135,10 +135,12 @@ public class BookServiceImpl implements BookService {
 //            LOGGER.warn(s);
 //        }
         Integer amountFromBook = book.getAmountOfRooms();
+
         scheduleService.findByParamForBook(book.getDateIn(),book.getDateOut(),book.getRoomType())
                 .stream()
-                .forEach(schedule -> schedule.setActive(schedule.getActive()+amountFromBook)
-                .setForSale(schedule.getForSale()-amountFromBook));
+                .peek(schedule -> schedule.setActive(schedule.getActive()+amountFromBook)
+                .setForSale(schedule.getForSale()-amountFromBook))
+                .peek(schedule -> schedule.setFree(schedule.getForSale()-schedule.getActive()));
 
         return bookRepository.save(generateUuid(book
                 .setAvailable(true)

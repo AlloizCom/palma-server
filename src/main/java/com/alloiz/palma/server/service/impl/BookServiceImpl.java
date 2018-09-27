@@ -140,7 +140,8 @@ public class BookServiceImpl implements BookService {
                 .stream()
                 .peek(schedule -> schedule.setActive(schedule.getActive()+amountFromBook)
                 .setForSale(schedule.getForSale()-amountFromBook))
-                .peek(schedule -> schedule.setFree(schedule.getForSale()-schedule.getActive()));
+                .peek(schedule -> schedule.setFree(schedule.getForSale()-schedule.getActive()))
+                .forEach(schedule -> scheduleService.update(schedule));
 
         return bookRepository.save(generateUuid(book
                 .setAvailable(true)

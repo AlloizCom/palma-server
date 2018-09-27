@@ -138,8 +138,7 @@ public class BookServiceImpl implements BookService {
 
         scheduleService.findByParamForBook(book.getDateIn(),book.getDateOut(),book.getRoomType())
                 .stream()
-                .peek(schedule -> schedule.setActive(schedule.getActive()+amountFromBook)
-                .setForSale(schedule.getForSale()-amountFromBook))
+                .peek(schedule -> schedule.setActive(schedule.getActive()+amountFromBook))
                 .peek(schedule -> schedule.setFree(schedule.getForSale()-schedule.getActive()))
                 .forEach(schedule -> scheduleService.update(schedule));
 

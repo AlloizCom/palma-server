@@ -116,6 +116,7 @@ public class BookServiceImpl implements BookService {
 
         checkSave(book);
         bookCounterService.incrementCounter(1L);
+        LOGGER.info("Book service:" + book);
         scheduleService.findByParamForBook(book.getDateIn(),book.getDateOut())
                 .stream()
                 .filter(schedule -> schedule.getRoomType().equals(book.getRoomType()))

@@ -3,13 +3,10 @@ package com.alloiz.palma.server.service.impl;
 import com.alloiz.palma.server.dto.BookByPage;
 import com.alloiz.palma.server.dto.BookDto;
 import com.alloiz.palma.server.model.Book;
-import com.alloiz.palma.server.model.Schedule;
 import com.alloiz.palma.server.model.enums.OrderStatus;
 import com.alloiz.palma.server.repository.BookRepository;
-import com.alloiz.palma.server.repository.RoomRepository;
 import com.alloiz.palma.server.service.BookCounterService;
 import com.alloiz.palma.server.service.BookService;
-import com.alloiz.palma.server.service.RoomService;
 import com.alloiz.palma.server.service.ScheduleService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,12 +29,6 @@ public class BookServiceImpl implements BookService {
 
     @Autowired
     private BookRepository bookRepository;
-
-    @Autowired
-    private RoomRepository roomRepository;
-
-    @Autowired
-    private RoomService roomService;
 
     @Autowired
     private ScheduleService scheduleService;
@@ -70,78 +61,15 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public Book save(Book book) {
-//        checkSave(book);
-//        List<Room> rooms = roomRepository.findAllByAvailableAndType(true, book.getRoomType());
-//        try {
-//            Room resRoom = rooms.stream()
-//                    .filter(room -> room.getType().equals(book.getRoomType()))
-//                    .map(room -> room.setAmount(room.getAmount() - book.getAmountOfRooms()))
-//                    .findFirst().orElseThrow(Exception::new);
-//            if(resRoom.getAmount()<0){
-//                throw new Exception();
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        for (Room room : rooms) {
-//            if (room.getType().equals(book.getRoomType())) {
-//                if (room.getAmount() >= book.getAmountOfRooms()) {
-//                    room.setAmount(room.getAmount() - book.getAmountOfRooms());
-//                }
-//            }
-//        }
-
-
-//        checkSave(book);
-//        List<Room> rooms = roomRepository.findAllByAvailableAndType(true, book.getRoomType());
-//        for (Room room : rooms) {
-//            if (room.getType().equals(book.getRoomType())) {
-//                if (room.getAmount() >= book.getAmountOfRooms()) {
-//                    room.setAmount(room.getAmount() - book.getAmountOfRooms());
-//                    roomService.changeAmount(room.getType(), book.getAmountOfRooms());
-//                } else {
-//                    throw new NotEnoughFreePlacesException("Not Enough Free Places !");
-//                }
-//            } else {
-//                throw new RoomTypeNotFoundException("Room Type Not Found !");
-//            }
-//        }
-
-//        checkSave(book);
-//        List<Schedule> scheduleForUpdate = scheduleService.findByParamForBook(book.getDateIn(),
-//                                                                            book.getDateOut());
-//        for (Schedule schedule: scheduleForUpdate
-//             ) {
-//            scheduleService.update(schedule.setFree(schedule.getFree() - book.getAmountOfRooms()));
-//        }
-
         checkSave(book);
         bookCounterService.incrementCounter(1L);
         LOGGER.info("Book service:" + book);
-//        scheduleService.findByParamForBook(book.getDateIn(),book.getDateOut())
-//                .stream()
-//                .filter(schedule -> schedule.getRoomType().equals(book.getRoomType()))
-//                .forEach(schedule -> scheduleService.update(schedule.setFree(
-//                        schedule.getFree() - book.getAmountOfRooms()
-//                )));
-
-//        List<Schedule> schedules = scheduleService.findByParamForBook(book.getDateIn(),book.getDateOut(),book.getRoomType());
-//        for (Schedule s: schedules
-//             ) {
-//            LOGGER.warn(s);
-//            Integer old = scheduleService.findOneAvailable(s.getId()).getForSale();
-//            old -=book.getAmountOfRooms();
-//            scheduleService.update(s.setForSale(old));
-//            LOGGER.warn(s);
-//        }
         Integer amountFromBook = book.getAmountOfRooms();
-
-        scheduleService.findByParamForBook(book.getDateIn(),book.getDateOut(),book.getRoomType())
+        scheduleService.findByParamForBook(book.getDateIn(), book.getDateOut(), book.getRoomType())
                 .stream()
-                .peek(schedule -> schedule.setActive(schedule.getActive()+amountFromBook))
-                .peek(schedule -> schedule.setFree(schedule.getForSale()-schedule.getActive()))
+                .peek(schedule -> schedule.setActive(schedule.getActive() + amountFromBook))
+                .peek(schedule -> schedule.setFree(schedule.getForSale() - schedule.getActive()))
                 .forEach(schedule -> scheduleService.update(schedule));
-
         return bookRepository.save(generateUuid(book
                 .setAvailable(true)
                 .setBookingDay(Timestamp.valueOf(LocalDateTime.now()))
@@ -173,7 +101,6 @@ public class BookServiceImpl implements BookService {
     }
 
     /**
-     *
      * @param pageable
      * @return
      */
@@ -184,7 +111,6 @@ public class BookServiceImpl implements BookService {
     }
 
     /**
-     *
      * @param pageable
      * @return
      */

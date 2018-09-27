@@ -75,7 +75,7 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Override
     public Schedule update(Schedule schedule) {
         checkObjectExistsById(schedule.getId(),scheduleRepository);
-        Integer free = schedule.getFree() - schedule.getActive();
+        Integer free = schedule.getForSale() - schedule.getActive();
         return scheduleRepository.save(findOne(schedule.getId())
                     .setForSale(schedule.getForSale())
                     .setActive(schedule.getActive())

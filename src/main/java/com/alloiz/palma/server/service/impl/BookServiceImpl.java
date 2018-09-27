@@ -129,6 +129,10 @@ public class BookServiceImpl implements BookService {
         for (Schedule s: schedules
              ) {
             LOGGER.warn(s);
+            Integer old = scheduleService.findOneAvailable(s.getId()).getForSale();
+            old -=book.getAmountOfRooms();
+            scheduleService.update(s.setForSale(old));
+            LOGGER.warn(s);
         }
 
         return bookRepository.save(generateUuid(book

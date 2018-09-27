@@ -125,7 +125,7 @@ public class BookServiceImpl implements BookService {
 //                        schedule.getFree() - book.getAmountOfRooms()
 //                )));
 
-        List<Schedule> schedules = scheduleService.findByParamForBook(book.getDateIn(),book.getDateOut());
+        List<Schedule> schedules = scheduleService.findByParamForBook(book.getDateIn(),book.getDateOut(),book.getRoomType());
         for (Schedule s: schedules
              ) {
             LOGGER.warn(s);

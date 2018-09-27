@@ -63,16 +63,18 @@ public interface ScheduleRepository extends JpaRepository<Schedule,Long> {
 //    @Query("SELECT s FROM Schedule s " +
 //            "WHERE s.today BETWEEN :dateIn AND :dateOut"
 //    )
-//    List<Schedule> findRoomBetweenDate (@Param("dateIn") Timestamp dateIn,
+//    List<Schedule> findRoomBetweenDateWithRoomType (@Param("dateIn") Timestamp dateIn,
 //                                   @Param("dateOut") Timestamp dateOut
 //    );
 
     @Query("SELECT s FROM Schedule s " +
             "WHERE s.today >= :dateIn " +
-            "AND s.today <= :dateOut"
+            "AND s.today <= :dateOut " +
+            "AND s.roomType = :roomType"
     )
-    List<Schedule> findRoomBetweenDate (@Param("dateIn") Timestamp dateIn,
-                                        @Param("dateOut") Timestamp dateOut
+    List<Schedule> findRoomBetweenDateWithRoomType(@Param("dateIn") Timestamp dateIn,
+                                                   @Param("dateOut") Timestamp dateOut,
+                                                   @Param("roomType") RoomType roomType
     );
 
     @Query("SELECT s FROM Schedule s " +

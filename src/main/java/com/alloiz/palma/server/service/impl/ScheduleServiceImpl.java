@@ -126,8 +126,8 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
-    public List<Schedule> findByParamForBook(Timestamp dateIn, Timestamp dateOut){
-        return scheduleRepository.findRoomBetweenDate(dateIn,dateOut);
+    public List<Schedule> findByParamForBook(Timestamp dateIn, Timestamp dateOut, RoomType roomType){
+        return scheduleRepository.findRoomBetweenDateWithRoomType(dateIn,dateOut,roomType);
     }
 
     @Override

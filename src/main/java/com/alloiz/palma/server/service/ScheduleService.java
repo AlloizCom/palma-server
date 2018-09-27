@@ -36,7 +36,7 @@ public interface ScheduleService {
 
     List<Schedule> findAllByAvailableAndTodayAfterAndRoomType(Timestamp today, RoomType roomType);
 
-    List<Schedule> findByParamForBook(Timestamp dateIn, Timestamp dateOut);
+    List<Schedule> findByParamForBook(Timestamp dateIn, Timestamp dateOut, RoomType roomType);
 
     Boolean runBySchedule();
 }

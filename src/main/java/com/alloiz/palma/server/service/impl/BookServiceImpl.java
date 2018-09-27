@@ -137,7 +137,8 @@ public class BookServiceImpl implements BookService {
         Integer amountFromBook = book.getAmountOfRooms();
         scheduleService.findByParamForBook(book.getDateIn(),book.getDateOut(),book.getRoomType())
                 .stream()
-                .forEach(schedule -> schedule.setActive(schedule.getActive()+amountFromBook));
+                .forEach(schedule -> schedule.setActive(schedule.getActive()+amountFromBook)
+                .setForSale(schedule.getForSale()-amountFromBook));
 
         return bookRepository.save(generateUuid(book
                 .setAvailable(true)

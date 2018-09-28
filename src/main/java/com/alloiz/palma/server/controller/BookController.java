@@ -96,7 +96,7 @@ public class BookController {
                 .ok(map(bookService.update(map(book, Book.class)), BookDto.class));
     }
 
-    @PostMapping("/update")
+    @PostMapping("/cancel")
     private ResponseEntity<BookDto> cancelBook(@RequestBody BookDto book) {
         LOGGER.info("--------------------Cancel Book---------------------------");
         LOGGER.info(book);

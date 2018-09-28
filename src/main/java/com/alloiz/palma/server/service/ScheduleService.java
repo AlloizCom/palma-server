@@ -28,6 +28,8 @@ public interface ScheduleService {
 
     Schedule update(Schedule schedule);
 
+    Schedule updateAfterBooking(Schedule schedule);
+
     Boolean delete(Long id);
 
     List<Schedule> findAll(Pageable pageable);

@@ -84,6 +84,16 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
+    public Schedule updateAfterBooking(Schedule schedule) {
+        checkObjectExistsById(schedule.getId(),scheduleRepository);
+        return scheduleRepository.save(findOne(schedule.getId())
+                .setForSale(schedule.getForSale())
+                .setActive(schedule.getActive())
+                .setFree(schedule.getFree())
+                .setAvailable(schedule.getAvailable()));
+    }
+
+    @Override
     public Boolean delete(Long id) {
         try {
             scheduleRepository.delete(checkObjectExistsById(id, scheduleRepository));

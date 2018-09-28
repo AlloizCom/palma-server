@@ -5,10 +5,12 @@ import com.alloiz.palma.server.model.Callback;
 import com.alloiz.palma.server.service.utils.MailContentBuilder;
 import com.alloiz.palma.server.service.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
@@ -29,11 +31,14 @@ public class MailServiceImpl implements MailService {
 
     private String send(String mail, String title, String template, Map<String, Object> model) {
         String text = mailContentBuilder.getFreeMarkerTemplateContent(template, model);
+        FileSystemResource palmaImage = new FileSystemResource(new File("../resources/templates/pictures/palma-hotel-logo.svg"));
+        
         mailSender.send(mimeMessage -> {
             MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage, "UTF-8");
             messageHelper.setTo(mail);
             messageHelper.setSubject(title);
             messageHelper.setText(text, true);
+            messageHelper.addInline("palmaImage", palmaImage);
         });
         return text;
     }

@@ -22,6 +22,7 @@ public class MailServiceImpl implements MailService {
     private static final String ADMIN_MAIL = "admin@gmail.com";
     private static final String MODERATOR_MAIL = "moderator@gmail.com";
     private static final String TITLE = "Palma Hotel Lviv";
+    private static final String TITLE_FOR_ADMINISTRATOR = "Palmahotel.lviv.ua - Нове бронювання!";
 
     @Autowired
     private JavaMailSender mailSender;

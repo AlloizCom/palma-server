@@ -7,23 +7,29 @@
         p {margin-left: 120px; margin-bottom: 1px; margin-top: 1px}
         h3 {margin-left: 120px; margin-bottom: 1px; margin-top: 1px}
         hr {height:3px; border-width:0; color:#53D7B7; background-color:#53D7B7}
+        .logo {width: 250px; margin-left: 250px; margin-top: 25px; margin-bottom: 25px}
+        .icon {width: 15px; margin-left: 10px;}
     </style>
 </head>
 <body>
+<hr>
 <h3>Підтвердження бронювання: ${dateIn} - ${dateOut}</h3>
+
+<img class="logo" src="cid:palmaLogoImage"></img>
+
 <p>Дякуємо, ${firstName} ${lastName}!</p>
 <p>Ваші бронювання в Арт Готелі “Пальма” підтверджено.</p>
-
+<br>
 <table border="0" style="margin:0; padding:0;" width="75%">
 
+    <br>
     <p>Art Hotel “Palma”, Lviv</p>
     <p>Україна, м. Львів, вул. Богданівська, 44 - Показати маршрут (тут можна щоб йому проклало маршрут)</p>
     <p>Телефон:</p>
     <p>+38 032 291 78 74</p>
-    <p>+38 067 19 444 00</p>
+    <p>+38 067 19 444 00 <img class="icon" src="cid:viber"><img class="icon" src="cid:whatsup"><img class="icon" src="cid:telegram"> </p>
     <p> +38 093 43 444 00</p>
-
-
+    <br>
     <p>Ваше бронювання:	Тип кімнати: ${roomType}, ${amountOfRoom} номер</p>
     <p>Ваша група: дорослих: ${adults}, дітей: ${kids}</p>
     <p>Заїзд ${dateIn} (з 14:00)</p>
@@ -34,9 +40,10 @@
     <p>(Час всюди вказано за місцевим часом міста Львів.)</p>
 
     <p>Скасувати бронювання</p>
-
+    <br>
     <p>Особливі побажання</p>
     <p>${message}</p>
+    <br>
     <p>Правила проживання в апартаментах</p>
     <p>-	Порядок ануляції бронювання</p>
     <p>Ви можете безкоштовно скасувати бронювання безпосередньо за 7 днів до заїзду. З вас буде стягнуто загальна вартість якщо ви скасуєте протягом 7 днів до заїзду.</p>
@@ -50,5 +57,6 @@
     Телефон: +38 032 291 78 74, +38 067 19 444 00, +38 093 43 444 00</p>
 
 </table>
+<hr>
 </body>
 </html>

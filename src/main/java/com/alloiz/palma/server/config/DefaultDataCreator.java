@@ -1,9 +1,7 @@
 package com.alloiz.palma.server.config;
 
-import com.alloiz.palma.server.service.BookCounterService;
-import com.alloiz.palma.server.service.CallbackCounterService;
-import com.alloiz.palma.server.service.TariffService;
-import com.alloiz.palma.server.service.UserEntityService;
+import com.alloiz.palma.server.model.Book;
+import com.alloiz.palma.server.service.*;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
@@ -34,6 +32,7 @@ public class DefaultDataCreator {
 
     @Autowired
     private TariffService tariffService;
+
 
     /**
      * This method starts once after server was run,

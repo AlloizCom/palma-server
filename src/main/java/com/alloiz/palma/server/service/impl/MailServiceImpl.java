@@ -1,26 +1,22 @@
 package com.alloiz.palma.server.service.impl;
 
 import com.alloiz.palma.server.model.Book;
-import com.alloiz.palma.server.model.Callback;
 import com.alloiz.palma.server.service.utils.MailContentBuilder;
 import com.alloiz.palma.server.service.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
-import java.io.File;
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 
 @Service
 public class MailServiceImpl implements MailService {
 
-    private static final String ADMIN_MAIL = "palmalviv@gmail.com";
+//    private static final String ADMIN_MAIL = "palmalviv@gmail.com";
+private static final String ADMIN_MAIL = "bohdanrud5180@gmail.com";
     private static final String TITLE_FOR_ADMINISTRATOR = "Palmahotel.lviv.ua - Нове бронювання!";
     private static final String TITLE_FOR_CLIENT = "Art Hotel “Palma”: бронювання підтверджено!";
 
@@ -30,16 +26,24 @@ public class MailServiceImpl implements MailService {
     @Autowired
     private MailContentBuilder mailContentBuilder;
 
-    private String send(String mail, String title, String template, Map<String, Object> model) {
+    private String sendForClient(String mail, String title, String template, Map<String, Object> model, Boolean forClient) {
         String text = mailContentBuilder
                 .getFreeMarkerTemplateContent(template, model);
-        FileSystemResource palmaImage = new FileSystemResource(new File("../resources/templates/pictures/palma-hotel-logo.svg"));
         mailSender.send(mimeMessage -> {
-            MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage, "UTF-8");
+            MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage, true);
             messageHelper.setTo(mail);
             messageHelper.setSubject(title);
             messageHelper.setText(text, true);
-            messageHelper.addInline("palmaImage", palmaImage);
+            if (forClient){
+                messageHelper.addInline("palmaLogoImage",
+                        new ClassPathResource("/templates/pictures/palma-hotel-logo.jpg"));
+                messageHelper.addInline("viber",
+                        new ClassPathResource("/templates/pictures/viber.png"));
+                messageHelper.addInline("whatsup",
+                        new ClassPathResource("/templates/pictures/whatsup.png"));
+                messageHelper.addInline("telegram",
+                        new ClassPathResource("/templates/pictures/telegram.png"));
+            }
         });
         return text;
     }
@@ -62,8 +66,9 @@ public class MailServiceImpl implements MailService {
         map.put("message", book.getMessage());
         map.put("bookingDay", book.getBookingDay());
         map.put("orderStatus", book.getOrderStatus());
-        send(ADMIN_MAIL,TITLE_FOR_ADMINISTRATOR + " " + from + " " + to,"letterForAdministrator.html",map);
-        send(book.getEmail(),TITLE_FOR_CLIENT,"letterForClient.html",map);
+        sendForClient(ADMIN_MAIL,TITLE_FOR_ADMINISTRATOR + " " + from + " " + to,"letterForAdministrator.html",map,false);
+        sendForClient(book.getEmail(),TITLE_FOR_CLIENT,"letterForClient.html",map,true);
+
     }
 
 }

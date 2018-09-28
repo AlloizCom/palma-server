@@ -1,13 +1,16 @@
 package com.alloiz.palma.server.model;
 
 import com.alloiz.palma.server.model.enums.Role;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import java.util.Collection;
 
 @Entity
-public class UserEntity extends BaseEntity<UserEntity>{
+public class UserEntity extends BaseEntity<UserEntity> implements UserDetails {
     private String firstName;
     private String lastName;
     private String login;
@@ -45,8 +48,38 @@ public class UserEntity extends BaseEntity<UserEntity>{
         return this;
     }
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
     public String getPassword() {
         return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return null;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return false;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return false;
     }
 
     public UserEntity setPassword(String password) {

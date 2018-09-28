@@ -135,6 +135,22 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    public Book cancelBook(Book book){
+        checkObjectExistsById(book.getId(),bookRepository);
+        LOGGER.info("Book service 'CANCEL':" + book);
+        Integer amountFromBook = book.getAmountOfRooms();
+        scheduleService.findByParamForBook(book.getDateIn(), book.getDateOut(), book.getRoomType())
+                .stream()
+                .peek(schedule -> schedule.setActive(schedule.getActive() - amountFromBook))
+                .peek(schedule -> schedule.setFree(schedule.getForSale() - schedule.getActive()))
+                .forEach(schedule -> scheduleService.updateAfterBooking(schedule));
+        return bookRepository.save(generateUuid(book
+                .setAvailable(true)
+                .setOrderStatus(OrderStatus.CANCELED)
+        ));
+    }
+
+    @Override
     public Book changeStatus(Long id, OrderStatus orderStatus) {
         Book book = findOne(id);
         book.setOrderStatus(orderStatus);

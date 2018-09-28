@@ -28,5 +28,7 @@ public interface BookService {
 
     BookByPage findAllByAvailable(Pageable pageable);
 
+    Book cancelBook(Book book);
+
     Book changeStatus(Long id, OrderStatus orderStatus);
 }

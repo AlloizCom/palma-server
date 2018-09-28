@@ -36,14 +36,21 @@ public class ScheduleController {
     @GetMapping("/find-all")
     private ResponseEntity<List<ScheduleDto>> findAll() {
         return ResponseEntity.ok(scheduleService.findAll().stream()
-                .map(callback -> map(callback, ScheduleDto.class))
+                .map(schedule -> map(schedule, ScheduleDto.class))
                 .collect(Collectors.toList()));
     }
 
     @GetMapping("/find-all-available")
     private ResponseEntity<List<ScheduleDto>> findAllAvailable() {
         return ResponseEntity.ok(scheduleService.findAllAvailable().stream()
-                .map(callback -> map(callback, ScheduleDto.class))
+                .map(schedule -> map(schedule, ScheduleDto.class))
+                .collect(Collectors.toList()));
+    }
+
+    @GetMapping("/find-all-archived")
+    private ResponseEntity<List<ScheduleDto>> findAllArchived() {
+        return ResponseEntity.ok(scheduleService.findAllArchived().stream()
+                .map(schedule -> map(schedule, ScheduleDto.class))
                 .collect(Collectors.toList()));
     }
 

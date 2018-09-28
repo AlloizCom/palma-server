@@ -39,6 +39,11 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
+    public List<Schedule> findAllArchived() {
+        return scheduleRepository.findAllByAvailable(false);
+    }
+
+    @Override
     public Schedule findOne(Long id) {
         checkId(id);
         return scheduleRepository.findOne(id);

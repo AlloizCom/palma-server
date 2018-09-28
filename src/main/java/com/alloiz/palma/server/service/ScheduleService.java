@@ -14,6 +14,8 @@ public interface ScheduleService {
 
     List<Schedule> findAllAvailable();
 
+    List<Schedule> findAllArchived();
+
     Schedule findOne(Long id);
 
     List<Schedule> findAll();

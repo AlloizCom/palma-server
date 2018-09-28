@@ -11,6 +11,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
@@ -19,10 +20,9 @@ import java.util.Map;
 @Service
 public class MailServiceImpl implements MailService {
 
-    private static final String ADMIN_MAIL = "admin@gmail.com";
-    private static final String MODERATOR_MAIL = "moderator@gmail.com";
-    private static final String TITLE = "Palma Hotel Lviv";
+    private static final String ADMIN_MAIL = "palmalviv@gmail.com";
     private static final String TITLE_FOR_ADMINISTRATOR = "Palmahotel.lviv.ua - Нове бронювання!";
+    private static final String TITLE_FOR_CLIENT = "Art Hotel “Palma”: бронювання підтверджено!";
 
     @Autowired
     private JavaMailSender mailSender;
@@ -31,9 +31,9 @@ public class MailServiceImpl implements MailService {
     private MailContentBuilder mailContentBuilder;
 
     private String send(String mail, String title, String template, Map<String, Object> model) {
-        String text = mailContentBuilder.getFreeMarkerTemplateContent(template, model);
+        String text = mailContentBuilder
+                .getFreeMarkerTemplateContent(template, model);
         FileSystemResource palmaImage = new FileSystemResource(new File("../resources/templates/pictures/palma-hotel-logo.svg"));
-        
         mailSender.send(mimeMessage -> {
             MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage, "UTF-8");
             messageHelper.setTo(mail);
@@ -45,40 +45,9 @@ public class MailServiceImpl implements MailService {
     }
 
     @Override
-    public Callback sendCallback(Callback callback) {
-        Map<String, Object> map = new HashMap<>();
-        map.put("email", callback.getEmail());
-        map.put("phone", callback.getPhone());
-        map.put("datetime", LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy о hh:mm:ss")));
-        send("some@gmail.com", "Title", "callbackLetter.html", map);
-        send(callback.getEmail(), "Title", "supportUser.html", map);
-        return callback;
-    }
-
-    @Override
-    public String getAdminMail(){
-        return ADMIN_MAIL;
-    }
-
-    @Override
-    public String getModeratorMail(){
-        return MODERATOR_MAIL;
-    }
-
-    @Override
-    public void sendCallbackLetterForStuff(Callback callback) {
-        Map<String, Object> map = new HashMap<>();
-        map.put("email", callback.getEmail());
-        map.put("phone", callback.getPhone());
-        map.put("datetime", LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy о hh:mm:ss")));
-        map.put("message",callback.getMessage());
-//        send(ADMIN_MAIL,TITLE,"callbackLetter.html",map);
-//        send(MODERATOR_MAIL,TITLE,"callbackLetter.html",map);
-        send("xandriy58@gmail.com",TITLE,"callbackLetter.html",map);
-    }
-
-    @Override
     public void sendBookMailForStuffAndUser(Book book){
+        String from = book.getDateIn().toString();
+        String to = book.getDateIn().toString();
         Map<String, Object> map = new HashMap<>();
         map.put("lastName", book.getLastName());
         map.put("firstName", book.getFirstName());
@@ -93,9 +62,8 @@ public class MailServiceImpl implements MailService {
         map.put("message", book.getMessage());
         map.put("bookingDay", book.getBookingDay());
         map.put("orderStatus", book.getOrderStatus());
-        send(ADMIN_MAIL,TITLE,"bookForStuff.html",map);
-        send(MODERATOR_MAIL,TITLE,"bookForStuff.html",map);
-        send(book.getEmail(),TITLE,"bookForUser.html",map);
+        send(ADMIN_MAIL,TITLE_FOR_ADMINISTRATOR + " " + from + " " + to,"letterForAdministrator.html",map);
+        send(book.getEmail(),TITLE_FOR_CLIENT,"letterForClient.html",map);
     }
 
 }

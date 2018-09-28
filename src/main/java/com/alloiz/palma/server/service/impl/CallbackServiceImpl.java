@@ -29,9 +29,6 @@ public class CallbackServiceImpl implements CallbackService {
     @Autowired
     private CallbackCounterService callbackCounterService;
 
-    @Autowired
-    private MailService mailService;
-
     private static final Logger LOGGER = Logger.getLogger(CallbackServiceImpl.class);
 
     @Override
@@ -60,7 +57,6 @@ public class CallbackServiceImpl implements CallbackService {
     public Callback save(Callback callback) {
         checkSave(callback);
         LOGGER.info(callback);
-        mailService.sendCallbackLetterForStuff(callback);
         callbackCounterService.incrementCounter(1L);
         Callback callbackSave = callbackRepository.save(callback
                 .setDateTime(Timestamp.valueOf(LocalDateTime.now()))

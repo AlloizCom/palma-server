@@ -69,7 +69,7 @@ public class BookServiceImpl implements BookService {
                 .stream()
                 .peek(schedule -> schedule.setActive(schedule.getActive() + amountFromBook))
                 .peek(schedule -> schedule.setFree(schedule.getForSale() - schedule.getActive()))
-                .forEach(schedule -> scheduleService.update(schedule));
+                .forEach(schedule -> scheduleService.updateAfterBooking(schedule));
         return bookRepository.save(generateUuid(book
                 .setAvailable(true)
                 .setBookingDay(Timestamp.valueOf(LocalDateTime.now()))

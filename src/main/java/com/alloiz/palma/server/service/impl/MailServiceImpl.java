@@ -1,6 +1,7 @@
 package com.alloiz.palma.server.service.impl;
 
 import com.alloiz.palma.server.model.Book;
+import com.alloiz.palma.server.model.enums.Language;
 import com.alloiz.palma.server.service.utils.MailChecker;
 import com.alloiz.palma.server.service.utils.MailContentBuilder;
 import com.alloiz.palma.server.service.MailService;
@@ -50,14 +51,24 @@ private static final String ADMIN_MAIL = "bohdanrud5180@gmail.com";
     }
 
     @Override
-    public void sendBookMailForStuffAndUser(Book book){
+    public void sendBookMailForStuffAndUser(Book book, Language language){
         String from = book.getDateIn().toString();
         String to = book.getDateIn().toString();
         Map<String, Object> map = MailChecker.checkNull(book);
 
         sendForClient(ADMIN_MAIL,TITLE_FOR_ADMINISTRATOR + " " + from + " " + to,"letterForAdministrator.html",map,false);
-        sendForClient(book.getEmail(),TITLE_FOR_CLIENT,"letterForClientUk.html",map,true);
-
+        if (language.equals(Language.UK)){
+            sendForClient(book.getEmail(),TITLE_FOR_CLIENT,"letterForClientUk.html",map,true);
+        }
+        if (language.equals(Language.EN)){
+            sendForClient(book.getEmail(),TITLE_FOR_CLIENT,"letterForClientEn.html",map,true);
+        }
+        if (language.equals(Language.PL)){
+            sendForClient(book.getEmail(),TITLE_FOR_CLIENT,"letterForClientPl.html",map,true);
+        }
+        if (language.equals(Language.RU)){
+            sendForClient(book.getEmail(),TITLE_FOR_CLIENT,"letterForClientRu.html",map,true);
+        }
     }
 
 }

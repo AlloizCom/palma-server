@@ -81,7 +81,19 @@ public class BookServiceImpl implements BookService {
         checkObjectExistsById(book.getId(), bookRepository);
         return bookRepository.save(findOne(book.getId())
                 .setOrderStatus(book.getOrderStatus())
-                .setAvailable(book.getAvailable()));
+                .setAvailable(book.getAvailable())
+                .setBookingDay(book.getBookingDay())
+                .setUuid(book.getUuid())
+                .setEmail(book.getEmail())
+                .setAdults(book.getAdults())
+                .setDateIn(book.getDateIn())
+                .setDateOut(book.getDateOut())
+                .setFirstName(book.getFirstName())
+                .setLastName(book.getLastName())
+                .setKids(book.getKids())
+                .setPhoneNumber(book.getPhoneNumber())
+                .setMessage(book.getMessage())
+        );
     }
 
     @Override

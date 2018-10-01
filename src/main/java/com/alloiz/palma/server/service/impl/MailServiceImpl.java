@@ -67,7 +67,7 @@ private static final String ADMIN_MAIL = "bohdanrud5180@gmail.com";
         map.put("bookingDay", book.getBookingDay());
         map.put("orderStatus", book.getOrderStatus());
         sendForClient(ADMIN_MAIL,TITLE_FOR_ADMINISTRATOR + " " + from + " " + to,"letterForAdministrator.html",map,false);
-        sendForClient(book.getEmail(),TITLE_FOR_CLIENT,"letterForClient.html",map,true);
+        sendForClient(book.getEmail(),TITLE_FOR_CLIENT,"letterForClientUk.html",map,true);
 
     }
 

@@ -3,6 +3,7 @@ package com.alloiz.palma.server.controller;
 import com.alloiz.palma.server.dto.BookByPage;
 import com.alloiz.palma.server.dto.BookDto;
 import com.alloiz.palma.server.model.Book;
+import com.alloiz.palma.server.model.enums.Language;
 import com.alloiz.palma.server.model.enums.OrderStatus;
 import com.alloiz.palma.server.service.BookService;
 import com.alloiz.palma.server.service.PayService;
@@ -72,10 +73,12 @@ public class BookController {
                 .findAllByAvailable(new PageRequest(page, count)));
     }
 
-    @PostMapping("/save")
-    private ResponseEntity<BookDto> save(@RequestBody BookDto book) {
+    @PostMapping("/save/{language}")
+    private ResponseEntity<BookDto> save(@RequestBody BookDto book,
+                                         @PathVariable Language language) {
         LOGGER.info("---------------------------Book---------------------------");
         LOGGER.info(book);
+        LOGGER.info(language);
         LOGGER.info("---------------------------Book---------------------------");
         return ResponseEntity
                 .ok(map(bookService.save(map(book, Book.class)), BookDto.class));

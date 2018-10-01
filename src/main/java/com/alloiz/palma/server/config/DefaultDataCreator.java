@@ -78,11 +78,11 @@ public class DefaultDataCreator {
             LOGGER.warn(">>>---Default tariffs already exist---");
         }
         LOGGER.warn("----------------------------------");
-        Book book = new Book();
-        book.setBookingDay(Timestamp.valueOf(LocalDateTime.now()));
-        book.setDateIn(Timestamp.valueOf(LocalDateTime.now()));
-        book.setDateOut(Timestamp.valueOf(LocalDateTime.now()));
-        book.setEmail("bohdanrud5180@gmail.com");
-        mailService.sendBookMailForStuffAndUser(book,Language.EN);
+//        Book book = new Book();
+//        book.setBookingDay(Timestamp.valueOf(LocalDateTime.now()));
+//        book.setDateIn(Timestamp.valueOf(LocalDateTime.now()));
+//        book.setDateOut(Timestamp.valueOf(LocalDateTime.now()));
+//        book.setEmail("mail@gmail.com");
+//        mailService.sendBookMailForStuffAndUser(book,Language.EN);
     }
 }

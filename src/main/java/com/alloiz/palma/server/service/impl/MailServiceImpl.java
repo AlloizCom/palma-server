@@ -17,10 +17,9 @@ import java.util.Map;
 @Service
 public class MailServiceImpl implements MailService {
 
-//    private static final String ADMIN_MAIL = "palmalviv@gmail.com";
-private static final String ADMIN_MAIL = "bohdanrud5180@gmail.com";
-    private static final String TITLE_FOR_ADMINISTRATOR = "Palmahotel.lviv.ua - Нове бронювання!";
-    private static final String TITLE_FOR_CLIENT = "Art Hotel “Palma”: бронювання підтверджено!";
+    private static final String ADMIN_MAIL = "palmalviv@gmail.com";
+    private static final String TITLE_FOR_ADMINISTRATOR = "Palmahotel.lviv.ua - Нове бронювання! ";
+    private static final String TITLE_FOR_CLIENT = "Art Hotel “Palma”: бронювання підтверджено! ";
     private String titleDate = "";
 
     @Autowired

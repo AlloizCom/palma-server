@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,6 +23,12 @@ public class UserEntityController {
 
     @Autowired
     private UserEntityService userEntityService;
+
+    @GetMapping
+    private ResponseEntity<UserEntityDto> getUser(Principal principal) {
+        LOGGER.info(userEntityService.findByLogin(principal.getName()));
+        return ResponseEntity.ok(map(userEntityService.findByLogin(principal.getName()), UserEntityDto.class));
+    }
 
     @GetMapping("/find-all")
     private ResponseEntity<List<UserEntityDto>> findAll() {

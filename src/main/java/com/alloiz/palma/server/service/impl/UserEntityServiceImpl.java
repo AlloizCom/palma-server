@@ -108,4 +108,10 @@ public class UserEntityServiceImpl implements UserEntityService {
         }
         return false;
     }
+
+    @Override
+    public UserEntity findByLogin(String login) {
+        checkString(login);
+        return userEntityRepository.findByLogin(login);
+    }
 }

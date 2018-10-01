@@ -5,19 +5,21 @@ import com.alloiz.palma.server.model.UserEntity;
 import java.util.List;
 
 public interface UserEntityService {
-        UserEntity findOneAvailable(Long id);
+    UserEntity findOneAvailable(Long id);
 
-        List<UserEntity> findAllAvailable();
+    List<UserEntity> findAllAvailable();
 
-        UserEntity findOne(Long id);
+    UserEntity findOne(Long id);
 
-        List<UserEntity> findAll();
+    List<UserEntity> findAll();
 
-        UserEntity save(UserEntity userEntity);
+    UserEntity save(UserEntity userEntity);
 
-        UserEntity update(UserEntity update);
+    UserEntity update(UserEntity update);
 
-        Boolean delete(Long id);
+    Boolean delete(Long id);
 
-        Boolean createDefaultUser();
+    Boolean createDefaultUser();
+
+    UserEntity findByLogin(String login);
 }

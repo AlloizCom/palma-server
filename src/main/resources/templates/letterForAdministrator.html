@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <style>
-        body {background-color: #F8F6F6}
+        table {background-color: #F8F6F6}
         p {margin-left: 120px; margin-bottom: 1px; margin-top: 1px}
         h3 {margin-left: 120px; margin-bottom: 1px; margin-top: 1px}
         hr {height:3px; border-width:0; color:#53D7B7; background-color:#53D7B7}
@@ -11,10 +11,11 @@
 </head>
 <body>
 <hr>
-    <h3>Підтвердження бронювання: ${dateIn} - ${dateOut}</h3>
-    <p>Щойно надійшло нове бронювання, оформлене через сайт Palmahotel.lviv.ua</p>
-    <p>Дані нового бронювання:</p>
+
     <table border="0" style="margin:0; padding:0;" width="75%">
+        <h3>Підтвердження бронювання: ${dateIn} - ${dateOut}</h3><br>
+        <p>Щойно надійшло нове бронювання, оформлене через сайт Palmahotel.lviv.ua</p><br>
+        <p>Дані нового бронювання:</p><br>
         <tr style="width: 25%; text-align: left"><p>Ім'я name: ${firstName}</p></tr> <br>
         <tr style="width: 25%; text-align: left"><p>Прізвище: ${lastName}</p></tr> <br>
         <tr style="width: 25%; text-align: left"><p>Телефон: ${phone}</p></tr> <br>

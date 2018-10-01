@@ -77,4 +77,18 @@ public class MailChecker {
         }
         return map;
     }
+
+    public static String formatDateForTitle (Book book){
+        String bookingDate = book.getBookingDay().toString().substring(0,18);
+        String from = book.getDateIn().toString().substring(0,10);
+        String to = book.getDateOut().toString().substring(0,10);
+        String dateForTitle = " ("
+                .concat(bookingDate)
+                .concat(")")
+                .concat(" від ")
+                .concat(from)
+                .concat(" до ")
+                .concat(to);
+        return dateForTitle;
+    }
 }

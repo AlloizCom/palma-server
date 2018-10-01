@@ -1,6 +1,7 @@
 package com.alloiz.palma.server.config;
 
 import com.alloiz.palma.server.model.Book;
+import com.alloiz.palma.server.model.enums.Language;
 import com.alloiz.palma.server.service.*;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,8 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 /**
  * Default data creator
@@ -36,6 +39,8 @@ public class DefaultDataCreator {
     @Autowired
     private MailService mailService;
 
+    @Autowired
+    private BookService bookService;
 
     /**
      * This method starts once after server was run,
@@ -73,7 +78,11 @@ public class DefaultDataCreator {
             LOGGER.warn(">>>---Default tariffs already exist---");
         }
         LOGGER.warn("----------------------------------");
-//        Book book = new Book();
-//        mailService.sendBookMailForStuffAndUser(book);
+        Book book = new Book();
+        book.setBookingDay(Timestamp.valueOf(LocalDateTime.now()));
+        book.setDateIn(Timestamp.valueOf(LocalDateTime.now()));
+        book.setDateOut(Timestamp.valueOf(LocalDateTime.now()));
+        book.setEmail("bohdanrud5180@gmail.com");
+        mailService.sendBookMailForStuffAndUser(book,Language.EN);
     }
 }

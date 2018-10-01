@@ -21,6 +21,7 @@ public class MailServiceImpl implements MailService {
 private static final String ADMIN_MAIL = "bohdanrud5180@gmail.com";
     private static final String TITLE_FOR_ADMINISTRATOR = "Palmahotel.lviv.ua - Нове бронювання!";
     private static final String TITLE_FOR_CLIENT = "Art Hotel “Palma”: бронювання підтверджено!";
+    private String titleDate = "";
 
     @Autowired
     private JavaMailSender mailSender;
@@ -52,11 +53,10 @@ private static final String ADMIN_MAIL = "bohdanrud5180@gmail.com";
 
     @Override
     public void sendBookMailForStuffAndUser(Book book, Language language){
-        String from = book.getDateIn().toString();
-        String to = book.getDateIn().toString();
+        titleDate = MailChecker.formatDateForTitle(book);
         Map<String, Object> map = MailChecker.checkNull(book);
 
-        sendForClient(ADMIN_MAIL,TITLE_FOR_ADMINISTRATOR + " " + from + " " + to,"letterForAdministrator.html",map,false);
+        sendForClient(ADMIN_MAIL,TITLE_FOR_ADMINISTRATOR + titleDate,"letterForAdministrator.html",map,false);
         if (language.equals(Language.UK)){
             sendForClient(book.getEmail(),TITLE_FOR_CLIENT,"letterForClientUk.html",map,true);
         }

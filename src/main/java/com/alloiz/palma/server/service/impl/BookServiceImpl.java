@@ -8,6 +8,7 @@ import com.alloiz.palma.server.model.enums.OrderStatus;
 import com.alloiz.palma.server.repository.BookRepository;
 import com.alloiz.palma.server.service.BookCounterService;
 import com.alloiz.palma.server.service.BookService;
+import com.alloiz.palma.server.service.MailService;
 import com.alloiz.palma.server.service.ScheduleService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,8 @@ public class BookServiceImpl implements BookService {
     @Autowired
     private BookCounterService bookCounterService;
 
+    @Autowired
+    private MailService mailService;
 
     @Override
     public Book findOneAvailable(Long id) {
@@ -71,6 +74,7 @@ public class BookServiceImpl implements BookService {
                 .peek(schedule -> schedule.setActive(schedule.getActive() + amountFromBook))
                 .peek(schedule -> schedule.setFree(schedule.getForSale() - schedule.getActive()))
                 .forEach(schedule -> scheduleService.updateAfterBooking(schedule));
+        //mailService.sendBookMailForStuffAndUser(book,language);
         return bookRepository.save(generateUuid(book
                 .setAvailable(true)
                 .setBookingDay(Timestamp.valueOf(LocalDateTime.now()))

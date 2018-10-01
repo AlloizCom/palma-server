@@ -3,6 +3,7 @@ package com.alloiz.palma.server.service.impl;
 import com.alloiz.palma.server.dto.BookByPage;
 import com.alloiz.palma.server.dto.BookDto;
 import com.alloiz.palma.server.model.Book;
+import com.alloiz.palma.server.model.enums.Language;
 import com.alloiz.palma.server.model.enums.OrderStatus;
 import com.alloiz.palma.server.repository.BookRepository;
 import com.alloiz.palma.server.service.BookCounterService;
@@ -60,7 +61,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Book save(Book book) {
+    public Book save(Book book, Language language) {
         checkSave(book);
         bookCounterService.incrementCounter(1L);
         LOGGER.info("Book service:" + book);

@@ -2,6 +2,7 @@ package com.alloiz.palma.server.service;
 
 import com.alloiz.palma.server.dto.BookByPage;
 import com.alloiz.palma.server.model.Book;
+import com.alloiz.palma.server.model.enums.Language;
 import com.alloiz.palma.server.model.enums.OrderStatus;
 import org.springframework.data.domain.Pageable;
 
@@ -16,7 +17,7 @@ public interface BookService {
 
     List<Book> findAll();
 
-    Book save(Book book);
+    Book save(Book book, Language language);
 
     Book update(Book update);
 

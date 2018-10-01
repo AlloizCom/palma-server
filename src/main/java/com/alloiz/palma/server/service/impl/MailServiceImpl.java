@@ -1,6 +1,7 @@
 package com.alloiz.palma.server.service.impl;
 
 import com.alloiz.palma.server.model.Book;
+import com.alloiz.palma.server.service.utils.MailChecker;
 import com.alloiz.palma.server.service.utils.MailContentBuilder;
 import com.alloiz.palma.server.service.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,20 +53,8 @@ private static final String ADMIN_MAIL = "bohdanrud5180@gmail.com";
     public void sendBookMailForStuffAndUser(Book book){
         String from = book.getDateIn().toString();
         String to = book.getDateIn().toString();
-        Map<String, Object> map = new HashMap<>();
-        map.put("lastName", book.getLastName());
-        map.put("firstName", book.getFirstName());
-        map.put("phone", book.getPhoneNumber());
-        map.put("email", book.getEmail());
-        map.put("dateIn", book.getDateIn());
-        map.put("dateOut", book.getDateOut());
-        map.put("roomType", book.getRoomType());
-        map.put("amountOfRoom", book.getAmountOfRooms());
-        map.put("adults", book.getAdults());
-        map.put("kids", book.getKids());
-        map.put("message", book.getMessage());
-        map.put("bookingDay", book.getBookingDay());
-        map.put("orderStatus", book.getOrderStatus());
+        Map<String, Object> map = MailChecker.checkNull(book);
+
         sendForClient(ADMIN_MAIL,TITLE_FOR_ADMINISTRATOR + " " + from + " " + to,"letterForAdministrator.html",map,false);
         sendForClient(book.getEmail(),TITLE_FOR_CLIENT,"letterForClientUk.html",map,true);
 

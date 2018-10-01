@@ -33,6 +33,9 @@ public class DefaultDataCreator {
     @Autowired
     private TariffService tariffService;
 
+    @Autowired
+    private MailService mailService;
+
 
     /**
      * This method starts once after server was run,
@@ -70,5 +73,7 @@ public class DefaultDataCreator {
             LOGGER.warn(">>>---Default tariffs already exist---");
         }
         LOGGER.warn("----------------------------------");
+//        Book book = new Book();
+//        mailService.sendBookMailForStuffAndUser(book);
     }
 }

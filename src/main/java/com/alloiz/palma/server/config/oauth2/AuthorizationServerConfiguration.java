@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.security.authentication.AuthenticationManager;
-
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
@@ -53,8 +52,8 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
                 .authorities("ROLE_TRUSTED_CLIENT")
                 .scopes("read", "write")
                 .resourceIds(RESOURCE_ID)
-                .secret("secret_010server.com");
-               // .accessTokenValiditySeconds(accessTokenValiditySeconds);
+                .secret("secret_palmaserver.com")
+                .accessTokenValiditySeconds(accessTokenValiditySeconds);
     }
 
     /**
@@ -62,6 +61,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
      * information (in both directions). Also acts as a TokenEnhancer when tokens are granted.
      */
     @Bean
+    @Primary
     public JwtAccessTokenConverter accessTokenConverter() {
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
         converter.setSigningKey("123");
@@ -72,6 +72,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
      * Persistence bean for OAuth2 tokens.
      */
     @Bean
+    @Primary
     public TokenStore tokenStore() {
         return new JwtTokenStore(accessTokenConverter());
     }

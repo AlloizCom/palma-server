@@ -6,6 +6,9 @@ import com.alloiz.palma.server.service.UserEntityService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -14,11 +17,12 @@ import java.util.stream.Collectors;
 
 import static com.alloiz.palma.server.dto.utils.builder.Builder.map;
 
+@EnableResourceServer
 @RestController
 @RequestMapping("/user")
 public class UserEntityController {
 
-    private static final Logger LOGGER = Logger.getLogger(UserEntity.class);
+    private static final Logger LOGGER = Logger.getLogger(UserEntityController.class);
 
 
     @Autowired
@@ -26,8 +30,18 @@ public class UserEntityController {
 
     @GetMapping
     private ResponseEntity<UserEntityDto> getUser(Principal principal) {
-        LOGGER.info(userEntityService.findByLogin(principal.getName()));
-        return ResponseEntity.ok(map(userEntityService.findByLogin(principal.getName()), UserEntityDto.class));
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        LOGGER.info(authentication == null);
+        LOGGER.info(principal == null);
+        if (authentication == null)
+            return ResponseEntity.ok(null);
+//        if (principal == null)
+//            return ResponseEntity.ok(null);
+        LOGGER.info(authentication.toString());
+        LOGGER.info(authentication.getName());
+        LOGGER.info(userEntityService.findByLogin(authentication.getName()));
+        return ResponseEntity.ok(map(userEntityService.findByLogin(authentication.getName()), UserEntityDto.class));
     }
 
     @GetMapping("/find-all")

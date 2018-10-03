@@ -35,10 +35,118 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
                 .antMatchers("/img/**").permitAll()
                 .antMatchers("/oauth/token").permitAll()
 
-                .antMatchers(HttpMethod.POST, "/**").authenticated()
-                .antMatchers(HttpMethod.DELETE, "/**").authenticated()
+//                // AMENITY
+//                .antMatchers(HttpMethod.POST, "/amenity/**").hasAnyAuthority("ADMIN")
+//                .antMatchers(HttpMethod.DELETE, "/amenity/**").hasAnyAuthority("ADMIN")
+//
+//                // BOOK
+//                .antMatchers(HttpMethod.POST, "//**").authenticated()
+//                .antMatchers(HttpMethod.DELETE, "//**").authenticated()
+//
+//                // BOOK_COUNTER
+//                .antMatchers(HttpMethod.POST, "/counter/**").authenticated()
+//                .antMatchers(HttpMethod.DELETE, "/counter/**").authenticated()
+//
+//                // CALLBACK
+//                .antMatchers(HttpMethod.POST, "/callback/**").authenticated()
+//                .antMatchers(HttpMethod.DELETE, "/callback/**").authenticated()
+//
+//                //CALLBACK-COUNTER
+//                .antMatchers(HttpMethod.POST, "/callback-gcounter/**").authenticated()
+//                .antMatchers(HttpMethod.DELETE, "/callback-gcounter/**").authenticated()
+//
+//                // MAIN
+//                .antMatchers(HttpMethod.POST, "/main/**").hasAnyAuthority("ADMIN")
+//                .antMatchers(HttpMethod.DELETE, "/main/**").hasAnyAuthority("ADMIN")
+//
+//                //NEWS
+//                .antMatchers(HttpMethod.POST, "/news/**").hasAnyAuthority("ADMIN")
+//                .antMatchers(HttpMethod.DELETE, "/news/**").hasAnyAuthority("ADMIN")
+//
+//                //PROPOSAL
+//                .antMatchers(HttpMethod.POST, "/proposal/**").hasAnyAuthority("ADMIN")
+//                .antMatchers(HttpMethod.DELETE, "/proposal/**").hasAnyAuthority("ADMIN")
+//
+//                //ROOM
+//                .antMatchers(HttpMethod.POST, "/room/**").hasAnyAuthority("ADMIN")
+//                .antMatchers(HttpMethod.DELETE, "/room/**").hasAnyAuthority("ADMIN")
+//
+//                //SCHEDULE
+//                .antMatchers(HttpMethod.POST, "/schedule/**").authenticated()
+//                .antMatchers(HttpMethod.DELETE, "/schedule/**").authenticated()
+//
+//                //SERVICE
+//                .antMatchers(HttpMethod.POST, "/service/**").hasAnyAuthority("ADMIN")
+//                .antMatchers(HttpMethod.DELETE, "/service/**").hasAnyAuthority("ADMIN")
+//
+//                //TARIFF
+//                .antMatchers(HttpMethod.POST, "/schedule/**").authenticated()
+//                .antMatchers(HttpMethod.DELETE, "/schedule/**").authenticated()
+//
+//                //USER
+//                .antMatchers(HttpMethod.POST, "/user/**").hasAnyAuthority("ADMIN")
+//                .antMatchers(HttpMethod.DELETE, "/user/**").hasAnyAuthority("ADMIN")
+//
+//                .antMatchers(HttpMethod.POST, "/callback/save").permitAll()
+//                .antMatchers(HttpMethod.GET, "/**").permitAll()
+//
+//                .anyRequest().permitAll();
+
+                // AMENITY
+                .antMatchers(HttpMethod.POST, "/amenity/**").access("hasAuthority('ADMIN')")
+                .antMatchers(HttpMethod.DELETE, "/amenity/**").access("hasAuthority('ADMIN')")
+
+                // BOOK
+                .antMatchers(HttpMethod.POST, "//**").authenticated()
+                .antMatchers(HttpMethod.DELETE, "//**").authenticated()
+
+                // BOOK_COUNTER
+                .antMatchers(HttpMethod.POST, "/counter/**").authenticated()
+                .antMatchers(HttpMethod.DELETE, "/counter/**").authenticated()
+
+                // CALLBACK
+                .antMatchers(HttpMethod.POST, "/callback/**").authenticated()
+                .antMatchers(HttpMethod.DELETE, "/callback/**").authenticated()
+
+                //CALLBACK-COUNTER
+                .antMatchers(HttpMethod.POST, "/callback-gcounter/**").authenticated()
+                .antMatchers(HttpMethod.DELETE, "/callback-gcounter/**").authenticated()
+
+                // MAIN
+                .antMatchers(HttpMethod.POST, "/main/**").access("hasAuthority('ADMIN')")
+                .antMatchers(HttpMethod.DELETE, "/main/**").access("hasAuthority('ADMIN')")
+
+                //NEWS
+                .antMatchers(HttpMethod.POST, "/news/**").access("hasAuthority('ADMIN')")
+                .antMatchers(HttpMethod.DELETE, "/news/**").access("hasAuthority('ADMIN')")
+
+                //PROPOSAL
+                .antMatchers(HttpMethod.POST, "/proposal/**").access("hasAuthority('ADMIN')")
+                .antMatchers(HttpMethod.DELETE, "/proposal/**").access("hasAuthority('ADMIN')")
+
+                //ROOM
+                .antMatchers(HttpMethod.POST, "/room/**").access("hasAuthority('ADMIN')")
+                .antMatchers(HttpMethod.DELETE, "/room/**").access("hasAuthority('ADMIN')")
+
+                //SCHEDULE
+                .antMatchers(HttpMethod.POST, "/schedule/**").authenticated()
+                .antMatchers(HttpMethod.DELETE, "/schedule/**").authenticated()
+
+                //SERVICE
+                .antMatchers(HttpMethod.POST, "/service/**").access("hasAuthority('ADMIN')")
+                .antMatchers(HttpMethod.DELETE, "/service/**").access("hasAuthority('ADMIN')")
+
+                //TARIFF
+                .antMatchers(HttpMethod.POST, "/schedule/**").authenticated()
+                .antMatchers(HttpMethod.DELETE, "/schedule/**").authenticated()
+
+                //USER
+                .antMatchers(HttpMethod.POST, "/user/**").access("hasAuthority('ADMIN')")
+                .antMatchers(HttpMethod.DELETE, "/user/**").access("hasAuthority('ADMIN')")
+
                 .antMatchers(HttpMethod.POST, "/callback/save").permitAll()
                 .antMatchers(HttpMethod.GET, "/**").permitAll()
+
                 .anyRequest().permitAll();
     }
 }

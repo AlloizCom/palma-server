@@ -81,13 +81,13 @@ public class BookController {
         LOGGER.info(language);
         LOGGER.info("---------------------------Book---------------------------");
         return ResponseEntity
-                .ok(map(bookService.save(map(book, Book.class),language), BookDto.class));
+                .ok(map(bookService.save(map(book, Book.class),language,false), BookDto.class));
     }
 
     @PostMapping("/pay/{language}")
     private ResponseEntity<String> pay(@RequestBody BookDto book,
                                        @PathVariable Language language) {
-        bookService.save(map(book, Book.class),language);
+        bookService.save(map(book, Book.class),language,true);
         return ResponseEntity.ok(payService.getButton(map(book, Book.class)));
     }
 

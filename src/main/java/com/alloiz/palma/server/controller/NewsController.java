@@ -24,7 +24,7 @@ import static java.util.stream.Collectors.toList;
 @RequestMapping("/news")
 public class NewsController {
 
-        private static final Logger LOGGER = Logger.getLogger(NewsController.class);
+    private static final Logger LOGGER = Logger.getLogger(NewsController.class);
 
     @Autowired
     private NewsService newsService;

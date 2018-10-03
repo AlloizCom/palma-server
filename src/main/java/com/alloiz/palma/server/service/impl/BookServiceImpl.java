@@ -64,7 +64,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Book save(Book book, Language language) {
+    public Book save(Book book, Language language, Boolean paid) {
         checkSave(book);
         bookCounterService.incrementCounter(1L);
         LOGGER.info("Book service:" + book);
@@ -74,6 +74,11 @@ public class BookServiceImpl implements BookService {
                 .peek(schedule -> schedule.setActive(schedule.getActive() + amountFromBook))
                 .peek(schedule -> schedule.setFree(schedule.getForSale() - schedule.getActive()))
                 .forEach(schedule -> scheduleService.updateAfterBooking(schedule));
+        if (paid){
+            book.setOrderStatus(OrderStatus.PAID_BY_CARD);
+        } else {
+            book.setOrderStatus(OrderStatus.HAVE_TO_BE_PAID);
+        }
         //mailService.sendBookMailForStuffAndUser(book,language);
         return bookRepository.save(generateUuid(book
                 .setAvailable(true)

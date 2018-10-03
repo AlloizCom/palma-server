@@ -139,8 +139,8 @@ public class TariffServiceImpl implements TariffService {
                             .setRoomType(roomType)
                             .setTariffType(TariffType.REGULAR)
                             .setAvailable(true)
-                            .setDateFrom(Timestamp.valueOf(LocalDateTime.of(2000,1,1,0,0,0)))
-                            .setDateTo(Timestamp.valueOf(LocalDateTime.of(2038,1,1,0,0,0)))
+                            .setDateFrom(Timestamp.valueOf(LocalDateTime.of(2018,1,1,0,0,0)))
+                            .setDateTo(Timestamp.valueOf(LocalDateTime.of(2018,12,31,0,0,0)))
                     );
                 }
             }

@@ -5,6 +5,7 @@ import com.alloiz.palma.server.dto.ScheduleDto;
 import com.alloiz.palma.server.model.Schedule;
 import com.alloiz.palma.server.model.enums.RoomType;
 import com.alloiz.palma.server.repository.ScheduleRepository;
+import com.alloiz.palma.server.repository.utils.ChangeRoomForSale;
 import com.alloiz.palma.server.service.ScheduleService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -177,5 +178,10 @@ public class ScheduleServiceImpl implements ScheduleService {
 
 
         return true;
+    }
+
+    @Override
+    public Boolean changeRoomForSale(ChangeRoomForSale changeRoomForSale) {
+        return null;
     }
 }

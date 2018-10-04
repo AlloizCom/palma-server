@@ -17,7 +17,7 @@ public interface BookService {
 
     List<Book> findAll();
 
-    Book save(Book book, Language language, Boolean paid);
+    Book save(Book book, Language language);
 
     Book update(Book update);
 

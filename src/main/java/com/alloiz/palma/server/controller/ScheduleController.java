@@ -5,6 +5,7 @@ import com.alloiz.palma.server.dto.ScheduleDto;
 import com.alloiz.palma.server.model.Schedule;
 import com.alloiz.palma.server.model.enums.RoomType;
 import com.alloiz.palma.server.model.utils.DateDeserializer;
+import com.alloiz.palma.server.repository.utils.ChangeRoomForSale;
 import com.alloiz.palma.server.service.ScheduleService;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -124,6 +125,14 @@ public class ScheduleController {
         LOGGER.info("Schedule id: " + id);
         LOGGER.info("--------------------Schedule Delete--------------------");
         return ResponseEntity.ok(scheduleService.delete(id));
+    }
+
+    @PostMapping("/change-room-for-sale")
+    private ResponseEntity<ChangeRoomForSale> change(@RequestBody ChangeRoomForSale changeRoomForSale){
+        LOGGER.info("--------------------Schedule Change--------------------");
+        LOGGER.info(changeRoomForSale);
+        LOGGER.info("--------------------Schedule Change--------------------");
+        return ResponseEntity.ok(map(scheduleService.changeRoomForSale(changeRoomForSale)));
     }
 
 }

@@ -20,9 +20,9 @@ public class MailConfiguration {
     private String host;
     @Value("587")
     private int port;
-    @Value("nailab998@gmail.com")
+    @Value("mpalmalviv@gmail.com")
     private String username;
-    @Value("cerf1298")
+    @Value("PalmaLviv!44")
     private String password;
 
     public static JavaMailSender generateMailSender(String username,

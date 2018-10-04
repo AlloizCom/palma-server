@@ -53,8 +53,7 @@ public class ProposalServiceImpl implements ProposalService {
     @Override
     public Proposal save(Proposal proposal) {
         checkSave(proposal);
-        return proposalRepository.save(proposal
-                .setAvailable(true));
+        return proposalRepository.save(proposal);
     }
 
     @Override
@@ -64,8 +63,7 @@ public class ProposalServiceImpl implements ProposalService {
         proposal.getProposalDescriptions()
                 .stream()
                 .forEach(proposalDescription -> proposalDescription.setAvailable(true));
-        return proposalRepository.save(proposal
-                .setAvailable(true));
+        return proposalRepository.save(proposal);
     }
 
     @Override

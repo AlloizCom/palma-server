@@ -50,8 +50,7 @@ public class ServiceServiceImpl implements ServiceService {
     @Override
     public Service save(Service service) {
         checkSave(service);
-        return serviceRepository.save(service
-                .setAvailable(true));
+        return serviceRepository.save(service);
     }
 
     @Override
@@ -61,8 +60,7 @@ public class ServiceServiceImpl implements ServiceService {
         service.getServiceDescriptions()
                 .stream()
                 .forEach(serviceDescription -> serviceDescription.setAvailable(true));
-        return serviceRepository.save(service
-                .setAvailable(true));
+        return serviceRepository.save(service);
     }
 
 //    @Override

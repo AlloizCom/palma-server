@@ -125,7 +125,7 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
                 .antMatchers(HttpMethod.DELETE, "/proposal/**").access("hasAuthority('ADMIN')")
 
                 //ROOM
-                .antMatchers(HttpMethod.POST, "/room/**").access("hasAuthority('ADMIN')")
+//                .antMatchers(HttpMethod.POST, "/room/**").access("hasAuthority('ADMIN')")
                 .antMatchers(HttpMethod.DELETE, "/room/**").access("hasAuthority('ADMIN')")
 
                 //SCHEDULE
@@ -145,6 +145,11 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
                 .antMatchers(HttpMethod.DELETE, "/user/**").access("hasAuthority('ADMIN')")
 
                 .antMatchers(HttpMethod.POST, "/callback/save").permitAll()
+                .antMatchers(HttpMethod.POST, "/room/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/room/save").access("hasAuthority('ADMIN')")
+                .antMatchers(HttpMethod.POST, "/room/update").access("hasAuthority('ADMIN')")
+//                .antMatchers(HttpMethod.POST, "/room/find-by-book-params-with-room-type").permitAll()
+
                 .antMatchers(HttpMethod.GET, "/**").permitAll()
 
                 .anyRequest().permitAll();

@@ -6,6 +6,7 @@ import com.alloiz.palma.server.model.Schedule;
 import com.alloiz.palma.server.model.enums.RoomType;
 import com.alloiz.palma.server.repository.ScheduleRepository;
 import com.alloiz.palma.server.repository.utils.ChangeRoomForSale;
+import com.alloiz.palma.server.repository.utils.RoomTypeWithNumber;
 import com.alloiz.palma.server.service.ScheduleService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +14,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Locale;
 
 import static com.alloiz.palma.server.dto.utils.builder.Builder.map;
 import static com.alloiz.palma.server.service.utils.Validation.*;
@@ -27,6 +30,7 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     @Autowired
     private ScheduleRepository scheduleRepository;
+
 
     @Override
     public Schedule findOneAvailable(Long id) {
@@ -182,6 +186,20 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     @Override
     public Boolean changeRoomForSale(ChangeRoomForSale changeRoomForSale) {
+
+        for(RoomTypeWithNumber type: changeRoomForSale.getRooms()){
+            List<Schedule> scheduleList = scheduleRepository.findRoomBetweenDateWithRoomType(changeRoomForSale.getDateFrom(),
+                    changeRoomForSale.getDateTo(),type.getRoomType());
+            scheduleList.stream().forEach(schedule -> {
+                for(String day: changeRoomForSale.getDaysOfWeek()){
+                    if(day.equals(new SimpleDateFormat("EEEE",Locale.ENGLISH).format(schedule.getToday()))){
+                        schedule.setForSale(type.getNumberOfRoom());
+                        update(schedule);
+                    }
+                }
+            });
+        }
+
         return null;
     }
 }

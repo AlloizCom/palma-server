@@ -39,15 +39,15 @@ public class ServerApplication extends SpringBootServletInitializer {
 //            int day = 0;
 //            for (int i = 0; day < 30; i++, day++) {
 //                scheduleService.saveDefault(new Schedule().setForSale(5).setActive(0).setFree(5).setRoomType(RoomType.DELUXE)
-//                        .setToday(Timestamp.valueOf(LocalDateTime.now().plusDays(day).withHour(0).withMinute(0).withSecond(0).withNano(0).plusMonths(1))));
+//                        .setToday(Timestamp.valueOf(LocalDateTime.now().plusDays(day).withHour(0).withMinute(0).withSecond(0).withNano(0))));
 //                scheduleService.saveDefault(new Schedule().setForSale(5).setActive(0).setFree(5).setRoomType(RoomType.STANDARD)
-//                        .setToday(Timestamp.valueOf(LocalDateTime.now().plusDays(day).withHour(0).withMinute(0).withSecond(0).withNano(0).plusMonths(1))));
+//                        .setToday(Timestamp.valueOf(LocalDateTime.now().plusDays(day).withHour(0).withMinute(0).withSecond(0).withNano(0))));
 //                scheduleService.saveDefault(new Schedule().setForSale(5).setActive(0).setFree(5).setRoomType(RoomType.STANDARD_IMPROVED)
-//                        .setToday(Timestamp.valueOf(LocalDateTime.now().plusDays(day).withHour(0).withMinute(0).withSecond(0).withNano(0).plusMonths(1))));
+//                        .setToday(Timestamp.valueOf(LocalDateTime.now().plusDays(day).withHour(0).withMinute(0).withSecond(0).withNano(0))));
 //                scheduleService.saveDefault(new Schedule().setForSale(5).setActive(0).setFree(5).setRoomType(RoomType.SUPERIOR)
-//                        .setToday(Timestamp.valueOf(LocalDateTime.now().plusDays(day).withHour(0).withMinute(0).withSecond(0).withNano(0).plusMonths(1))));
+//                        .setToday(Timestamp.valueOf(LocalDateTime.now().plusDays(day).withHour(0).withMinute(0).withSecond(0).withNano(0))));
 //                scheduleService.saveDefault(new Schedule().setForSale(5).setActive(0).setFree(5).setRoomType(RoomType.SUPERIOR_IMPROVED)
-//                        .setToday(Timestamp.valueOf(LocalDateTime.now().plusDays(day).withHour(0).withMinute(0).withSecond(0).withNano(0).plusMonths(1))));
+//                        .setToday(Timestamp.valueOf(LocalDateTime.now().plusDays(day).withHour(0).withMinute(0).withSecond(0).withNano(0))));
 ////
 //            }
 //        }

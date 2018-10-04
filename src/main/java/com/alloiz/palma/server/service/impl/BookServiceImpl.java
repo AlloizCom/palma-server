@@ -79,10 +79,11 @@ public class BookServiceImpl implements BookService {
         } else {
             book.setOrderStatus(OrderStatus.HAVE_TO_BE_PAID);
         }
-        //mailService.sendBookMailForStuffAndUser(book,language);
+        book.setBookingDay(Timestamp.valueOf(LocalDateTime.now()));
+        mailService.sendBookMailForStuffAndUser(book,language);
         return bookRepository.save(generateUuid(book
                 .setAvailable(true)
-                .setBookingDay(Timestamp.valueOf(LocalDateTime.now()))
+
         ));
     }
 

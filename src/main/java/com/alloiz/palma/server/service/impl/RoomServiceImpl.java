@@ -103,9 +103,9 @@ public class RoomServiceImpl implements RoomService {
     @Override
     public Room update(Room room) {
         checkObjectExistsById(room.getId(), roomRepository);
+        room.setAmenities(room.getAmenities());
         return roomRepository.save(findOne(room.getId())
                 .setAdultPlaces(room.getAdultPlaces())
-                .setAmenities(room.getAmenities())
                 .setAvailable(room.getAvailable())
                 .setDescriptions(room.getDescriptions())
                 .setKidsPlaces(room.getKidsPlaces())
@@ -119,21 +119,12 @@ public class RoomServiceImpl implements RoomService {
         checkJson(roomJson);
         Room room = json(roomJson, Room.class);
         checkObjectExistsById(room.getId(), roomRepository);
-//        room.setImages(room.getImages());
         if (multipartFiles != null && multipartFiles.length != 0) {
-//            List<Image> images = new ArrayList<>();
-//            for (MultipartFile multipartFile : multipartFiles) {
-//                Image image = new Image();
-//                image.setPath(fileBuilder.saveFile(multipartFile)).setAvailable(true);
-//                images.add(image);
-//            }
-//            room.setImages(images);
-            //room.setImages(imageService.saveMultiImage(multipartFiles));
             addImages(room.getId(),multipartFiles);
         }
+        room.setAmenities(room.getAmenities());
         return roomRepository.save(findOne(room.getId())
                 .setAdultPlaces(room.getAdultPlaces())
-                .setAmenities(room.getAmenities())
                 .setAvailable(room.getAvailable())
                 .setDescriptions(room.getDescriptions())
                 .setKidsPlaces(room.getKidsPlaces())

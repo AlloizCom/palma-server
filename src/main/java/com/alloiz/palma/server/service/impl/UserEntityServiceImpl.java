@@ -85,7 +85,7 @@ public class UserEntityServiceImpl implements UserEntityService {
         }
         if (!existAdmin || !existModerator){
             if (!existAdmin){
-                userEntityRepository.save(new UserEntity()
+                save(new UserEntity()
                         .setFirstName("Admin")
                         .setLastName("Admin")
                         .setLogin("admin")
@@ -95,7 +95,7 @@ public class UserEntityServiceImpl implements UserEntityService {
                 );
             }
             if (!existModerator){
-                userEntityRepository.save(new UserEntity()
+                save(new UserEntity()
                         .setFirstName("Moderator")
                         .setLastName("Moderator")
                         .setLogin("moderator")

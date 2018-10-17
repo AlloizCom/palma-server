@@ -61,7 +61,7 @@ public class AmenityServiceImpl implements AmenityService {
     public Amenity save(String amenityJson, MultipartFile multipartFile) {
         checkJson(amenityJson);
         Amenity amenity = json(amenityJson, Amenity.class);
-        amenity.getAmenityNames().stream().forEach(name -> amenity.setAmenityNames(amenity.getAmenityNames()));
+//        amenity.getAmenityNames().stream().forEach(name -> amenity.setAmenityNames(amenity.getAmenityNames()));
         if (multipartFile != null && !multipartFile.isEmpty())
             amenity.setImagePath(fileBuilder.saveFile(multipartFile));
         return save(amenity);

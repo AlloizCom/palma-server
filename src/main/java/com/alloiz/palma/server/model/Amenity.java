@@ -10,7 +10,8 @@ public class Amenity extends BaseEntity<Amenity>{
 //    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
 //    private Room room;
 
-    @OneToMany(cascade = {CascadeType.DETACH,CascadeType.PERSIST,CascadeType.REMOVE})
+    @OneToMany(cascade = {CascadeType.ALL})
+//    @OneToMany(cascade = {CascadeType.DETACH,CascadeType.PERSIST,CascadeType.REMOVE})
     @JoinColumn(name = "amenityName_id")
     private List<AmenityName> amenityNames;
 

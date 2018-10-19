@@ -6,6 +6,7 @@ import com.alloiz.palma.server.service.RoomForSaleService;
 import com.alloiz.palma.server.service.utils.FileBuilder;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
 import static com.alloiz.palma.server.config.mapper.JsonMapper.json;
 import static com.alloiz.palma.server.service.utils.Validation.*;
 
+@Service
 public class RoomForSaleServiceImpl implements RoomForSaleService {
 
     private static final Logger LOGGER = Logger.getLogger(RoomForSaleServiceImpl.class);

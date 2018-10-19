@@ -19,42 +19,42 @@ public interface RoomRepository extends JpaRepository<Room,Long> {
 
     Room findByAvailableAndId(Boolean available, Long id);
 
-    List<Room> findAllByAvailableAndType (Boolean available, RoomType roomType);
+//    List<Room> findAllByAvailableAndType (Boolean available, RoomType roomType);
+//
+//    List<Room> findAllByAdultPlacesAndKidsPlacesAndAvailable (Boolean available,
+//                                                              Integer kidsPlaces,
+//                                                              Integer adultPlaces);
+//
+//    List<Room> findAllByAdultPlacesAndKidsPlacesAndAmountAndAvailable(Boolean available,
+//                                                                      Integer kidsPlaces,
+//                                                                      Integer adultPlaces,
+//                                                                      Integer amount);
 
-    List<Room> findAllByAdultPlacesAndKidsPlacesAndAvailable (Boolean available,
-                                                              Integer kidsPlaces,
-                                                              Integer adultPlaces);
-
-    List<Room> findAllByAdultPlacesAndKidsPlacesAndAmountAndAvailable(Boolean available,
-                                                                      Integer kidsPlaces,
-                                                                      Integer adultPlaces,
-                                                                      Integer amount);
-
-    @Query("SELECT r FROM Room r " +
-            "WHERE r.adultPlaces >= :adults " +
-            "AND r.kidsPlaces >= :children " +
-            "AND r.type IN (SELECT s.roomType FROM Schedule s " +
-                        "WHERE s.today BETWEEN :dateIn AND :dateOut " +
-                        "AND s.free >= :free)")
-    List<Room> findAllByTypeIn(@Param("dateIn") Timestamp dateIn,
-                               @Param("dateOut") Timestamp dateOut,
-                               @Param("free")Integer free,
-                               @Param("adults")Integer adults,
-                               @Param("children")Integer children);
-
-    @Query("SELECT r FROM Room r " +
-            "WHERE r.type = :roomType " +
-            "AND r.adultPlaces >= :adults " +
-            "AND r.kidsPlaces >= :children " +
-            "AND r.type IN (SELECT s.roomType FROM Schedule s " +
-            "WHERE s.today BETWEEN :dateIn AND :dateOut " +
-            "AND s.free >= :free)")
-    List<Room> findAllByTypeInWithRoomType(@Param("dateIn") Timestamp dateIn,
-                               @Param("dateOut") Timestamp dateOut,
-                               @Param("free")Integer free,
-                               @Param("adults")Integer adults,
-                               @Param("children")Integer children,
-                                           @Param("roomType") RoomType roomType
-    );
+//    @Query("SELECT r FROM Room r " +
+//            "WHERE r.adultPlaces >= :adults " +
+//            "AND r.kidsPlaces >= :children " +
+//            "AND r.type IN (SELECT s.roomType FROM Schedule s " +
+//                        "WHERE s.today BETWEEN :dateIn AND :dateOut " +
+//                        "AND s.free >= :free)")
+//    List<Room> findAllByTypeIn(@Param("dateIn") Timestamp dateIn,
+//                               @Param("dateOut") Timestamp dateOut,
+//                               @Param("free")Integer free,
+//                               @Param("adults")Integer adults,
+//                               @Param("children")Integer children);
+//
+//    @Query("SELECT r FROM Room r " +
+//            "WHERE r.type = :roomType " +
+//            "AND r.adultPlaces >= :adults " +
+//            "AND r.kidsPlaces >= :children " +
+//            "AND r.type IN (SELECT s.roomType FROM Schedule s " +
+//            "WHERE s.today BETWEEN :dateIn AND :dateOut " +
+//            "AND s.free >= :free)")
+//    List<Room> findAllByTypeInWithRoomType(@Param("dateIn") Timestamp dateIn,
+//                               @Param("dateOut") Timestamp dateOut,
+//                               @Param("free")Integer free,
+//                               @Param("adults")Integer adults,
+//                               @Param("children")Integer children,
+//                                           @Param("roomType") RoomType roomType
+//    );
 
 }

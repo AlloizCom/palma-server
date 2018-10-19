@@ -55,7 +55,9 @@ public class RoomServiceImpl implements RoomService {
 
     @Override
     public List<Room> findAllAvailableAndType(RoomType roomType) {
-        return roomRepository.findAllByAvailableAndType(true, roomType);
+//        return roomRepository.findAllByAvailableAndType(true, roomType);
+        // TODO: 19/10/2018 //remove it later!!
+        return roomRepository.findAllByAvailable(true); //remove it later!!
     }
 
     @Override
@@ -198,9 +200,11 @@ public class RoomServiceImpl implements RoomService {
     public List<Room> findAllByAdultPlacesAndKidsPlacesAndAvailable(Boolean available,
                                                                     Integer kidsPlaces,
                                                                     Integer adultPlaces) {
-        return roomRepository.findAllByAdultPlacesAndKidsPlacesAndAvailable(available,
-                                                                            kidsPlaces,
-                                                                            adultPlaces);
+//        return roomRepository.findAllByAdultPlacesAndKidsPlacesAndAvailable(available,
+//                                                                            kidsPlaces,
+//                                                                            adultPlaces);
+        // TODO: 19/10/2018 //remove it later!!
+        return roomRepository.findAllByAvailable(true); //remove it later!!
     }
 
     @Override
@@ -208,31 +212,37 @@ public class RoomServiceImpl implements RoomService {
                                                                              Integer kidsPlaces,
                                                                              Integer adultPlaces,
                                                                              Integer amount) {
-        return roomRepository.findAllByAdultPlacesAndKidsPlacesAndAmountAndAvailable(available,
-                kidsPlaces,
-                adultPlaces,
-                amount
-                );
+//        return roomRepository.findAllByAdultPlacesAndKidsPlacesAndAmountAndAvailable(available,
+//                kidsPlaces,
+//                adultPlaces,
+//                amount
+//                );
+        // TODO: 19/10/2018 //remove it later!!
+        return roomRepository.findAllByAvailable(true); //remove it later!!
     }
 
     @Override
     public List<Room> findRoomsByRoomParams(RoomParams roomParams) {
-        return roomRepository.findAllByTypeIn(
-                roomParams.getDateFrom(),
-                roomParams.getDateTo(),
-                roomParams.getNumbersOfRooms(),
-                roomParams.getAdults(),
-                roomParams.getChildrens());
+//        return roomRepository.findAllByTypeIn(
+//                roomParams.getDateFrom(),
+//                roomParams.getDateTo(),
+//                roomParams.getNumbersOfRooms(),
+//                roomParams.getAdults(),
+//                roomParams.getChildrens());
+        // TODO: 19/10/2018 //remove it later!!
+        return roomRepository.findAllByAvailable(true);  //remove it later!!
     }
 
     @Override
     public List<Room> findRoomsByRoomParamsWithRoomType(RoomParams roomParams) {
-        return roomRepository.findAllByTypeInWithRoomType(
-                roomParams.getDateFrom(),
-                roomParams.getDateTo(),
-                roomParams.getNumbersOfRooms(),
-                roomParams.getAdults(),
-                roomParams.getChildrens(),
-                roomParams.getRoomType());
+//        return roomRepository.findAllByTypeInWithRoomType(
+//                roomParams.getDateFrom(),
+//                roomParams.getDateTo(),
+//                roomParams.getNumbersOfRooms(),
+//                roomParams.getAdults(),
+//                roomParams.getChildrens(),
+//                roomParams.getRoomType());
+        // TODO: 19/10/2018 //remove it later!!
+        return roomRepository.findAllByAvailable(true); //remove it later!!
     }
 }

@@ -105,13 +105,10 @@ public class RoomServiceImpl implements RoomService {
         checkObjectExistsById(room.getId(), roomRepository);
         room.setAmenities(room.getAmenities());
         return roomRepository.save(findOne(room.getId())
-                .setAdultPlaces(room.getAdultPlaces())
                 .setAvailable(room.getAvailable())
                 .setDescriptions(room.getDescriptions())
-                .setKidsPlaces(room.getKidsPlaces())
-                .setSquare(room.getSquare())
                 .setAmount(room.getAmount())
-                .setType(room.getType()));
+        );
     }
 
     @Override
@@ -124,15 +121,11 @@ public class RoomServiceImpl implements RoomService {
         }
         room.setAmenities(room.getAmenities());
         return roomRepository.save(findOne(room.getId())
-                .setAdultPlaces(room.getAdultPlaces())
                 .setAvailable(room.getAvailable())
                 .setDescriptions(room.getDescriptions())
-                .setKidsPlaces(room.getKidsPlaces())
-                .setSquare(room.getSquare())
-                .setType(room.getType()))
                 .setAmount(room.getAmount())
                 .setImages(room.getImages())
-                ;
+        );
     }
 
     @Override
@@ -168,25 +161,11 @@ public class RoomServiceImpl implements RoomService {
 
     @Override
     public Boolean changeAmount (RoomType roomType, Integer amount){
-        List<Room> rooms = roomRepository.findAllByAvailableAndType(true, roomType);
-        for (Room room : rooms){
-            if (room.getType().equals(roomType)){
-                room.setAmount(amount);
-                return true;
-            }
-        }
         return false;
     }
 
     @Override
     public Boolean addAmount(RoomType roomType, Integer amount) {
-        List<Room> rooms = roomRepository.findAllByAvailableAndType(true, roomType);
-        for (Room room : rooms){
-            if (room.getType().equals(roomType)){
-                room.setAmount(room.getAmount() + amount);
-                return true;
-            }
-        }
         return false;
 
     }

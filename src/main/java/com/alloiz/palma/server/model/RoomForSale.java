@@ -9,6 +9,7 @@ public class RoomForSale extends BaseEntity<RoomForSale>{
     private Integer places;
     private Integer square;
     private String picturePath;
+    private Integer number;
 
     @ManyToMany(cascade = {CascadeType.REFRESH,
             CascadeType.DETACH,
@@ -83,6 +84,15 @@ public class RoomForSale extends BaseEntity<RoomForSale>{
         return this;
     }
 
+    public Integer getNumber() {
+        return number;
+    }
+
+    public RoomForSale setNumber(Integer number) {
+        this.number = number;
+        return this;
+    }
+
     @Override
     public String toString() {
         return "RoomForSale{" +
@@ -92,6 +102,7 @@ public class RoomForSale extends BaseEntity<RoomForSale>{
                 ", amenities=" + (amenities == null ? "null" : amenities) +
                 ", additionalAmenities=" + (additionalAmenities == null ? "null" : additionalAmenities) +
                 ", descriptions=" + (descriptions == null ? "null" : descriptions) +
+                ", number=" + number +
                 ", id=" + id +
                 ", available=" + available +
                 '}';

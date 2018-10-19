@@ -80,6 +80,7 @@ public class RoomForSaleServiceImpl implements RoomForSaleService {
                 .setAdditionalAmenities(roomForSale.getAdditionalAmenities())
                 .setSquare(roomForSale.getSquare())
                 .setPlaces(roomForSale.getPlaces())
+                .setNumber(roomForSale.getNumber())
         );
     }
 

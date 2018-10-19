@@ -1,33 +1,18 @@
 package com.alloiz.palma.server.model;
 
-import com.alloiz.palma.server.model.enums.RoomType;
-
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 public class Room extends BaseEntity<Room> {
 
-    @Enumerated(EnumType.STRING)
-    private RoomType type;
-
-    private Integer adultPlaces;
-    private Integer kidsPlaces;
-    private Double square;
     private Integer amount;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "description_id")
     private List<RoomDescription> descriptions;
 
-//    @OneToMany(mappedBy = "room", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
-//    private List<Amenity> amenities;
-
-//    @ManyToMany(cascade = {CascadeType.REFRESH,
-//            CascadeType.DETACH,
-//            CascadeType.MERGE,
-//            CascadeType.PERSIST})
-@ManyToMany(cascade = {CascadeType.REFRESH,
+    @ManyToMany(cascade = {CascadeType.REFRESH,
         CascadeType.DETACH,
         CascadeType.MERGE,
         })
@@ -38,42 +23,6 @@ public class Room extends BaseEntity<Room> {
     private List<Image> images;
 
     public Room() {
-    }
-
-    public RoomType getType() {
-        return type;
-    }
-
-    public Room setType(RoomType type) {
-        this.type = type;
-        return this;
-    }
-
-    public Integer getAdultPlaces() {
-        return adultPlaces;
-    }
-
-    public Room setAdultPlaces(Integer adultPlaces) {
-        this.adultPlaces = adultPlaces;
-        return this;
-    }
-
-    public Integer getKidsPlaces() {
-        return kidsPlaces;
-    }
-
-    public Room setKidsPlaces(Integer kidsPlaces) {
-        this.kidsPlaces = kidsPlaces;
-        return this;
-    }
-
-    public Double getSquare() {
-        return square;
-    }
-
-    public Room setSquare(Double square) {
-        this.square = square;
-        return this;
     }
 
     public List<RoomDescription> getDescriptions() {
@@ -115,10 +64,6 @@ public class Room extends BaseEntity<Room> {
     @Override
     public String toString() {
         return "Room{" +
-                "type=" + type +
-                ", adultPlaces=" + adultPlaces +
-                ", kidsPlaces=" + kidsPlaces +
-                ", square=" + square +
                 ", descriptions=" + (descriptions == null ? "null" : descriptions) +
                 ", amenities=" + (amenities == null ? "null" : amenities) +
                 ", images=" + (images == null ? "null" : images)+

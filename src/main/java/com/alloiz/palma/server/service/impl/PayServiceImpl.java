@@ -70,7 +70,9 @@ public class PayServiceImpl implements PayService {
 
     @Override
     public Integer setPrice(Book book) {
-        return tariffService.findByRoomTypeAndDateNow(book.getRoomType()).getPrice() * book.getAmountOfRooms();
+//        return tariffService.findByRoomTypeAndDateNow(book.getRoomType()).getPrice() * book.getAmountOfRooms();
+        // TODO: 22/10/2018 temporarly
+        return 1;
     }
 
     @Override

@@ -15,25 +15,25 @@ public interface TariffService {
 
     Tariff findOne(Long id);
 
-    List<Tariff> findByRoomType (RoomType roomType);
-
-    List<Tariff> findByTariffType(TariffType tariffType);
+//    List<Tariff> findByRoomType (RoomType roomType);
+//
+//    List<Tariff> findByTariffType(TariffType tariffType);
 
     List<Tariff> findAll();
 
-    List<Tariff> findByTariffTypeAndRoomType(TariffType tariffType, RoomType roomType);
+//    List<Tariff> findByTariffTypeAndRoomType(TariffType tariffType, RoomType roomType);
 
-    Tariff findByRoomTypeAndDateBetween(RoomType roomType, Timestamp date);
+//    Tariff findByRoomTypeAndDateBetween(RoomType roomType, Timestamp date);
 
     /**
      * @param roomType room type
      * @return tariff with time between now and specified room type
      */
-    Tariff findByRoomTypeAndDateNow(RoomType roomType);
+//    Tariff findByRoomTypeAndDateNow(RoomType roomType);
 
-    List<Tariff> findAllDateNow();
+//    List<Tariff> findAllDateNow();
 
-    List<Tariff> findAllDateBetween(Timestamp date);
+//    List<Tariff> findAllDateBetween(Timestamp date);
 
     Tariff save(Tariff tariff);
 

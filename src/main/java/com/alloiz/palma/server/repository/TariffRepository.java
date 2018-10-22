@@ -16,13 +16,13 @@ public interface TariffRepository extends JpaRepository<Tariff,Long> {
 
     Tariff findByAvailableAndId(Boolean available, Long id);
 
-    List<Tariff> findAllByAvailableAndRoomType(Boolean available, RoomType roomType);
+//    List<Tariff> findAllByAvailableAndRoomType(Boolean available, RoomType roomType);
 
-    List<Tariff> findAllByAvailableAndRoomTypeAndDateFromBeforeAndDateToAfterAndTariffType(Boolean available, RoomType roomType, Timestamp dateFrom, Timestamp dateTo, TariffType tariffType);
+//    List<Tariff> findAllByAvailableAndRoomTypeAndDateFromBeforeAndDateToAfterAndTariffType(Boolean available, RoomType roomType, Timestamp dateFrom, Timestamp dateTo, TariffType tariffType);
 
-    List<Tariff> findAllByAvailableAndDateFromBeforeAndDateToAfterAndTariffType(Boolean available, Timestamp dateFrom, Timestamp dateTo, TariffType tariffType);
+//    List<Tariff> findAllByAvailableAndDateFromBeforeAndDateToAfterAndTariffType(Boolean available, Timestamp dateFrom, Timestamp dateTo, TariffType tariffType);
 
-    List<Tariff> findAllByAvailableAndTariffType (Boolean available, TariffType tariffType);
+//    List<Tariff> findAllByAvailableAndTariffType (Boolean available, TariffType tariffType);
 
-    List<Tariff> findAllByAvailableAndTariffTypeAndRoomType (Boolean available, TariffType tariffType, RoomType roomType);
+//    List<Tariff> findAllByAvailableAndTariffTypeAndRoomType (Boolean available, TariffType tariffType, RoomType roomType);
 }

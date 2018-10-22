@@ -16,25 +16,11 @@ import java.sql.Timestamp;
 @Entity
 public class Tariff extends BaseEntity<Tariff> {
 
-    @Enumerated(EnumType.STRING)
-    private TariffType tariffType;
     private Integer price;
     private Timestamp dateFrom;
     private Timestamp dateTo;
 
-    @Enumerated(EnumType.STRING)
-    private RoomType roomType;
-
     public Tariff() {
-    }
-
-    public TariffType getTariffType() {
-        return tariffType;
-    }
-
-    public Tariff setTariffType(TariffType tariffType) {
-        this.tariffType = tariffType;
-        return this;
     }
 
     public Integer getPrice() {
@@ -68,23 +54,13 @@ public class Tariff extends BaseEntity<Tariff> {
         return this;
     }
 
-    public RoomType getRoomType() {
-        return roomType;
-    }
-
-    public Tariff setRoomType(RoomType roomType) {
-        this.roomType = roomType;
-        return this;
-    }
 
     @Override
     public String toString() {
         return "Tariff{" +
-                "tariffType=" + tariffType +
                 ", price=" + price +
                 ", dateFrom=" + dateFrom +
                 ", dateTo=" + dateTo +
-                ", roomType=" + roomType +
                 ", id=" + id +
                 ", available=" + available +
                 '}';

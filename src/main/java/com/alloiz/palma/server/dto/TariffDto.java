@@ -15,11 +15,11 @@ public class TariffDto {
 
     protected Long id;
     protected Boolean available;
-    protected TariffType tariffType;
+//    protected TariffType tariffType;
     protected Integer price;
     protected Timestamp dateFrom;
     protected Timestamp dateTo;
-    protected RoomType roomType;
+//    protected RoomType roomType;
 
     public TariffDto() {
     }
@@ -42,14 +42,14 @@ public class TariffDto {
         return this;
     }
 
-    public TariffType getTariffType() {
-        return tariffType;
-    }
-
-    public TariffDto setTariffType(TariffType tariffType) {
-        this.tariffType = tariffType;
-        return this;
-    }
+//    public TariffType getTariffType() {
+//        return tariffType;
+//    }
+//
+//    public TariffDto setTariffType(TariffType tariffType) {
+//        this.tariffType = tariffType;
+//        return this;
+//    }
 
     public Integer getPrice() {
         return price;
@@ -82,25 +82,25 @@ public class TariffDto {
         return this;
     }
 
-    public RoomType getRoomType() {
-        return roomType;
-    }
-
-    public TariffDto setRoomType(RoomType roomType) {
-        this.roomType = roomType;
-        return this;
-    }
+//    public RoomType getRoomType() {
+//        return roomType;
+//    }
+//
+//    public TariffDto setRoomType(RoomType roomType) {
+//        this.roomType = roomType;
+//        return this;
+//    }
 
     @Override
     public String toString() {
         return "TariffDto{" +
                 "id=" + id +
                 ", available=" + available +
-                ", tariffType=" + tariffType +
+//                ", tariffType=" + tariffType +
                 ", price=" + price +
                 ", dateFrom=" + dateFrom +
                 ", dateTo=" + dateTo +
-                ", roomType=" + roomType +
+//                ", roomType=" + roomType +
                 '}';
     }
 }

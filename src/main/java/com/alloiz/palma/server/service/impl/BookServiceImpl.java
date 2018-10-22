@@ -72,7 +72,7 @@ public class BookServiceImpl implements BookService {
         scheduleService.findByParamForBook(book.getDateIn(), book.getDateOut(), book.getRoomType())
                 .stream()
                 .peek(schedule -> schedule.setActive(schedule.getActive() + amountFromBook))
-                .peek(schedule -> schedule.setFree(schedule.getForSale() - schedule.getActive()))
+                .peek(schedule -> schedule.setPrice(schedule.getForSale() - schedule.getActive()))
                 .forEach(schedule -> scheduleService.updateAfterBooking(schedule));
         if (book.getOrderStatus().equals(OrderStatus.PAID_BY_CARD)){
             book.setOrderStatus(OrderStatus.PAID_BY_CARD);
@@ -166,7 +166,7 @@ public class BookServiceImpl implements BookService {
         scheduleService.findByParamForBook(book.getDateIn(), book.getDateOut(), book.getRoomType())
                 .stream()
                 .peek(schedule -> schedule.setActive(schedule.getActive() - amountFromBook))
-                .peek(schedule -> schedule.setFree(schedule.getForSale() - schedule.getActive()))
+                .peek(schedule -> schedule.setPrice(schedule.getForSale() - schedule.getActive()))
                 .forEach(schedule -> scheduleService.updateAfterBooking(schedule));
         return bookRepository.save(generateUuid(book
                 .setAvailable(true)

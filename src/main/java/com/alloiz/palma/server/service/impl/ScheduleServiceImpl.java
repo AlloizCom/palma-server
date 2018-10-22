@@ -99,7 +99,7 @@ public class ScheduleServiceImpl implements ScheduleService {
         return scheduleRepository.save(findOne(schedule.getId())
                 .setForSale(schedule.getForSale())
                 .setActive(schedule.getActive())
-                .setFree(schedule.getFree())
+                .setFree(schedule.getPrice())
                 .setAvailable(schedule.getAvailable()));
     }
 

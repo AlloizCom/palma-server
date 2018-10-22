@@ -1,14 +1,13 @@
 package com.alloiz.palma.server.model;
 
-import com.alloiz.palma.server.model.enums.RoomType;
 import com.alloiz.palma.server.model.utils.DateDeserializer;
 import com.alloiz.palma.server.model.utils.DateSerializer;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.OneToOne;
 import java.sql.Timestamp;
 
 @Entity
@@ -16,11 +15,11 @@ public class Schedule extends BaseEntity<Schedule> {
 
     private Timestamp today;
 
-    @Enumerated(EnumType.STRING)
-    private RoomType roomType;
-    private Integer forSale;
-    private Integer active;
-    private Integer free;
+    private Integer price;
+    private Boolean isFree;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private RoomForSale room;
 
     public Schedule() {
     }
@@ -36,39 +35,30 @@ public class Schedule extends BaseEntity<Schedule> {
         return this;
     }
 
-    public RoomType getRoomType() {
-        return roomType;
+    public Integer getPrice() {
+        return price;
     }
 
-    public Schedule setRoomType(RoomType roomType) {
-        this.roomType = roomType;
+    public Schedule setPrice(Integer price) {
+        this.price = price;
         return this;
     }
 
-    public Integer getForSale() {
-        return forSale;
+    public Boolean getFree() {
+        return isFree;
     }
 
-    public Schedule setForSale(Integer forSale) {
-        this.forSale = forSale;
+    public Schedule setFree(Boolean free) {
+        isFree = free;
         return this;
     }
 
-    public Integer getActive() {
-        return active;
+    public RoomForSale getRoom() {
+        return room;
     }
 
-    public Schedule setActive(Integer active) {
-        this.active = active;
-        return this;
-    }
-
-    public Integer getFree() {
-        return free;
-    }
-
-    public Schedule setFree(Integer free) {
-        this.free = free;
+    public Schedule setRoom(RoomForSale room) {
+        this.room = room;
         return this;
     }
 
@@ -76,10 +66,9 @@ public class Schedule extends BaseEntity<Schedule> {
     public String toString() {
         return "Schedule{" +
                 "today=" + today +
-                ", roomType=" + roomType +
-                ", forSale=" + forSale +
-                ", active=" + active +
-                ", free=" + free +
+                ", price=" + price +
+                ", isFree=" + isFree +
+                ", room=" + (room == null ? "null" : room) +
                 ", id=" + id +
                 ", available=" + available +
                 '}';

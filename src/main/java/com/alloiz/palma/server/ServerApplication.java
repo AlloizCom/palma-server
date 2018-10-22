@@ -38,15 +38,15 @@ public class ServerApplication extends SpringBootServletInitializer {
 //        if(scheduleRepository.findAll().size() < 100) {
 //            int day = 0;
 //            for (int i = 0; day < 30; i++, day++) {
-//                scheduleService.saveDefault(new Schedule().setForSale(5).setActive(0).setFree(5).setRoomType(RoomType.DELUXE)
+//                scheduleService.saveDefault(new Schedule().setForSale(5).setActive(0).setPrice(5).setRoomType(RoomType.DELUXE)
 //                        .setToday(Timestamp.valueOf(LocalDateTime.now().plusDays(day).withHour(0).withMinute(0).withSecond(0).withNano(0))));
-//                scheduleService.saveDefault(new Schedule().setForSale(5).setActive(0).setFree(5).setRoomType(RoomType.STANDARD)
+//                scheduleService.saveDefault(new Schedule().setForSale(5).setActive(0).setPrice(5).setRoomType(RoomType.STANDARD)
 //                        .setToday(Timestamp.valueOf(LocalDateTime.now().plusDays(day).withHour(0).withMinute(0).withSecond(0).withNano(0))));
-//                scheduleService.saveDefault(new Schedule().setForSale(5).setActive(0).setFree(5).setRoomType(RoomType.STANDARD_IMPROVED)
+//                scheduleService.saveDefault(new Schedule().setForSale(5).setActive(0).setPrice(5).setRoomType(RoomType.STANDARD_IMPROVED)
 //                        .setToday(Timestamp.valueOf(LocalDateTime.now().plusDays(day).withHour(0).withMinute(0).withSecond(0).withNano(0))));
-//                scheduleService.saveDefault(new Schedule().setForSale(5).setActive(0).setFree(5).setRoomType(RoomType.SUPERIOR)
+//                scheduleService.saveDefault(new Schedule().setForSale(5).setActive(0).setPrice(5).setRoomType(RoomType.SUPERIOR)
 //                        .setToday(Timestamp.valueOf(LocalDateTime.now().plusDays(day).withHour(0).withMinute(0).withSecond(0).withNano(0))));
-//                scheduleService.saveDefault(new Schedule().setForSale(5).setActive(0).setFree(5).setRoomType(RoomType.SUPERIOR_IMPROVED)
+//                scheduleService.saveDefault(new Schedule().setForSale(5).setActive(0).setPrice(5).setRoomType(RoomType.SUPERIOR_IMPROVED)
 //                        .setToday(Timestamp.valueOf(LocalDateTime.now().plusDays(day).withHour(0).withMinute(0).withSecond(0).withNano(0))));
 ////
 //            }
@@ -55,15 +55,15 @@ public class ServerApplication extends SpringBootServletInitializer {
 //        if(scheduleRepository.findAll().size() < 100) {
 //            int day = 0;
 //            for (int i = 0; day < 30; i++, day++) {
-//                scheduleService.saveDefault(new Schedule().setForSale(5).setActive(0).setFree(5).setRoomType(RoomType.DELUXE)
+//                scheduleService.saveDefault(new Schedule().setForSale(5).setActive(0).setPrice(5).setRoomType(RoomType.DELUXE)
 //                        .setToday(Timestamp.valueOf(LocalDateTime.now().plusDays(day).withHour(0).withMinute(0).withSecond(0).withNano(0))));
-//                scheduleService.saveDefault(new Schedule().setForSale(5).setActive(0).setFree(5).setRoomType(RoomType.STANDARD)
+//                scheduleService.saveDefault(new Schedule().setForSale(5).setActive(0).setPrice(5).setRoomType(RoomType.STANDARD)
 //                        .setToday(Timestamp.valueOf(LocalDateTime.now().plusDays(day).withHour(0).withMinute(0).withSecond(0).withNano(0))));
-//                scheduleService.saveDefault(new Schedule().setForSale(5).setActive(0).setFree(5).setRoomType(RoomType.STANDARD_IMPROVED)
+//                scheduleService.saveDefault(new Schedule().setForSale(5).setActive(0).setPrice(5).setRoomType(RoomType.STANDARD_IMPROVED)
 //                        .setToday(Timestamp.valueOf(LocalDateTime.now().plusDays(day).withHour(0).withMinute(0).withSecond(0).withNano(0))));
-//                scheduleService.saveDefault(new Schedule().setForSale(5).setActive(0).setFree(5).setRoomType(RoomType.SUPERIOR)
+//                scheduleService.saveDefault(new Schedule().setForSale(5).setActive(0).setPrice(5).setRoomType(RoomType.SUPERIOR)
 //                        .setToday(Timestamp.valueOf(LocalDateTime.now().plusDays(day).withHour(0).withMinute(0).withSecond(0).withNano(0))));
-//                scheduleService.saveDefault(new Schedule().setForSale(5).setActive(0).setFree(5).setRoomType(RoomType.SUPERIOR_IMPROVED)
+//                scheduleService.saveDefault(new Schedule().setForSale(5).setActive(0).setPrice(5).setRoomType(RoomType.SUPERIOR_IMPROVED)
 //                        .setToday(Timestamp.valueOf(LocalDateTime.now().plusDays(day).withHour(0).withMinute(0).withSecond(0).withNano(0))));
 ////
 //            }
@@ -73,15 +73,15 @@ public class ServerApplication extends SpringBootServletInitializer {
 //        if(scheduleRepository.findAll().size() < 100){
 //            int day = 0;
 //            for (int i = 0;day < 30;i++, day++) {
-//                scheduleService.saveDefault(new Schedule().setForSale(6).setActive(0).setFree(6).setRoomType(RoomType.DELUXE)
+//                scheduleService.saveDefault(new Schedule().setForSale(6).setActive(0).setPrice(6).setRoomType(RoomType.DELUXE)
 //                        .setToday(Timestamp.valueOf(LocalDateTime.now().plusDays(day))));
-//                scheduleService.saveDefault(new Schedule().setForSale(2).setActive(0).setFree(2).setRoomType(RoomType.STANDARD)
+//                scheduleService.saveDefault(new Schedule().setForSale(2).setActive(0).setPrice(2).setRoomType(RoomType.STANDARD)
 //                        .setToday(Timestamp.valueOf(LocalDateTime.now().plusDays(day))));
-//                scheduleService.saveDefault(new Schedule().setForSale(5).setActive(0).setFree(5).setRoomType(RoomType.STANDARD_IMPROVED)
+//                scheduleService.saveDefault(new Schedule().setForSale(5).setActive(0).setPrice(5).setRoomType(RoomType.STANDARD_IMPROVED)
 //                        .setToday(Timestamp.valueOf(LocalDateTime.now().plusDays(day))));
-//                scheduleService.saveDefault(new Schedule().setForSale(3).setActive(0).setFree(3).setRoomType(RoomType.SUPERIOR)
+//                scheduleService.saveDefault(new Schedule().setForSale(3).setActive(0).setPrice(3).setRoomType(RoomType.SUPERIOR)
 //                        .setToday(Timestamp.valueOf(LocalDateTime.now().plusDays(day))));
-//                scheduleService.saveDefault(new Schedule().setForSale(1).setActive(0).setFree(1).setRoomType(RoomType.SUPERIOR_IMPROVED)
+//                scheduleService.saveDefault(new Schedule().setForSale(1).setActive(0).setPrice(1).setRoomType(RoomType.SUPERIOR_IMPROVED)
 //                        .setToday(Timestamp.valueOf(LocalDateTime.now().plusDays(day))));
 //            }
 //        }

@@ -1,6 +1,7 @@
 package com.alloiz.palma.server.dto;
 
 import com.alloiz.palma.server.dto.utils.annotations.Dto;
+import com.alloiz.palma.server.model.RoomForSale;
 import com.alloiz.palma.server.model.enums.RoomType;
 import com.alloiz.palma.server.model.utils.DateDeserializer;
 import com.alloiz.palma.server.model.utils.DateSerializer;
@@ -17,11 +18,10 @@ public class ScheduleDto {
 
     protected Long id;
     protected Boolean available;
-    protected Timestamp today;
-    protected RoomType roomType;
-    protected Integer forSale;
-    protected Integer active;
-    protected Integer free;
+    private Timestamp today;
+    private Integer price;
+    private Boolean isFree;
+    private RoomForSale room;
 
     public ScheduleDto() {
     }
@@ -55,39 +55,30 @@ public class ScheduleDto {
         return this;
     }
 
-    public RoomType getRoomType() {
-        return roomType;
+    public Integer getPrice() {
+        return price;
     }
 
-    public ScheduleDto setRoomType(RoomType roomType) {
-        this.roomType = roomType;
+    public ScheduleDto setPrice(Integer price) {
+        this.price = price;
         return this;
     }
 
-    public Integer getForSale() {
-        return forSale;
+    public Boolean getFree() {
+        return isFree;
     }
 
-    public ScheduleDto setForSale(Integer forSale) {
-        this.forSale = forSale;
+    public ScheduleDto setFree(Boolean free) {
+        isFree = free;
         return this;
     }
 
-    public Integer getActive() {
-        return active;
+    public RoomForSale getRoom() {
+        return room;
     }
 
-    public ScheduleDto setActive(Integer active) {
-        this.active = active;
-        return this;
-    }
-
-    public Integer getFree() {
-        return free;
-    }
-
-    public ScheduleDto setFree(Integer free) {
-        this.free = free;
+    public ScheduleDto setRoom(RoomForSale room) {
+        this.room = room;
         return this;
     }
 
@@ -97,10 +88,9 @@ public class ScheduleDto {
                 "id=" + id +
                 ", available=" + available +
                 ", today=" + today +
-                ", roomType=" + roomType +
-                ", forSale=" + forSale +
-                ", active=" + active +
-                ", free=" + free +
+                ", price=" + price +
+                ", isFree=" + isFree +
+                ", room=" + room +
                 '}';
     }
 }

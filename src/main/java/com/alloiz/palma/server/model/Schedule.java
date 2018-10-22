@@ -14,7 +14,6 @@ import java.sql.Timestamp;
 public class Schedule extends BaseEntity<Schedule> {
 
     private Timestamp today;
-
     private Integer price;
     private Boolean isFree;
 

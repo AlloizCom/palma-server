@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -60,17 +61,6 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
-    public List<Schedule> findAllByDateAndPlaces(Timestamp today, Integer places){
-        return scheduleRepository
-                .findAllByTodayAndForSaleAndAvailable(today,places,true);
-    }
-
-    @Override
-    public List<Schedule> findByParam(Timestamp today, Integer places){
-        return scheduleRepository.findByTodayAndForSale(today,places);
-    }
-
-    @Override
     public Schedule save(Schedule schedule) {
         checkSave(schedule);
         return scheduleRepository.save(schedule.setAvailable(true)
@@ -85,22 +75,25 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Override
     public Schedule update(Schedule schedule) {
         checkObjectExistsById(schedule.getId(),scheduleRepository);
-        Integer free = schedule.getForSale() - schedule.getActive();
         return scheduleRepository.save(findOne(schedule.getId())
-                    .setForSale(schedule.getForSale())
-                    .setActive(schedule.getActive())
-                    .setFree(free)
-                    .setAvailable(schedule.getAvailable()));
+                    .setFree(schedule.getFree())
+                    .setToday(schedule.getToday())
+                    .setRoom(schedule.getRoom())
+                    .setPrice(schedule.getPrice())
+                    .setAvailable(schedule.getAvailable())
+        );
     }
 
     @Override
     public Schedule updateAfterBooking(Schedule schedule) {
         checkObjectExistsById(schedule.getId(),scheduleRepository);
         return scheduleRepository.save(findOne(schedule.getId())
-                .setForSale(schedule.getForSale())
-                .setActive(schedule.getActive())
-                .setFree(schedule.getPrice())
-                .setAvailable(schedule.getAvailable()));
+                .setFree(schedule.getFree())
+                .setToday(schedule.getToday())
+                .setRoom(schedule.getRoom())
+                .setPrice(schedule.getPrice())
+                .setAvailable(schedule.getAvailable())
+        );
     }
 
     @Override
@@ -143,63 +136,28 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     @Override
     public List<Schedule> findAllByAvailableAndTodayAfterAndRoomType(Timestamp today, RoomType roomType) {
-        return scheduleRepository.findAllByAvailableAndTodayAfterAndTodayBeforeAndRoomType(true, today, Timestamp.valueOf(today.toLocalDateTime().plusMonths(1L)), roomType);
+//        return scheduleRepository.findAllByAvailableAndTodayAfterAndTodayBeforeAndRoomType(true, today, Timestamp.valueOf(today.toLocalDateTime().plusMonths(1L)), roomType);
+        // TODO: 22/10/2018 write it later
+        List<Schedule> schedules = new ArrayList<>();
+        return schedules;
     }
 
     @Override
     public List<Schedule> findByParamForBook(Timestamp dateIn, Timestamp dateOut, RoomType roomType){
-        return scheduleRepository.findRoomBetweenDateWithRoomType(dateIn,dateOut,roomType);
+//        return scheduleRepository.findRoomBetweenDateWithRoomType(dateIn,dateOut,roomType);
+        // TODO: 22/10/2018 write it later
+        List<Schedule> schedules = new ArrayList<>();
+        return schedules;
     }
 
     @Override
     public Boolean runBySchedule(){
-
-        saveDefault(new Schedule().setForSale(5).setActive(0).setFree(5).setRoomType(RoomType.DELUXE)
-                .setToday(Timestamp
-                        .valueOf(LocalDateTime.now().withHour(0).withMinute(0).withSecond(0).withNano(0).plusMonths(1))));
-        saveDefault(new Schedule().setForSale(5).setActive(0).setFree(5).setRoomType(RoomType.STANDARD)
-                .setToday(Timestamp
-                        .valueOf(LocalDateTime.now().withHour(0).withMinute(0).withSecond(0).withNano(0).plusMonths(1))));
-        saveDefault(new Schedule().setForSale(5).setActive(0).setFree(5).setRoomType(RoomType.STANDARD_IMPROVED)
-                .setToday(Timestamp
-                        .valueOf(LocalDateTime.now().withHour(0).withMinute(0).withSecond(0).withNano(0).plusMonths(1))));
-        saveDefault(new Schedule().setForSale(5).setActive(0).setFree(5).setRoomType(RoomType.SUPERIOR)
-                .setToday(Timestamp
-                        .valueOf(LocalDateTime.now().withHour(0).withMinute(0).withSecond(0).withNano(0).plusMonths(1))));
-        saveDefault(new Schedule().setForSale(5).setActive(0).setFree(5).setRoomType(RoomType.SUPERIOR_IMPROVED)
-                .setToday(Timestamp
-                        .valueOf(LocalDateTime.now().withHour(0).withMinute(0).withSecond(0).withNano(0).plusMonths(1))));
-
-        scheduleRepository.findByTodayDate(Timestamp.valueOf(LocalDateTime.now().minusDays(1)
-                .withHour(0).withMinute(0).withSecond(0).withNano(0)))
-                .stream().forEach(schedule -> update(schedule.setAvailable(false)));
-
         return true;
     }
 
     public Boolean refreshSchedule(){
         LOGGER.info("-------------Schedule Refresh---------------");
-
-
         return true;
     }
 
-    @Override
-    public Boolean changeRoomForSale(ChangeRoomForSale changeRoomForSale) {
-
-        for(RoomTypeWithNumber type: changeRoomForSale.getRooms()){
-            List<Schedule> scheduleList = scheduleRepository.findRoomBetweenDateWithRoomType(changeRoomForSale.getDateFrom(),
-                    changeRoomForSale.getDateTo(),type.getRoomType());
-            scheduleList.stream().forEach(schedule -> {
-                for(String day: changeRoomForSale.getDaysOfWeek()){
-                    if(day.equals(new SimpleDateFormat("EEEE",Locale.ENGLISH).format(schedule.getToday()))){
-                        schedule.setForSale(type.getNumberOfRoom());
-                        update(schedule);
-                    }
-                }
-            });
-        }
-
-        return null;
-    }
 }

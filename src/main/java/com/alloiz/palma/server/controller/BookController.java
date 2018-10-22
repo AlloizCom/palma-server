@@ -100,15 +100,6 @@ public class BookController {
                 .ok(map(bookService.update(map(book, Book.class)), BookDto.class));
     }
 
-    @PostMapping("/cancel")
-    private ResponseEntity<BookDto> cancelBook(@RequestBody BookDto book) {
-        LOGGER.info("--------------------Cancel Book---------------------------");
-        LOGGER.info(book);
-        LOGGER.info("--------------------Cancel Book---------------------------");
-        return ResponseEntity
-                .ok(map(bookService.cancelBook(map(book, Book.class)), BookDto.class));
-    }
-
     @DeleteMapping("/delete/{id}")
     private ResponseEntity<Boolean> delete(@PathVariable Long id) {
         return ResponseEntity.ok(bookService.delete(id));

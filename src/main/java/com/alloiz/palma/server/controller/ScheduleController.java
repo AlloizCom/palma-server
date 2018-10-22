@@ -67,15 +67,6 @@ public class ScheduleController {
                 .ok(map(scheduleService.findOneAvailable(id), ScheduleDto.class));
     }
 
-    @GetMapping("/find-by-date-places/{date}/{places}")
-    private ResponseEntity<List<ScheduleDto>> findByDateAndPlaces(@PathVariable Timestamp date,
-                                                                  @PathVariable Integer places) {
-        return ResponseEntity.ok(scheduleService.findAllByDateAndPlaces(date, places)
-                .stream()
-                .map(callback -> map(callback, ScheduleDto.class))
-                .collect(Collectors.toList()));
-    }
-
     @GetMapping("/find-all-schedule-by-page/{page}/{count}")
     private ResponseEntity<List<ScheduleDto>> findAllPageable(@PathVariable Integer page,
                                                               @PathVariable Integer count) {
@@ -126,13 +117,4 @@ public class ScheduleController {
         LOGGER.info("--------------------Schedule Delete--------------------");
         return ResponseEntity.ok(scheduleService.delete(id));
     }
-
-    @PostMapping("/change-room-for-sale")
-    private ResponseEntity<ChangeRoomForSale> change(@RequestBody ChangeRoomForSale changeRoomForSale){
-        LOGGER.info("--------------------Schedule Change--------------------");
-        LOGGER.info(changeRoomForSale);
-        LOGGER.info("--------------------Schedule Change--------------------");
-        return ResponseEntity.ok(map(scheduleService.changeRoomForSale(changeRoomForSale)));
-    }
-
 }

@@ -71,8 +71,6 @@ public class BookServiceImpl implements BookService {
         Integer amountFromBook = book.getAmountOfRooms();
         scheduleService.findByParamForBook(book.getDateIn(), book.getDateOut(), book.getRoomType())
                 .stream()
-                .peek(schedule -> schedule.setActive(schedule.getActive() + amountFromBook))
-                .peek(schedule -> schedule.setPrice(schedule.getForSale() - schedule.getActive()))
                 .forEach(schedule -> scheduleService.updateAfterBooking(schedule));
         if (book.getOrderStatus().equals(OrderStatus.PAID_BY_CARD)){
             book.setOrderStatus(OrderStatus.PAID_BY_CARD);
@@ -156,22 +154,6 @@ public class BookServiceImpl implements BookService {
                 .setNumberOfItems(pageable.getPageSize())
                 .setNumberOfPages((bookRepository
                         .countAllByAvailable(true) / pageable.getPageSize()) + 1);
-    }
-
-    @Override
-    public Book cancelBook(Book book){
-        checkObjectExistsById(book.getId(),bookRepository);
-        LOGGER.info("Book service 'CANCEL':" + book);
-        Integer amountFromBook = book.getAmountOfRooms();
-        scheduleService.findByParamForBook(book.getDateIn(), book.getDateOut(), book.getRoomType())
-                .stream()
-                .peek(schedule -> schedule.setActive(schedule.getActive() - amountFromBook))
-                .peek(schedule -> schedule.setPrice(schedule.getForSale() - schedule.getActive()))
-                .forEach(schedule -> scheduleService.updateAfterBooking(schedule));
-        return bookRepository.save(generateUuid(book
-                .setAvailable(true)
-                .setOrderStatus(OrderStatus.CANCELED)
-        ));
     }
 
     @Override

@@ -19,10 +19,10 @@ public interface ScheduleRepository extends JpaRepository<Schedule,Long> {
 
     Schedule findByAvailableAndId(Boolean available, Long id);
 
-    List<Schedule> findAllByTodayAndForSaleAndAvailable (Timestamp today,
-                                                         Integer forSale,
-                                                         Boolean available
-                                                         );
+//    List<Schedule> findAllByTodayAndForSaleAndAvailable (Timestamp today,
+//                                                         Integer forSale,
+//                                                         Boolean available
+//                                                         );
 
     Page<Schedule> findAllByAvailable (Boolean available, Pageable pageable);
 
@@ -30,29 +30,29 @@ public interface ScheduleRepository extends JpaRepository<Schedule,Long> {
 
     Integer countAllByAvailable(Boolean available);
 
-    @Query("SELECT s FROM Schedule s " +
-    "WHERE s.free >= :free " +
-            "AND s.today = :today"
-    )
-    List<Schedule> findByTodayAndForSale (@Param("today") Timestamp today,
-                                          @Param("free")Integer free
-    );
+//    @Query("SELECT s FROM Schedule s " +
+//    "WHERE s.free >= :free " +
+//            "AND s.today = :today"
+//    )
+//    List<Schedule> findByTodayAndForSale (@Param("today") Timestamp today,
+//                                          @Param("free")Integer free
+//    );
 
-    /**
-     * Find all schedule with date between dateIn and dateOut and free places from Book
-     * @param dateIn
-     * @param dateOut
-     * @param free
-     * @return List<Schedule>
-     */
-    @Query("SELECT s FROM Schedule s " +
-            "WHERE s.today BETWEEN :dateIn AND :dateOut " +
-            "AND s.free >= :free"
-    )
-        List<Schedule> findRoomByDate (@Param("dateIn") Timestamp dateIn,
-                                       @Param("dateOut") Timestamp dateOut,
-                                   @Param("free") Integer free
-    );
+//    /**
+//     * Find all schedule with date between dateIn and dateOut and free places from Book
+//     * @param dateIn
+//     * @param dateOut
+//     * @param free
+//     * @return List<Schedule>
+//     */
+//    @Query("SELECT s FROM Schedule s " +
+//            "WHERE s.today BETWEEN :dateIn AND :dateOut " +
+//            "AND s.free >= :free"
+//    )
+//        List<Schedule> findRoomByDate (@Param("dateIn") Timestamp dateIn,
+//                                       @Param("dateOut") Timestamp dateOut,
+//                                   @Param("free") Integer free
+//    );
 
     /**
      * Find all schedule with date between dateIn and dateOut and free places from Book
@@ -67,26 +67,26 @@ public interface ScheduleRepository extends JpaRepository<Schedule,Long> {
 //                                   @Param("dateOut") Timestamp dateOut
 //    );
 
-    @Query("SELECT s FROM Schedule s " +
-            "WHERE s.today >= :dateIn " +
-            "AND s.today <= :dateOut " +
-            "AND s.roomType = :roomType"
-    )
-    List<Schedule> findRoomBetweenDateWithRoomType(@Param("dateIn") Timestamp dateIn,
-                                                   @Param("dateOut") Timestamp dateOut,
-                                                   @Param("roomType") RoomType roomType
-    );
+//    @Query("SELECT s FROM Schedule s " +
+//            "WHERE s.today >= :dateIn " +
+//            "AND s.today <= :dateOut " +
+//            "AND s.roomType = :roomType"
+//    )
+//    List<Schedule> findRoomBetweenDateWithRoomType(@Param("dateIn") Timestamp dateIn,
+//                                                   @Param("dateOut") Timestamp dateOut,
+//                                                   @Param("roomType") RoomType roomType
+//    );
 
     @Query("SELECT s FROM Schedule s " +
             "WHERE s.today = :yesterday "
     )
     List<Schedule> findByTodayDate (@Param("yesterday") Timestamp yesterday);
 
-    @Query("SELECT s FROM Schedule s " +
-            "WHERE s.roomType = :roomType "
-    )
-    List<Schedule> findAllByRoomType(@Param("roomType") RoomType roomType);
+//    @Query("SELECT s FROM Schedule s " +
+//            "WHERE s.roomType = :roomType "
+//    )
+//    List<Schedule> findAllByRoomType(@Param("roomType") RoomType roomType);
 
-    List<Schedule> findAllByAvailableAndTodayAfterAndTodayBeforeAndRoomType(Boolean available, Timestamp today, Timestamp today2, RoomType roomType);
+//    List<Schedule> findAllByAvailableAndTodayAfterAndTodayBeforeAndRoomType(Boolean available, Timestamp today, Timestamp today2, RoomType roomType);
 
 }

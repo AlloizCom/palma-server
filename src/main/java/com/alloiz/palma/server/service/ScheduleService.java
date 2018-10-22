@@ -21,10 +21,6 @@ public interface ScheduleService {
 
     List<Schedule> findAll();
 
-    List<Schedule> findAllByDateAndPlaces(Timestamp today, Integer places);
-
-    List<Schedule> findByParam(Timestamp today, Integer places);
-
     Schedule save(Schedule schedule);
 
     Schedule saveDefault(Schedule schedule);
@@ -45,5 +41,4 @@ public interface ScheduleService {
 
     Boolean runBySchedule();
 
-    Boolean changeRoomForSale(ChangeRoomForSale changeRoomForSale);
 }

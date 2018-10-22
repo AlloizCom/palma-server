@@ -101,6 +101,7 @@ public class TariffServiceImpl implements TariffService {
                 .setDateFrom(tariff.getDateFrom())
                 .setDateTo(tariff.getDateTo())
                 .setPrice(tariff.getPrice())
+                .setRoomForSale(tariff.getRoomForSale())
                 .setAvailable(tariff.getAvailable())
         );
     }

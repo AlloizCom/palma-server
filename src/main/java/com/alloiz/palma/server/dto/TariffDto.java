@@ -1,6 +1,7 @@
 package com.alloiz.palma.server.dto;
 
 import com.alloiz.palma.server.dto.utils.annotations.Dto;
+import com.alloiz.palma.server.model.RoomForSale;
 import com.alloiz.palma.server.model.enums.RoomType;
 import com.alloiz.palma.server.model.enums.TariffType;
 import com.alloiz.palma.server.model.utils.DateDeserializer;
@@ -20,6 +21,7 @@ public class TariffDto {
     protected Timestamp dateFrom;
     protected Timestamp dateTo;
 //    protected RoomType roomType;
+    protected RoomForSale roomForSale;
 
     public TariffDto() {
     }
@@ -82,7 +84,16 @@ public class TariffDto {
         return this;
     }
 
-//    public RoomType getRoomType() {
+    public RoomForSale getRoomForSale() {
+        return roomForSale;
+    }
+
+    public TariffDto setRoomForSale(RoomForSale roomForSale) {
+        this.roomForSale = roomForSale;
+        return this;
+    }
+
+    //    public RoomType getRoomType() {
 //        return roomType;
 //    }
 //

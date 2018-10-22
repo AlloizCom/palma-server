@@ -8,9 +8,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
@@ -19,6 +17,9 @@ public class Tariff extends BaseEntity<Tariff> {
     private Integer price;
     private Timestamp dateFrom;
     private Timestamp dateTo;
+
+    @ManyToOne(cascade = CascadeType.DETACH)
+    private RoomForSale roomForSale;
 
     public Tariff() {
     }
@@ -54,6 +55,14 @@ public class Tariff extends BaseEntity<Tariff> {
         return this;
     }
 
+    public RoomForSale getRoomForSale() {
+        return roomForSale;
+    }
+
+    public Tariff setRoomForSale(RoomForSale roomForSale) {
+        this.roomForSale = roomForSale;
+        return this;
+    }
 
     @Override
     public String toString() {

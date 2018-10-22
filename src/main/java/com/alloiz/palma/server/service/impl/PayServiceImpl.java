@@ -40,8 +40,6 @@ public class PayServiceImpl implements PayService {
     @Autowired
     private RoomService roomService;
 
-    @Autowired
-    private TariffService tariffService;
 
     @Value("${liqpay.public.key}")
     private String liqpayPublicKey;

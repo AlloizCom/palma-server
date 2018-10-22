@@ -1,7 +1,6 @@
 package com.alloiz.palma.server.model.utils;
 
 import com.alloiz.palma.server.model.Book;
-import com.alloiz.palma.server.model.Tariff;
 
 import java.util.Comparator;
 

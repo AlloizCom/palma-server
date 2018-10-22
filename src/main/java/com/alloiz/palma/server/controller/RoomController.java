@@ -1,16 +1,7 @@
 package com.alloiz.palma.server.controller;
 
 import com.alloiz.palma.server.dto.RoomFullDto;
-import com.alloiz.palma.server.dto.RoomMiddleDto;
-import com.alloiz.palma.server.dto.RoomWithTariff;
-import com.alloiz.palma.server.model.Book;
-import com.alloiz.palma.server.model.Room;
-import com.alloiz.palma.server.model.Tariff;
-import com.alloiz.palma.server.model.enums.RoomType;
-import com.alloiz.palma.server.repository.utils.RoomParams;
-import com.alloiz.palma.server.service.BookService;
 import com.alloiz.palma.server.service.RoomService;
-import com.alloiz.palma.server.service.TariffService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,8 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 

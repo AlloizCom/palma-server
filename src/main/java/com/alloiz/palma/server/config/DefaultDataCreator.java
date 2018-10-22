@@ -34,9 +34,6 @@ public class DefaultDataCreator {
     private CallbackCounterService callbackCounterService;
 
     @Autowired
-    private TariffService tariffService;
-
-    @Autowired
     private MailService mailService;
 
     @Autowired
@@ -72,11 +69,8 @@ public class DefaultDataCreator {
         LOGGER.warn("----------------------------------");
         LOGGER.warn("---Creating default Tariff---");
         LOGGER.warn("-----------------------------");
-        if (tariffService.createDefaultTariffs(true)){
             LOGGER.warn(">>>---Default tariffs were created---");
-        } else {
             LOGGER.warn(">>>---Default tariffs already exist---");
-        }
         LOGGER.warn("----------------------------------");
 //        Book book = new Book();
 //        book.setBookingDay(Timestamp.valueOf(LocalDateTime.now()));

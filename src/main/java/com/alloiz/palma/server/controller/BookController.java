@@ -51,12 +51,6 @@ public class BookController {
         return ResponseEntity.ok(map(bookService.findOne(id), BookDto.class));
     }
 
-    @GetMapping("/change-order-status/{id}/{orderStatus}")
-    private ResponseEntity<BookDto> changeStatus(@PathVariable Long id,
-                                                 @PathVariable OrderStatus orderStatus) {
-        return ResponseEntity.ok(map(bookService.changeStatus(id,orderStatus), BookDto.class));
-    }
-
     @GetMapping("/find-all-book-by-page/{page}/{count}")
     private ResponseEntity<List<BookDto>> findAllPageable(@PathVariable Integer page,
                                                           @PathVariable Integer count) {

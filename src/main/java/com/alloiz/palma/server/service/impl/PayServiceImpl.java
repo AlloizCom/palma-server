@@ -51,15 +51,15 @@ public class PayServiceImpl implements PayService {
     @Override
     public String getButton(Book book) {
         HashMap<String, String> params = new HashMap<>();
-        String uuid = book.getUuid();
+        //String uuid = book.getUuid();
         params.put("sandbox", SANDBOX_FLAG);
         params.put("action", "pay");
         params.put("amount", setPrice(book) + "");
         params.put("currency", "UAH");
         params.put("description", "Room booking");
-        params.put("result_url", url + "/payment/server/" + uuid);//forward after click 'back'
-        params.put("server_url", url + "/payment/server/" + uuid);
-        params.put("order_id", uuid);
+        //params.put("result_url", url + "/payment/server/" + uuid);//forward after click 'back'
+        //params.put("server_url", url + "/payment/server/" + uuid);
+        //params.put("order_id", uuid);
         params.put("version", "3");
         params.put("language", "uk");
         params.put("expired_date", setExpiresIn());
@@ -94,8 +94,8 @@ public class PayServiceImpl implements PayService {
     @Override
     public void revertPayment(String orderID) {
         Book book = bookService.findByUuid(orderID);
-        bookService.update(book.setOrderStatus(OrderStatus.CANCELED));
-        roomService.addAmount(book.getRoomType(), book.getAmountOfRooms());
+//        bookService.update(book.setOrderStatus(OrderStatus.CANCELED));
+//        roomService.addAmount(book.getRoomType(), book.getAmountOfRooms());
         logger.info("revertPayment:[" + orderID + "]");
     }
 
@@ -103,7 +103,7 @@ public class PayServiceImpl implements PayService {
     public void completePayment(String orderID) {
         Book book = bookService.findByUuid(orderID);
 //        mailService.sendTickets(tickets.get(0).getUser(), orderID);todo
-        bookService.update(book.setOrderStatus(OrderStatus.AVAILABLE));
+        //bookService.update(book.setOrderStatus(OrderStatus.AVAILABLE));
         logger.info("completePayment:[" + orderID + "]");
     }
 

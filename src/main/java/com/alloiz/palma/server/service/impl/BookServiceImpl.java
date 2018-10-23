@@ -4,7 +4,6 @@ import com.alloiz.palma.server.dto.BookByPage;
 import com.alloiz.palma.server.dto.BookDto;
 import com.alloiz.palma.server.model.Book;
 import com.alloiz.palma.server.model.enums.Language;
-import com.alloiz.palma.server.model.enums.OrderStatus;
 import com.alloiz.palma.server.repository.BookRepository;
 import com.alloiz.palma.server.service.BookCounterService;
 import com.alloiz.palma.server.service.BookService;
@@ -15,8 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import java.util.List;
 
 import static com.alloiz.palma.server.dto.utils.builder.Builder.map;
@@ -49,7 +46,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<Book> findAllAvailable() {
-        return bookRepository.findAllByAvailableOrderByBookingDayDesc(true);
+        return bookRepository.findAllByAvailable(true);
     }
 
     @Override
@@ -68,21 +65,20 @@ public class BookServiceImpl implements BookService {
         checkSave(book);
         bookCounterService.incrementCounter(1L);
         LOGGER.info("Book service:" + book);
-        Integer amountFromBook = book.getAmountOfRooms();
-        scheduleService.findByParamForBook(book.getDateIn(), book.getDateOut(), book.getRoomType())
-                .stream()
-                .forEach(schedule -> scheduleService.updateAfterBooking(schedule));
-        if (book.getOrderStatus().equals(OrderStatus.PAID_BY_CARD)){
-            book.setOrderStatus(OrderStatus.PAID_BY_CARD);
-        }
-        if (book.getOrderStatus().equals(OrderStatus.HAVE_TO_BE_PAID)){
-            book.setOrderStatus(OrderStatus.HAVE_TO_BE_PAID);
-        }
-        book.setBookingDay(Timestamp.valueOf(LocalDateTime.now()));
-        mailService.sendBookMailForStuffAndUser(book,language);
+//        Integer amountFromBook = book.getAmountOfRooms();
+//        scheduleService.findByParamForBook(book.getDateIn(), book.getDateOut(), book.getRoomType())
+//                .stream()
+//                .forEach(schedule -> scheduleService.updateAfterBooking(schedule));
+//        if (book.getOrderStatus().equals(OrderStatus.PAID_BY_CARD)){
+//            book.setOrderStatus(OrderStatus.PAID_BY_CARD);
+//        }
+//        if (book.getOrderStatus().equals(OrderStatus.HAVE_TO_BE_PAID)){
+//            book.setOrderStatus(OrderStatus.HAVE_TO_BE_PAID);
+//        }
+//        book.setBookingDay(Timestamp.valueOf(LocalDateTime.now()));
+//        mailService.sendBookMailForStuffAndUser(book,language);
         return bookRepository.save(generateUuid(book
                 .setAvailable(true)
-
         ));
     }
 
@@ -90,18 +86,7 @@ public class BookServiceImpl implements BookService {
     public Book update(Book book) {
         checkObjectExistsById(book.getId(), bookRepository);
         return bookRepository.save(findOne(book.getId())
-                .setOrderStatus(book.getOrderStatus())
-                .setAvailable(book.getAvailable())
-                .setBookingDay(book.getBookingDay())
-                .setUuid(book.getUuid())
-                .setEmail(book.getEmail())
-                .setAdults(book.getAdults())
-                .setDateIn(book.getDateIn())
-                .setDateOut(book.getDateOut())
-                .setFirstName(book.getFirstName())
-                .setLastName(book.getLastName())
-                .setKids(book.getKids())
-                .setPhoneNumber(book.getPhoneNumber())
+                .setAmountOfRooms(book.getAmountOfRooms())
                 .setMessage(book.getMessage())
         );
     }
@@ -119,7 +104,9 @@ public class BookServiceImpl implements BookService {
     @Override
     public Book findByUuid(String uuid) {
         checkString(uuid);
-        return bookRepository.findByUuid(uuid);
+        //return bookRepository.findByUuid(uuid);
+        // TODO: 23/10/2018 later
+        return bookRepository.findOne(0L);
     }
 
     /**
@@ -141,7 +128,7 @@ public class BookServiceImpl implements BookService {
         LOGGER.info(">>> Page number:" + pageable.getPageNumber());
         LOGGER.info(">>> Page size:" + pageable.getPageSize());
         List<BookDto> bookList = bookRepository
-                .findAllByAvailableOrderByBookingDayDesc(true, pageable)
+                .findAllByAvailable(true, pageable)
                 .getContent()
                 .stream()
                 .map(book -> map(book, BookDto.class))
@@ -156,24 +143,4 @@ public class BookServiceImpl implements BookService {
                         .countAllByAvailable(true) / pageable.getPageSize()) + 1);
     }
 
-    @Override
-    public Book changeStatus(Long id, OrderStatus orderStatus) {
-        Book book = findOne(id);
-        book.setOrderStatus(orderStatus);
-        return bookRepository.save(findOne(book.getId())
-                .setOrderStatus(book.getOrderStatus())
-                .setAvailable(book.getAvailable())
-                .setBookingDay(book.getBookingDay())
-                .setUuid(book.getUuid())
-                .setEmail(book.getEmail())
-                .setAdults(book.getAdults())
-                .setDateIn(book.getDateIn())
-                .setDateOut(book.getDateOut())
-                .setFirstName(book.getFirstName())
-                .setLastName(book.getLastName())
-                .setKids(book.getKids())
-                .setPhoneNumber(book.getPhoneNumber())
-                .setMessage(book.getMessage())
-        );
-    }
 }

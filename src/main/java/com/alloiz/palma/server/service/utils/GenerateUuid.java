@@ -12,7 +12,9 @@ public class GenerateUuid {
     private BookService bookService;
 
     public static Book generateUuid(Book book){
-        return book.setUuid(generateUuid());
+        //return book.setUuid(generateUuid());
+        // TODO: 23/10/2018 rewrite it later
+        return new Book();
     }
 
     public static String generateUuid(){

@@ -11,11 +11,11 @@ import java.util.List;
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long> {
 
-    List<Book> findAllByAvailableOrderByBookingDayDesc(Boolean available);
+    List<Book> findAllByAvailable(Boolean available);
 
     Book findByAvailableAndId(Boolean available, Long id);
 
-    Book findByUuid(String uuid);
+    //Book findByUuid(String uuid);
 
     /**
      * For pageable
@@ -23,7 +23,7 @@ public interface BookRepository extends JpaRepository<Book, Long> {
      * @param pageable
      * @return
      */
-    Page<Book> findAllByAvailableOrderByBookingDayDesc(Boolean available, Pageable pageable);
+    Page<Book> findAllByAvailable(Boolean available, Pageable pageable);
 
     Page<Book> findAll(Pageable pageable);
 

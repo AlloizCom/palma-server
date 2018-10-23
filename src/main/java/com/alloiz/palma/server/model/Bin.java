@@ -8,10 +8,9 @@ import com.alloiz.palma.server.model.utils.DateSerializerForBook;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.List;
 
 @Entity
 public class Bin extends BaseEntity<Bin> {
@@ -29,6 +28,9 @@ public class Bin extends BaseEntity<Bin> {
     private String email;
     private Integer adults;
     private Integer kids;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Book> books;
 
     public Bin() {
     }
@@ -138,6 +140,15 @@ public class Bin extends BaseEntity<Bin> {
         return this;
     }
 
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public Bin setBooks(List<Book> books) {
+        this.books = books;
+        return this;
+    }
+
     @Override
     public String toString() {
         return "Bin{" +
@@ -154,6 +165,7 @@ public class Bin extends BaseEntity<Bin> {
                 ", kids=" + kids +
                 ", id=" + id +
                 ", available=" + available +
+                ", books= " + (books == null ? "null" : books) +
                 '}';
     }
 }

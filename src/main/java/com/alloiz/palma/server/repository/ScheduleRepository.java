@@ -1,5 +1,6 @@
 package com.alloiz.palma.server.repository;
 
+import com.alloiz.palma.server.model.RoomForSale;
 import com.alloiz.palma.server.model.Schedule;
 import com.alloiz.palma.server.model.enums.RoomType;
 import org.springframework.data.domain.Page;
@@ -89,4 +90,12 @@ public interface ScheduleRepository extends JpaRepository<Schedule,Long> {
 
 //    List<Schedule> findAllByAvailableAndTodayAfterAndTodayBeforeAndRoomType(Boolean available, Timestamp today, Timestamp today2, RoomType roomType);
 
+
+    @Query("SELECT s FROM Schedule s " +
+            "WHERE s.today >= :dateIn " +
+            "AND s.today <= :dateOut "
+    )
+    List<Schedule> findRoomBetweenDate(@Param("dateIn") Timestamp dateIn,
+                                                   @Param("dateOut") Timestamp dateOut
+    );
 }

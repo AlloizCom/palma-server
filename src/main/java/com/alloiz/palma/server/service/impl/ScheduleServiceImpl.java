@@ -96,6 +96,20 @@ public class ScheduleServiceImpl implements ScheduleService {
         );
     }
 
+    public List<Schedule> changePriceBetweenTwoDates(Timestamp from, Timestamp to, Integer id, Integer price){
+        List<Schedule> schedules = scheduleRepository.findRoomBetweenDate(from,to)
+                .stream()
+                .filter(schedule -> schedule.getId().equals(id))
+                .peek(schedule -> schedule.setPrice(price))
+                .collect(toList());
+        schedules.forEach(schedule -> update(schedule));
+        return schedules;
+    }
+
+    public List<Schedule> changePriceForDate(Timestamp date, Integer id, Integer price){
+        return changePriceBetweenTwoDates(date,date,id,price);
+    }
+
     @Override
     public Boolean delete(Long id) {
         try {
@@ -152,11 +166,6 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     @Override
     public Boolean runBySchedule(){
-        return true;
-    }
-
-    public Boolean refreshSchedule(){
-        LOGGER.info("-------------Schedule Refresh---------------");
         return true;
     }
 

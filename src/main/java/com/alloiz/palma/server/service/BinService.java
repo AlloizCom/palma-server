@@ -19,6 +19,8 @@ public interface BinService {
 
     Bin update(Bin bin);
 
+    Bin findByUuid(String uuid);
+
     Boolean delete(Long id);
 
 }

@@ -13,4 +13,6 @@ public interface BinRepository extends JpaRepository<Bin, Long> {
 
     Bin findByAvailableAndId(Boolean available, Long id);
 
+    Bin findByUuid (String uuid);
+
 }

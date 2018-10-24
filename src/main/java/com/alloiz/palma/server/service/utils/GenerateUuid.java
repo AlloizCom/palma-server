@@ -1,5 +1,6 @@
 package com.alloiz.palma.server.service.utils;
 
+import com.alloiz.palma.server.model.Bin;
 import com.alloiz.palma.server.model.Book;
 import com.alloiz.palma.server.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,10 @@ public class GenerateUuid {
         //return book.setUuid(generateUuid());
         // TODO: 23/10/2018 rewrite it later
         return new Book();
+    }
+
+    public static Bin generateUuid(Bin bin){
+        return bin.setUuid(generateUuid());
     }
 
     public static String generateUuid(){

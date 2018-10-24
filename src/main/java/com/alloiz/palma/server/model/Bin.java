@@ -28,6 +28,9 @@ public class Bin extends BaseEntity<Bin> {
     private String email;
     private Integer adults;
     private Integer kids;
+    private Integer priceRoom;
+    private Integer priceAdditionalAmenities;
+    private Integer priceTotal;
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<Book> books;
@@ -149,6 +152,33 @@ public class Bin extends BaseEntity<Bin> {
         return this;
     }
 
+    public Integer getPriceRoom() {
+        return priceRoom;
+    }
+
+    public Bin setPriceRoom(Integer priceRoom) {
+        this.priceRoom = priceRoom;
+        return this;
+    }
+
+    public Integer getPriceAdditionalAmenities() {
+        return priceAdditionalAmenities;
+    }
+
+    public Bin setPriceAdditionalAmenities(Integer priceAdditionalAmenities) {
+        this.priceAdditionalAmenities = priceAdditionalAmenities;
+        return this;
+    }
+
+    public Integer getPriceTotal() {
+        return priceTotal;
+    }
+
+    public Bin setPriceTotal(Integer priceTotal) {
+        this.priceTotal = priceTotal;
+        return this;
+    }
+
     @Override
     public String toString() {
         return "Bin{" +
@@ -163,6 +193,9 @@ public class Bin extends BaseEntity<Bin> {
                 ", email='" + email + '\'' +
                 ", adults=" + adults +
                 ", kids=" + kids +
+                ", priceRoom=" + priceRoom +
+                ", priceAdditionalAmenities=" + priceAdditionalAmenities +
+                ", priceTotal=" + priceTotal +
                 ", id=" + id +
                 ", available=" + available +
                 ", books= " + (books == null ? "null" : books) +

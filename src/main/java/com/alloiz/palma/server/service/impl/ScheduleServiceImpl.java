@@ -96,6 +96,7 @@ public class ScheduleServiceImpl implements ScheduleService {
         );
     }
 
+    @Override
     public List<Schedule> changePriceBetweenTwoDates(Timestamp from, Timestamp to, Integer id, Integer price){
         List<Schedule> schedules = scheduleRepository.findRoomBetweenDate(from,to)
                 .stream()
@@ -106,8 +107,14 @@ public class ScheduleServiceImpl implements ScheduleService {
         return schedules;
     }
 
+    @Override
     public List<Schedule> changePriceForDate(Timestamp date, Integer id, Integer price){
         return changePriceBetweenTwoDates(date,date,id,price);
+    }
+
+    @Override
+    public List<Schedule> getRoomBetweenDated (Timestamp from, Timestamp to){
+        return scheduleRepository.findRoomBetweenDate(from,to);
     }
 
     @Override

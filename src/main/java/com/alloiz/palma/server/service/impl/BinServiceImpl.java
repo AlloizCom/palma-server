@@ -54,6 +54,7 @@ public class BinServiceImpl implements BinService {
         checkSave(bin);
         bookCounterService.incrementCounter(1L);
         LOGGER.info("Bin service:" + bin);
+
         bin.setBookingDay(Timestamp.valueOf(LocalDateTime.now()));
 //        mailService.sendBookMailForStuffAndUser(book,language);
         return binRepository.save(generateUuid(bin

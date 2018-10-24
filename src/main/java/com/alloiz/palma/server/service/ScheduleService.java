@@ -29,6 +29,12 @@ public interface ScheduleService {
 
     Schedule updateAfterBooking(Schedule schedule);
 
+    List<Schedule> changePriceBetweenTwoDates(Timestamp from, Timestamp to, Integer id, Integer price);
+
+    List<Schedule> changePriceForDate(Timestamp date, Integer id, Integer price);
+
+    List<Schedule> getRoomBetweenDated(Timestamp from, Timestamp to);
+
     Boolean delete(Long id);
 
     List<Schedule> findAll(Pageable pageable);

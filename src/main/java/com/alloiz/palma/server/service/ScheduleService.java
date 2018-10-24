@@ -33,7 +33,7 @@ public interface ScheduleService {
 
     List<Schedule> changePriceForDate(Timestamp date, Integer id, Integer price);
 
-    List<Schedule> getRoomBetweenDated(Timestamp from, Timestamp to);
+    List<Schedule> getRoomBetweenDates(Timestamp from, Timestamp to);
 
     Boolean delete(Long id);
 

@@ -1,10 +1,14 @@
 package com.alloiz.palma.server.service.impl;
 
+import com.alloiz.palma.server.model.Amenity;
 import com.alloiz.palma.server.model.Bin;
+import com.alloiz.palma.server.model.Book;
+import com.alloiz.palma.server.model.Schedule;
 import com.alloiz.palma.server.model.enums.Language;
 import com.alloiz.palma.server.repository.BinRepository;
 import com.alloiz.palma.server.service.BinService;
 import com.alloiz.palma.server.service.BookCounterService;
+import com.alloiz.palma.server.service.ScheduleService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +16,7 @@ import org.springframework.stereotype.Service;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.alloiz.palma.server.service.utils.GenerateUuid.generateUuid;
 import static com.alloiz.palma.server.service.utils.Validation.*;
@@ -26,6 +31,9 @@ public class BinServiceImpl implements BinService {
 
     @Autowired
     private BookCounterService bookCounterService;
+
+    @Autowired
+    private ScheduleService scheduleService;
 
     @Override
     public Bin findOneAvailable(Long id) {
@@ -54,7 +62,30 @@ public class BinServiceImpl implements BinService {
         checkSave(bin);
         bookCounterService.incrementCounter(1L);
         LOGGER.info("Bin service:" + bin);
-
+        Integer roomSum = 0;
+        Integer amenitiesSum = 0;
+        if(isNullOrEmpty(bin.getBooks())){
+            for (Book book: bin.getBooks()
+                 ) {
+                List<Schedule> schedules = scheduleService.getRoomBetweenDates(bin.getDateIn(),bin.getDateOut())
+                        .stream()
+                        .filter(schedule -> schedule.getRoom().getId().equals(book.getRoom().getId()))
+                        .collect(Collectors.toList());
+                for (Schedule schedule: schedules
+                     ) {
+                    roomSum += schedule.getPrice();
+                }
+                if (isNullOrEmpty(book.getAdditionalAmenities())){
+                    for (Amenity amenity: book.getAdditionalAmenities()
+                         ) {
+                        amenitiesSum += amenity.getPrice();
+                    }
+                }
+            }
+        }
+        bin.setPriceRoom(roomSum);
+        bin.setPriceAdditionalAmenities(amenitiesSum);
+        bin.setPriceTotal(roomSum + amenitiesSum);
         bin.setBookingDay(Timestamp.valueOf(LocalDateTime.now()));
 //        mailService.sendBookMailForStuffAndUser(book,language);
         return binRepository.save(generateUuid(bin

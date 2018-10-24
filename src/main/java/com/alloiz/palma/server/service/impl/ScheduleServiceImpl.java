@@ -113,7 +113,7 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
-    public List<Schedule> getRoomBetweenDated (Timestamp from, Timestamp to){
+    public List<Schedule> getRoomBetweenDates(Timestamp from, Timestamp to){
         return scheduleRepository.findRoomBetweenDate(from,to);
     }
 

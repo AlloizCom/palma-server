@@ -1,5 +1,6 @@
 package com.alloiz.palma.server.service.impl;
 
+import com.alloiz.palma.server.model.Bin;
 import com.alloiz.palma.server.model.Book;
 import com.alloiz.palma.server.model.enums.OrderStatus;
 import com.alloiz.palma.server.service.*;
@@ -55,6 +56,24 @@ public class PayServiceImpl implements PayService {
         params.put("sandbox", SANDBOX_FLAG);
         params.put("action", "pay");
         params.put("amount", setPrice(book) + "");
+        params.put("currency", "UAH");
+        params.put("description", "Room booking");
+        //params.put("result_url", url + "/payment/server/" + uuid);//forward after click 'back'
+        //params.put("server_url", url + "/payment/server/" + uuid);
+        //params.put("order_id", uuid);
+        params.put("version", "3");
+        params.put("language", "uk");
+        params.put("expired_date", setExpiresIn());
+        return new LiqPay(liqpayPublicKey, liqpayPrivateKey).cnb_form(params);
+    }
+
+    @Override
+    public String getButton(Bin bin) {
+        HashMap<String, String> params = new HashMap<>();
+        //String uuid = book.getUuid();
+        params.put("sandbox", SANDBOX_FLAG);
+        params.put("action", "pay");
+//        params.put("amount", setPrice(book) + "");  // TODO: 24/10/2018 price
         params.put("currency", "UAH");
         params.put("description", "Room booking");
         //params.put("result_url", url + "/payment/server/" + uuid);//forward after click 'back'

@@ -24,6 +24,9 @@ public class BinDto {
     protected Integer adults;
     protected Integer kids;
     protected List<Book> books;
+    private Integer priceRoom;
+    private Integer priceAdditionalAmenities;
+    private Integer priceTotal;
 
     public BinDto() {
     }
@@ -154,6 +157,33 @@ public class BinDto {
         return this;
     }
 
+    public Integer getPriceRoom() {
+        return priceRoom;
+    }
+
+    public BinDto setPriceRoom(Integer priceRoom) {
+        this.priceRoom = priceRoom;
+        return this;
+    }
+
+    public Integer getPriceAdditionalAmenities() {
+        return priceAdditionalAmenities;
+    }
+
+    public BinDto setPriceAdditionalAmenities(Integer priceAdditionalAmenities) {
+        this.priceAdditionalAmenities = priceAdditionalAmenities;
+        return this;
+    }
+
+    public Integer getPriceTotal() {
+        return priceTotal;
+    }
+
+    public BinDto setPriceTotal(Integer priceTotal) {
+        this.priceTotal = priceTotal;
+        return this;
+    }
+
     @Override
     public String toString() {
         return "BinDto{" +
@@ -170,6 +200,9 @@ public class BinDto {
                 ", email='" + email + '\'' +
                 ", adults=" + adults +
                 ", kids=" + kids +
+                ", priceRoom=" + priceRoom +
+                ", priceAdditionalAmenities=" + priceAdditionalAmenities +
+                ", priceTotal=" + priceTotal +
                 ", books=" + books +
                 '}';
     }

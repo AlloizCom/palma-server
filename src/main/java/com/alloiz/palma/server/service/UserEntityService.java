@@ -22,4 +22,6 @@ public interface UserEntityService {
     Boolean createDefaultUser();
 
     UserEntity findByLogin(String login);
+
+    UserEntity updatePassword(UserEntity userEntity);
 }

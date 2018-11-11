@@ -9,6 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 import static com.alloiz.palma.server.service.utils.Validation.*;
 
 @Service
@@ -23,7 +24,7 @@ public class UserEntityServiceImpl implements UserEntityService {
     @Override
     public UserEntity findOneAvailable(Long id) {
         checkId(id);
-        return userEntityRepository.findByAvailableAndId(true,id);
+        return userEntityRepository.findByAvailableAndId(true, id);
     }
 
     @Override
@@ -46,12 +47,12 @@ public class UserEntityServiceImpl implements UserEntityService {
     public UserEntity save(UserEntity userEntity) {
         checkSave(userEntity);
         return userEntityRepository.save(userEntity.setAvailable(true)
-                    .setPassword(passwordEncoder.encode(userEntity.getPassword())));
+                .setPassword(passwordEncoder.encode(userEntity.getPassword())));
     }
 
     @Override
     public UserEntity update(UserEntity userEntity) {
-        checkObjectExistsById(userEntity.getId(),userEntityRepository);
+        checkObjectExistsById(userEntity.getId(), userEntityRepository);
         return userEntityRepository.save(findOne(userEntity.getId())
                 .setAvailable(userEntity.getAvailable())
                 .setFirstName(userEntity.getFirstName())
@@ -70,21 +71,21 @@ public class UserEntityServiceImpl implements UserEntityService {
     }
 
     @Override
-    public Boolean createDefaultUser(){
+    public Boolean createDefaultUser() {
         Boolean existAdmin = false;
         Boolean existModerator = false;
         List<UserEntity> users = userEntityRepository.findAllByAvailable(true);
-        for (UserEntity user: users
-             ) {
-            if (user.getRole().equals(Role.ADMIN)){
+        for (UserEntity user : users
+        ) {
+            if (user.getRole().equals(Role.ADMIN)) {
                 existAdmin = true;
             }
-            if (user.getRole().equals(Role.MODERATOR)){
+            if (user.getRole().equals(Role.MODERATOR)) {
                 existModerator = true;
             }
         }
-        if (!existAdmin || !existModerator){
-            if (!existAdmin){
+        if (!existAdmin || !existModerator) {
+            if (!existAdmin) {
                 save(new UserEntity()
                         .setFirstName("Admin")
                         .setLastName("Admin")
@@ -94,7 +95,7 @@ public class UserEntityServiceImpl implements UserEntityService {
                         .setAvailable(true)
                 );
             }
-            if (!existModerator){
+            if (!existModerator) {
                 save(new UserEntity()
                         .setFirstName("Moderator")
                         .setLastName("Moderator")
@@ -113,5 +114,14 @@ public class UserEntityServiceImpl implements UserEntityService {
     public UserEntity findByLogin(String login) {
         checkString(login);
         return userEntityRepository.findByLogin(login);
+    }
+
+    @Override
+    public UserEntity updatePassword(UserEntity userEntity) {
+        checkObjectExistsById(userEntity.getId(), userEntityRepository);
+        return userEntityRepository.save(
+                findOne(userEntity.getId())
+                        .setPassword(passwordEncoder.encode(userEntity.getPassword()))
+        );
     }
 }

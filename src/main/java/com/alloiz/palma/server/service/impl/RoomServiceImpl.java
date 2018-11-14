@@ -111,6 +111,7 @@ public class RoomServiceImpl implements RoomService {
                 .setKidsPlaces(room.getKidsPlaces())
                 .setSquare(room.getSquare())
                 .setAmount(room.getAmount())
+                .setPrice(room.getPrice())
                 .setType(room.getType()));
     }
 

@@ -56,18 +56,18 @@ public class MailServiceImpl implements MailService {
         Map<String, Object> map = MailChecker.checkNull(book);
 
         sendForClient(ADMIN_MAIL,TITLE_FOR_ADMINISTRATOR + titleDate,"letterForAdministrator.html",map,false);
-        if (language.equals(Language.UK)){
-            sendForClient(book.getEmail(),TITLE_FOR_CLIENT,"letterForClientUk.html",map,true);
-        }
-        if (language.equals(Language.EN)){
-            sendForClient(book.getEmail(),TITLE_FOR_CLIENT,"letterForClientEn.html",map,true);
-        }
-        if (language.equals(Language.PL)){
-            sendForClient(book.getEmail(),TITLE_FOR_CLIENT,"letterForClientPl.html",map,true);
-        }
-        if (language.equals(Language.RU)){
-            sendForClient(book.getEmail(),TITLE_FOR_CLIENT,"letterForClientRu.html",map,true);
-        }
+//        if (language.equals(Language.UK)){
+//            sendForClient(book.getEmail(),TITLE_FOR_CLIENT,"letterForClientUk.html",map,true);
+//        }
+//        if (language.equals(Language.EN)){
+//            sendForClient(book.getEmail(),TITLE_FOR_CLIENT,"letterForClientEn.html",map,true);
+//        }
+//        if (language.equals(Language.PL)){
+//            sendForClient(book.getEmail(),TITLE_FOR_CLIENT,"letterForClientPl.html",map,true);
+//        }
+//        if (language.equals(Language.RU)){
+//            sendForClient(book.getEmail(),TITLE_FOR_CLIENT,"letterForClientRu.html",map,true);
+//        }
     }
 
 }

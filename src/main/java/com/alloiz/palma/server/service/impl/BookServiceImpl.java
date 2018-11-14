@@ -68,24 +68,24 @@ public class BookServiceImpl implements BookService {
         checkSave(book);
         bookCounterService.incrementCounter(1L);
         LOGGER.info("Book service:" + book);
-        Integer amountFromBook = book.getAmountOfRooms();
-        scheduleService.findByParamForBook(book.getDateIn(), book.getDateOut(), book.getRoomType())
-                .stream()
-                .peek(schedule -> schedule.setActive(schedule.getActive() + amountFromBook))
-                .peek(schedule -> schedule.setFree(schedule.getForSale() - schedule.getActive()))
-                .forEach(schedule -> scheduleService.updateAfterBooking(schedule));
-        if (book.getOrderStatus().equals(OrderStatus.PAID_BY_CARD)){
-            book.setOrderStatus(OrderStatus.PAID_BY_CARD);
-        }
-        if (book.getOrderStatus().equals(OrderStatus.HAVE_TO_BE_PAID)){
-            book.setOrderStatus(OrderStatus.HAVE_TO_BE_PAID);
-        }
-        book.setBookingDay(Timestamp.valueOf(LocalDateTime.now()));
-        mailService.sendBookMailForStuffAndUser(book,language);
-        return bookRepository.save(generateUuid(book
+//        Integer amountFromBook = book.getAmountOfRooms();
+//        scheduleService.findByParamForBook(book.getDateIn(), book.getDateOut(), book.getRoomType())
+//                .stream()
+//                .peek(schedule -> schedule.setActive(schedule.getActive() + amountFromBook))
+//                .peek(schedule -> schedule.setFree(schedule.getForSale() - schedule.getActive()))
+//                .forEach(schedule -> scheduleService.updateAfterBooking(schedule));
+//        if (book.getOrderStatus().equals(OrderStatus.PAID_BY_CARD)){
+//            book.setOrderStatus(OrderStatus.PAID_BY_CARD);
+//        }
+//        if (book.getOrderStatus().equals(OrderStatus.HAVE_TO_BE_PAID)){
+//            book.setOrderStatus(OrderStatus.HAVE_TO_BE_PAID);
+//        }
+//        book.setBookingDay(Timestamp.valueOf(LocalDateTime.now()));
+//        mailService.sendBookMailForStuffAndUser(book,language);
+        mailService.sendBookMailForStuffAndUser(book,Language.UK);
+        return bookRepository.save(book
                 .setAvailable(true)
-
-        ));
+        );
     }
 
     @Override

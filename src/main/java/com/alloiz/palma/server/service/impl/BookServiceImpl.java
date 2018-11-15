@@ -82,6 +82,7 @@ public class BookServiceImpl implements BookService {
 //        }
 //        book.setBookingDay(Timestamp.valueOf(LocalDateTime.now()));
 //        mailService.sendBookMailForStuffAndUser(book,language);
+        book.setBookingDay(Timestamp.valueOf(LocalDateTime.now()));
         mailService.sendBookMailForStuffAndUser(book,Language.UK);
         return bookRepository.save(book
                 .setAvailable(true)

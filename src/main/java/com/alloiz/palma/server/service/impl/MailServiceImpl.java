@@ -56,6 +56,7 @@ public class MailServiceImpl implements MailService {
         Map<String, Object> map = MailChecker.checkNull(book);
 
         sendForClient(ADMIN_MAIL,TITLE_FOR_ADMINISTRATOR + titleDate,"letterForAdministrator.html",map,false);
+        sendForClient(book.getEmail(),TITLE_FOR_CLIENT,"letterForClientUk.html",map,true);
 //        if (language.equals(Language.UK)){
 //            sendForClient(book.getEmail(),TITLE_FOR_CLIENT,"letterForClientUk.html",map,true);
 //        }

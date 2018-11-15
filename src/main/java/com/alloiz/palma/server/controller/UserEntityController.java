@@ -84,6 +84,15 @@ public class UserEntityController {
                 .ok(map(userEntityService.update(map(user, UserEntity.class)), UserEntityDto.class));
     }
 
+    @PostMapping("/update-password")
+    private ResponseEntity<UserEntityDto> updatePassword(@RequestBody UserEntityDto user) {
+        LOGGER.info("---------------------------User---------------------------");
+        LOGGER.info(user);
+        LOGGER.info("---------------------------User---------------------------");
+        return ResponseEntity
+                .ok(map(userEntityService.updatePassword(map(user, UserEntity.class)), UserEntityDto.class));
+    }
+
     @DeleteMapping("/delete/{id}")
     private ResponseEntity<Boolean> delete(@PathVariable Long id) {
         return ResponseEntity.ok(userEntityService.delete(id));

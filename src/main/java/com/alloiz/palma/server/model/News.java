@@ -25,6 +25,9 @@ public class News extends BaseEntity<News> {
     private Timestamp dateTime;
     private String picturePath;
 
+    private String keywords;
+    private String description;
+
     public News() {
     }
 
@@ -57,12 +60,32 @@ public class News extends BaseEntity<News> {
         return this;
     }
 
+    public String getKeywords() {
+        return keywords;
+    }
+
+    public News setKeywords(String keywords) {
+        this.keywords = keywords;
+        return this;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public News setDescription(String description) {
+        this.description = description;
+        return this;
+    }
+
     @Override
     public String toString() {
         return "News{" +
-                "newsDescription=" + newsDescriptions +
+                "newsDescriptions=" + newsDescriptions +
                 ", dateTime=" + dateTime +
                 ", picturePath='" + picturePath + '\'' +
+                ", keywords='" + keywords + '\'' +
+                ", description='" + description + '\'' +
                 ", id=" + id +
                 ", available=" + available +
                 '}';

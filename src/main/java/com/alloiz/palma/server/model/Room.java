@@ -17,6 +17,9 @@ public class Room extends BaseEntity<Room> {
     private Integer amount;
     private Integer price;
 
+    private String keywords;
+    private String description;
+
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "description_id")
     private List<RoomDescription> descriptions;
@@ -122,6 +125,24 @@ public class Room extends BaseEntity<Room> {
         return this;
     }
 
+    public String getKeywords() {
+        return keywords;
+    }
+
+    public Room setKeywords(String keywords) {
+        this.keywords = keywords;
+        return this;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public Room setDescription(String description) {
+        this.description = description;
+        return this;
+    }
+
     @Override
     public String toString() {
         return "Room{" +
@@ -136,6 +157,8 @@ public class Room extends BaseEntity<Room> {
                 ", amount=" + amount +
                 ", id=" + id +
                 ", available=" + available +
+                ", keywords=" + keywords +
+                ", description=" + description +
                 '}';
     }
 }

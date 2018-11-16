@@ -81,7 +81,9 @@ public class MainPageServiceImpl implements MainPageService {
     public MainPage update(MainPage mainPage) {
         checkObjectExistsById(mainPage.getId(), mainPageRepository);
         return mainPageRepository.save(findOne(mainPage.getId())
-                .setAvailable(mainPage.getAvailable()));
+                .setAvailable(mainPage.getAvailable())
+        .setDescription(mainPage.getDescription())
+        .setKeywords(mainPage.getKeywords()));
     }
 
     @Override
@@ -100,7 +102,9 @@ public class MainPageServiceImpl implements MainPageService {
             mainPage.setImages(imageService.saveMultiImage(multipartFiles));
         }
         return mainPageRepository.save(findOne(mainPage.getId())
-                .setAvailable(mainPage.getAvailable()));
+                .setAvailable(mainPage.getAvailable())
+        .setKeywords(mainPage.getKeywords())
+        .setDescription(mainPage.getDescription()));
     }
 
     @Override

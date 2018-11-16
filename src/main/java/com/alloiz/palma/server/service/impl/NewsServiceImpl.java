@@ -71,6 +71,7 @@ public class NewsServiceImpl implements NewsService {
     public News save(String newsJson, MultipartFile multipartFile) {
         checkJson(newsJson);
         News news = json(newsJson, News.class);
+        LOGGER.info(">>> " + news.getDescription() + " " + news.getKeywords());
         news.getNewsDescriptions()
                 .stream()
                 .forEach(newsDescription -> newsDescription.setAvailable(true));

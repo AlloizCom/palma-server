@@ -68,7 +68,7 @@ public class MainPageServiceImpl implements MainPageService {
     public MainPage save(String mainPageJson, MultipartFile[] multipartFiles) {
         checkJson(mainPageJson);
         MainPage mainPage = json(mainPageJson, MainPage.class);
-        LOGGER.info(">>> "mainPage.getDescription() + " " + mainPage.getKeywords());
+        LOGGER.info(">>> " + mainPage.getDescription() + " " + mainPage.getKeywords());
         if (multipartFiles != null && multipartFiles.length != 0) {
 //            List<Image> images = new ArrayList<>();
 //            for (MultipartFile multipartFile : multipartFiles) {

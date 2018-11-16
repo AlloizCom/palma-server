@@ -7,6 +7,7 @@ import com.alloiz.palma.server.repository.MainPageRepository;
 import com.alloiz.palma.server.service.ImageService;
 import com.alloiz.palma.server.service.MainPageService;
 import com.alloiz.palma.server.service.utils.FileBuilder;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -30,6 +31,9 @@ public class MainPageServiceImpl implements MainPageService {
 
     @Autowired
     private ImageService imageService;
+
+    private static final Logger LOGGER = Logger.getLogger(MainPageServiceImpl.class);
+
 
     @Override
     public MainPage findOneAvailable(Long id) {
@@ -64,6 +68,7 @@ public class MainPageServiceImpl implements MainPageService {
     public MainPage save(String mainPageJson, MultipartFile[] multipartFiles) {
         checkJson(mainPageJson);
         MainPage mainPage = json(mainPageJson, MainPage.class);
+        LOGGER.info(">>> "mainPage.getDescription() + " " + mainPage.getKeywords());
         if (multipartFiles != null && multipartFiles.length != 0) {
 //            List<Image> images = new ArrayList<>();
 //            for (MultipartFile multipartFile : multipartFiles) {

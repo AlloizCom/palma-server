@@ -86,6 +86,8 @@ public class NewsServiceImpl implements NewsService {
         return newsRepository.save(findOne(news.getId())
                 .setNewsDescriptions(news.getNewsDescriptions())
                 .setAvailable(news.getAvailable())
+                .setDescription(news.getDescription())
+                .setKeywords(news.getKeywords())
                 .setPicturePath(news.getPicturePath()));
     }
 

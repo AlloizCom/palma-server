@@ -13,6 +13,9 @@ public class MainPage extends BaseEntity<MainPage>{
     @JoinColumn(name = "main_page_id")
     private List<Image> images;
 
+    private String keywords;
+    private String description;
+
     public MainPage() {
     }
 
@@ -25,10 +28,31 @@ public class MainPage extends BaseEntity<MainPage>{
         return this;
     }
 
+    public String getKeywords() {
+        return keywords;
+    }
+
+    public MainPage setKeywords(String keywords) {
+        this.keywords = keywords;
+        return this;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public MainPage setDescription(String description) {
+        this.description = description;
+        return this;
+    }
+
+
     @Override
     public String toString() {
         return "MainPage{" +
-                ", images=" + (images == null ? "null" : images) +
+                "images=" + (images == null ? "null" : images) +
+                ", keywords='" + keywords + '\'' +
+                ", description='" + description + '\'' +
                 ", id=" + id +
                 ", available=" + available +
                 '}';

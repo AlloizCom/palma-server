@@ -14,6 +14,8 @@ public class RoomShortDto <T extends RoomShortDto>{
     protected Double square;
     protected Integer amount;
     protected Integer price;
+    protected String keywords;
+    protected String description;
 
     public RoomShortDto() {
     }
@@ -90,6 +92,24 @@ public class RoomShortDto <T extends RoomShortDto>{
         return this;
     }
 
+    public String getKeywords() {
+        return keywords;
+    }
+
+    public RoomShortDto<T> setKeywords(String keywords) {
+        this.keywords = keywords;
+        return this;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public RoomShortDto<T> setDescription(String description) {
+        this.description = description;
+        return this;
+    }
+
     @Override
     public String toString() {
         return "RoomShortDto{" +
@@ -101,6 +121,8 @@ public class RoomShortDto <T extends RoomShortDto>{
                 ", square=" + square +
                 ", amount=" + amount +
                 ", price=" + price +
+                ", keywords='" + keywords + '\'' +
+                ", description='" + description + '\'' +
                 '}';
     }
 }

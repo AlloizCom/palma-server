@@ -15,6 +15,8 @@ public class NewsShortDto <T extends NewsShortDto>{
     protected Boolean available;
     protected Timestamp dateTime;
     protected String picturePath;
+    protected String keywords;
+    protected String description;
 
     public NewsShortDto() {
     }
@@ -55,5 +57,35 @@ public class NewsShortDto <T extends NewsShortDto>{
     public T setPicturePath(String picturePath) {
         this.picturePath = picturePath;
         return (T) this;
+    }
+
+    public String getKeywords() {
+        return keywords;
+    }
+
+    public NewsShortDto<T> setKeywords(String keywords) {
+        this.keywords = keywords;
+        return this;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public NewsShortDto<T> setDescription(String description) {
+        this.description = description;
+        return this;
+    }
+
+    @Override
+    public String toString() {
+        return "NewsShortDto{" +
+                "id=" + id +
+                ", available=" + available +
+                ", dateTime=" + dateTime +
+                ", picturePath='" + picturePath + '\'' +
+                ", keywords='" + keywords + '\'' +
+                ", description='" + description + '\'' +
+                '}';
     }
 }

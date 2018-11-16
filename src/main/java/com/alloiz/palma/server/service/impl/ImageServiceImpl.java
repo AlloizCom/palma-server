@@ -44,7 +44,6 @@ public class ImageServiceImpl implements ImageService {
         ListIterator<Image> imageListIterator = images.listIterator();
         while (imageListIterator.hasNext()) {
             if (imageListIterator.next().getId().equals(imageId)) {
-                LOGGER.info("SUKA IBANYI abra kedavra");
                 imageListIterator.remove();
                 imageRepository.delete(imageId);
                 return true;

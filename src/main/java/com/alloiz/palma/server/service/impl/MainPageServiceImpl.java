@@ -155,6 +155,14 @@ public class MainPageServiceImpl implements MainPageService {
 //            }
 //        }
         if (imageService.removeImage(images,imageId)){
+            List<MainPage> mainPages = mainPageRepository.findAllByAvailable(true);
+            for (MainPage page: mainPages
+                 ) {
+                if (isNullOrEmpty(page.getImages())){
+                    delete(page.getId());
+                    LOGGER.warn("DELETE EMPTY MAIN PAGE: " + page.getId());
+                }
+            }
             return true;
         }
         return false;

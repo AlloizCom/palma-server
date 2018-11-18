@@ -7,6 +7,7 @@ public class ServiceShortDto <T extends ServiceShortDto>{
 
     protected Long id;
     protected Boolean available;
+    protected Boolean showOnTop;
     protected String name;
     protected String picturePath;
 
@@ -47,6 +48,14 @@ public class ServiceShortDto <T extends ServiceShortDto>{
     public T setPicturePath(String picturePath) {
         this.picturePath = picturePath;
         return (T)this;
+    }
+
+    public Boolean getShowOnTop() {
+        return showOnTop;
+    }
+
+    public void setShowOnTop(Boolean showOnTop) {
+        this.showOnTop = showOnTop;
     }
 
     @Override

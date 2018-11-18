@@ -111,7 +111,8 @@ public class ServiceServiceImpl implements ServiceService {
         return serviceRepository.save(findOne(service.getId())
                 .setName(service.getName())
                 .setServiceDescriptions(service.getServiceDescriptions())
-                .setAvailable(service.getAvailable()));
+                .setAvailable(service.getAvailable()))
+                .setShowOnTop(service.getShowOnTop());
     }
 
     @Override

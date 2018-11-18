@@ -102,17 +102,19 @@ public class ServiceServiceImpl implements ServiceService {
             service.setPicturePath(fileBuilder.saveFile(multipartFile));
         return save(service.setName(service.getName()))
                 .setAvailable(service.getAvailable()
-        );
+                );
     }
 
     @Override
     public Service update(Service service) {
         checkObjectExistsById(service.getId(), serviceRepository);
-        return serviceRepository.save(findOne(service.getId())
-                .setName(service.getName())
-                .setServiceDescriptions(service.getServiceDescriptions())
-                .setAvailable(service.getAvailable()))
-                .setShowOnTop(service.getShowOnTop());
+        return serviceRepository.save(
+                findOne(service.getId())
+                        .setName(service.getName())
+                        .setServiceDescriptions(service.getServiceDescriptions())
+                        .setAvailable(service.getAvailable())
+                        .setShowOnTop(service.getShowOnTop())
+        );
     }
 
     @Override

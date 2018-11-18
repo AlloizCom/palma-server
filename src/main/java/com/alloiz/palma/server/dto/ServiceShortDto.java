@@ -54,8 +54,9 @@ public class ServiceShortDto <T extends ServiceShortDto>{
         return showOnTop;
     }
 
-    public void setShowOnTop(Boolean showOnTop) {
+    public T setShowOnTop(Boolean showOnTop) {
         this.showOnTop = showOnTop;
+        return (T)this;
     }
 
     @Override

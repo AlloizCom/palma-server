@@ -77,7 +77,8 @@ public class Service extends BaseEntity<Service> {
         return showOnTop;
     }
 
-    public void setShowOnTop(Boolean showOnTop) {
+    public Service setShowOnTop(Boolean showOnTop) {
         this.showOnTop = showOnTop;
+        return this;
     }
 }

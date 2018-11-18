@@ -7,10 +7,11 @@ import javax.persistence.OneToMany;
 import java.util.List;
 
 @Entity
-public class Service extends BaseEntity<Service>{
+public class Service extends BaseEntity<Service> {
 
     private String name;
     private String picturePath;
+    private Boolean showOnTop;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "service_description_id")
@@ -68,5 +69,15 @@ public class Service extends BaseEntity<Service>{
                 ", id=" + id +
                 ", available=" + available +
                 '}';
+    }
+
+    public Boolean getShowOnTop() {
+        if (showOnTop == null)
+            showOnTop = false;
+        return showOnTop;
+    }
+
+    public void setShowOnTop(Boolean showOnTop) {
+        this.showOnTop = showOnTop;
     }
 }

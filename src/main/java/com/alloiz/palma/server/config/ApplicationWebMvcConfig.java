@@ -16,18 +16,11 @@ public class ApplicationWebMvcConfig extends WebMvcConfigurerAdapter {
     String rootPath = System.getProperty("catalina.home");
     String[] PATH = {
             "classpath:/resources/",
-            "file:/" + rootPath + "/resources/",
-            "file:/" + rootPath + "/WEB-INF/classes"
+            "file:/" + rootPath + "/resources/"
     };
 
     @Override
     public void addResourceHandlers(final ResourceHandlerRegistry registry) {
-        System.err.println(rootPath);
-        System.err.println(rootPath);
-        System.err.println(rootPath);
-        System.err.println(rootPath);
-        System.err.println(rootPath);
-        System.err.println(rootPath);
         registry.addResourceHandler("/resources/**")
                 .addResourceLocations(PATH)
                 .setCacheControl(CacheControl.maxAge(7, TimeUnit.DAYS))

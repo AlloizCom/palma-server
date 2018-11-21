@@ -16,21 +16,16 @@ public class ApplicationWebMvcConfig extends WebMvcConfigurerAdapter {
     String rootPath = System.getProperty("catalina.home");
     String[] PATH = {
             "classpath:/resources/",
-            "file:/" + rootPath + "/resources/"
+            "classpath:/resources/assets/i18n/",
+            "file:/" + rootPath + "/resources/",
+            "file:/" + rootPath + "/resources/assets/i18n/"
     };
-
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        registry
-                .addMapping("/resources/**")
-                .allowedOrigins("http://185.233.116.57");
-    }
 
     @Override
     public void addResourceHandlers(final ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resources/**")
                 .addResourceLocations(PATH)
-                .setCacheControl(CacheControl.maxAge(365, TimeUnit.DAYS))
+                .setCacheControl(CacheControl.maxAge(7, TimeUnit.DAYS))
                 .resourceChain(false)
                 .addResolver(new VersionResourceResolver().addContentVersionStrategy("/**"));
     }

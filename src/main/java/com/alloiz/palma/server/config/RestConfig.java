@@ -1,5 +1,7 @@
 package com.alloiz.palma.server.config;
 
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
@@ -15,6 +17,8 @@ import java.util.List;
 @Component
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class RestConfig implements Filter {
+
+    private static Logger logger = Logger.getLogger(RestConfig.class);
 
     public void destroy() {
     }
@@ -32,7 +36,8 @@ public class RestConfig implements Filter {
         response.setHeader("Access-Control-Allow-Headers", "x-requested-with, authorization,Content-Type,Origin,enctype");
         response.setHeader("Access-Control-Allow-Credentials", "true");
 //        response.setHeader("Access-Control-Request-Headers", "x-requested-with, authorization,Content-Type,");
-
+        logger.info("req uri : "+request.getRequestURI());
+        logger.info("resp headers' names: "+response.getHeaderNames());
 
         if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
             response.setStatus(HttpServletResponse.SC_OK);

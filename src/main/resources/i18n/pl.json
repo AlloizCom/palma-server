@@ -1,181 +1,112 @@
 {
-
   "current-language-index": 2,
   "current-language-name": "pl",
-
-  "header-main":"",
-  "header-rooms":"",
-  "header-news":"",
-  "header-services":"",
-  "header-contact":"",
-
-  "footer-contact":"",
-  "footer-services":"",
-  "footer-partners":"",
-  "footer-address":"",
-
-
-
-
   "hotel-name": "Palm",
-  "data-picker-first-column-word": "",
-  "data-picker-first-column-month": "",
-  "data-picker-second-column-word": "",
-  "data-picker-first-column-month": "",
-  "data-picker-third-column": "",
-  "data-picker-fourth-column": "",
-  "data-picker-fifth-column": "",
-  "about-us-first-title":"",
-  "about-us-second-title":"",
-  "about-us-text":"",
-  "review":"",
-
-  "special-offers-first-title":"",
-  "special-offers-second-title":"",
-  "special-offers-first-column-title":"",
-  "special-offers-second-column-title":"",
-  "special-offers-third-column-title":"",
-  "special-offers-fourth-column-title":"",
-  "special-offers-first-column-text":"",
-  "special-offers-second-column-text":"",
-  "special-offers-third-column-text":"",
-  "special-offers-fourth-column-text":"",
-
-  "rooms-first-title":"",
-  "rooms-second-title":"",
-  "rooms-standard":"",
-  "rooms-superior-standard":"",
-  "rooms-junior-suite":"",
-  "rooms-superior-junior-suite":"",
-  "rooms-suite":"",
-
-  "services-and-offers-first-title":"",
-  "services-and-offers-second-title":"",
-  "services-and-offers-text":"",
-  "services-and-offers-first-column-title":"",
-  "services-and-offers-second-column-title":"",
-  "services-and-offers-third-column-title":"",
-  "services-and-offers-first-column-text":"",
-  "services-and-offers-second-column-text":"",
-  "services-and-offers-third-column-text":"",
-
-  "advantages-first-title":"",
-  "advantages-second-title":"",
-  "advantages-first-column-text":"",
-  "advantages-second-column-text":"",
-  "advantages-third-column-text":"",
-
-  "contacts-first-title":"",
-  "contacts-second-title":"",
-  "contacts-first-article":"",
-  "contacts-second-article":"",
-  "contacts-third-article":"",
-
-
-
-
-  "suite-title":"",
-  "suite-description":"",
-  "suite-area":"",
-  "suite-price":"",
-
-  "junior-suite-title":"",
-  "junior-suite-description":"",
-  "junior-suite-area":"",
-  "junior-suite-price":"",
-
-  "superior-junior-suite-title":"",
-  "superior-junior-suite-description":"",
-  "superior-junior-suite-area":"",
-  "superior-junior-suite-price":"",
-
-  "standard-title":"",
-  "standard-description":"",
-  "standard-area":"",
-  "standard-price":"",
-
-  "superior-standard-title":"",
-  "superior-standard-description":"",
-  "superior-standard-area":"",
-  "superior-standard-price":"",
-
-
-
-
-  "first-top-column-title":"",
-  "first-bottom-column-title":"",
-  "second-top-column-title":"",
-  "second-bottom-column-title":"",
-  "third-top-column-title":"",
-  "third-bottom-column-title":"",
-
-  "news":"",
-  "first-article-title":"",
-  "first-article-text":"",
-  "second-article-title":"",
-  "second-article-text":"",
-  "third-article-title":"",
-  "third-article-text":"",
-  "fourth-article-title":"",
-  "fourth-article-text":"",
-  "fifth-article-title":"",
-  "fifth-article-text":"",
-  "sixth-article-title":"",
-  "sixth-article-text":"",
-
-
-
-
-  "contacts-title":"",
-
-  "contacts-address-title":"",
-  "contacts-address-text":"",
-  "contacts-exactly-address":"",
-
-  "contacts-phone-title":"",
-  "contacts-phone-first-text":"",
-  "contacts-phone-second-text":"",
-  "contacts-phone-third-text":"",
-
-  "contacts-mail-title":"",
-  "contacts-mail-text":"",
-
-  "feedback-first-title":"",
-  "feedback-second-title":"",
-  "feedback-text":"",
-
-  "name-input-text":"",
-  "phone-input-text":"",
-  "mail-input-text":"",
-  "massage-input-text":"",
-  "send":"",
-
-  "hot-to-get":"",
-  "hot-to-get-airport":"",
-  "hot-to-get-airport-description":"",
-  "hot-to-get-station":"",
-  "hot-to-get-station-description":"",
-  "hot-to-get-bus":"",
-  "hot-to-get-bus-description":"",
-  "hot-to-get-square":"",
-  "hot-to-get-square-description":"",
-  "hot-to-get-castle":"",
-  "hot-to-get-castle-description":"",
-
-
-
-
-
-
-  "test-value": "Kontakty",
-  "contacts-way-airport": "airport",
-  "contacts-way-station": "station",
-  "contacts-way-bus": "bus",
-  "contacts-way-square": "square",
-  "contacts-way-castle": "castle",
-    "STANDARD":"Standardowy",
-    "SUPERIOR":"Mniejszy apartment",
-    "DELUXE":"Apartment",
-    "SUPERIOR_IMPROVED":"Mniejszy apartment typu superior",
-    "STANDARD_IMPROVED":"Flashowanie standardowe"
+  "header": {
+    "main": "ГОЛОВНА",
+    "rooms": "НОМЕРИ",
+    "news": "НОВИНИ",
+    "services": "СЕРВІСИ",
+    "contact": "КОНТАКТИ"
+  },
+  "footer-contact": {
+    "services": {
+      "title": "СЕРВІСИ",
+      "rows": [
+        "Безкоштовна парковка автомобіля",
+        "Швидкісний Wi-Fi інтернет",
+        "Цілодобова стійка рецепції"
+      ]
+    },
+  },
+  "data-picker": {
+    "in": "заїзд",
+    "out": "виїзд",
+    "rooms": "номери",
+    "adults": "дорослі",
+    "children": "діти"
+  },
+  "about_us": {
+    "title": "ПРО НАС",
+    "bottom_title": "Вітаємо Вас на нашому сайті!",
+    "text": "Сучасний, атмосферний арт готель \"Пальма\" розташований у живописному районі Львова. Після активно проведеного дня, збуджуючих емоцій від зустрічі з експресивним містом Лева, в нашому готелі ви отримаєте всі умови для спокійного, релаксуючого відпочинку. Готель знаходиться в 20 хвилинах від метушливого центру, на території власна парковка з відеонаглядом. Для розміщення гостей, готель пропонує номера стандарт та напівлюкс з просторими кімнатами і зручними для відпочинку меблями. Дизайнерський ремонт та незвичайні круглі ліжка у готельних номерах напівлюкс. Чітка та злагоджена робота колективу на рецепції дозволить оперативно провести процедуру поселення та розрахунку. Безкоштовний та швидкий Wi-Fi безперебійно працює на всій території готелю. Зберігаючи доступні ціни на проживання ми тримаємо високу планку обслуговування, забезпечуючи оптимальний рівень умов для комфортного розміщення наших клієнтів."
+  },
+  "special_offers": {
+    "title": "СПЕЦІАЛЬНІ ПРОПОЗИЦІЇ",
+    "bottom_title": "Виберіть найкраще для вас"
+  },
+  "rooms": {
+    "title": "НОМЕРИ",
+    "bottom_title": "Категорії кімнат у готелі",
+    "review": "переглянути",
+    "in": "заїзд",
+    "out": "виїзд",
+    "book": "забронювати",
+    "description": "опис номеру",
+    "price": "ціна",
+    "amenities": "зручності"
+  },
+  "services_and_offers": {
+    "title": "ПОСЛУГИ ТА ПРОПОЗИЦІЇ",
+    "bottom_title": "Сервіс та комфорт для кожного клієнта",
+    "services_and_offers_text": "Ми пропонуємо Вам високий рівень обслуговування, комфортне проживання, доступні ціни та європейський сервіс."
+  },
+  "advantages": {
+    "title": "НАШІ ПЕРЕВАГИ",
+    "bottom_title": "Доступність та висока якість послуг",
+    "columns": [
+      "Безкоштовний високошвидкісний WI-FI інтернет, який покриває всю територію готелю",
+      "24 години на добу, адміністратори на рецепції допоможуть Вам у вирішенні будь-яких питань",
+      "Велика закрита безкоштовна парковка для Вашого автомобіля"
+    ]
+  },
+  "contacts": {
+    "title": "КОНТАКТИ",
+    "bottom_title": "Де ми знаходимося? Як дістатися?",
+    "address": {
+      "title": "Адреса",
+      "zip_county": "79024, Україна",
+      "city_street": "м. Львів, вул. Богданівська, 44",
+      "text": "Арт Готель \"Пальма\" знаходиться на північному сході міста Львова, у місцевості, яка називається Великі Кривчиці"
+    },
+    "phone": {
+      "title": "Телефон",
+      "text": "Рецепція готелю працює цілодобово (24h), ми завжди приймемо ваше бронювання і допоможемо вирішити будь яке питання. Для зручності, ви можете скористатися мессенджерами Viber, Telegram та WhatsApp",
+      "numbers": [
+        "+38 067 19 444 00",
+        "+38 093 43 444 00",
+        "+38 032 291 78 74"
+      ]
+    },
+    "mail": {
+      "title": "Пошта",
+      "text": "Чекаємо на Ваші листи з цікавими пропозиціями, вакансіями, відгуками про нашу роботу та бронюваннями (в т.ч. груповими). Пишіть нам і ми завжди вам відповімо",
+      "email": "palmalviv@gmail.com"
+    },
+    "buses": "До готелю курсують автобуси 19, 39"
+  },
+  "feedback": {
+    "title": "ЗВОРОТНІЙ ЗВ'ЯЗОК",
+    "bottom_title": "Напишіть Нам",
+    "text": "Шановні гості готелю \"Пальма\", нам завжди важлива Ваша думка.\nНаша команда буде вдячна за залишений відгук на сайті про проживання, комфорт і рівень обслуговування. Ми завжди прислухаємося до Вас і готові йти назустріч у будь-яких питаннях.\nДякуємо Вам за відгуки, вони допоможуть нам розвивати наш сервіс та рівень обслуговування.",
+    "form": {
+      "name": "ІМ'Я",
+      "phone": "ТЕЛЕФОН",
+      "message": "ПОВІДОМЛЕННЯ",
+      "send": "Надіслати"
+    }
+  },
+  "how-to-get": {
+    "title": "Як дістатися до готелю?",
+    "airport": "Аеропорт",
+    "airport-description": "Відстань до готелю: 13,5 км\nЧас їзди автомобілем: 30 хв.\n\nГромадський транспорт\n\nЗапропонований маршрут: з аеропорту автобусом №48 до зупинки \"вул. Театральна\", далі перейти дорогу до зупинки \"пр. В'ячеслава Чорновола\" та пересісти на автобус №39 та їхати до кінцевої зупинки. Час їзди 50 хв.",
+    "station": "Головний Залізничний Вокзал",
+    "station-description": "Відстань до готелю: 9,1 км\nЧас їзди автомобілем: 20 хв.\n\nГромадський транспорт\n\nЗапропонований маршрут 1: з вокзалу автобусом №29 до зупинки \"вул. Підвальна\", далі пересідаємо на автобус №39 та їдемо до кінцевої зупинка готель \"Пальма\" (або Авторинок). Приблизний час їзди 40 хв.\n\nЗапропонований маршрут 2: з вокзалу йдемо пішки до вул. Городоцької (600 м, 8 хв.), далі на зупинці \"пл. Кропивницького\" сідаємо на автобус №20 до зупинки \"вул. Польова\", далі йдемо пішки до готелю \"Пальма\" (1,1 км, 15 хв). Приблизний час їзди 25 хв.",
+    "bus": "Автовокзал",
+    "bus-description": "вул. Стрийська 109\nВідстань до готелю: 12,1 км\nЧас їзди автомобілем: 35 хв.\n\nГромадський транспорт\n\nЗапропонований маршрут: з автовокзалу автобусом №3А до зупинки \"вул. Підвальна\", далі переходимо дорогу і на зупинці напроти пересідаємо на автобус №39 та їдемо до кінцевої зупинка готель \"Пальма\" (або Авторинок). Приблизний час їзди 60 хв.",
+    "square": "Площа Ринок",
+    "square-description": "Відстань до готелю: 5 км\nЧас їзди автомобілем: 15 хв.\n\nГромадський транспорт\n\nЗапропонований маршрут 1: від зупинки \"вул. Підвальна\" (біля пам'ятника І. Федорову) автобусом №39 до кінцевої зупинки готель \"Пальма\" (або Авторинок). Приблизний час їзди 20 хв. Час роботи автобуса: 06:00 - 20:00\nЗапропонований маршрут 2: від зупинки \"вул. Підвальна\" (біля пам'ятника І. Федорову) автобусом №20 до зупинки \"вул. Польова\", далі йдемо пішки до готелю \"Пальма\" (1,1 км, 15 хв). Приблизний час їзди 25 хв. Час роботи автобуса: 06:00 - 22:00",
+    "castle": "Станція \"Підзамче\"",
+    "castle-description": "Відстань до готелю: 3,7 км\nЧас їзди автомобілем: 9 хв.\n\nГромадський транспорт\n\nЗапропонований маршрут: від станції автобусом №20 до зупинки \"вул. Польова\", далі йдемо пішки до готелю \"Пальма\" (відстань від зупинки до готелю 1,1 км час ходьби 15 хв.). Приблизний час їзди 10 хв."
+  }
 }

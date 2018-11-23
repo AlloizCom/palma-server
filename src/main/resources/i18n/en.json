@@ -45,7 +45,14 @@
     "book": "забронювати",
     "description": "опис номеру",
     "price": "ціна",
-    "amenities": "зручності"
+    "amenities": "зручності",
+    "types": {
+      "STANDARD": "Стандарт",
+      "SUPERIOR": "Напівлюкс",
+      "DELUXE": "Люкс",
+      "STANDARD_IMPROVED": "Покращений стандарт",
+      "SUPERIOR_IMPROVED": "Покращений напівлюкс"
+    }
   },
   "services_and_offers": {
     "title": "ПОСЛУГИ ТА ПРОПОЗИЦІЇ",

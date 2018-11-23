@@ -45,7 +45,14 @@
     "book": "забронировать",
     "description": "описание номера",
     "price": "цена",
-    "amenities": "удобства"
+    "amenities": "удобства",
+    "types": {
+      "STANDARD": "Стандарт",
+      "SUPERIOR": "Полулюкс",
+      "DELUXE": "Люкс",
+      "STANDARD_IMPROVED": "Улучшеный стандарт",
+      "SUPERIOR_IMPROVED": "улучшеный полулюкс"
+    }
   },
   "services_and_offers": {
     "title": "УСЛУГИ И ПРЕДЛОЖЕНИЯ",

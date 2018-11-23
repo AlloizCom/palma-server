@@ -2,6 +2,11 @@
   "current-language-index": 0,
   "current-language-name": "en",
   "hotel-name": "Palm",
+  "global":{
+    "uah":"грн",
+    "msq":"кв. м",
+    "more":"більше"
+  },
   "header": {
     "main": "ГОЛОВНА",
     "rooms": "НОМЕРИ",
@@ -52,7 +57,8 @@
       "DELUXE": "Люкс",
       "STANDARD_IMPROVED": "Покращений стандарт",
       "SUPERIOR_IMPROVED": "Покращений напівлюкс"
-    }
+    },
+    "not_found":"Не знайдено вільних номерів"
   },
   "services_and_offers": {
     "title": "ПОСЛУГИ ТА ПРОПОЗИЦІЇ",

@@ -114,7 +114,9 @@ public class RoomServiceImpl implements RoomService {
                 .setPrice(room.getPrice())
                 .setDescription(room.getDescription())
                 .setKeywords(room.getKeywords())
-                .setType(room.getType()));
+                .setType(room.getType())
+                .setAmenities(room.getAmenities())
+        );
     }
 
     @Override

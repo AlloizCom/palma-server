@@ -130,6 +130,7 @@ public class RoomServiceImpl implements RoomService {
         room.setAmenities(room.getAmenities());
         return roomRepository.save(findOne(room.getId())
                 .setAdultPlaces(room.getAdultPlaces())
+                .setAmenities(room.getAmenities())
                 .setAvailable(room.getAvailable())
                 .setDescriptions(room.getDescriptions())
                 .setKidsPlaces(room.getKidsPlaces())

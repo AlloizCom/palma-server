@@ -5,6 +5,7 @@ import com.alloiz.palma.server.dto.RoomMiddleDto;
 import com.alloiz.palma.server.dto.RoomWithTariff;
 import com.alloiz.palma.server.model.Book;
 import com.alloiz.palma.server.model.Room;
+import com.alloiz.palma.server.model.RoomDescription;
 import com.alloiz.palma.server.model.Tariff;
 import com.alloiz.palma.server.model.enums.RoomType;
 import com.alloiz.palma.server.repository.utils.RoomParams;
@@ -43,6 +44,22 @@ public class RoomController {
     @GetMapping("/find-all")
     private ResponseEntity<List<RoomFullDto>> findAll() {
         return new ResponseEntity<>(roomService.findAll().stream()
+                .map(room -> map(room, RoomFullDto.class)).collect(Collectors.toList()), HttpStatus.OK);
+    }
+
+    @GetMapping("/find-all-available-split")
+    private ResponseEntity<List<RoomFullDto>> findAllAvailableSplit() {
+        List<Room> rooms = roomService.findAllAvailable();
+        List<Room> ret = new ArrayList<>();
+        for (Room room: rooms
+             ) {
+            List<RoomDescription> roomDescriptions = room.getDescriptions();
+            roomDescriptions.stream().forEach(roomDescription -> roomDescription.setDescription(roomDescription.getDescription().substring(0,25)));
+            room.setDescriptions(roomDescriptions);
+            ret.add(room);
+        }
+
+        return new ResponseEntity<>(ret.stream()
                 .map(room -> map(room, RoomFullDto.class)).collect(Collectors.toList()), HttpStatus.OK);
     }
 

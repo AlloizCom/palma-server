@@ -57,7 +57,7 @@ public class RoomController {
             roomDescriptions.stream()
                     .filter(roomDescription -> roomDescription.getDescription().length()>251)
                     .forEach(roomDescription -> roomDescription
-                            .setDescription(roomDescription.getDescription().substring(0,250).concat("...")));
+                            .setDescription(roomDescription.getDescription().substring(0,250).concat(" ...")));
             room.setDescriptions(roomDescriptions);
             ret.add(room);
         }

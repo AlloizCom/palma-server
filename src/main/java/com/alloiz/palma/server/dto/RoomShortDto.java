@@ -16,6 +16,9 @@ public class RoomShortDto <T extends RoomShortDto>{
     protected Integer price;
     protected String keywords;
     protected String description;
+    protected Integer priceThreePlaces;
+    protected Integer priceFifthPlaces;
+
 
     public RoomShortDto() {
     }
@@ -107,6 +110,24 @@ public class RoomShortDto <T extends RoomShortDto>{
 
     public RoomShortDto<T> setDescription(String description) {
         this.description = description;
+        return this;
+    }
+
+    public Integer getPriceThreePlaces() {
+        return priceThreePlaces;
+    }
+
+    public RoomShortDto<T> setPriceThreePlaces(Integer priceThreePlaces) {
+        this.priceThreePlaces = priceThreePlaces;
+        return this;
+    }
+
+    public Integer getPriceFifthPlaces() {
+        return priceFifthPlaces;
+    }
+
+    public RoomShortDto<T> setPriceFifthPlaces(Integer priceFifthPlaces) {
+        this.priceFifthPlaces = priceFifthPlaces;
         return this;
     }
 

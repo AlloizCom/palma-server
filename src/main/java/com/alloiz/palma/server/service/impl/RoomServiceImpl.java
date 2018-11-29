@@ -116,6 +116,8 @@ public class RoomServiceImpl implements RoomService {
                 .setKeywords(room.getKeywords())
                 .setType(room.getType())
                 .setAmenities(room.getAmenities())
+                .setPriceFifthPlaces(room.getPriceFifthPlaces())
+                .setPriceThreePlaces(room.getPriceThreePlaces())
         );
     }
 
@@ -140,6 +142,8 @@ public class RoomServiceImpl implements RoomService {
                 .setImages(room.getImages())
                 .setDescription(room.getDescription())
                 .setKeywords(room.getKeywords())
+                .setPriceFifthPlaces(room.getPriceFifthPlaces())
+                .setPriceThreePlaces(room.getPriceThreePlaces())
                 ;
     }
 

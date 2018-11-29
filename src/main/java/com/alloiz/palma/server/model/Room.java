@@ -17,6 +17,10 @@ public class Room extends BaseEntity<Room> {
     private Integer amount;
     private Integer price;
 
+    private Integer priceThreePlaces;
+    private Integer priceFifthPlaces;
+
+
     private String keywords;
     private String description;
 
@@ -143,6 +147,24 @@ public class Room extends BaseEntity<Room> {
         return this;
     }
 
+    public Integer getPriceThreePlaces() {
+        return priceThreePlaces;
+    }
+
+    public Room setPriceThreePlaces(Integer priceThreePlaces) {
+        this.priceThreePlaces = priceThreePlaces;
+        return this;
+    }
+
+    public Integer getPriceFifthPlaces() {
+        return priceFifthPlaces;
+    }
+
+    public Room setPriceFifthPlaces(Integer priceFifthPlaces) {
+        this.priceFifthPlaces = priceFifthPlaces;
+        return this;
+    }
+
     @Override
     public String toString() {
         return "Room{" +
@@ -155,6 +177,8 @@ public class Room extends BaseEntity<Room> {
                 ", amenities=" + (amenities == null ? "null" : amenities) +
                 ", images=" + (images == null ? "null" : images)+
                 ", amount=" + amount +
+                ", priceThreePlaces=" + priceThreePlaces +
+                ", priceFifthPlaces=" + priceFifthPlaces +
                 ", id=" + id +
                 ", available=" + available +
                 ", keywords=" + keywords +

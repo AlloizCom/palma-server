@@ -54,11 +54,13 @@ public class RoomController {
         for (Room room: rooms
              ) {
             List<RoomDescription> roomDescriptions = room.getDescriptions();
-            roomDescriptions.stream().forEach(roomDescription -> roomDescription.setDescription(roomDescription.getDescription().substring(0,25)));
+            roomDescriptions.stream()
+                    .filter(roomDescription -> roomDescription.getDescription().length()>251)
+                    .forEach(roomDescription -> roomDescription
+                            .setDescription(roomDescription.getDescription().substring(0,250).concat("...")));
             room.setDescriptions(roomDescriptions);
             ret.add(room);
         }
-
         return new ResponseEntity<>(ret.stream()
                 .map(room -> map(room, RoomFullDto.class)).collect(Collectors.toList()), HttpStatus.OK);
     }

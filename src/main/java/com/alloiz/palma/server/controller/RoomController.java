@@ -50,25 +50,7 @@ public class RoomController {
     @GetMapping("/find-all-available-split")
     private ResponseEntity<List<RoomFullDto>> findAllAvailableSplit() {
         List<Room> rooms = roomService.findAllAvailable();
-        List<Room> ret = new ArrayList<>();
-
-        for (Room room: rooms
-             ) {
-            int endPoint = 1;
-            if (room.getAmenities().size()>6){
-                endPoint = 100;
-            } else {
-                endPoint = 250;
-            }
-            List<RoomDescription> roomDescriptions = room.getDescriptions();
-            int finalEndPoint = endPoint;
-            roomDescriptions.stream()
-                    .filter(roomDescription -> roomDescription.getDescription().length()>251)
-                    .forEach(roomDescription -> roomDescription
-                            .setDescription(roomDescription.getDescription().substring(0, finalEndPoint).concat(" ...")));
-            room.setDescriptions(roomDescriptions);
-            ret.add(room);
-        }
+        List<Room> ret = splitDescriptions(rooms);
         return new ResponseEntity<>(ret.stream()
                 .map(room -> map(room, RoomFullDto.class)).collect(Collectors.toList()), HttpStatus.OK);
     }
@@ -291,5 +273,27 @@ public class RoomController {
                 .map(room -> map(room, RoomWithTariff.class)
                         .setPrice(tariffService.findByRoomTypeAndDateNow(room.getType())
                                 .getPrice())).collect(Collectors.toList()), HttpStatus.OK);
+    }
+
+    private static List<Room> splitDescriptions(List<Room> rooms){
+        List<Room> ret = new ArrayList<>();
+        for (Room room: rooms
+                ) {
+            int endPoint = 1;
+            if (room.getAmenities().size()>6){
+                endPoint = 100;
+            } else {
+                endPoint = 250;
+            }
+            List<RoomDescription> roomDescriptions = room.getDescriptions();
+            int finalEndPoint = endPoint;
+            roomDescriptions.stream()
+                    .filter(roomDescription -> roomDescription.getDescription().length()>251)
+                    .forEach(roomDescription -> roomDescription
+                            .setDescription(roomDescription.getDescription().substring(0, finalEndPoint).concat(" ...")));
+            room.setDescriptions(roomDescriptions);
+            ret.add(room);
+        }
+        return ret;
     }
 }

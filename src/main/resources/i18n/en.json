@@ -81,7 +81,7 @@
       "title": "Address",
       "zip_country": "79024, Ukraine",
       "city_street": "Lviv, Bohdanivska Str. 44",
-      "text": "Art Hotel Palma is located in the northeast of the city of Lviv, in an area called "Velyki Kryvchyts"
+      "text": "Art Hotel Palma is located in the northeast of the city of Lviv, in an area called \"Velyki Kryvchyts\""
     },
     "phone": {
       "title": "Phone",
@@ -102,9 +102,7 @@
   "feedback": {
     "title": "CONTACT FORM",
     "bottom_title": "Write us",
-    "text": "Dear guests, your opinion is always important to us.
-Our team will be thankful for the feedback on our site about accommodation, comfort and service level. We always listen to you and are ready to meet any issues.
-Thank you for the feedback; it will help us to improve our service and its level.",
+    "text": "Dear guests, your opinion is always important to us.\nOur team will be thankful for the feedback on our site about accommodation, comfort and service level. We always listen to you and are ready to meet any issues.\nThank you for the feedback; it will help us to improve our service and its level.",
     "form": {
       "name": "NAME",
       "phone": "PHONE",
@@ -115,15 +113,15 @@ Thank you for the feedback; it will help us to improve our service and its level
   "how-to-get": {
     "title": "How to get to the hotel?",
     "airport": "Airport",
-    "airport-description": "Distance to the hotel: 13.5 km\nDrive time: 30 min.\n\nPublic transport\n\nProposed route: at the airport you have to take the bus No. 48 and go to the stop "Teatralna Str." then cross the road to the stop "pr. Viacheslava Chornovola "and change to the bus No. 39 and go to the final stop. Ride time: 50 min.",
+    "airport-description": "Distance to the hotel: 13.5 km\nDrive time: 30 min.\n\nPublic transport\n\nProposed route: at the airport you have to take the bus No. 48 and go to the stop \"Teatralna Str.\" then cross the road to the stop \"pr. Viacheslava Chornovola \"and change to the bus No. 39 and go to the final stop. Ride time: 50 min.",
     "station": "Main Railway Station",
-    "station-description": "Distance to the hotel: 9.1 km\nDrive time: 20 min.\n\nPublic transport\n\nProposed route 1: at the station you have to take the bus No. 29 and go to the stop "Pidvalna Str." then change to the bus No. 39 and go to the final stop of the hotel Palma (or Autorynok) Approximate ride time: 40 min.\n\nProposed route 2: From the station, you have to go on foot to Horodotska Street (600 m, 8 min.). Then at the stop "Kropyvnytskoho Square", you have to take the bus No. 20 and go to the stop "Polova Str.", then go on foot to the Hotel Palma (1.1 km, 15 min). Approximate ride time: 25 min.",
+    "station-description": "Distance to the hotel: 9.1 km\nDrive time: 20 min.\n\nPublic transport\n\nProposed route 1: at the station you have to take the bus No. 29 and go to the stop \"Pidvalna Str.\" then change to the bus No. 39 and go to the final stop of the hotel Palma (or Autorynok) Approximate ride time: 40 min.\n\nProposed route 2: From the station, you have to go on foot to Horodotska Street (600 m, 8 min.). Then at the stop \"Kropyvnytskoho Square\", you have to take the bus No. 20 and go to the stop \"Polova Str.\", then go on foot to the Hotel Palma (1.1 km, 15 min). Approximate ride time: 25 min.",
     "bus": "Bus station",
-    "bus-description": "Stryiska Str. 109\nDistance to the hotel: 12.1 km\nDrive time: 35 min.\n\nPublic transport\n\nProposed route: At the bus station, you have to take the bus No. 3А and go to the stop "Polova Str." Then cross the road and at the bus stop change to the bus No. 39 and go to the final stop of the hotel Palma (or Autorynok). Approximate ride time: 60 min.",
+    "bus-description": "Stryiska Str. 109\nDistance to the hotel: 12.1 km\nDrive time: 35 min.\n\nPublic transport\n\nProposed route: At the bus station, you have to take the bus No. 3А and go to the stop \"Polova Str.\" Then cross the road and at the bus stop change to the bus No. 39 and go to the final stop of the hotel Palma (or Autorynok). Approximate ride time: 60 min.",
     "square": "Market Square",
-    "square-description": "Distance to the hotel: 5 km\nDrive time: 15 min.\n\nPublic transport\n\nProposed route 1: at the stop "Pidvalna Str." (Near the monument to I. Fedorov) you have to take the bus No. 39 and go to the final stop of the Hotel Palma (or Autorynok). Approximate ride time: 20 minutes. Buses run: 06:00 - 20:00.\nProposed route 2: at the stop "Pidvalna Str." (Near the monument to I. Fedorov) you have to take the bus No. 20 and go to the stop "Polova Str.", then go on foot to the hotel Palma (1.1 km, 15 min). Approximate ride time: 25 min. Buses run: 06:00 - 22:00.",
+    "square-description": "Distance to the hotel: 5 km\nDrive time: 15 min.\n\nPublic transport\n\nProposed route 1: at the stop \"Pidvalna Str.\" (Near the monument to I. Fedorov) you have to take the bus No. 39 and go to the final stop of the Hotel Palma (or Autorynok). Approximate ride time: 20 minutes. Buses run: 06:00 - 20:00.\nProposed route 2: at the stop \"Pidvalna Str.\" (Near the monument to I. Fedorov) you have to take the bus No. 20 and go to the stop \"Polova Str.\", then go on foot to the hotel Palma (1.1 km, 15 min). Approximate ride time: 25 min. Buses run: 06:00 - 22:00.",
     "castle": "Pidzamche Railway Station",
-    "castle-description": "Distance to the hotel: 3.7 km\nDrive time: 9 min.\n\nPublic transport\n\nProposed route: at the station you have to take the bus No. 20 and go to the stop "Polova Str.", then walk to the Hotel Palma (distance from the stop to the hotel 1.1 km, walking time: 15 min.). Approximate ride time: 10 min."
+    "castle-description": "Distance to the hotel: 3.7 km\nDrive time: 9 min.\n\nPublic transport\n\nProposed route: at the station you have to take the bus No. 20 and go to the stop \"Polova Str.\", then walk to the Hotel Palma (distance from the stop to the hotel 1.1 km, walking time: 15 min.). Approximate ride time: 10 min."
   },
   "book_form": {
     "message": "Sorry, but online reservations are not available at this time. For booking please contact:"

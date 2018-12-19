@@ -1,91 +1,91 @@
 {
   "current-language-index": 2,
   "current-language-name": "pl",
-  "hotel-name": "Palm",
+ "hotel-name": "Palm",
   "global":{
-    "uah":"грн",
-    "msq":"кв. м",
-    "more":"більше"
+    "uah":"uah",
+    "msq":"m.kw",
+    "more":"WIĘCEJ"
   },
   "header": {
-    "main": "ГОЛОВНА",
-    "rooms": "НОМЕРИ",
-    "news": "НОВИНИ",
-    "services": "СЕРВІСИ",
-    "contact": "КОНТАКТИ"
+    "main": "STRONA GŁÓWNA",
+    "rooms": "POKOJE",
+    "news": "AKTUALNOŚCI",
+    "services": "USŁUGI",
+    "contact": "KONTAKT"
   },
   "footer-contact": {
     "services": {
-      "title": "СЕРВІСИ",
+      "title": "USŁUGI",
       "rows": [
-        "Безкоштовна парковка автомобіля",
-        "Швидкісний Wi-Fi інтернет",
-        "Цілодобова стійка рецепції"
+        "Bezpłatny parking",
+        "Dostęp do szybkiego internetu WI-FI",
+        "Całodobwa recepcja"
       ]
     },
-    "partners": "Партнери"
+    "partners": "Partnerzy"
   },
   "data-picker": {
-    "in": "заїзд",
-    "out": "виїзд",
-    "rooms": "номери",
-    "adults": "дорослі",
-    "children": "діти"
+    "in": "zameldowanie",
+    "out": "wymeldowanie",
+    "rooms": "POKOJE",
+    "dorośli": "дорослі",
+    "children": "dzieci"
   },
   "about_us": {
-    "title": "ПРО НАС",
-    "bottom_title": "Вітаємо Вас на нашому сайті!",
-    "text": "Сучасний, атмосферний арт готель \"Пальма\" розташований у живописному районі Львова. Після активно проведеного дня, збуджуючих емоцій від зустрічі з експресивним містом Лева, в нашому готелі ви отримаєте всі умови для спокійного, релаксуючого відпочинку. Готель знаходиться в 20 хвилинах від метушливого центру, на території власна парковка з відеонаглядом. Для розміщення гостей, готель пропонує номера стандарт та напівлюкс з просторими кімнатами і зручними для відпочинку меблями. Дизайнерський ремонт та незвичайні круглі ліжка у готельних номерах напівлюкс. Чітка та злагоджена робота колективу на рецепції дозволить оперативно провести процедуру поселення та розрахунку. Безкоштовний та швидкий Wi-Fi безперебійно працює на всій території готелю. Зберігаючи доступні ціни на проживання ми тримаємо високу планку обслуговування, забезпечуючи оптимальний рівень умов для комфортного розміщення наших клієнтів."
+    "title": "O NAS",
+    "bottom_title": "Wіtamy na naszej stronie!",
+    "text": "Nowoczesny, klimatyczny art hotel Palma położony jest w malowniczej dzielnicy Lwowa. Po aktywnie spędzonym dniu, pełnym ekscytujących emocji spowodowanych spotkaniem z ekspresyjnym miastem Lwa, w naszym hotelu oferujemy Państwu wszystkie warunki niezbędne dla zapewnienia naprawdę spokojnego i relaksującego wypoczynku. Hotel znajduje się zaledwie 20 minut od tętniącego życiem centrum, obiekt dysponuje własnym parkingiem strzeżonym. Hotel udostępnia swoim Gościom pokoi  Standard i apartamenty typu Junior Suite, przestronne i wyposażone w wygodne do odpoczynku  meble. Designerski remont i nietypowe okrągłe łóżka w pokojach typu Junior Suite. Sprawna i profesjonalna obsługa zespołu na recepcji pozwala na szybką procedurę zakwaterowania i rozliczania gości. Bezpłatny dostęp do szybkiego Internetu Wi-Fi. Oferując atrakcyjne ceny noclegów utrzymujemy wysoki standard usług  i zapewniamy komfortowe warunki pobytu naszych klientów."
   },
   "special_offers": {
-    "title": "СПЕЦІАЛЬНІ ПРОПОЗИЦІЇ",
-    "bottom_title": "Виберіть найкраще для вас"
+    "title": "OFERTY SPECJALNE",
+    "bottom_title": "Wybierz najlepszą dla siebie"
   },
   "rooms": {
-    "title": "НОМЕРИ",
-    "bottom_title": "Категорії кімнат у готелі",
-    "review": "переглянути",
-    "in": "заїзд",
-    "out": "виїзд",
-    "book": "забронювати",
-    "description": "опис номеру",
-    "price": "ціна",
-    "amenities": "зручності",
+    "title": "POKOJE",
+    "bottom_title": "Kategorie pokoi w hotelu",
+    "review": "Zobacz",
+    "in": "zameldowanie",
+    "out": "wymeldowanie",
+    "book": "rezerwacja",
+    "description": "opis pokoju",
+    "price": "Cena",
+    "amenities": "udogodnienia",
     "types": {
-      "STANDARD": "Стандарт",
-      "SUPERIOR": "Напівлюкс",
-      "DELUXE": "Люкс",
-      "STANDARD_IMPROVED": "Покращений стандарт",
-      "SUPERIOR_IMPROVED": "Покращений напівлюкс"
+      "STANDARD": "Standard",
+      "SUPERIOR": "Junior Suite",
+      "DELUXE": "Lux",
+      "STANDARD_IMPROVED": "Superior",
+      "SUPERIOR_IMPROVED": "Superior Junior Suite"
     },
-    "not_found":"Не знайдено вільних номерів"
+    "not_found":"Nie znaleziono wolnych pokoi"
   },
   "services_and_offers": {
-    "title": "ПОСЛУГИ ТА ПРОПОЗИЦІЇ",
-    "bottom_title": "Сервіс та комфорт для кожного клієнта",
-    "text": "Ми пропонуємо Вам високий рівень обслуговування, комфортне проживання, доступні ціни та європейський сервіс."
+    "title": "USŁUGI I OFERTY",
+    "bottom_title": "Obsługa i komfort dla każdego klienta",
+    "text": "Oferujemy wysoki poziom usług, komfortowe zakwaterowanie, przystępne ceny i europejską obsługę."
   },
   "advantages": {
-    "title": "НАШІ ПЕРЕВАГИ",
-    "bottom_title": "Доступність та висока якість послуг",
+    "title": "NASZE ATUTY",
+    "bottom_title": "Dostępność i wysoka jakość usług",
     "columns": [
-      "Безкоштовний високошвидкісний WI-FI інтернет, який покриває всю територію готелю",
-      "24 години на добу, адміністратори на рецепції допоможуть Вам у вирішенні будь-яких питань",
-      "Велика закрита безкоштовна парковка для Вашого автомобіля"
+      "Dostęp do szybkiego darmowego internetu WI-FI na terenie całego obiektu",
+      "Recepcja czynna 24 godziny na dobę pomoże Państwu w rozwiązaniu jakichkolwiek problemów",
+      "Duży bezpłatny parking dla Państwa samochodu"
     ]
   },
   "contacts": {
-    "title": "КОНТАКТИ",
-    "bottom_title": "Де ми знаходимося? Як дістатися?",
+    "title": "KONTAKT",
+    "bottom_title": "Gdzie jesteśmy? Jak dojechać?",
     "address": {
-      "title": "Адреса",
-      "zip_country": "79024, Україна",
-      "city_street": "м. Львів, вул. Богданівська, 44",
-      "text": "Арт Готель \"Пальма\" знаходиться на північному сході міста Львова, у місцевості, яка називається Великі Кривчиці"
+      "title": "Adres",
+      "zip_country": "79024, Ukraina",
+      "city_street": "Lwów, ul. Bogdaniwska 44",
+      "text": "Art Hotel Palma zlokalizowany jest w północno-wschodniej części miasta Lwowa, w dzielnicy zwanej Wełyki Krywczycy"
     },
     "phone": {
-      "title": "Телефон",
-      "text": "Рецепція готелю працює цілодобово (24h), ми завжди приймемо ваше бронювання і допоможемо вирішити будь яке питання. Для зручності, ви можете скористатися мессенджерами Viber, Telegram та WhatsApp",
+      "title": "Telefon",
+      "text": "Recepcja czynna jest 24 godziny na dobę, chętnie przyjmiemy Państwa  rezerwację i  skutecznie  pomożemy rozwiązać każdy problem. Dla wygody możecie korzystać z komunikatorów Viber, Telegram та WhatsApp",
       "numbers": [
         "+38 067 19 444 00",
         "+38 093 43 444 00",
@@ -93,37 +93,38 @@
       ]
     },
     "mail": {
-      "title": "Пошта",
-      "text": "Чекаємо на Ваші листи з цікавими пропозиціями, вакансіями, відгуками про нашу роботу та бронюваннями (в т.ч. груповими). Пишіть нам і ми завжди вам відповімо",
+      "title": "E-mail",
+      "text": "Czekamy na Wasze ciekawe propozycje,  oferty pracy, opinie i rezerwacje (w tym grupowe). 
+Napisz do nas na adres: palmalviv@gmail.com, a my zawsze chętnie odpowiemy.",
       "email": "palmalviv@gmail.com"
     },
-    "buses": "До готелю курсують автобуси 19, 39"
+    "buses": "Do hotelu kursują autobusy nr 19 i  nr 39"
   },
   "feedback": {
-    "title": "ЗВОРОТНІЙ ЗВ'ЯЗОК",
-    "bottom_title": "Напишіть Нам",
-    "text": "Шановні гості готелю \"Пальма\", нам завжди важлива Ваша думка.\nНаша команда буде вдячна за залишений відгук на сайті про проживання, комфорт і рівень обслуговування. Ми завжди прислухаємося до Вас і готові йти назустріч у будь-яких питаннях.\nДякуємо Вам за відгуки, вони допоможуть нам розвивати наш сервіс та рівень обслуговування.",
+    "title": "FORMULARZ KONTAKTOWY",
+    "bottom_title": "Napisz do nas",
+    "text": "Drodzy Goście Hotelu Palma, Wasza opinia jest dla nas bardzo ważna. Nasz zespół będzie wdzięczny za pozostawienie opinii na temat zakwaterowania, komfortu i poziomu usług na naszej stronie. Jesteśmy  otwarci na propozycje i gotowi pomóc w każdej sytuacji. Dziękujemyza wszystkie uwagi i sugestie, które pozwalają nam się rozwijać.",
     "form": {
-      "name": "ІМ'Я",
-      "phone": "ТЕЛЕФОН",
-      "message": "ПОВІДОМЛЕННЯ",
-      "send": "Надіслати"
+      "name": "IMIĘ",
+      "phone": "TELEFON",
+      "message": "WIADOMOŚĆ",
+      "send": "Wysłać"
     }
   },
   "how-to-get": {
-    "title": "Як дістатися до готелю?",
-    "airport": "Аеропорт",
-    "airport-description": "Відстань до готелю: 13,5 км\nЧас їзди автомобілем: 30 хв.\n\nГромадський транспорт\n\nЗапропонований маршрут: з аеропорту автобусом №48 до зупинки \"вул. Театральна\", далі перейти дорогу до зупинки \"пр. В'ячеслава Чорновола\" та пересісти на автобус №39 та їхати до кінцевої зупинки. Час їзди 50 хв.",
-    "station": "Головний Залізничний Вокзал",
-    "station-description": "Відстань до готелю: 9,1 км\nЧас їзди автомобілем: 20 хв.\n\nГромадський транспорт\n\nЗапропонований маршрут 1: з вокзалу автобусом №29 до зупинки \"вул. Підвальна\", далі пересідаємо на автобус №39 та їдемо до кінцевої зупинка готель \"Пальма\" (або Авторинок). Приблизний час їзди 40 хв.\n\nЗапропонований маршрут 2: з вокзалу йдемо пішки до вул. Городоцької (600 м, 8 хв.), далі на зупинці \"пл. Кропивницького\" сідаємо на автобус №20 до зупинки \"вул. Польова\", далі йдемо пішки до готелю \"Пальма\" (1,1 км, 15 хв). Приблизний час їзди 25 хв.",
-    "bus": "Автовокзал",
-    "bus-description": "вул. Стрийська 109\nВідстань до готелю: 12,1 км\nЧас їзди автомобілем: 35 хв.\n\nГромадський транспорт\n\nЗапропонований маршрут: з автовокзалу автобусом №3А до зупинки \"вул. Підвальна\", далі переходимо дорогу і на зупинці напроти пересідаємо на автобус №39 та їдемо до кінцевої зупинка готель \"Пальма\" (або Авторинок). Приблизний час їзди 60 хв.",
-    "square": "Площа Ринок",
-    "square-description": "Відстань до готелю: 5 км\nЧас їзди автомобілем: 15 хв.\n\nГромадський транспорт\n\nЗапропонований маршрут 1: від зупинки \"вул. Підвальна\" (біля пам'ятника І. Федорову) автобусом №39 до кінцевої зупинки готель \"Пальма\" (або Авторинок). Приблизний час їзди 20 хв. Час роботи автобуса: 06:00 - 20:00\nЗапропонований маршрут 2: від зупинки \"вул. Підвальна\" (біля пам'ятника І. Федорову) автобусом №20 до зупинки \"вул. Польова\", далі йдемо пішки до готелю \"Пальма\" (1,1 км, 15 хв). Приблизний час їзди 25 хв. Час роботи автобуса: 06:00 - 22:00",
-    "castle": "Станція \"Підзамче\"",
-    "castle-description": "Відстань до готелю: 3,7 км\nЧас їзди автомобілем: 9 хв.\n\nГромадський транспорт\n\nЗапропонований маршрут: від станції автобусом №20 до зупинки \"вул. Польова\", далі йдемо пішки до готелю \"Пальма\" (відстань від зупинки до готелю 1,1 км час ходьби 15 хв.). Приблизний час їзди 10 хв."
+    "title": "Jak dojechać do hotelu?",
+    "airport": "Lotnisko",
+    "airport-description": "Odległość  od hotelu: 13,5 km\nCzas jazdy samochodem: 30 min.\n\nKomunikacja miejska\n\nProponowana trasa dojazdu: wsiadamy do autobusu nr  48 i wysiadamy na przystanku  ul. Teatralna, następnie przechodzimy na drugą stronę drogi do przystanku pr. Wiaczesława Czornowoła i wsiadamy do autobusu nr 39 i wysiadamy na przystanku końcowym. Czas jazdy 50 min.",
+    "station": "Dworzec Główny Kolejowy",
+    "station-description": "Odłegłość do hotelu: 9,1 km\nCzas jazdy samochodem: 20 min.\n\nKomunikacja miejska\n\nProponowana trasa dojazdu 1: na dworcu wsiadamy do autobusu nr 29 i wysiadamy na przystanku ul. Pidwalna, następnie przesiadamy do autobusu nr 39 i wysiadamy na przystanku końcowym Palma (lub Autorynok). Przybliżony czas jazdy 40 min.\n\nProponowana trasa dojazdu 2: od dworca idziemy pieszo do ul. Horodockiej (600 m, 8 min.), następnie na przystanku pl. Kropywnyckiego wsiadamy do autobusu nr 20 i wysiadamy na przystanku ul. Polowa, dalej idziemy pieszo do  hotelu Palma (1,1 km, 15 min.). Przybliżony czas jazdy 25 min.",
+    "bus": "Dworzec autobusowy",
+    "bus-description": "ul. Stryjska 109\nOdłegłość do hotelu: 12,1 km\nCzas jazdy samochodem: 35 min.\n\nKomunikacja miejska\n\nProponowana trasa dojazdu: na dworcu wsiadamy do autobusu nr 3А i wysiadamy na przystanku ul. Pidwalna, następnie przechodzimy na drugą stronę drogi do przystanku naprzeciwko, wsiadamy do autobusu nr 39 i  wysiadamy na przystanku końcowym Palma  (lub Autorynok). Przybliżony czas jazdy 60 min.",
+    "square": "Plac Rynek",
+    "square-description": "Odłegłość do hotelu: 5 km\nCzas jazdy samochodem: 15 min.\n\nKomunikacja miejska\n\nProponowana trasa dojazdu 1: na przystanku ul. Pidwalna (około pomnika І. Fedorowa) wsiadamy do autobusu nr 39 i wysiadamy na przystanku końcowym Palma (lub Autorynok). Przybliżony czas jazdy 20 min. Godziny jazdy autobusu: 06:00 - 20:00.\nProponowana trasa dojazdu 2: na przystanku ul. Pidwalna (około pomnika І. Fedorowa) wsiadamy do autobusu nr 20 i  wysiadamy na przystanku ul. Polowa, dalej idziemy pieszo do hotelu Palma (1,1 km, 15 min.). Przybliżony czas jazdy 25 min. Godziny jazdy autobusu: 06:00 - 22:00.",
+    "castle": "Stacja Podzamcze",
+    "castle-description": "Odłegłość do hotelu: 3,7 km\nCzas jazdy samochodem: 9 min.\n\nKomunikacja miejska\n\nProponowana trasa dojazdu: na stacji wsiadamy do autobusu nr 20 i  wysiadamy na przystanku ul. Polowa, dalej idziemy pieszo do hotelu Palma (odległość od przystanku do hotelu wynosi 1,1 km, 15 minut spacerem). Przybliżony czas jazdy 10 min."
   },
   "book_form": {
-    "message": "Вибачте, проте на даний момент бронювання онлайн не доступне. Для здійснення бронювання зверніться будь ласка за телефоном:"
+    "message": "Przepraszamy, ale rezerwacja online nie jest obecnie dostępna. W sprawie rezerwacji prosimy o kontakt:"
   }
 }

@@ -22,7 +22,7 @@ public class Room extends BaseEntity<Room> {
 
 
 
-    @OneToMany(mappedBy = "room")
+    @OneToMany(mappedBy = "room",cascade = CascadeType.ALL)
     private List<SEO> seos;
 
 

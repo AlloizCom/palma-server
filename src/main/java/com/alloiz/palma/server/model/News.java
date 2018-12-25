@@ -26,7 +26,7 @@ public class News extends BaseEntity<News> {
     private String picturePath;
 
 
-    @OneToMany(mappedBy = "news")
+    @OneToMany(mappedBy = "news",cascade = CascadeType.ALL)
     private List<SEO> seos;
 
     public News() {

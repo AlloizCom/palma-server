@@ -1,14 +1,16 @@
 package com.alloiz.palma.server.dto;
 
 import com.alloiz.palma.server.dto.utils.annotations.Dto;
+import com.alloiz.palma.server.model.SEO;
+
+import java.util.List;
 
 @Dto
 public class MainPageShortDto <T extends MainPageShortDto>{
 
     protected Long id;
     protected Boolean available;
-    protected String keywords;
-    protected String description;
+    protected List<SEO> seos;
 
     public MainPageShortDto() {
     }
@@ -31,21 +33,12 @@ public class MainPageShortDto <T extends MainPageShortDto>{
         return (T) this;
     }
 
-    public String getKeywords() {
-        return keywords;
+    public List<SEO> getSeos() {
+        return seos;
     }
 
-    public MainPageShortDto<T> setKeywords(String keywords) {
-        this.keywords = keywords;
-        return this;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public MainPageShortDto<T> setDescription(String description) {
-        this.description = description;
+    public MainPageShortDto<T> setSeos(List<SEO> seos) {
+        this.seos = seos;
         return this;
     }
 
@@ -54,8 +47,7 @@ public class MainPageShortDto <T extends MainPageShortDto>{
         return "MainPageShortDto{" +
                 "id=" + id +
                 ", available=" + available +
-                ", keywords='" + keywords + '\'' +
-                ", description='" + description + '\'' +
+                ", seos=" + seos +
                 '}';
     }
 }

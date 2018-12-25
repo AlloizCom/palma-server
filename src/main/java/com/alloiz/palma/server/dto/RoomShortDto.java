@@ -1,7 +1,10 @@
 package com.alloiz.palma.server.dto;
 
 import com.alloiz.palma.server.dto.utils.annotations.Dto;
+import com.alloiz.palma.server.model.SEO;
 import com.alloiz.palma.server.model.enums.RoomType;
+
+import java.util.List;
 
 @Dto
 public class RoomShortDto <T extends RoomShortDto>{
@@ -14,8 +17,7 @@ public class RoomShortDto <T extends RoomShortDto>{
     protected Double square;
     protected Integer amount;
     protected Integer price;
-    protected String keywords;
-    protected String description;
+    protected List<SEO> seos;
     protected Integer priceThreePlaces;
     protected Integer priceFifthPlaces;
 
@@ -95,21 +97,12 @@ public class RoomShortDto <T extends RoomShortDto>{
         return this;
     }
 
-    public String getKeywords() {
-        return keywords;
+    public List<SEO> getSeos() {
+        return seos;
     }
 
-    public RoomShortDto<T> setKeywords(String keywords) {
-        this.keywords = keywords;
-        return this;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public RoomShortDto<T> setDescription(String description) {
-        this.description = description;
+    public RoomShortDto<T> setSeos(List<SEO> seos) {
+        this.seos = seos;
         return this;
     }
 
@@ -142,8 +135,9 @@ public class RoomShortDto <T extends RoomShortDto>{
                 ", square=" + square +
                 ", amount=" + amount +
                 ", price=" + price +
-                ", keywords='" + keywords + '\'' +
-                ", description='" + description + '\'' +
+                ", seos=" + seos +
+                ", priceThreePlaces=" + priceThreePlaces +
+                ", priceFifthPlaces=" + priceFifthPlaces +
                 '}';
     }
 }

@@ -1,10 +1,12 @@
 package com.alloiz.palma.server.model;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class SEO extends BaseEntity<SEO>{
+public class SEO extends BaseEntity<SEO> {
 
 
     private String keywords;
@@ -13,12 +15,15 @@ public class SEO extends BaseEntity<SEO>{
 
     private String language;
 
+    @JsonIgnore
     @ManyToOne
     private MainPage mainPage;
 
+    @JsonIgnore
     @ManyToOne
     private News news;
 
+    @JsonIgnore
     @ManyToOne
     private Room room;
 

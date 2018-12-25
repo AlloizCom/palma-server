@@ -17,7 +17,7 @@ public class NewsShortDto <T extends NewsShortDto>{
     protected Boolean available;
     protected Timestamp dateTime;
     protected String picturePath;
-    protected List<SEO> seos;
+    protected List<SEODto> seos;
 
     public NewsShortDto() {
     }
@@ -60,11 +60,11 @@ public class NewsShortDto <T extends NewsShortDto>{
         return (T) this;
     }
 
-    public List<SEO> getSeos() {
+    public List<SEODto> getSeos() {
         return seos;
     }
 
-    public NewsShortDto<T> setSeos(List<SEO> seos) {
+    public NewsShortDto<T> setSeos(List<SEODto> seos) {
         this.seos = seos;
         return this;
     }

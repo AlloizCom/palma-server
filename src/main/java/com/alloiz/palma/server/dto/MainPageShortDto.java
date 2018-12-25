@@ -10,7 +10,7 @@ public class MainPageShortDto <T extends MainPageShortDto>{
 
     protected Long id;
     protected Boolean available;
-    protected List<SEO> seos;
+    protected List<SEODto> seos;
 
     public MainPageShortDto() {
     }
@@ -33,11 +33,11 @@ public class MainPageShortDto <T extends MainPageShortDto>{
         return (T) this;
     }
 
-    public List<SEO> getSeos() {
+    public List<SEODto> getSeos() {
         return seos;
     }
 
-    public MainPageShortDto<T> setSeos(List<SEO> seos) {
+    public MainPageShortDto<T> setSeos(List<SEODto> seos) {
         this.seos = seos;
         return this;
     }

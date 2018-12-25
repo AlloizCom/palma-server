@@ -17,7 +17,7 @@ public class RoomShortDto <T extends RoomShortDto>{
     protected Double square;
     protected Integer amount;
     protected Integer price;
-    protected List<SEO> seos;
+    protected List<SEODto> seos;
     protected Integer priceThreePlaces;
     protected Integer priceFifthPlaces;
 
@@ -97,11 +97,11 @@ public class RoomShortDto <T extends RoomShortDto>{
         return this;
     }
 
-    public List<SEO> getSeos() {
+    public List<SEODto> getSeos() {
         return seos;
     }
 
-    public RoomShortDto<T> setSeos(List<SEO> seos) {
+    public RoomShortDto<T> setSeos(List<SEODto> seos) {
         this.seos = seos;
         return this;
     }

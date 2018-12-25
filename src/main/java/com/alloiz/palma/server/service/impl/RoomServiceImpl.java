@@ -2,12 +2,11 @@ package com.alloiz.palma.server.service.impl;
 
 import com.alloiz.palma.server.model.Image;
 import com.alloiz.palma.server.model.Room;
+import com.alloiz.palma.server.model.SEO;
 import com.alloiz.palma.server.model.enums.RoomType;
-import com.alloiz.palma.server.repository.BookRepository;
 import com.alloiz.palma.server.repository.ImageRepository;
 import com.alloiz.palma.server.repository.RoomRepository;
 import com.alloiz.palma.server.repository.utils.RoomParams;
-import com.alloiz.palma.server.service.AmenityService;
 import com.alloiz.palma.server.service.ImageService;
 import com.alloiz.palma.server.service.RoomService;
 import com.alloiz.palma.server.service.utils.FileBuilder;
@@ -17,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.alloiz.palma.server.config.mapper.JsonMapper.json;
 import static com.alloiz.palma.server.service.utils.Validation.*;
@@ -71,8 +71,10 @@ public class RoomServiceImpl implements RoomService {
     public Room save(Room room) {
         checkSave(room);
         room.getDescriptions().stream().forEach(roomDescription -> roomDescription.setAvailable(true));
-        roomRepository.save(room.setAvailable(true));
-        return room;
+        List<SEO> seoList = room.getSeos();
+        room = roomRepository.save(room.setAvailable(true));
+        Room finalRoom = room;
+        return roomRepository.save(room.setSeos(seoList.stream().map(seo -> seo.setRoom(finalRoom)).collect(Collectors.toList())));
     }
 
     @Override
@@ -123,7 +125,7 @@ public class RoomServiceImpl implements RoomService {
         Room room = json(roomJson, Room.class);
         checkObjectExistsById(room.getId(), roomRepository);
         if (multipartFiles != null && multipartFiles.length != 0) {
-            addImages(room.getId(),multipartFiles);
+            addImages(room.getId(), multipartFiles);
         }
         room.setAmenities(room.getAmenities());
         return roomRepository.save(findOne(room.getId())
@@ -173,10 +175,10 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public Boolean changeAmount (RoomType roomType, Integer amount){
+    public Boolean changeAmount(RoomType roomType, Integer amount) {
         List<Room> rooms = roomRepository.findAllByAvailableAndType(true, roomType);
-        for (Room room : rooms){
-            if (room.getType().equals(roomType)){
+        for (Room room : rooms) {
+            if (room.getType().equals(roomType)) {
                 room.setAmount(amount);
                 return true;
             }
@@ -187,8 +189,8 @@ public class RoomServiceImpl implements RoomService {
     @Override
     public Boolean addAmount(RoomType roomType, Integer amount) {
         List<Room> rooms = roomRepository.findAllByAvailableAndType(true, roomType);
-        for (Room room : rooms){
-            if (room.getType().equals(roomType)){
+        for (Room room : rooms) {
+            if (room.getType().equals(roomType)) {
                 room.setAmount(room.getAmount() + amount);
                 return true;
             }
@@ -218,7 +220,7 @@ public class RoomServiceImpl implements RoomService {
 //                return true;
 //            }
 //        }
-        return imageService.removeImage(images,imageId);
+        return imageService.removeImage(images, imageId);
     }
 
     @Override
@@ -226,8 +228,8 @@ public class RoomServiceImpl implements RoomService {
                                                                     Integer kidsPlaces,
                                                                     Integer adultPlaces) {
         return roomRepository.findAllByAdultPlacesAndKidsPlacesAndAvailable(available,
-                                                                            kidsPlaces,
-                                                                            adultPlaces);
+                kidsPlaces,
+                adultPlaces);
     }
 
     @Override
@@ -239,7 +241,7 @@ public class RoomServiceImpl implements RoomService {
                 kidsPlaces,
                 adultPlaces,
                 amount
-                );
+        );
     }
 
     @Override

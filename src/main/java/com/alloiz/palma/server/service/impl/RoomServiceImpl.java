@@ -36,8 +36,6 @@ public class RoomServiceImpl implements RoomService {
     @Autowired
     private ImageService imageService;
 
-    @Autowired
-    private BookRepository bookRepository;
 
     private static final Logger LOGGER = Logger.getLogger(RoomServiceImpl.class);
 
@@ -112,8 +110,6 @@ public class RoomServiceImpl implements RoomService {
                 .setSquare(room.getSquare())
                 .setAmount(room.getAmount())
                 .setPrice(room.getPrice())
-                .setDescription(room.getDescription())
-                .setKeywords(room.getKeywords())
                 .setType(room.getType())
                 .setAmenities(room.getAmenities())
                 .setPriceFifthPlaces(room.getPriceFifthPlaces())
@@ -140,8 +136,6 @@ public class RoomServiceImpl implements RoomService {
                 .setType(room.getType()))
                 .setAmount(room.getAmount())
                 .setImages(room.getImages())
-                .setDescription(room.getDescription())
-                .setKeywords(room.getKeywords())
                 .setPriceFifthPlaces(room.getPriceFifthPlaces())
                 .setPriceThreePlaces(room.getPriceThreePlaces())
                 ;

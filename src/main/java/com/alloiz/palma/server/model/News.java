@@ -25,8 +25,9 @@ public class News extends BaseEntity<News> {
     private Timestamp dateTime;
     private String picturePath;
 
-    private String keywords;
-    private String description;
+
+    @OneToMany(mappedBy = "news")
+    private List<SEO> seos;
 
     public News() {
     }
@@ -42,7 +43,7 @@ public class News extends BaseEntity<News> {
         return this;
     }
 
-    public List<NewsDescription> getNewsDescriptions() {
+        public List<NewsDescription> getNewsDescriptions() {
         return newsDescriptions;
     }
 
@@ -60,21 +61,12 @@ public class News extends BaseEntity<News> {
         return this;
     }
 
-    public String getKeywords() {
-        return keywords;
+    public List<SEO> getSeos() {
+        return seos;
     }
 
-    public News setKeywords(String keywords) {
-        this.keywords = keywords;
-        return this;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public News setDescription(String description) {
-        this.description = description;
+    public News setSeos(List<SEO> seos) {
+        this.seos = seos;
         return this;
     }
 
@@ -84,8 +76,6 @@ public class News extends BaseEntity<News> {
                 "newsDescriptions=" + newsDescriptions +
                 ", dateTime=" + dateTime +
                 ", picturePath='" + picturePath + '\'' +
-                ", keywords='" + keywords + '\'' +
-                ", description='" + description + '\'' +
                 ", id=" + id +
                 ", available=" + available +
                 '}';

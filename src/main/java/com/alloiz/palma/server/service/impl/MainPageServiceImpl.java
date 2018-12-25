@@ -68,7 +68,6 @@ public class MainPageServiceImpl implements MainPageService {
     public MainPage save(String mainPageJson, MultipartFile[] multipartFiles) {
         checkJson(mainPageJson);
         MainPage mainPage = json(mainPageJson, MainPage.class);
-        LOGGER.info(">>> " + mainPage.getDescription() + " " + mainPage.getKeywords());
         if (multipartFiles != null && multipartFiles.length != 0) {
 //            List<Image> images = new ArrayList<>();
 //            for (MultipartFile multipartFile : multipartFiles) {
@@ -86,9 +85,7 @@ public class MainPageServiceImpl implements MainPageService {
     public MainPage update(MainPage mainPage) {
         checkObjectExistsById(mainPage.getId(), mainPageRepository);
         return mainPageRepository.save(findOne(mainPage.getId())
-                .setAvailable(mainPage.getAvailable())
-        .setDescription(mainPage.getDescription())
-        .setKeywords(mainPage.getKeywords()));
+                .setAvailable(mainPage.getAvailable()));
     }
 
     @Override
@@ -107,9 +104,7 @@ public class MainPageServiceImpl implements MainPageService {
             mainPage.setImages(imageService.saveMultiImage(multipartFiles));
         }
         return mainPageRepository.save(findOne(mainPage.getId())
-                .setAvailable(mainPage.getAvailable())
-        .setKeywords(mainPage.getKeywords())
-        .setDescription(mainPage.getDescription()));
+                .setAvailable(mainPage.getAvailable()));
     }
 
     @Override

@@ -28,8 +28,8 @@
   "data-picker": {
     "in": "zameldowanie",
     "out": "wymeldowanie",
-    "rooms": "POKOJE",
-    "dorośli": "дорослі",
+    "rooms": "pokoje",
+    "dorośli": "dorośli",
     "children": "dzieci"
   },
   "about_us": {
@@ -44,7 +44,7 @@
   "rooms": {
     "title": "POKOJE",
     "bottom_title": "Kategorie pokoi w hotelu",
-    "review": "Zobacz",
+    "review": "zobacz",
     "in": "zameldowanie",
     "out": "wymeldowanie",
     "book": "rezerwacja",

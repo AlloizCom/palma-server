@@ -26,9 +26,9 @@
     "partners": "Partners"
   },
   "data-picker": {
-    "in": "Check-in",
-    "out": "Check-out",
-    "rooms": "Rooms",
+    "in": "check-in",
+    "out": "check-out",
+    "rooms": "rooms",
     "adults": "adults",
     "children": "children"
   },
@@ -75,7 +75,7 @@
     ]
   },
   "contacts": {
-    "title": "Contact",
+    "title": "CONTACT",
     "bottom_title": "How to get here?",
     "address": {
       "title": "Address",

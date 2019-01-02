@@ -21,8 +21,10 @@ public class Room extends BaseEntity<Room> {
     private Integer priceFifthPlaces;
 
 
-    private String keywords;
-    private String description;
+
+    @OneToMany(mappedBy = "room",cascade = CascadeType.ALL)
+    private List<SEO> seos;
+
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "description_id")
@@ -129,21 +131,12 @@ public class Room extends BaseEntity<Room> {
         return this;
     }
 
-    public String getKeywords() {
-        return keywords;
+    public List<SEO> getSeos() {
+        return seos;
     }
 
-    public Room setKeywords(String keywords) {
-        this.keywords = keywords;
-        return this;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public Room setDescription(String description) {
-        this.description = description;
+    public Room setSeos(List<SEO> seos) {
+        this.seos = seos;
         return this;
     }
 
@@ -181,8 +174,6 @@ public class Room extends BaseEntity<Room> {
                 ", priceFifthPlaces=" + priceFifthPlaces +
                 ", id=" + id +
                 ", available=" + available +
-                ", keywords=" + keywords +
-                ", description=" + description +
                 '}';
     }
 }

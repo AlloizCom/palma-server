@@ -17,8 +17,11 @@ public class Room extends BaseEntity<Room>
 	private String name;
 	private Integer roomNumber;
 	private Integer additionalPlaces;
+	private Integer price;
+
 	@Column(columnDefinition = "mediumtext")
 	private String image;
+
 
 	public RoomType getRoomType()
 	{
@@ -70,6 +73,15 @@ public class Room extends BaseEntity<Room>
 
 	public Room setImage(String image) {
 		this.image = image;
+		return this;
+	}
+
+	public Integer getPrice() {
+		return price;
+	}
+
+	public Room setPrice(Integer price) {
+		this.price = price;
 		return this;
 	}
 }

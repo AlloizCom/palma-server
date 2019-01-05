@@ -29,6 +29,7 @@ public class RoomServiceImpl implements RoomService {
                 .setRoomType(obj.getRoomType())
                 .setRoomNumber(obj.getRoomNumber())
                 .setAdditionalPlaces(obj.getAdditionalPlaces())
+                .setPrice(obj.getPrice())
                 .setImage(obj.getImage())
                 .setAvailable(obj.getAvailable())
         );

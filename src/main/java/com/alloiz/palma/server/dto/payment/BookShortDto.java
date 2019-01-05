@@ -16,6 +16,7 @@ public class BookShortDto <T extends BookShortDto> {
     protected Boolean isCash;
     protected Status status;
     protected Long id;
+    protected Boolean available;
 
 
     public BookShortDto() {
@@ -102,6 +103,15 @@ public class BookShortDto <T extends BookShortDto> {
         return (T) this;
     }
 
+    public Boolean getAvailable() {
+        return available;
+    }
+
+    public T setAvailable(Boolean available) {
+        this.available = available;
+        return (T)this;
+    }
+
     @Override
     public String toString() {
         return "BookShortDto{" +
@@ -114,6 +124,7 @@ public class BookShortDto <T extends BookShortDto> {
                 ", isCash=" + isCash +
                 ", status=" + status +
                 ", id=" + id +
+                ", available=" + available +
                 '}';
     }
 }

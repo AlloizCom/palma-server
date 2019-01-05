@@ -67,4 +67,9 @@ public class BookController {
     private ResponseEntity<Boolean> delete(@PathVariable Long id) {
         return ResponseEntity.ok(bookService.delete(id));
     }
+
+    @DeleteMapping("/delete")
+    private ResponseEntity<Boolean> delete(@RequestBody Book book) {
+        return ResponseEntity.ok(bookService.delete(book));
+    }
 }

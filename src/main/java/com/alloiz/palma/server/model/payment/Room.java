@@ -3,6 +3,7 @@ package com.alloiz.palma.server.model.payment;
 import com.alloiz.palma.server.model.BaseEntity;
 import com.alloiz.palma.server.model.enums.RoomType;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 
@@ -16,6 +17,8 @@ public class Room extends BaseEntity<Room>
 	private String name;
 	private Integer roomNumber;
 	private Integer additionalPlaces;
+	@Column(columnDefinition = "mediumtext")
+	private String image;
 
 	public RoomType getRoomType()
 	{
@@ -58,6 +61,15 @@ public class Room extends BaseEntity<Room>
 	public Room setAdditionalPlaces(Integer additionalPlaces)
 	{
 		this.additionalPlaces = additionalPlaces;
+		return this;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public Room setImage(String image) {
+		this.image = image;
 		return this;
 	}
 }

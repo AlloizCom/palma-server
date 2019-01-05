@@ -9,19 +9,15 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static com.alloiz.palma.server.service.utils.Validation.checkId;
-import static com.alloiz.palma.server.service.utils.Validation.checkObjectExistsById;
-import static com.alloiz.palma.server.service.utils.Validation.checkSave;
+import static com.alloiz.palma.server.service.utils.Validation.*;
 
 @Service
 public class ClientServiceImpl implements ClientService {
 
 
+    private static final Logger LOGGER = Logger.getLogger(BookServiceImpl.class);
     @Autowired
     private ClientRepository clientRepository;
-
-    private static final Logger LOGGER = Logger.getLogger(BookServiceImpl.class);
-
 
     @Override
     public Client save(Client client) {
@@ -33,7 +29,7 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public Client update(Client client) {
-        checkObjectExistsById(client.getId(),clientRepository);
+        checkObjectExistsById(client.getId(), clientRepository);
         LOGGER.info(client);
         return clientRepository.save(findOne(client.getId())
                 .setEmail(client.getEmail())
@@ -58,7 +54,7 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public Client findOneAvailable(Long id) {
         checkId(id);
-        return clientRepository.findByAvailableAndId(true,id);
+        return clientRepository.findByAvailableAndId(true, id);
     }
 
     @Override

@@ -9,9 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static com.alloiz.palma.server.service.utils.Validation.checkId;
-import static com.alloiz.palma.server.service.utils.Validation.checkObjectExistsById;
-import static com.alloiz.palma.server.service.utils.Validation.checkSave;
+import static com.alloiz.palma.server.service.utils.Validation.*;
 
 @Service
 public class DescriptionServiceImpl implements DescriptionService {

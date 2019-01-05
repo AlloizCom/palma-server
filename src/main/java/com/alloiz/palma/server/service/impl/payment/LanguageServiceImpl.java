@@ -9,17 +9,14 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static com.alloiz.palma.server.service.utils.Validation.checkId;
-import static com.alloiz.palma.server.service.utils.Validation.checkObjectExistsById;
-import static com.alloiz.palma.server.service.utils.Validation.checkSave;
+import static com.alloiz.palma.server.service.utils.Validation.*;
 
 @Service
 public class LanguageServiceImpl implements LanguageService {
 
+    private static final Logger LOGGER = Logger.getLogger(LanguageServiceImpl.class);
     @Autowired
     private LanguageRepository languageRepository;
-
-    private static final Logger LOGGER = Logger.getLogger(LanguageServiceImpl.class);
 
     @Override
     public Language findOne(Long id) {
@@ -35,7 +32,7 @@ public class LanguageServiceImpl implements LanguageService {
     @Override
     public Language findOneAvailable(Long id) {
         checkId(id);
-        return languageRepository.findByAvailableAndId(true,id);
+        return languageRepository.findByAvailableAndId(true, id);
     }
 
     @Override
@@ -55,7 +52,7 @@ public class LanguageServiceImpl implements LanguageService {
     public Language update(Language language) {
         checkObjectExistsById(language.getId(), languageRepository);
         LOGGER.info(language);
-        return  languageRepository.save(findOne(language.getId())
+        return languageRepository.save(findOne(language.getId())
                 .setAvailable(language.getAvailable())
                 .setLanguagesName(language.getLanguagesName())
         );
@@ -85,7 +82,6 @@ public class LanguageServiceImpl implements LanguageService {
             return false;
         }
     }
-
 
 
 }

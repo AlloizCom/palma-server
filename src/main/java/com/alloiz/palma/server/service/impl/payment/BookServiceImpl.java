@@ -9,17 +9,14 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static com.alloiz.palma.server.service.utils.Validation.checkId;
-import static com.alloiz.palma.server.service.utils.Validation.checkObjectExistsById;
-import static com.alloiz.palma.server.service.utils.Validation.checkSave;
+import static com.alloiz.palma.server.service.utils.Validation.*;
 
 @Service
 public class BookServiceImpl implements BookService {
 
+    private static final Logger LOGGER = Logger.getLogger(BookServiceImpl.class);
     @Autowired
     private BookRepository bookRepository;
-
-    private static final Logger LOGGER = Logger.getLogger(BookServiceImpl.class);
 
     @Override
     public Book findOne(Long id) {
@@ -30,7 +27,7 @@ public class BookServiceImpl implements BookService {
     @Override
     public Book findOneAvailable(Long id) {
         checkId(id);
-        return bookRepository.findByAvailableAndId(true,id);
+        return bookRepository.findByAvailableAndId(true, id);
     }
 
     @Override
@@ -53,7 +50,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public Book update(Book book) {
-        checkObjectExistsById(book.getId(),bookRepository);
+        checkObjectExistsById(book.getId(), bookRepository);
         LOGGER.info(book);
         return bookRepository.save(findOne(book.getId())
                 .setBookingDate(book.getBookingDate())

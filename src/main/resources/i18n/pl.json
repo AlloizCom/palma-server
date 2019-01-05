@@ -29,7 +29,7 @@
     "in": "zameldowanie",
     "out": "wymeldowanie",
     "rooms": "pokoje",
-    "dorośli": "dorośli",
+    "adults": "dorośli",
     "children": "dzieci"
   },
   "about_us": {

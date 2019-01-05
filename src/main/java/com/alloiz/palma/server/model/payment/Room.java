@@ -19,6 +19,7 @@ public class Room extends BaseEntity<Room>
 	private Integer additionalPlaces;
 	private Integer price;
 
+
 	@Column(columnDefinition = "mediumtext")
 	private String image;
 

@@ -5,9 +5,11 @@ import com.alloiz.palma.server.repository.payment.MultiLanguageNameRepository;
 import com.alloiz.palma.server.service.payment.MultiLanguageNameService;
 import com.alloiz.palma.server.service.utils.Validation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class MultiLanguageNameServiceImpl implements MultiLanguageNameService {
 
     @Autowired
@@ -54,6 +56,11 @@ public class MultiLanguageNameServiceImpl implements MultiLanguageNameService {
         {
             return false;
         }
+    }
+
+    @Override
+    public List<MultiLanguageName> findAllAvailable() {
+        return multiLanguageNameRepository.findAllByAvailable(true);
     }
 
     @Override

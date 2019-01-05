@@ -62,6 +62,11 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
+    public List<Room> findAllAvailable() {
+        return roomRepository.findAllByAvailable(true);
+    }
+
+    @Override
     public Room findOne(Long id) {
 
         return roomRepository.findOne(id);

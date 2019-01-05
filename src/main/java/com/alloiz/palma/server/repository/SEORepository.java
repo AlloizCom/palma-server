@@ -9,13 +9,13 @@ import java.util.List;
 @Repository
 public interface SEORepository extends JpaRepository<SEO,Long> {
 
-    List<SEO> findAllAvailable(Boolean available);
+    List<SEO> findAllByAvailable(Boolean available);
 
-    List<SEO> findAllByMainPageId(Long id);
+    List<SEO> findAllByMainPage_Id(Long id);
 
-    List<SEO> findAllByRoomId(Long id);
+    List<SEO> findAllByRoom_Id(Long id);
 
-    List<SEO> findAllByNewsId(Long id);
+    List<SEO> findAllByNews_Id(Long id);
 
     List<SEO> findAllByMainPageIsNotNull();
 

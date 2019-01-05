@@ -28,7 +28,7 @@ public class SEOServiceImpl implements SEOService {
 
     @Override
     public List<SEO> findAllAvailable() {
-        return seoRepository.findAllAvailable(true);
+        return seoRepository.findAllByAvailable(true);
     }
 
     @Override
@@ -63,17 +63,17 @@ public class SEOServiceImpl implements SEOService {
 
     @Override
     public List<SEO> findAllByMainPageId(Long id) {
-        return seoRepository.findAllByMainPageId(id);
+        return seoRepository.findAllByMainPage_Id(id);
     }
 
     @Override
     public List<SEO> findAllByRoomId(Long id) {
-        return seoRepository.findAllByRoomId(id);
+        return seoRepository.findAllByRoom_Id(id);
     }
 
     @Override
     public List<SEO> findAllByNewsId(Long id) {
-        return seoRepository.findAllByNewsId(id);
+        return seoRepository.findAllByNews_Id(id);
     }
 
     @Override

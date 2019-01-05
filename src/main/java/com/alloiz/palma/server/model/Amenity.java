@@ -7,6 +7,8 @@ import java.util.List;
 public class Amenity extends BaseEntity<Amenity>{
     private String imagePath;
 
+    private Integer price;
+
 //    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
 //    private Room room;
 
@@ -45,12 +47,22 @@ public class Amenity extends BaseEntity<Amenity>{
         return this;
     }
 
+    public Integer getPrice() {
+        return price;
+    }
+
+    public Amenity setPrice(Integer price) {
+        this.price = price;
+        return this;
+    }
+
     @Override
     public String toString() {
         return "Amenity{" +
                 "imagePath='" + imagePath + '\'' +
 //                ", room=" + (room == null ? "null" : room)+
                 ", amanityNames=" + (amenityNames == null ? "null" : amenityNames)+
+                ", price=" + price +
                 ", id=" + id +
                 ", available=" + available +
                 '}';

@@ -1,0 +1,129 @@
+{
+  "current-language-index": 2,
+  "current-language-name": "pl",
+ "hotel-name": "Palm",
+  "global":{
+    "uah":"uah",
+    "msq":"m.kw",
+    "more":"WIĘCEJ"
+  },
+  "header": {
+    "main": "STRONA GŁÓWNA",
+    "rooms": "POKOJE",
+    "news": "AKTUALNOŚCI",
+    "services": "USŁUGI",
+    "contact": "KONTAKT"
+  },
+  "footer-contact": {
+    "services": {
+      "title": "USŁUGI",
+      "rows": [
+        "Bezpłatny parking",
+        "Dostęp do szybkiego internetu WI-FI",
+        "Całodobwa recepcja"
+      ]
+    },
+    "partners": "Partnerzy"
+  },
+  "data-picker": {
+    "in": "zameldowanie",
+    "out": "wymeldowanie",
+    "rooms": "pokoje",
+    "dorośli": "dorośli",
+    "children": "dzieci"
+  },
+  "about_us": {
+    "title": "O NAS",
+    "bottom_title": "Wіtamy na naszej stronie!",
+    "text": "Nowoczesny, klimatyczny art hotel Palma położony jest w malowniczej dzielnicy Lwowa. Po aktywnie spędzonym dniu, pełnym ekscytujących emocji spowodowanych spotkaniem z ekspresyjnym miastem Lwa, w naszym hotelu oferujemy Państwu wszystkie warunki niezbędne dla zapewnienia naprawdę spokojnego i relaksującego wypoczynku. Hotel znajduje się zaledwie 20 minut od tętniącego życiem centrum, obiekt dysponuje własnym parkingiem strzeżonym. Hotel udostępnia swoim Gościom pokoi  Standard i apartamenty typu Junior Suite, przestronne i wyposażone w wygodne do odpoczynku  meble. Designerski remont i nietypowe okrągłe łóżka w pokojach typu Junior Suite. Sprawna i profesjonalna obsługa zespołu na recepcji pozwala na szybką procedurę zakwaterowania i rozliczania gości. Bezpłatny dostęp do szybkiego Internetu Wi-Fi. Oferując atrakcyjne ceny noclegów utrzymujemy wysoki standard usług  i zapewniamy komfortowe warunki pobytu naszych klientów."
+  },
+  "special_offers": {
+    "title": "OFERTY SPECJALNE",
+    "bottom_title": "Wybierz najlepszą dla siebie"
+  },
+  "rooms": {
+    "title": "POKOJE",
+    "bottom_title": "Kategorie pokoi w hotelu",
+    "review": "zobacz",
+    "in": "zameldowanie",
+    "out": "wymeldowanie",
+    "book": "rezerwacja",
+    "description": "opis pokoju",
+    "price": "Cena",
+    "amenities": "udogodnienia",
+    "types": {
+      "STANDARD": "Standard",
+      "SUPERIOR": "Junior Suite",
+      "DELUXE": "Lux",
+      "STANDARD_IMPROVED": "Superior",
+      "SUPERIOR_IMPROVED": "Superior Junior Suite"
+    },
+    "not_found":"Nie znaleziono wolnych pokoi"
+  },
+  "services_and_offers": {
+    "title": "USŁUGI I OFERTY",
+    "bottom_title": "Obsługa i komfort dla każdego klienta",
+    "text": "Oferujemy wysoki poziom usług, komfortowe zakwaterowanie, przystępne ceny i europejską obsługę."
+  },
+  "advantages": {
+    "title": "NASZE ATUTY",
+    "bottom_title": "Dostępność i wysoka jakość usług",
+    "columns": [
+      "Dostęp do szybkiego darmowego internetu WI-FI na terenie całego obiektu",
+      "Recepcja czynna 24 godziny na dobę pomoże Państwu w rozwiązaniu jakichkolwiek problemów",
+      "Duży bezpłatny parking dla Państwa samochodu"
+    ]
+  },
+  "contacts": {
+    "title": "KONTAKT",
+    "bottom_title": "Gdzie jesteśmy? Jak dojechać?",
+    "address": {
+      "title": "Adres",
+      "zip_country": "79024, Ukraina",
+      "city_street": "Lwów, ul. Bogdaniwska 44",
+      "text": "Art Hotel Palma zlokalizowany jest w północno-wschodniej części miasta Lwowa, w dzielnicy zwanej Wełyki Krywczycy"
+    },
+    "phone": {
+      "title": "Telefon",
+      "text": "Recepcja czynna jest 24 godziny na dobę, chętnie przyjmiemy Państwa  rezerwację i  skutecznie  pomożemy rozwiązać każdy problem. Dla wygody możecie korzystać z komunikatorów Viber, Telegram та WhatsApp",
+      "numbers": [
+        "+38 067 19 444 00",
+        "+38 093 43 444 00",
+        "+38 032 291 78 74"
+      ]
+    },
+    "mail": {
+      "title": "E-mail",
+      "text": "Czekamy na Wasze ciekawe propozycje,  oferty pracy, opinie i rezerwacje (w tym grupowe).\nNapisz do nas na adres: palmalviv@gmail.com, a my zawsze chętnie odpowiemy.",
+      "email": "palmalviv@gmail.com"
+    },
+    "buses": "Do hotelu kursują autobusy nr 19 i  nr 39"
+  },
+  "feedback": {
+    "title": "FORMULARZ KONTAKTOWY",
+    "bottom_title": "Napisz do nas",
+    "text": "Drodzy Goście Hotelu Palma, Wasza opinia jest dla nas bardzo ważna. Nasz zespół będzie wdzięczny za pozostawienie opinii na temat zakwaterowania, komfortu i poziomu usług na naszej stronie. Jesteśmy  otwarci na propozycje i gotowi pomóc w każdej sytuacji. Dziękujemyza wszystkie uwagi i sugestie, które pozwalają nam się rozwijać.",
+    "form": {
+      "name": "IMIĘ",
+      "phone": "TELEFON",
+      "message": "WIADOMOŚĆ",
+      "send": "Wysłać"
+    }
+  },
+  "how-to-get": {
+    "title": "Jak dojechać do hotelu?",
+    "airport": "Lotnisko",
+    "airport-description": "Odległość  od hotelu: 13,5 km\nCzas jazdy samochodem: 30 min.\n\nKomunikacja miejska\n\nProponowana trasa dojazdu: wsiadamy do autobusu nr  48 i wysiadamy na przystanku  ul. Teatralna, następnie przechodzimy na drugą stronę drogi do przystanku pr. Wiaczesława Czornowoła i wsiadamy do autobusu nr 39 i wysiadamy na przystanku końcowym. Czas jazdy 50 min.",
+    "station": "Dworzec Główny Kolejowy",
+    "station-description": "Odłegłość do hotelu: 9,1 km\nCzas jazdy samochodem: 20 min.\n\nKomunikacja miejska\n\nProponowana trasa dojazdu 1: na dworcu wsiadamy do autobusu nr 29 i wysiadamy na przystanku ul. Pidwalna, następnie przesiadamy do autobusu nr 39 i wysiadamy na przystanku końcowym Palma (lub Autorynok). Przybliżony czas jazdy 40 min.\n\nProponowana trasa dojazdu 2: od dworca idziemy pieszo do ul. Horodockiej (600 m, 8 min.), następnie na przystanku pl. Kropywnyckiego wsiadamy do autobusu nr 20 i wysiadamy na przystanku ul. Polowa, dalej idziemy pieszo do  hotelu Palma (1,1 km, 15 min.). Przybliżony czas jazdy 25 min.",
+    "bus": "Dworzec autobusowy",
+    "bus-description": "ul. Stryjska 109\nOdłegłość do hotelu: 12,1 km\nCzas jazdy samochodem: 35 min.\n\nKomunikacja miejska\n\nProponowana trasa dojazdu: na dworcu wsiadamy do autobusu nr 3А i wysiadamy na przystanku ul. Pidwalna, następnie przechodzimy na drugą stronę drogi do przystanku naprzeciwko, wsiadamy do autobusu nr 39 i  wysiadamy na przystanku końcowym Palma  (lub Autorynok). Przybliżony czas jazdy 60 min.",
+    "square": "Plac Rynek",
+    "square-description": "Odłegłość do hotelu: 5 km\nCzas jazdy samochodem: 15 min.\n\nKomunikacja miejska\n\nProponowana trasa dojazdu 1: na przystanku ul. Pidwalna (około pomnika І. Fedorowa) wsiadamy do autobusu nr 39 i wysiadamy na przystanku końcowym Palma (lub Autorynok). Przybliżony czas jazdy 20 min. Godziny jazdy autobusu: 06:00 - 20:00.\nProponowana trasa dojazdu 2: na przystanku ul. Pidwalna (około pomnika І. Fedorowa) wsiadamy do autobusu nr 20 i  wysiadamy na przystanku ul. Polowa, dalej idziemy pieszo do hotelu Palma (1,1 km, 15 min.). Przybliżony czas jazdy 25 min. Godziny jazdy autobusu: 06:00 - 22:00.",
+    "castle": "Stacja Podzamcze",
+    "castle-description": "Odłegłość do hotelu: 3,7 km\nCzas jazdy samochodem: 9 min.\n\nKomunikacja miejska\n\nProponowana trasa dojazdu: na stacji wsiadamy do autobusu nr 20 i  wysiadamy na przystanku ul. Polowa, dalej idziemy pieszo do hotelu Palma (odległość od przystanku do hotelu wynosi 1,1 km, 15 minut spacerem). Przybliżony czas jazdy 10 min."
+  },
+  "book_form": {
+    "message": "Przepraszamy, ale rezerwacja online nie jest obecnie dostępna. W sprawie rezerwacji prosimy o kontakt:"
+  }
+}

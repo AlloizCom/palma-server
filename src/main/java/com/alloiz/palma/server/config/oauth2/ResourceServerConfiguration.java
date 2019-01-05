@@ -105,7 +105,7 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
                 .antMatchers(HttpMethod.DELETE, "/counter/**").authenticated()
 
                 // CALLBACK
-                .antMatchers(HttpMethod.POST, "/callback/**").authenticated()
+//                .antMatchers(HttpMethod.POST, "/callback/**").authenticated()
                 .antMatchers(HttpMethod.DELETE, "/callback/**").authenticated()
 
                 //CALLBACK-COUNTER

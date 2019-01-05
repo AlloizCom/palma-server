@@ -8,6 +8,7 @@ public class AmenityShortDto <T extends AmenityShortDto>{
     protected Long id;
     protected String imagePath;
     protected Boolean available;
+    protected Integer price;
 
     public AmenityShortDto() {
     }
@@ -39,12 +40,22 @@ public class AmenityShortDto <T extends AmenityShortDto>{
         return (T) this;
     }
 
+    public Integer getPrice() {
+        return price;
+    }
+
+    public T setPrice(Integer price) {
+        this.price = price;
+        return (T) this;
+    }
+
     @Override
     public String toString() {
         return "AmenityShortDto{" +
                 "id=" + id +
                 ", imagePath='" + imagePath + '\'' +
                 ", available=" + available +
+                ", price=" + price +
                 '}';
     }
 }

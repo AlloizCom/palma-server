@@ -4,6 +4,7 @@ import com.alloiz.palma.server.dto.NewsByPages;
 import com.alloiz.palma.server.dto.NewsFullDto;
 import com.alloiz.palma.server.dto.NewsShortDto;
 import com.alloiz.palma.server.model.News;
+import com.alloiz.palma.server.model.SEO;
 import com.alloiz.palma.server.repository.NewsRepository;
 import com.alloiz.palma.server.service.NewsService;
 import com.alloiz.palma.server.service.utils.FileBuilder;
@@ -62,9 +63,12 @@ public class NewsServiceImpl implements NewsService {
     @Override
     public News save(News news) {
         checkSave(news);
-        return newsRepository.save(news
+        List<SEO> seos = news.getSeos();
+        news = newsRepository.save(news
                 .setDateTime(Timestamp.valueOf(LocalDateTime.now()))
                 .setAvailable(true));
+        News finalNews = news;
+        return newsRepository.save(news.setSeos(seos.stream().map(seo -> seo.setNews(finalNews)).collect(toList())));
     }
 
     @Override

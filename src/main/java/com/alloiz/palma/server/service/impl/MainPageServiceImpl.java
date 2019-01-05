@@ -7,6 +7,7 @@ import com.alloiz.palma.server.repository.MainPageRepository;
 import com.alloiz.palma.server.service.ImageService;
 import com.alloiz.palma.server.service.MainPageService;
 import com.alloiz.palma.server.service.utils.FileBuilder;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -30,6 +31,9 @@ public class MainPageServiceImpl implements MainPageService {
 
     @Autowired
     private ImageService imageService;
+
+    private static final Logger LOGGER = Logger.getLogger(MainPageServiceImpl.class);
+
 
     @Override
     public MainPage findOneAvailable(Long id) {
@@ -146,6 +150,14 @@ public class MainPageServiceImpl implements MainPageService {
 //            }
 //        }
         if (imageService.removeImage(images,imageId)){
+            List<MainPage> mainPages = mainPageRepository.findAllByAvailable(true);
+            for (MainPage page: mainPages
+                 ) {
+                if (isNullOrEmpty(page.getImages())){
+                    delete(page.getId());
+                    LOGGER.warn("DELETE EMPTY MAIN PAGE: " + page.getId());
+                }
+            }
             return true;
         }
         return false;

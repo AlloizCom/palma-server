@@ -13,6 +13,9 @@ public class MainPage extends BaseEntity<MainPage>{
     @JoinColumn(name = "main_page_id")
     private List<Image> images;
 
+    @OneToMany(mappedBy = "mainPage",cascade = CascadeType.ALL)
+    private List<SEO> seos;
+
     public MainPage() {
     }
 
@@ -25,10 +28,19 @@ public class MainPage extends BaseEntity<MainPage>{
         return this;
     }
 
+    public List<SEO> getSeos() {
+        return seos;
+    }
+
+    public MainPage setSeos(List<SEO> seos) {
+        this.seos = seos;
+        return this;
+    }
+
     @Override
     public String toString() {
         return "MainPage{" +
-                ", images=" + (images == null ? "null" : images) +
+                "images=" + (images == null ? "null" : images) +
                 ", id=" + id +
                 ", available=" + available +
                 '}';

@@ -1,0 +1,129 @@
+{
+  "current-language-index": 0,
+  "current-language-name": "en",
+  "hotel-name": "Palm",
+  "global":{
+    "uah":"uah",
+    "msq":"sq.m",
+    "more":"more"
+  },
+  "header": {
+    "main": "home",
+    "rooms": "ROOMS",
+    "news": "NEWS",
+    "services": "SERVICES",
+    "contact": "CONTACT"
+  },
+  "footer-contact": {
+    "services": {
+      "title": "SERVICES",
+      "rows": [
+        "Free parking",
+        "High-speed WI-FI access",
+        "24-hour reception"
+      ]
+    },
+    "partners": "Partners"
+  },
+  "data-picker": {
+    "in": "check-in",
+    "out": "check-out",
+    "rooms": "rooms",
+    "adults": "adults",
+    "children": "children"
+  },
+  "about_us": {
+    "title": "ABOUT US",
+    "bottom_title": "Welcome to our site!",
+    "text": "The modern, climatic Art Hotel Palma is located in the picturesque district of Lviv. After an active day, the excitement of meeting with the expressive city of Lion, in our hotel we provide you with all the hotel amenities you need for relaxing and comfortable stay. The hotel is located 20 minutes from the bustling city centre; it has its own parking space under constant video surveillance. For our guests we offer Standard and Junior Suites with spacious comfortably furnished rooms. Exquisitely renovated Junior Suites have unusual round bed. The reliable and enthusiastic team at the reception will fulfill the check-in and check-out procedures promptly. Free uninterrupted high-speed Wi-Fi connection throughout the property. By maintaining reasonable prices, we maintain a high level of service, ensuring the optimal level of comfortable stay for our clients."
+  },
+  "special_offers": {
+    "title": "SPECIAL OFFERS",
+    "bottom_title": "Choose the best for yourselves"
+  },
+  "rooms": {
+    "title": "Rooms",
+    "bottom_title": "Room categories",
+    "review": "view",
+    "in": "Check-in",
+    "out": "Check-out",
+    "book": "Book now",
+    "description": "description",
+    "price": "Price",
+    "amenities": "Amenities",
+    "types": {
+      "STANDARD": "Standard",
+      "SUPERIOR": "Junior Suite",
+      "DELUXE": "Lux",
+      "STANDARD_IMPROVED": "Superior Standard",
+      "SUPERIOR_IMPROVED": "Superior Junior Suite"
+    },
+    "not_found":"No available rooms found"
+  },
+  "services_and_offers": {
+    "title": "SERVICES AND OFFERS",
+    "bottom_title": "Service and comfort for each clients",
+    "text": "We offer you a high level of service, comfortable accommodation, affordable prices and European service standards."
+  },
+  "advantages": {
+    "title": "OUR ADVANTAGES",
+    "bottom_title": "High availability and quality of services",
+    "columns": [
+      "Free high-speed WI-FI internet access throughout the hotel",
+      "24-hour reception ready to solve all your problems",
+      "Large free parking area"
+    ]
+  },
+  "contacts": {
+    "title": "CONTACT",
+    "bottom_title": "How to get here?",
+    "address": {
+      "title": "Address",
+      "zip_country": "79024, Ukraine",
+      "city_street": "Lviv, Bohdanivska Str. 44",
+      "text": "Art Hotel Palma is located in the northeast of the city of Lviv, in an area called \"Velyki Kryvchyts\""
+    },
+    "phone": {
+      "title": "Phone",
+      "text": "The reception is open 24 hours a day, we will always accept your reservation and we will help you to resolve any issue. You can also contact us via Viber, Telegram, and WhatsApp messengers",
+      "numbers": [
+        "+38 067 19 444 00",
+        "+38 093 43 444 00",
+        "+38 032 291 78 74"
+      ]
+    },
+    "mail": {
+      "title": "E-mail",
+      "text": "Please send your letters with interesting offers, vacancies opinions about our work and reservations (including group reservations). Write to us and we will always answer you",
+      "email": "palmalviv@gmail.com"
+    },
+    "buses": "The buses No. 19, 39 run to the hotel"
+  },
+  "feedback": {
+    "title": "CONTACT FORM",
+    "bottom_title": "Write us",
+    "text": "Dear guests, your opinion is always important to us.\nOur team will be thankful for the feedback on our site about accommodation, comfort and service level. We always listen to you and are ready to meet any issues.\nThank you for the feedback; it will help us to improve our service and its level.",
+    "form": {
+      "name": "NAME",
+      "phone": "PHONE",
+      "message": "MESSAGE",
+      "send": "Send"
+    }
+  },
+  "how-to-get": {
+    "title": "How to get to the hotel?",
+    "airport": "Airport",
+    "airport-description": "Distance to the hotel: 13.5 km\nDrive time: 30 min.\n\nPublic transport\n\nProposed route: at the airport you have to take the bus No. 48 and go to the stop \"Teatralna Str.\" then cross the road to the stop \"pr. Viacheslava Chornovola \"and change to the bus No. 39 and go to the final stop. Ride time: 50 min.",
+    "station": "Main Railway Station",
+    "station-description": "Distance to the hotel: 9.1 km\nDrive time: 20 min.\n\nPublic transport\n\nProposed route 1: at the station you have to take the bus No. 29 and go to the stop \"Pidvalna Str.\" then change to the bus No. 39 and go to the final stop of the hotel Palma (or Autorynok) Approximate ride time: 40 min.\n\nProposed route 2: From the station, you have to go on foot to Horodotska Street (600 m, 8 min.). Then at the stop \"Kropyvnytskoho Square\", you have to take the bus No. 20 and go to the stop \"Polova Str.\", then go on foot to the Hotel Palma (1.1 km, 15 min). Approximate ride time: 25 min.",
+    "bus": "Bus station",
+    "bus-description": "Stryiska Str. 109\nDistance to the hotel: 12.1 km\nDrive time: 35 min.\n\nPublic transport\n\nProposed route: At the bus station, you have to take the bus No. 3А and go to the stop \"Polova Str.\" Then cross the road and at the bus stop change to the bus No. 39 and go to the final stop of the hotel Palma (or Autorynok). Approximate ride time: 60 min.",
+    "square": "Market Square",
+    "square-description": "Distance to the hotel: 5 km\nDrive time: 15 min.\n\nPublic transport\n\nProposed route 1: at the stop \"Pidvalna Str.\" (Near the monument to I. Fedorov) you have to take the bus No. 39 and go to the final stop of the Hotel Palma (or Autorynok). Approximate ride time: 20 minutes. Buses run: 06:00 - 20:00.\nProposed route 2: at the stop \"Pidvalna Str.\" (Near the monument to I. Fedorov) you have to take the bus No. 20 and go to the stop \"Polova Str.\", then go on foot to the hotel Palma (1.1 km, 15 min). Approximate ride time: 25 min. Buses run: 06:00 - 22:00.",
+    "castle": "Pidzamche Railway Station",
+    "castle-description": "Distance to the hotel: 3.7 km\nDrive time: 9 min.\n\nPublic transport\n\nProposed route: at the station you have to take the bus No. 20 and go to the stop \"Polova Str.\", then walk to the Hotel Palma (distance from the stop to the hotel 1.1 km, walking time: 15 min.). Approximate ride time: 10 min."
+  },
+  "book_form": {
+    "message": "Sorry, but online reservations are not available at this time. For booking please contact:"
+  }
+}

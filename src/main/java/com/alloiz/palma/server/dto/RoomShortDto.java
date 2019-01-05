@@ -1,7 +1,10 @@
 package com.alloiz.palma.server.dto;
 
 import com.alloiz.palma.server.dto.utils.annotations.Dto;
+import com.alloiz.palma.server.model.SEO;
 import com.alloiz.palma.server.model.enums.RoomType;
+
+import java.util.List;
 
 @Dto
 public class RoomShortDto <T extends RoomShortDto>{
@@ -13,6 +16,11 @@ public class RoomShortDto <T extends RoomShortDto>{
     protected Integer kidsPlaces;
     protected Double square;
     protected Integer amount;
+    protected Integer price;
+    protected List<SEODto> seos;
+    protected Integer priceThreePlaces;
+    protected Integer priceFifthPlaces;
+
 
     public RoomShortDto() {
     }
@@ -80,6 +88,42 @@ public class RoomShortDto <T extends RoomShortDto>{
         return this;
     }
 
+    public Integer getPrice() {
+        return price;
+    }
+
+    public RoomShortDto<T> setPrice(Integer price) {
+        this.price = price;
+        return this;
+    }
+
+    public List<SEODto> getSeos() {
+        return seos;
+    }
+
+    public RoomShortDto<T> setSeos(List<SEODto> seos) {
+        this.seos = seos;
+        return this;
+    }
+
+    public Integer getPriceThreePlaces() {
+        return priceThreePlaces;
+    }
+
+    public RoomShortDto<T> setPriceThreePlaces(Integer priceThreePlaces) {
+        this.priceThreePlaces = priceThreePlaces;
+        return this;
+    }
+
+    public Integer getPriceFifthPlaces() {
+        return priceFifthPlaces;
+    }
+
+    public RoomShortDto<T> setPriceFifthPlaces(Integer priceFifthPlaces) {
+        this.priceFifthPlaces = priceFifthPlaces;
+        return this;
+    }
+
     @Override
     public String toString() {
         return "RoomShortDto{" +
@@ -90,6 +134,10 @@ public class RoomShortDto <T extends RoomShortDto>{
                 ", kidsPlaces=" + kidsPlaces +
                 ", square=" + square +
                 ", amount=" + amount +
+                ", price=" + price +
+                ", seos=" + seos +
+                ", priceThreePlaces=" + priceThreePlaces +
+                ", priceFifthPlaces=" + priceFifthPlaces +
                 '}';
     }
 }

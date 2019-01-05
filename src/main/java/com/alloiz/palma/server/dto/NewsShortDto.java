@@ -1,12 +1,14 @@
 package com.alloiz.palma.server.dto;
 
 import com.alloiz.palma.server.dto.utils.annotations.Dto;
+import com.alloiz.palma.server.model.SEO;
 import com.alloiz.palma.server.model.utils.DateDeserializer;
 import com.alloiz.palma.server.model.utils.DateSerializer;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 @Dto
 public class NewsShortDto <T extends NewsShortDto>{
@@ -15,6 +17,7 @@ public class NewsShortDto <T extends NewsShortDto>{
     protected Boolean available;
     protected Timestamp dateTime;
     protected String picturePath;
+    protected List<SEODto> seos;
 
     public NewsShortDto() {
     }
@@ -55,5 +58,25 @@ public class NewsShortDto <T extends NewsShortDto>{
     public T setPicturePath(String picturePath) {
         this.picturePath = picturePath;
         return (T) this;
+    }
+
+    public List<SEODto> getSeos() {
+        return seos;
+    }
+
+    public NewsShortDto<T> setSeos(List<SEODto> seos) {
+        this.seos = seos;
+        return this;
+    }
+
+    @Override
+    public String toString() {
+        return "NewsShortDto{" +
+                "id=" + id +
+                ", available=" + available +
+                ", dateTime=" + dateTime +
+                ", picturePath='" + picturePath + '\'' +
+                ", seos=" + seos +
+                '}';
     }
 }

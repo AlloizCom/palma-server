@@ -15,6 +15,16 @@ public class Room extends BaseEntity<Room> {
     private Integer kidsPlaces;
     private Double square;
     private Integer amount;
+    private Integer price;
+
+    private Integer priceThreePlaces;
+    private Integer priceFifthPlaces;
+
+
+
+    @OneToMany(mappedBy = "room",cascade = CascadeType.ALL)
+    private List<SEO> seos;
+
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "description_id")
@@ -112,6 +122,42 @@ public class Room extends BaseEntity<Room> {
         return this;
     }
 
+    public Integer getPrice() {
+        return price;
+    }
+
+    public Room setPrice(Integer price) {
+        this.price = price;
+        return this;
+    }
+
+    public List<SEO> getSeos() {
+        return seos;
+    }
+
+    public Room setSeos(List<SEO> seos) {
+        this.seos = seos;
+        return this;
+    }
+
+    public Integer getPriceThreePlaces() {
+        return priceThreePlaces;
+    }
+
+    public Room setPriceThreePlaces(Integer priceThreePlaces) {
+        this.priceThreePlaces = priceThreePlaces;
+        return this;
+    }
+
+    public Integer getPriceFifthPlaces() {
+        return priceFifthPlaces;
+    }
+
+    public Room setPriceFifthPlaces(Integer priceFifthPlaces) {
+        this.priceFifthPlaces = priceFifthPlaces;
+        return this;
+    }
+
     @Override
     public String toString() {
         return "Room{" +
@@ -119,10 +165,13 @@ public class Room extends BaseEntity<Room> {
                 ", adultPlaces=" + adultPlaces +
                 ", kidsPlaces=" + kidsPlaces +
                 ", square=" + square +
+                ", price=" + price +
                 ", descriptions=" + (descriptions == null ? "null" : descriptions) +
                 ", amenities=" + (amenities == null ? "null" : amenities) +
                 ", images=" + (images == null ? "null" : images)+
                 ", amount=" + amount +
+                ", priceThreePlaces=" + priceThreePlaces +
+                ", priceFifthPlaces=" + priceFifthPlaces +
                 ", id=" + id +
                 ", available=" + available +
                 '}';

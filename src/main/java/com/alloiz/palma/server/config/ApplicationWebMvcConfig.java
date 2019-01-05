@@ -3,6 +3,7 @@ package com.alloiz.palma.server.config;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.CacheControl;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.resource.VersionResourceResolver;
@@ -22,7 +23,7 @@ public class ApplicationWebMvcConfig extends WebMvcConfigurerAdapter {
     public void addResourceHandlers(final ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resources/**")
                 .addResourceLocations(PATH)
-                .setCacheControl(CacheControl.maxAge(365, TimeUnit.DAYS))
+                .setCacheControl(CacheControl.maxAge(7, TimeUnit.DAYS))
                 .resourceChain(false)
                 .addResolver(new VersionResourceResolver().addContentVersionStrategy("/**"));
     }

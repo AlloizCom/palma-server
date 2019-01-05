@@ -25,6 +25,10 @@ public class News extends BaseEntity<News> {
     private Timestamp dateTime;
     private String picturePath;
 
+
+    @OneToMany(mappedBy = "news",cascade = CascadeType.ALL)
+    private List<SEO> seos;
+
     public News() {
     }
 
@@ -39,7 +43,7 @@ public class News extends BaseEntity<News> {
         return this;
     }
 
-    public List<NewsDescription> getNewsDescriptions() {
+        public List<NewsDescription> getNewsDescriptions() {
         return newsDescriptions;
     }
 
@@ -57,10 +61,19 @@ public class News extends BaseEntity<News> {
         return this;
     }
 
+    public List<SEO> getSeos() {
+        return seos;
+    }
+
+    public News setSeos(List<SEO> seos) {
+        this.seos = seos;
+        return this;
+    }
+
     @Override
     public String toString() {
         return "News{" +
-                "newsDescription=" + newsDescriptions +
+                "newsDescriptions=" + newsDescriptions +
                 ", dateTime=" + dateTime +
                 ", picturePath='" + picturePath + '\'' +
                 ", id=" + id +

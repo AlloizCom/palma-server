@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.io.IOException;
+import java.util.Collection;
 
 public class Validation {
 
@@ -46,6 +47,15 @@ public class Validation {
             throw new RuntimeException("there is no such object");
         }
         return t;
+    }
+
+    /**
+     * Validator for Collections
+     * @param c
+     * @return
+     */
+    public static boolean isNullOrEmpty( final Collection< ? > c ) {
+        return c == null || c.isEmpty();
     }
 
 }

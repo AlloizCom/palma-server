@@ -8,7 +8,7 @@ import java.util.List;
 
 
 @Repository
-public interface BookRepository extends JpaRepository<Book,Long>
+public interface PaymentBookRepository extends JpaRepository<Book,Long>
 {
     List<Book> findAllByAvailable(Boolean available);
 

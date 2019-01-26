@@ -1,8 +1,8 @@
 package com.alloiz.palma.server.service.impl.payment;
 
 import com.alloiz.palma.server.model.payment.Book;
-import com.alloiz.palma.server.repository.payment.BookRepository;
-import com.alloiz.palma.server.service.payment.BookService;
+import com.alloiz.palma.server.repository.payment.PaymentBookRepository;
+import com.alloiz.palma.server.service.payment.PaymentBookService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,47 +12,48 @@ import java.util.List;
 import static com.alloiz.palma.server.service.utils.Validation.*;
 
 @Service
-public class BookServiceImpl implements BookService {
+public class PaymentPaymentBookServiceImpl implements PaymentBookService
+{
 
-    private static final Logger LOGGER = Logger.getLogger(BookServiceImpl.class);
+    private static final Logger LOGGER = Logger.getLogger(PaymentPaymentBookServiceImpl.class);
     @Autowired
-    private BookRepository bookRepository;
+    private PaymentBookRepository paymentBookRepository;
 
     @Override
     public Book findOne(Long id) {
         checkId(id);
-        return bookRepository.findOne(id);
+        return paymentBookRepository.findOne(id);
     }
 
     @Override
     public Book findOneAvailable(Long id) {
         checkId(id);
-        return bookRepository.findByAvailableAndId(true, id);
+        return paymentBookRepository.findByAvailableAndId(true, id);
     }
 
     @Override
     public List<Book> findAllAvailable() {
-        return bookRepository.findAllByAvailable(true);
+        return paymentBookRepository.findAllByAvailable(true);
     }
 
 
     @Override
     public List<Book> findAll() {
-        return bookRepository.findAll();
+        return paymentBookRepository.findAll();
     }
 
     @Override
     public Book save(Book book) {
         checkSave(book);
         LOGGER.info(book);
-        return bookRepository.save(book.setAvailable(true));
+        return paymentBookRepository.save(book.setAvailable(true));
     }
 
     @Override
     public Book update(Book book) {
-        checkObjectExistsById(book.getId(), bookRepository);
+        checkObjectExistsById(book.getId(), paymentBookRepository);
         LOGGER.info(book);
-        return bookRepository.save(findOne(book.getId())
+        return paymentBookRepository.save(findOne(book.getId())
                 .setBookingDate(book.getBookingDate())
                 .setBoughtOnLine(book.getBoughtOnLine())
                 .setCash(book.getCash())
@@ -70,7 +71,7 @@ public class BookServiceImpl implements BookService {
         LOGGER.info(">>> " + id);
         checkId(id);
         try {
-            bookRepository.delete(checkObjectExistsById(id, bookRepository));
+            paymentBookRepository.delete(checkObjectExistsById(id, paymentBookRepository));
             return true;
         } catch (Exception e) {
             return false;
@@ -83,7 +84,7 @@ public class BookServiceImpl implements BookService {
         LOGGER.info(">>> " + id);
         checkId(id);
         try {
-            bookRepository.delete(checkObjectExistsById(id, bookRepository));
+            paymentBookRepository.delete(checkObjectExistsById(id, paymentBookRepository));
             return true;
         } catch (Exception e) {
             return false;

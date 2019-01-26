@@ -9,6 +9,7 @@ import java.util.List;
 public class Room extends BaseEntity<Room> {
 
     @Enumerated(EnumType.STRING)
+    @Column(unique = true)
     private RoomType type;
 
     private Integer adultPlaces;

@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 import static com.alloiz.palma.server.dto.utils.builder.Builder.map;
 
 @RestController
-@RequestMapping("/payment/book")
+@RequestMapping("/payment_book")
 public class PaymentBookController
 {
 

@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
-@RestController("/payment/MultiLanguageName")
+@RestController("/payment_MultiLanguageName")
 public class MultiLanguageNameController
 {
 

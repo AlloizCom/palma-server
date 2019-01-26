@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
-@RestController("/payment/language")
+@RestController("/payment_language")
 public class PaymentLanguageController
 {
 

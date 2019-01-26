@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 import static com.alloiz.palma.server.dto.utils.builder.Builder.map;
 
 @RestController
-@RequestMapping("/payment/client")
+@RequestMapping("/payment_client")
 public class ClientController {
 
     private static final Logger LOGGER = Logger.getLogger(ClientController.class);

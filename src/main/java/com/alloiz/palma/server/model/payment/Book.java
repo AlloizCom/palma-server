@@ -16,7 +16,7 @@ import javax.persistence.ManyToOne;
 /**
  * Information about client`s order
  */
-@Entity
+@Entity(name = "payment_boork")
 public class Book extends BaseEntity<Book>
 {
 

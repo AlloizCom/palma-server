@@ -10,7 +10,7 @@ import javax.persistence.Entity;
 /**
  * Describes one room
  */
-@Entity
+@Entity(name = "payment_room")
 public class Room extends BaseEntity<Room>
 {
 	private RoomType roomType;
@@ -68,20 +68,24 @@ public class Room extends BaseEntity<Room>
 		return this;
 	}
 
-	public String getImage() {
+	public String getImage()
+	{
 		return image;
 	}
 
-	public Room setImage(String image) {
+	public Room setImage(String image)
+	{
 		this.image = image;
 		return this;
 	}
 
-	public Integer getPrice() {
+	public Integer getPrice()
+	{
 		return price;
 	}
 
-	public Room setPrice(Integer price) {
+	public Room setPrice(Integer price)
+	{
 		this.price = price;
 		return this;
 	}

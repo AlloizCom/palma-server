@@ -1,5 +1,6 @@
 package com.alloiz.palma.server.service.impl.payment;
 
+import com.alloiz.palma.server.model.enums.RoomType;
 import com.alloiz.palma.server.model.payment.Room;
 import com.alloiz.palma.server.repository.payment.RoomRepository;
 import com.alloiz.palma.server.service.payment.RoomService;
@@ -64,6 +65,11 @@ public class RoomServiceImpl implements RoomService {
     @Override
     public List<Room> findAllAvailable() {
         return roomRepository.findAllByAvailable(true);
+    }
+
+    @Override public List<Room> findAllByType(RoomType roomType)
+    {
+        return roomRepository.findAllByRoomType(roomType);
     }
 
     @Override

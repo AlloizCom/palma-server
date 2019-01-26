@@ -16,9 +16,10 @@ import static com.alloiz.palma.server.dto.utils.builder.Builder.map;
 
 @RestController
 @RequestMapping("/payment/book")
-public class BookController {
+public class PaymentBookController
+{
 
-    private static final Logger LOGGER = Logger.getLogger(BookController.class);
+    private static final Logger LOGGER = Logger.getLogger(PaymentBookController.class);
 
     @Autowired
     private BookService bookService;

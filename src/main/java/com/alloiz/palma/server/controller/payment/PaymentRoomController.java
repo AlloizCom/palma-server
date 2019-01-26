@@ -4,7 +4,10 @@ import static com.alloiz.palma.server.dto.utils.builder.Builder.map;
 
 import com.alloiz.palma.server.dto.payment.RoomFullDto;
 import com.alloiz.palma.server.model.enums.RoomType;
+import com.alloiz.palma.server.model.payment.Description;
+import com.alloiz.palma.server.model.payment.Language;
 import com.alloiz.palma.server.model.payment.Room;
+import com.alloiz.palma.server.service.RoomService;
 import com.alloiz.palma.server.service.payment.PaymentRoomService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +35,9 @@ public class PaymentRoomController
 	@Autowired
 	private PaymentRoomService paymentRoomService;
 
+	@Autowired
+	private RoomService roomService;
+
 	@GetMapping("/find-all")
 	private ResponseEntity<List<RoomFullDto>> findAll()
 	{
@@ -55,8 +61,14 @@ public class PaymentRoomController
 	@GetMapping("/find-all-by-type/{type}")
 	private ResponseEntity<List<RoomFullDto>> findAllByType(@PathVariable RoomType type)
 	{
+		com.alloiz.palma.server.model.Room roomDefault = roomService.findByType(type);
 		return ResponseEntity.ok(paymentRoomService.findAllByType(type).stream()
-				.map(room -> map(room, RoomFullDto.class)).collect(Collectors.toList()));
+				.map(room -> map(room, RoomFullDto.class).setDescriptions(roomDefault.getDescriptions().stream()
+						.map(roomDescription -> new Description()
+								.setLanguage(new Language().setLanguagesName(roomDescription.getLanguage().toString()))
+								.setText(roomDescription.getDescription())
+						).collect(Collectors.toList())))
+				.collect(Collectors.toList()));
 	}
 
 	@PostMapping("/save")

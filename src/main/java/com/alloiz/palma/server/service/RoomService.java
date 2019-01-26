@@ -50,4 +50,6 @@ public interface RoomService {
     List<Room> findRoomsByRoomParams(RoomParams roomParams);
 
     List<Room> findRoomsByRoomParamsWithRoomType(RoomParams roomParams);
+
+    Room findByType(RoomType type);
 }

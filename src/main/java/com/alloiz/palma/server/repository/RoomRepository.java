@@ -57,4 +57,6 @@ public interface RoomRepository extends JpaRepository<Room,Long> {
                                            @Param("roomType") RoomType roomType
     );
 
+    Room findByType(RoomType type);
+
 }

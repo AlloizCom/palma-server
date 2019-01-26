@@ -3,7 +3,6 @@ package com.alloiz.palma.server.model.payment;
 import com.alloiz.palma.server.model.BaseEntity;
 import com.alloiz.palma.server.model.enums.RoomType;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;

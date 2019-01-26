@@ -302,4 +302,9 @@ public class RoomServiceImpl implements RoomService
 				roomParams.getChildrens(),
 				roomParams.getRoomType());
 	}
+
+	@Override public Room findByType(RoomType type)
+	{
+		return roomRepository.findByType(type);
+	}
 }

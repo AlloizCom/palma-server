@@ -2,7 +2,7 @@ package com.alloiz.palma.server.service.impl.payment;
 
 import com.alloiz.palma.server.model.payment.Language;
 import com.alloiz.palma.server.repository.payment.LanguageRepository;
-import com.alloiz.palma.server.service.payment.LanguageService;
+import com.alloiz.palma.server.service.payment.PaymentLanguageService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,9 +12,10 @@ import java.util.List;
 import static com.alloiz.palma.server.service.utils.Validation.*;
 
 @Service
-public class LanguageServiceImpl implements LanguageService {
+public class PaymentLanguageServiceImpl implements PaymentLanguageService
+{
 
-    private static final Logger LOGGER = Logger.getLogger(LanguageServiceImpl.class);
+    private static final Logger LOGGER = Logger.getLogger(PaymentLanguageServiceImpl.class);
     @Autowired
     private LanguageRepository languageRepository;
 

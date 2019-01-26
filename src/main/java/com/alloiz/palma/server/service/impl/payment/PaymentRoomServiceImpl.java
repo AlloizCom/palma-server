@@ -32,7 +32,6 @@ public class PaymentRoomServiceImpl implements PaymentRoomService
                 .setRoomNumber(obj.getRoomNumber())
                 .setAdditionalPlaces(obj.getAdditionalPlaces())
                 .setPrice(obj.getPrice())
-                .setImage(obj.getImage())
                 .setAvailable(obj.getAvailable())
         );
     }

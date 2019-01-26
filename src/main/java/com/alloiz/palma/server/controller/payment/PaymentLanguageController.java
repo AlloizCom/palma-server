@@ -20,10 +20,10 @@ import java.util.stream.Collectors;
 
 
 @RestController("/payment/language")
-public class LanguageController
+public class PaymentLanguageController
 {
 
-	private static final Logger LOGGER = Logger.getLogger(LanguageController.class);
+	private static final Logger LOGGER = Logger.getLogger(PaymentLanguageController.class);
 
 	@Autowired
 	private PaymentLanguageService paymentLanguageService;

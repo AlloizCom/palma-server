@@ -5,7 +5,7 @@ import static com.alloiz.palma.server.dto.utils.builder.Builder.map;
 import com.alloiz.palma.server.dto.payment.RoomFullDto;
 import com.alloiz.palma.server.model.enums.RoomType;
 import com.alloiz.palma.server.model.payment.Room;
-import com.alloiz.palma.server.service.payment.RoomService;
+import com.alloiz.palma.server.service.payment.PaymentRoomService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,39 +21,39 @@ import java.util.stream.Collectors;
 
 
 @RestController("payment/room")
-public class RoomController
+public class PaymentRoomController
 {
 
-	private static final Logger LOGGER = Logger.getLogger(RoomController.class);
+	private static final Logger LOGGER = Logger.getLogger(PaymentRoomController.class);
 
 
 	@Autowired
-	private RoomService roomService;
+	private PaymentRoomService paymentRoomService;
 
 	@GetMapping("/find-all")
 	private ResponseEntity<List<RoomFullDto>> findAll()
 	{
-		return ResponseEntity.ok(roomService.findAll().stream()
+		return ResponseEntity.ok(paymentRoomService.findAll().stream()
 				.map(room -> map(room, RoomFullDto.class)).collect(Collectors.toList()));
 	}
 
 	@GetMapping("/find-one/{id}")
 	private ResponseEntity<RoomFullDto> findOne(@PathVariable Long id)
 	{
-		return ResponseEntity.ok(map(roomService.findOne(id), RoomFullDto.class));
+		return ResponseEntity.ok(map(paymentRoomService.findOne(id), RoomFullDto.class));
 	}
 
 	@GetMapping("/find-all-available")
 	private ResponseEntity<List<RoomFullDto>> findAllAvailable()
 	{
-		return ResponseEntity.ok(roomService.findAllAvailable().stream()
+		return ResponseEntity.ok(paymentRoomService.findAllAvailable().stream()
 				.map(room -> map(room, RoomFullDto.class)).collect(Collectors.toList()));
 	}
 
 	@GetMapping("/find-all-by-type/{type}")
 	private ResponseEntity<List<RoomFullDto>> findAllByType(@PathVariable RoomType type)
 	{
-		return ResponseEntity.ok(roomService.findAllByType(type).stream()
+		return ResponseEntity.ok(paymentRoomService.findAllByType(type).stream()
 				.map(room -> map(room, RoomFullDto.class)).collect(Collectors.toList()));
 	}
 
@@ -63,7 +63,7 @@ public class RoomController
 		LOGGER.info("---------------------------Room---------------------------");
 		LOGGER.info(room);
 		LOGGER.info("---------------------------Room---------------------------");
-		return ResponseEntity.ok(map(roomService.save(room), RoomFullDto.class));
+		return ResponseEntity.ok(map(paymentRoomService.save(room), RoomFullDto.class));
 	}
 
 	@PostMapping("/update")
@@ -73,14 +73,14 @@ public class RoomController
 		LOGGER.info(room);
 		LOGGER.info("---------------------------Room---------------------------");
 
-		return ResponseEntity.ok(map(roomService.update(room), RoomFullDto.class));
+		return ResponseEntity.ok(map(paymentRoomService.update(room), RoomFullDto.class));
 
 	}
 
 	@DeleteMapping("/delete/{id}")
 	private ResponseEntity<Boolean> delete(@PathVariable Long id)
 	{
-		return ResponseEntity.ok(roomService.delete(id));
+		return ResponseEntity.ok(paymentRoomService.delete(id));
 	}
 
 }

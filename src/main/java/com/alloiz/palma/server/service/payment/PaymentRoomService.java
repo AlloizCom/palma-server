@@ -6,7 +6,7 @@ import com.alloiz.palma.server.model.payment.Room;
 import java.util.List;
 
 
-public interface RoomService extends CRUDService<Room>
+public interface PaymentRoomService extends CRUDService<Room>
 {
 
     List<Room> findAllAvailable();

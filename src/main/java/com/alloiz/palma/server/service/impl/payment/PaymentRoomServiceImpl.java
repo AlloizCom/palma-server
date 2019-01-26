@@ -2,8 +2,8 @@ package com.alloiz.palma.server.service.impl.payment;
 
 import com.alloiz.palma.server.model.enums.RoomType;
 import com.alloiz.palma.server.model.payment.Room;
-import com.alloiz.palma.server.repository.payment.RoomRepository;
-import com.alloiz.palma.server.service.payment.RoomService;
+import com.alloiz.palma.server.repository.payment.PaymentRoomRepository;
+import com.alloiz.palma.server.service.payment.PaymentRoomService;
 import com.alloiz.palma.server.service.utils.Validation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,15 +11,16 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class RoomServiceImpl implements RoomService {
+public class PaymentRoomServiceImpl implements PaymentRoomService
+{
 
     @Autowired
-    private RoomRepository roomRepository;
+    private PaymentRoomRepository paymentRoomRepository;
 
     @Override
     public Room save(Room obj) {
         Validation.checkSave(obj);
-        return roomRepository.save(obj);
+        return paymentRoomRepository.save(obj);
     }
 
     @Override
@@ -40,7 +41,7 @@ public class RoomServiceImpl implements RoomService {
     public Boolean delete(Room obj) {
         Validation.checkId(obj.getId());
         try{
-           roomRepository.delete(obj);
+           paymentRoomRepository.delete(obj);
            return true;
         }
         catch (Exception e )
@@ -53,7 +54,7 @@ public class RoomServiceImpl implements RoomService {
     public Boolean delete(Long id) {
         Validation.checkId(id);
         try{
-            roomRepository.delete(id);
+            paymentRoomRepository.delete(id);
             return true;
         }
         catch (Exception e )
@@ -64,22 +65,22 @@ public class RoomServiceImpl implements RoomService {
 
     @Override
     public List<Room> findAllAvailable() {
-        return roomRepository.findAllByAvailable(true);
+        return paymentRoomRepository.findAllByAvailable(true);
     }
 
     @Override public List<Room> findAllByType(RoomType roomType)
     {
-        return roomRepository.findAllByRoomType(roomType);
+        return paymentRoomRepository.findAllByRoomType(roomType);
     }
 
     @Override
     public Room findOne(Long id) {
 
-        return roomRepository.findOne(id);
+        return paymentRoomRepository.findOne(id);
     }
 
     @Override
     public List<Room> findAll() {
-        return roomRepository.findAll();
+        return paymentRoomRepository.findAll();
     }
 }

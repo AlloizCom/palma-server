@@ -87,6 +87,9 @@ public class BookController {
     @PostMapping("/pay/{language}")
     private ResponseEntity<String> pay(@RequestBody BookDto book,
                                        @PathVariable Language language) {
+        LOGGER.info("------------------------BOOK PARAMS----------------------------------");
+        LOGGER.info(book);
+        LOGGER.info("------------------------BOOK PARAMS END----------------------------------");
         bookService.save(map(book, Book.class),language);
         return ResponseEntity.ok(payService.getButton(map(book, Book.class)));
     }

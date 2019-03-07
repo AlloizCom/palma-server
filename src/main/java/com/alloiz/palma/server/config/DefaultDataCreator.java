@@ -59,6 +59,7 @@ public class DefaultDataCreator {
         LOGGER.warn("---Creating Counter for Booking---");
         if (bookCounterService.createDefaultCounter()){
             LOGGER.warn(">>>---Counter was created---");
+            LOGGER.warn(">>>---Counter data:"+ bookCounterService.getActiveCounter()+ "---");
         } else {
             LOGGER.warn(">>>---Counter already exists---");
         }

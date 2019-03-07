@@ -1,12 +1,16 @@
 package com.alloiz.palma.server.service.impl;
 
+import com.alloiz.palma.server.config.DefaultDataCreator;
 import com.alloiz.palma.server.model.BookCounter;
 import com.alloiz.palma.server.repository.BookCounterRepository;
 import com.alloiz.palma.server.service.BookCounterService;
 import com.alloiz.palma.server.service.BookService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 import static com.alloiz.palma.server.service.utils.Validation.checkId;
 import static com.alloiz.palma.server.service.utils.Validation.checkObjectExistsById;
@@ -20,13 +24,26 @@ public class BookCounterServiceImpl implements BookCounterService {
     @Autowired
     private SimpMessagingTemplate template;
 
-    @Autowired
-    private BookCounterService bookCounterService;
+    private static final Logger LOGGER
+            = Logger.getLogger(BookCounterServiceImpl.class);
 
     @Override
     public BookCounter getCounter(Long id) {
         checkId(id);
         return bookCounterRepository.findOne(id);
+    }
+
+    @Override
+    public BookCounter getActiveCounter() {
+        List<BookCounter> bookCounters =bookCounterRepository.findAllByAvailable(true);
+        if(bookCounters.size() == 1)
+            return bookCounters.get(0);
+
+        bookCounters.forEach(bookCounter -> delete(bookCounter.getId()) );
+        LOGGER.error("Not single active book counter was found.\nCounters have been deleted and new one was created!!!!");
+        createDefaultCounter();
+
+        return getActiveCounter();
     }
 
     @Override

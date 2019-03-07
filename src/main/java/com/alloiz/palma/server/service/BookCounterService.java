@@ -6,6 +6,8 @@ public interface BookCounterService {
 
     BookCounter getCounter(Long id);
 
+    BookCounter getActiveCounter();
+
     BookCounter update(BookCounter counter);
 
     Boolean delete(Long id);

@@ -19,17 +19,27 @@ public class BookCounterController {
 
     @GetMapping("/notify")
     public BookCounter getNotification() {
-        template.convertAndSend("/booking", bookCounterService.getCounter(1L));
-        return bookCounterService.getCounter(1L);
+        template.convertAndSend("/booking", bookCounterService.getActiveCounter());
+        return bookCounterService.getActiveCounter();
     }
 
     @GetMapping("/reset")
     public ResponseEntity<BookCounter> resetCounter(){
-        return ResponseEntity.ok(bookCounterService.resetCounter(1L));
+        return ResponseEntity.ok(
+                bookCounterService.resetCounter(
+                        bookCounterService.getActiveCounter()
+                                .getId()
+                )
+        );
     }
 
     @GetMapping("/increment")
     public ResponseEntity<BookCounter> incrementCounter(){
-        return ResponseEntity.ok(bookCounterService.incrementCounter(1L));
+        return ResponseEntity.ok(
+                bookCounterService.incrementCounter(
+                        bookCounterService.getActiveCounter()
+                                .getId()
+                )
+        );
     }
 }

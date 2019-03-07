@@ -103,7 +103,7 @@ public class PayServiceImpl implements PayService {
     public void completePayment(String orderID) {
         Book book = bookService.findByUuid(orderID);
 //        mailService.sendTickets(tickets.get(0).getUser(), orderID);todo
-        bookService.update(book.setOrderStatus(OrderStatus.AVAILABLE));
+        bookService.update(book.setOrderStatus(OrderStatus.PAID_BY_CARD));
         logger.info("completePayment:[" + orderID + "]");
     }
 

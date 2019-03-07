@@ -66,7 +66,10 @@ public class BookServiceImpl implements BookService {
     @Override
     public Book save(Book book, Language language) {
         checkSave(book);
-        bookCounterService.incrementCounter(1L);
+        bookCounterService.incrementCounter(
+                bookCounterService.getActiveCounter()
+                        .getId()
+        );
         LOGGER.info("Book service:" + book);
 //        Integer amountFromBook = book.getAmountOfRooms();
 //        scheduleService.findByParamForBook(book.getDateIn(), book.getDateOut(), book.getRoomType())

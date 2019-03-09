@@ -2,10 +2,12 @@ package com.alloiz.palma.server.controller.payment;
 
 import com.alloiz.palma.server.dto.payment.BookFullDto;
 import com.alloiz.palma.server.dto.payment.BookShortDto;
+import com.alloiz.palma.server.model.enums.RoomType;
 import com.alloiz.palma.server.model.payment.Book;
 import com.alloiz.palma.server.service.payment.PaymentBookService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,6 +46,13 @@ public class PaymentBookController
     @GetMapping("/find-one-available/{id}")
     private ResponseEntity<BookFullDto> findOneAvailable(@PathVariable Long id) {
         return ResponseEntity.ok(map(paymentBookService.findOneAvailable(id), BookFullDto.class));
+    }
+
+    @GetMapping("/find")
+    private void find() {
+        LOGGER.info("Come HERE");
+        LOGGER.info("-------------------------------------");
+        paymentBookService.findAllAvailableByRoomType(RoomType.STANDARD);
     }
 
     @PostMapping("/save")

@@ -143,19 +143,17 @@ public class Book extends BaseEntity<Book>
 	@Override
 	public String toString()
 	{
-		return "Book{" +
-				"client=" + (client == null ? "null" : client) +
-				", status=" + status +
-				", dateFrom=" + dateFrom +
-				", dateTo=" + dateTo +
-				", bookingDate=" + bookingDate +
-				", boughtOnLine=" + boughtOnLine +
-				", totalPrice=" + totalPrice +
-				", payedPrice=" + payedPrice +
-				", isCash=" + isCash +
-				", id=" + id +
-				", available=" + available +
-				'}';
+		return  "client=" + (client == null ? "null" : client) +
+				",\n status=" + status +
+				",\n dateFrom=" + dateFrom +
+				",\n dateTo=" + dateTo +
+				",\n bookingDate=" + bookingDate +
+				",\n boughtOnLine=" + boughtOnLine +
+				",\n totalPrice=" + totalPrice +
+				",\n payedPrice=" + payedPrice +
+				",\n isCash=" + isCash +
+				",\n id=" + id +
+				",\n available=" + available;
 	}
 
 	public List<Room> getRooms()

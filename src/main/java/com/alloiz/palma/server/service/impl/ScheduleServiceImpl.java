@@ -129,10 +129,10 @@ public class ScheduleServiceImpl implements ScheduleService {
                 .stream()
                 .map(schedule -> map(schedule, ScheduleDto.class))
                 .collect(toList());
-        LOGGER.info("-------------Schedule Page---------------");
-        scheduleList.stream().forEach(n -> LOGGER.info(n.getId()));
-        LOGGER.info("-----------------------------------------");
-        scheduleList.stream().forEach(n -> LOGGER.info(n.getId()));
+//        LOGGER.info("-------------Schedule Page---------------");
+//        scheduleList.stream().forEach(n -> LOGGER.info(n.getId()));
+//        LOGGER.info("-----------------------------------------");
+//        scheduleList.stream().forEach(n -> LOGGER.info(n.getId()));
         return new ScheduleByPages()
                 .setShedules(scheduleList)
                 .setCurrentPage(pageable.getPageNumber())

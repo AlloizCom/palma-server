@@ -76,4 +76,10 @@ public class Room extends BaseEntity<Room>
 		this.price = price;
 		return this;
 	}
+
+	@Override
+	public String toString() {
+		return super.toString() +"\nRoomType = "+ roomType + "\nName = " + name +"\nRoomNumber = "+roomNumber
+				+"\nAdditionalPlaces = "+additionalPlaces + "\nPrice = "+price+"\n";
+	}
 }

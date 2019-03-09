@@ -14,7 +14,7 @@ import static com.alloiz.palma.server.service.utils.Validation.*;
 @Service
 public class DescriptionServiceImpl implements DescriptionService {
 
-    private static final Logger LOGGER = Logger.getLogger(PaymentPaymentBookServiceImpl.class);
+    private static final Logger LOGGER = Logger.getLogger(PaymentBookServiceImpl.class);
 
     @Autowired
     private DescriptionRepository descriptionRepository;

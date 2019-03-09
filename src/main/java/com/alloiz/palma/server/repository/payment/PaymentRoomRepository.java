@@ -14,4 +14,6 @@ public interface PaymentRoomRepository extends JpaRepository<Room, Long>
     List<Room> findAllByAvailable(Boolean available);
 
     List<Room> findAllByRoomType(RoomType roomType);
+
+    List<Room> findAllByAvailableAndRoomType(Boolean available, RoomType roomType);
 }

@@ -1,23 +1,30 @@
 package com.alloiz.palma.server.service.impl.payment;
 
+import com.alloiz.palma.server.model.enums.RoomType;
 import com.alloiz.palma.server.model.payment.Book;
+import com.alloiz.palma.server.model.payment.Room;
 import com.alloiz.palma.server.repository.payment.PaymentBookRepository;
 import com.alloiz.palma.server.service.payment.PaymentBookService;
+import com.alloiz.palma.server.service.payment.PaymentRoomService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.alloiz.palma.server.service.utils.Validation.*;
 
 @Service
-public class PaymentPaymentBookServiceImpl implements PaymentBookService
+public class PaymentBookServiceImpl implements PaymentBookService
 {
 
-    private static final Logger LOGGER = Logger.getLogger(PaymentPaymentBookServiceImpl.class);
+    private static final Logger LOGGER = Logger.getLogger(PaymentBookServiceImpl.class);
     @Autowired
     private PaymentBookRepository paymentBookRepository;
+
+    @Autowired
+    private PaymentRoomService paymentRoomService;
 
     @Override
     public Book findOne(Long id) {
@@ -67,6 +74,39 @@ public class PaymentPaymentBookServiceImpl implements PaymentBookService
     }
 
     @Override
+    public List<Book> findAllAvailableByRoomType(RoomType roomType) {
+        LOGGER.info("_________________ BOOK FIND ALL BY ROOMTYPE _____________________________________");
+        List<Room> rooms = new ArrayList<>();
+        List<Book> books  = findAllAvailable();
+        books
+                .stream()
+                .peek(
+                        book -> {
+                            book.getRooms().stream().peek(room -> rooms.add(paymentRoomService.findOne(room.getId())));
+                            book.setRooms(rooms);
+                            rooms.clear();
+                            }
+                );
+        for (Book b: books) {
+            List<Room> roomsB = b.getRooms();
+            Boolean contained = false;
+            for (Room r:roomsB) {
+                if(r.getRoomType() == roomType)
+                    contained = true;
+            }
+            if (!contained){
+                books.remove(b);
+            }
+        }
+        LOGGER.info(books.size());
+        books.forEach(book -> LOGGER.info(book+"\n"));
+
+        return books;
+    }
+
+
+
+    @Override
     public Boolean delete(Long id) {
         LOGGER.info(">>> " + id);
         checkId(id);
@@ -92,4 +132,6 @@ public class PaymentPaymentBookServiceImpl implements PaymentBookService
     }
 
 
+
 }
+

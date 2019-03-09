@@ -15,7 +15,7 @@ import static com.alloiz.palma.server.service.utils.Validation.*;
 public class ClientServiceImpl implements ClientService {
 
 
-    private static final Logger LOGGER = Logger.getLogger(PaymentPaymentBookServiceImpl.class);
+    private static final Logger LOGGER = Logger.getLogger(PaymentBookServiceImpl.class);
     @Autowired
     private ClientRepository clientRepository;
 

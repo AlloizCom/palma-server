@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -70,6 +71,28 @@ public class PaymentRoomController
 						).collect(Collectors.toList())))
 				.collect(Collectors.toList()));
 	}
+
+	@GetMapping("/find-all-by-type-with-dates-and-places/{type}/{dateFrom}/{dateTo}/{places}")
+	private ResponseEntity<List<RoomFullDto>> findAllByType(@PathVariable RoomType type,
+															@PathVariable Timestamp dateFrom,
+															@PathVariable Timestamp dateTo,
+															@PathVariable Integer places)
+	{
+		com.alloiz.palma.server.model.Room roomDefault = roomService.findByType(type);
+		List<RoomFullDto> rooms =paymentRoomService.findAllByTypeWithDatesAndPlaces(type,dateFrom,dateTo,places)
+				.stream()
+				.map(room ->  map(room, RoomFullDto.class).setDescriptions(roomDefault.getDescriptions().stream()
+						.map(roomDescription -> new Description()
+								.setLanguage(new Language().setLanguagesName(roomDescription.getLanguage().toString()))
+								.setText(roomDescription.getDescription())
+						).collect(Collectors.toList())))
+				.collect(Collectors.toList());
+		LOGGER.info("------------- FIND WITH DATES and places--------------------------------");
+		LOGGER.info(rooms.size());
+		LOGGER.info("---------------------------------------------");
+		return ResponseEntity.ok(rooms);
+	}
+
 
 	@PostMapping("/save")
 	private ResponseEntity<RoomFullDto> save(@RequestBody Room room)

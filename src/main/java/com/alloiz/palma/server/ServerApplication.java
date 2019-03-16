@@ -11,12 +11,14 @@ import org.springframework.boot.web.servlet.ServletContextInitializer;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 @SpringBootApplication
+@EnableScheduling
 @EnableJpaRepositories(basePackages = "com.alloiz.palma.server.repository")
 public class ServerApplication extends SpringBootServletInitializer {
 

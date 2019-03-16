@@ -18,4 +18,5 @@ public interface PaymentRoomService extends CRUDService<Room>
 
     List<Room> findAllByTypeWithDatesAndPlaces(RoomType roomType, Timestamp dateFrom, Timestamp dateTo, Integer places);
 
+    List<Room> findAllByDatesAndPlaces(Timestamp dateFrom, Timestamp dateTo, Integer places);
 }

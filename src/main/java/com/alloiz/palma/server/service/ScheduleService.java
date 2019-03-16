@@ -5,6 +5,7 @@ import com.alloiz.palma.server.model.Schedule;
 import com.alloiz.palma.server.model.enums.RoomType;
 import com.alloiz.palma.server.repository.utils.ChangeRoomForSale;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.query.Param;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -46,4 +47,6 @@ public interface ScheduleService {
     Boolean runBySchedule();
 
     Boolean changeRoomForSale(ChangeRoomForSale changeRoomForSale);
+
+    List<Schedule> findRoomByDateinAndDateOut (Timestamp dateIn, Timestamp dateOut);
 }

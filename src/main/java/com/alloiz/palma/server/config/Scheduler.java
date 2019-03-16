@@ -29,7 +29,8 @@ public class Scheduler {
      *  1 week = 604800000 ms
      *  Cron Pattern "second, minute, hour, day of month, month, day(s) of week"
      */
-    @Scheduled(cron = "0 0 11 * * *")
+//    @Scheduled(cron = "0 0 11 * * *")
+    @Scheduled(fixedDelay = 43200000)//12 hours
     public void run() {
         LOGGER.warn(">>> Scheduler start");
         if (scheduleService.runBySchedule()){

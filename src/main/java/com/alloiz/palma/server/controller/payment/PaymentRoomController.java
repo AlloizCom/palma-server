@@ -73,7 +73,7 @@ public class PaymentRoomController
 	}
 
 	@GetMapping("/find-all-by-type-with-dates-and-places/{type}/{dateFrom}/{dateTo}/{places}")
-	private ResponseEntity<List<RoomFullDto>> findAllByType(@PathVariable RoomType type,
+	private ResponseEntity<List<RoomFullDto>> findAllByTypeAndDatesAndPlaces(@PathVariable RoomType type,
 															@PathVariable Timestamp dateFrom,
 															@PathVariable Timestamp dateTo,
 															@PathVariable Integer places)
@@ -87,9 +87,27 @@ public class PaymentRoomController
 								.setText(roomDescription.getDescription())
 						).collect(Collectors.toList())))
 				.collect(Collectors.toList());
-		LOGGER.info("------------- FIND WITH DATES and places--------------------------------");
-		LOGGER.info(rooms.size());
-		LOGGER.info("---------------------------------------------");
+		LOGGER.info("_________________________________");
+		LOGGER.info("FIND BY TYPE AND DATES AND PLACES");
+        LOGGER.info("_________________________________");
+        return ResponseEntity.ok(rooms);
+	}
+
+	@GetMapping("/find-all-by-dates-and-places/{dateFrom}/{dateTo}/{places}")
+	private ResponseEntity<List<RoomFullDto>> findAllBydatesAndPlaces(@PathVariable Timestamp dateFrom,
+															@PathVariable Timestamp dateTo,
+															@PathVariable Integer places)
+	{
+
+		List<RoomFullDto> rooms =paymentRoomService.findAllByDatesAndPlaces(dateFrom,dateTo,places)
+				.stream()
+				.map(room ->  map(room, RoomFullDto.class).setDescriptions(roomService.findByType(room.getRoomType())
+						.getDescriptions().stream()
+						.map(roomDescription -> new Description()
+								.setLanguage(new Language().setLanguagesName(roomDescription.getLanguage().toString()))
+								.setText(roomDescription.getDescription())
+						).collect(Collectors.toList())))
+				.collect(Collectors.toList());
 		return ResponseEntity.ok(rooms);
 	}
 
@@ -111,6 +129,24 @@ public class PaymentRoomController
 		LOGGER.info("---------------------------Room---------------------------");
 
 		return ResponseEntity.ok(map(paymentRoomService.update(room), RoomFullDto.class));
+
+	}
+	@PostMapping("/update-array")
+	private ResponseEntity<List<RoomFullDto>> updateList(@RequestBody List<Room> rooms)
+	{
+		LOGGER.info("---------------------------Update RoomArray ---------------------------");
+		rooms.forEach(LOGGER::info);
+		LOGGER.info("---------------------------Update RoomArray ---------------------------");
+
+		List<RoomFullDto> resultRooms =rooms.stream().peek(room ->  map(paymentRoomService.update(room), RoomFullDto.class))
+				.map(room ->  map(room, RoomFullDto.class).setDescriptions(roomService.findByType(room.getRoomType())
+						.getDescriptions().stream()
+						.map(roomDescription -> new Description()
+								.setLanguage(new Language().setLanguagesName(roomDescription.getLanguage().toString()))
+								.setText(roomDescription.getDescription())
+						).collect(Collectors.toList())))
+				.collect(Collectors.toList());
+		return ResponseEntity.ok(resultRooms);
 
 	}
 

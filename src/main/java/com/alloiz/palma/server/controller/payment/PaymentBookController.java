@@ -48,13 +48,6 @@ public class PaymentBookController
         return ResponseEntity.ok(map(paymentBookService.findOneAvailable(id), BookFullDto.class));
     }
 
-    @GetMapping("/find")
-    private void find() {
-        LOGGER.info("Come HERE");
-        LOGGER.info("-------------------------------------");
-        paymentBookService.findAllAvailableByRoomType(RoomType.STANDARD);
-    }
-
     @PostMapping("/save")
     private ResponseEntity<BookFullDto> save(@RequestBody Book book) {
         LOGGER.info("---------------------------Book---------------------------");

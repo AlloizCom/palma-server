@@ -30,7 +30,7 @@ public class PaymentRoomServiceImpl implements PaymentRoomService
     @Override
     public Room save(Room obj) {
         Validation.checkSave(obj);
-        return paymentRoomRepository.save(obj);
+        return paymentRoomRepository.save(obj.setAvailable(true));
     }
 
     @Override
@@ -41,52 +41,47 @@ public class PaymentRoomServiceImpl implements PaymentRoomService
     @Override
     public List<Room> findAllByTypeWithDatesAndPlaces(RoomType roomType, Timestamp dateFrom, Timestamp dateTo,
                                                       Integer places) {
+
         List<com.alloiz.palma.server.model.payment.Book> books = paymentBookService.findAllAvailableByRoomType(roomType);
-//        LOGGER.info("dateTo " + dateTo);
-//        LOGGER.info("---------------------");
-//        LOGGER.info("dateFrom " + dateFrom);
         books = books
                 .stream()
-                .filter(book -> {
-//                    LOGGER.info(book);
-//                    LOGGER.info((book.getDateFrom().after(dateFrom)));
-//                    LOGGER.info((book.getDateTo().before(dateTo)&& book.getDateTo().after(dateFrom) ));
-//                    LOGGER.info((book.getDateFrom().after(dateFrom))|| (book.getDateTo().before(dateTo)&& book.getDateTo().after(dateFrom) ));
-                    return (book.getDateFrom().after(dateFrom) && book.getDateTo().before(dateFrom))|| (book.getDateTo().before(dateTo)&& book.getDateTo().after(dateFrom) );
-                })
-                .collect(Collectors.toList());
-        LOGGER.info("-------------- Find by dates -----------------");
-        LOGGER.info("----------- after filter -------------------");
-        LOGGER.info(books.size());
-        if(books.isEmpty()||books == null)
-            return findAllAvailableByType(roomType);
+                .filter(book ->
+                        (book.getDateFrom().after(dateFrom) && book.getDateTo().before(dateFrom)) ||
+                                (book.getDateTo().before(dateTo)&& book.getDateTo().after(dateFrom) )
+                ).collect(Collectors.toList());
 
-        LOGGER.info("--------- places -----------");
-        LOGGER.info(places);
-        LOGGER.info("--------- places -----------");
+        if(books.isEmpty()||books == null)
+            return findAllAvailableByType(roomType).stream().filter(room ->room.getAdditionalPlaces()>=places)
+                    .collect(Collectors.toList());
+
         List<Room> allrooms = findAllAvailableByType(roomType)
                 .stream()
-                .filter(room -> room.getAdditionalPlaces()>=places)
+                .filter(room ->room.getAdditionalPlaces()>=places)
                 .collect(Collectors.toList());
-        LOGGER.info("-------------- AllRooms -----------------");
-        LOGGER.info(allrooms.size());
-        allrooms.forEach(LOGGER::info);
-        LOGGER.info("-------------- AllRooms -----------------");
-        LOGGER.info("------------ Book Rooms -----------------");
+        books.forEach(book -> book.getRooms().forEach(allrooms::remove));
 
+        return allrooms;
+    }
 
-        books.forEach(book -> {
-            LOGGER.info(book.getRooms().size());
-            book.getRooms().forEach(LOGGER::info);
-            book.getRooms()
-                    .forEach(allrooms::remove);
-        });
-//        LOGGER.info("------------ Book Rooms -----------------");
-//
-        LOGGER.info("-------------- Find by dates -----------------");
-        LOGGER.info(allrooms.size());
-        LOGGER.info("-------------- Find by dates -----------------");
+    @Override
+    public List<Room> findAllByDatesAndPlaces(Timestamp dateFrom, Timestamp dateTo, Integer places) {
+        List<com.alloiz.palma.server.model.payment.Book> books = paymentBookService.findAllAvailable();
+        books = books
+                .stream()
+                .filter(book ->
+                        (book.getDateFrom().after(dateFrom) && book.getDateTo().before(dateFrom)) ||
+                                (book.getDateTo().before(dateTo)&& book.getDateTo().after(dateFrom) )
+                ).collect(Collectors.toList());
 
+        if(books.isEmpty()||books == null)
+            return findAllAvailable().stream().filter(room ->room.getAdditionalPlaces()>=places)
+                    .collect(Collectors.toList());
+
+        List<Room> allrooms = findAllAvailable()
+                .stream()
+                .filter(room ->room.getAdditionalPlaces()>=places)
+                .collect(Collectors.toList());
+        books.forEach(book -> book.getRooms().forEach(allrooms::remove));
 
         return allrooms;
     }

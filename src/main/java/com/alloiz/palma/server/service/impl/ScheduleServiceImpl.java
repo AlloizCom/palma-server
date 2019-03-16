@@ -1,5 +1,6 @@
 package com.alloiz.palma.server.service.impl;
 
+import com.alloiz.palma.server.config.Constants;
 import com.alloiz.palma.server.dto.ScheduleByPages;
 import com.alloiz.palma.server.dto.ScheduleDto;
 import com.alloiz.palma.server.model.Schedule;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.temporal.TemporalField;
 import java.util.List;
 import java.util.Locale;
 
@@ -154,25 +156,46 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Override
     public Boolean runBySchedule(){
 
-        saveDefault(new Schedule().setForSale(5).setActive(0).setFree(5).setRoomType(RoomType.DELUXE)
-                .setToday(Timestamp
-                        .valueOf(LocalDateTime.now().withHour(0).withMinute(0).withSecond(0).withNano(0).plusMonths(1))));
-        saveDefault(new Schedule().setForSale(5).setActive(0).setFree(5).setRoomType(RoomType.STANDARD)
-                .setToday(Timestamp
-                        .valueOf(LocalDateTime.now().withHour(0).withMinute(0).withSecond(0).withNano(0).plusMonths(1))));
-        saveDefault(new Schedule().setForSale(5).setActive(0).setFree(5).setRoomType(RoomType.STANDARD_IMPROVED)
-                .setToday(Timestamp
-                        .valueOf(LocalDateTime.now().withHour(0).withMinute(0).withSecond(0).withNano(0).plusMonths(1))));
-        saveDefault(new Schedule().setForSale(5).setActive(0).setFree(5).setRoomType(RoomType.SUPERIOR)
-                .setToday(Timestamp
-                        .valueOf(LocalDateTime.now().withHour(0).withMinute(0).withSecond(0).withNano(0).plusMonths(1))));
-        saveDefault(new Schedule().setForSale(5).setActive(0).setFree(5).setRoomType(RoomType.SUPERIOR_IMPROVED)
-                .setToday(Timestamp
-                        .valueOf(LocalDateTime.now().withHour(0).withMinute(0).withSecond(0).withNano(0).plusMonths(1))));
-
         scheduleRepository.findByTodayDate(Timestamp.valueOf(LocalDateTime.now().minusDays(1)
                 .withHour(0).withMinute(0).withSecond(0).withNano(0)))
-                .stream().forEach(schedule -> update(schedule.setAvailable(false)));
+                .stream().forEach(room -> update(room.setAvailable(false)));
+
+        Schedule schedule = findAll().get(findAll().size()-1);
+        LOGGER.info(schedule);
+        LOGGER.info("Check by date: " + (Timestamp.valueOf(LocalDateTime.now().withHour(0).withMinute(0).withSecond(0).withNano(0)
+                .plusDays(Constants.MAX_DAYS_TO_BOOK))
+                == schedule.getToday()));
+        LOGGER.info("Date Minuser is 0: " + (dateMinuser(Timestamp.valueOf(LocalDateTime.now().plusDays(Constants.MAX_DAYS_TO_BOOK))
+                ,schedule.getToday()) ==0 ));
+        if(
+                Timestamp.valueOf(LocalDateTime.now().withHour(0).withMinute(0).withSecond(0).withNano(0)
+                        .plusDays(Constants.MAX_DAYS_TO_BOOK))
+                        == schedule.getToday()
+                || dateMinuser(Timestamp.valueOf(LocalDateTime.now().plusDays(Constants.MAX_DAYS_TO_BOOK))
+                        ,schedule.getToday()) ==0) {
+            return false;
+        }
+
+        for(int i=1;i<=dateMinuser(
+                    Timestamp.valueOf(LocalDateTime.now().plusDays(Constants.MAX_DAYS_TO_BOOK))
+                    ,schedule.getToday()); i++ ){
+
+            saveDefault(new Schedule().setForSale(5).setActive(0).setFree(5).setRoomType(RoomType.STANDARD)
+                .setToday(Timestamp
+                        .valueOf(LocalDateTime.now().withHour(0).withMinute(0).withSecond(0).withNano(0).plusDays(i))));
+            saveDefault(new Schedule().setForSale(5).setActive(0).setFree(5).setRoomType(RoomType.STANDARD_IMPROVED)
+                    .setToday(Timestamp
+                            .valueOf(LocalDateTime.now().withHour(0).withMinute(0).withSecond(0).withNano(0).plusDays(i))));
+            saveDefault(new Schedule().setForSale(5).setActive(0).setFree(5).setRoomType(RoomType.SUPERIOR)
+                    .setToday(Timestamp
+                            .valueOf(LocalDateTime.now().withHour(0).withMinute(0).withSecond(0).withNano(0).plusDays(i))));
+            saveDefault(new Schedule().setForSale(5).setActive(0).setFree(5).setRoomType(RoomType.SUPERIOR_IMPROVED)
+                    .setToday(Timestamp
+                            .valueOf(LocalDateTime.now().withHour(0).withMinute(0).withSecond(0).withNano(0).plusDays(i))));
+            saveDefault(new Schedule().setForSale(5).setActive(0).setFree(5).setRoomType(RoomType.DELUXE)
+                    .setToday(Timestamp
+                            .valueOf(LocalDateTime.now().withHour(0).withMinute(0).withSecond(0).withNano(0).plusDays(i))));
+        }
 
         return true;
     }
@@ -202,4 +225,28 @@ public class ScheduleServiceImpl implements ScheduleService {
 
         return null;
     }
+
+    @Override
+    public List<Schedule> findRoomByDateinAndDateOut(Timestamp dateIn, Timestamp dateOut) {
+        return scheduleRepository.findRoomByDateinAndDateOut(dateIn,dateOut);
+    }
+
+    private static Integer dateMinuser(Timestamp left, Timestamp right) // returns difference by dates in DAYS
+    {
+        LocalDateTime localLeft = left.toLocalDateTime();
+        LocalDateTime localRight = right.toLocalDateTime();
+        int resultDays=0;
+
+        if (localLeft.getYear()>localRight.getYear())
+            resultDays+=365*(localLeft.getYear() - localRight.getYear());
+
+        if(localLeft.getMonthValue()>localRight.getMonthValue())
+            resultDays += 30*(localLeft.getMonthValue()-localRight.getMonthValue());
+
+        if(localLeft.getMonthValue()>localRight.getMonthValue() || localLeft.getYear()>localRight.getYear() )
+            resultDays += localLeft.getDayOfMonth()-localRight.getDayOfMonth();
+
+        return resultDays;
+    }
+
 }

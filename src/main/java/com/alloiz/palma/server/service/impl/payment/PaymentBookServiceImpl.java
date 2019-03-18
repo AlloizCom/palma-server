@@ -1,5 +1,6 @@
 package com.alloiz.palma.server.service.impl.payment;
 
+import com.alloiz.palma.server.exceptions.OutOfBookingNumberException;
 import com.alloiz.palma.server.model.Schedule;
 import com.alloiz.palma.server.model.enums.RoomType;
 import com.alloiz.palma.server.model.payment.Book;
@@ -13,6 +14,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -64,7 +66,20 @@ public class PaymentBookServiceImpl implements PaymentBookService
     public Book save(Book book) {
         checkSave(book);
         LOGGER.info(book);
-//        if()
+
+        for (Room room:
+              book.getRooms()) {
+            if(!checkSchedule(room.getRoomType(),book.getDateFrom(),book.getDateTo())) {
+                throw new OutOfBookingNumberException();
+            }
+        }
+        for (Room room:
+                book.getRooms()) {
+            bookSchedule(room.getRoomType(),book.getDateFrom(),book.getDateTo()); // TODO write try catch for this and on controller
+
+        }
+
+
         bookCounterService.incrementCounter(
                 bookCounterService.getActiveCounter()
                         .getId()
@@ -144,21 +159,35 @@ public class PaymentBookServiceImpl implements PaymentBookService
         }
     }
 
-    private static boolean checkSchedule(List<Schedule> schedules, List<Room> rooms)
+    private boolean checkSchedule(RoomType roomType, Timestamp dateIn, Timestamp dateOut)
     {
-        for (Room room : rooms) {
-            List<Schedule> filteredByRoomType = schedules
-                    .stream()
-                    .filter(schedule -> schedule.getRoomType().equals(room.getRoomType()))
-                    .collect(Collectors.toList());
-            boolean isNotOutOfBookingRange = true;
-            for (Schedule schedule :
-                    filteredByRoomType) {
-//                if (schedule.getFree()>)
-            }
+        boolean isAvailable = true;
 
+        List<Schedule> schedules = scheduleService.findByParamForBook(dateIn,dateOut,roomType);
+
+        for (Schedule schedule : schedules) {
+            if(schedule.getFree()<1)
+                isAvailable = false;
         }
-        return true;
+
+        return isAvailable;
+    }
+
+    private boolean bookSchedule(RoomType roomType, Timestamp dateIn, Timestamp dateOut){
+
+        try {
+            List<Schedule> schedules = scheduleService.findByParamForBook(dateIn, dateOut, roomType);
+
+            for (Schedule schedule : schedules) {
+                scheduleService.save(schedule.setFree(schedule.getFree()-1).setActive(schedule.getActive()+1));
+            }
+            return true;
+        }
+        catch (Exception e)
+        {
+            LOGGER.error(e.getMessage());
+            return false;
+        }
     }
 
 }

@@ -30,7 +30,7 @@ public class Scheduler {
      *  Cron Pattern "second, minute, hour, day of month, month, day(s) of week"
      */
 //    @Scheduled(cron = "0 0 11 * * *")
-    @Scheduled(fixedDelay = 43200000)//12 hours
+    @Scheduled(fixedDelay = 86400000)//24 hours
     public void run() {
         LOGGER.warn(">>> Scheduler start");
         if (scheduleService.runBySchedule()){

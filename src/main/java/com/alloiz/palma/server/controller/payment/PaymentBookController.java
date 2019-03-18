@@ -2,6 +2,7 @@ package com.alloiz.palma.server.controller.payment;
 
 import com.alloiz.palma.server.dto.payment.BookFullDto;
 import com.alloiz.palma.server.dto.payment.BookShortDto;
+import com.alloiz.palma.server.exceptions.OutOfBookingNumberException;
 import com.alloiz.palma.server.model.enums.RoomType;
 import com.alloiz.palma.server.model.payment.Book;
 import com.alloiz.palma.server.service.payment.PaymentBookService;
@@ -53,7 +54,13 @@ public class PaymentBookController
         LOGGER.info("---------------------------Book---------------------------");
         LOGGER.info(book);
         LOGGER.info("---------------------------Book---------------------------");
-        return ResponseEntity.ok(map(paymentBookService.save(book), BookFullDto.class));
+        try {
+            return ResponseEntity.ok(map(paymentBookService.save(book), BookFullDto.class));
+        }
+        catch (OutOfBookingNumberException e){
+            LOGGER.error(e.getMessage());
+            return new ResponseEntity(HttpStatus.CONFLICT);
+        }
     }
 
     @PostMapping("/update")

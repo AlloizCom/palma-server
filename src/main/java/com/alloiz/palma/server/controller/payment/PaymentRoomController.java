@@ -108,6 +108,7 @@ public class PaymentRoomController
 								.setText(roomDescription.getDescription())
 						).collect(Collectors.toList())))
 				.collect(Collectors.toList());
+
 		return ResponseEntity.ok(rooms);
 	}
 

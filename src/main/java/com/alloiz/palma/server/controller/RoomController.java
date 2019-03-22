@@ -36,9 +36,6 @@ public class RoomController {
     private RoomService roomService;
 
     @Autowired
-    private TariffService tariffService;
-
-    @Autowired
     private BookService bookService;
 
     @GetMapping("/find-all")
@@ -82,7 +79,6 @@ public class RoomController {
         return new ResponseEntity<>(roomService.findRoomsByRoomParams(roomParams)
                 .stream()
                     .map(room -> map(room, RoomWithTariff.class)
-                        .setPrice(tariffService.findByRoomTypeAndDateNow(room.getType()).getPrice())
                     .setImages(room.getImages().subList(0,1)))
                 .collect(Collectors.toList()), HttpStatus.OK);
 
@@ -94,8 +90,7 @@ public class RoomController {
         LOGGER.info(roomParams);
         return new ResponseEntity<>(roomService.findRoomsByRoomParamsWithRoomType(roomParams)
                 .stream()
-                .map(room -> map(room, RoomWithTariff.class)
-                        .setPrice(tariffService.findByRoomTypeAndDateNow(room.getType()).getPrice()))
+                .map(room -> map(room, RoomWithTariff.class))
                 .collect(Collectors.toList()), HttpStatus.OK);
 
     }
@@ -133,9 +128,8 @@ public class RoomController {
                 .filter(room -> room.getKidsPlaces()*amount>kidsPlaces)
                 .filter(room -> room.getAdultPlaces()*amount>adultPlaces)
                 .filter(room -> room.getAmount()>amount)
-                .map(room -> map(room, RoomWithTariff.class)
-                        .setPrice(tariffService.findByRoomTypeAndDateNow(room.getType())
-                                .getPrice())).collect(Collectors.toList()),HttpStatus.OK);
+                .map(room -> map(room, RoomWithTariff.class))
+                .collect(Collectors.toList()),HttpStatus.OK);
     }
 
     @GetMapping("/find-all-available-kids-adult-amount-date/{kidsPlaces}/{adultPlaces}/{amount}/{dateFrom}/{dateTo}")
@@ -162,9 +156,8 @@ public class RoomController {
                 .filter(room -> room.getKidsPlaces()*amount>kidsPlaces)
                 .filter(room -> room.getAdultPlaces()*amount>adultPlaces)
                 .filter(room -> room.getAmount()>amount)
-                .map(room -> map(room, RoomWithTariff.class)
-                        .setPrice(tariffService.findByRoomTypeAndDateNow(room.getType())
-                                .getPrice())).collect(Collectors.toList()),HttpStatus.OK);
+                .map(room -> map(room, RoomWithTariff.class))
+                .collect(Collectors.toList()),HttpStatus.OK);
     }
 
 
@@ -205,9 +198,7 @@ public class RoomController {
     @GetMapping("/find-one-with-price/{id}")
     private ResponseEntity<RoomWithTariff> findOneWithPrice(@PathVariable Long id) {
         Room room = roomService.findOne(id);
-        Tariff tariffs = tariffService.findByRoomTypeAndDateNow(room.getType());
-        return new ResponseEntity<>(map(room, RoomWithTariff.class)
-                .setPrice(tariffs.getPrice()), HttpStatus.OK);
+        return new ResponseEntity<>(map(room, RoomWithTariff.class), HttpStatus.OK);
     }
 
     @PostMapping("/save")
@@ -270,9 +261,8 @@ public class RoomController {
     @GetMapping("/find-room-with-price")
     private ResponseEntity<List<RoomWithTariff>> findAllRoomWithPrice() {
         return new ResponseEntity<>(roomService.findAllAvailable().stream()
-                .map(room -> map(room, RoomWithTariff.class)
-                        .setPrice(tariffService.findByRoomTypeAndDateNow(room.getType())
-                                .getPrice())).collect(Collectors.toList()), HttpStatus.OK);
+                .map(room -> map(room, RoomWithTariff.class))
+                .collect(Collectors.toList()), HttpStatus.OK);
     }
 
     private static List<Room> splitDescriptions(List<Room> rooms){

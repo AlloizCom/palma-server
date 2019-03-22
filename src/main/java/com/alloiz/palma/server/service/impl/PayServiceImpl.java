@@ -69,7 +69,7 @@ public class PayServiceImpl implements PayService {
     }
 
     @Override
-    public Integer setPrice(Book book) {
+    public Integer setPrice(Book book) { //todo delete tarif
         return tariffService.findByRoomTypeAndDateNow(book.getRoomType()).getPrice() * book.getAmountOfRooms();
     }
 

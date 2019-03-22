@@ -65,14 +65,20 @@ public class PaymentRoomServiceImpl implements PaymentRoomService
 
     @Override
     public List<Room> findAllByDatesAndPlaces(Timestamp dateFrom, Timestamp dateTo, Integer places) {
+
+        LOGGER.info("DateIn "+dateFrom);
+        LOGGER.info("DateTo "+dateTo);
         List<com.alloiz.palma.server.model.payment.Book> books = paymentBookService.findAllAvailable();
         books = books
                 .stream()
                 .filter(book ->
-                        (book.getDateFrom().after(dateFrom) && book.getDateTo().before(dateFrom)) ||
-                                (book.getDateTo().before(dateTo)&& book.getDateTo().after(dateFrom) )
+                        (((book.getDateFrom().after(dateFrom) && book.getDateTo().before(dateFrom)) ||
+                                ((book.getDateTo().before(dateTo)&& book.getDateTo().after(dateFrom))))
+                        && (!book.getDateFrom().equals(dateFrom)&& !book.getDateTo().equals(dateTo)))
                 ).collect(Collectors.toList());
 
+        LOGGER.info("books empty "+ books.isEmpty());
+        LOGGER.info("books null " + (books == null));
         if(books.isEmpty()||books == null)
             return findAllAvailable().stream().filter(room ->room.getAdditionalPlaces()>=places)
                     .collect(Collectors.toList());
@@ -83,6 +89,8 @@ public class PaymentRoomServiceImpl implements PaymentRoomService
                 .collect(Collectors.toList());
         books.forEach(book -> book.getRooms().forEach(allrooms::remove));
 
+        LOGGER.info("AllRooms "+ allrooms.size());
+        allrooms.forEach(LOGGER::info);
         return allrooms;
     }
 

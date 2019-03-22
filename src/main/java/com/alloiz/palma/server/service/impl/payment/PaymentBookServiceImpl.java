@@ -8,6 +8,7 @@ import com.alloiz.palma.server.model.payment.Room;
 import com.alloiz.palma.server.repository.payment.PaymentBookRepository;
 import com.alloiz.palma.server.service.BookCounterService;
 import com.alloiz.palma.server.service.ScheduleService;
+import com.alloiz.palma.server.service.payment.ClientService;
 import com.alloiz.palma.server.service.payment.PaymentBookService;
 import com.alloiz.palma.server.service.payment.PaymentRoomService;
 import org.apache.log4j.Logger;
@@ -39,6 +40,9 @@ public class PaymentBookServiceImpl implements PaymentBookService
     @Autowired
     private ScheduleService scheduleService;
 
+    @Autowired
+    private ClientService clientService;
+
     @Override
     public Book findOne(Long id) {
         checkId(id);
@@ -67,11 +71,13 @@ public class PaymentBookServiceImpl implements PaymentBookService
         checkSave(book);
         LOGGER.info(book);
 
+
         for (Room room:
               book.getRooms()) {
             if(!checkSchedule(room.getRoomType(),book.getDateFrom(),book.getDateTo())) {
                 throw new OutOfBookingNumberException();
             }
+
         }
         for (Room room:
                 book.getRooms()) {
@@ -79,6 +85,7 @@ public class PaymentBookServiceImpl implements PaymentBookService
 
         }
 
+        book.setClient(clientService.save(book.getClient()));
 
         bookCounterService.incrementCounter(
                 bookCounterService.getActiveCounter()

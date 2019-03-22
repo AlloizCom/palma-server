@@ -162,17 +162,16 @@ public class ScheduleServiceImpl implements ScheduleService {
 
         Schedule schedule = findAll().get(findAll().size()-1);
         LOGGER.info(schedule);
-        LOGGER.info("Check by date: " + (Timestamp.valueOf(LocalDateTime.now().withHour(0).withMinute(0).withSecond(0).withNano(0)
-                .plusDays(Constants.MAX_DAYS_TO_BOOK))
-                == schedule.getToday()));
-        LOGGER.info("Date Minuser is 0: " + (dateMinuser(Timestamp.valueOf(LocalDateTime.now().plusDays(Constants.MAX_DAYS_TO_BOOK))
-                ,schedule.getToday()) ==0 ));
-        if(
-                Timestamp.valueOf(LocalDateTime.now().withHour(0).withMinute(0).withSecond(0).withNano(0)
-                        .plusDays(Constants.MAX_DAYS_TO_BOOK))
-                        == schedule.getToday()
-                || dateMinuser(Timestamp.valueOf(LocalDateTime.now().plusDays(Constants.MAX_DAYS_TO_BOOK))
-                        ,schedule.getToday()) ==0) {
+
+
+        LOGGER.info("Schedule full check "+( dataComparer(Timestamp.valueOf(LocalDateTime.now().withHour(0).withMinute(0).withSecond(0).withNano(0)
+                .plusDays(Constants.MAX_DAYS_TO_BOOK)),schedule.getToday())));
+
+        LOGGER.info("PlusDay Local "+Timestamp.valueOf(LocalDateTime.now().withHour(0).withMinute(0).withSecond(0).withNano(0)
+                .plusDays(Constants.MAX_DAYS_TO_BOOK)));
+
+        if( dataComparer(Timestamp.valueOf(LocalDateTime.now().withHour(0).withMinute(0).withSecond(0).withNano(0)
+                        .plusDays(Constants.MAX_DAYS_TO_BOOK)),schedule.getToday())) {
             return false;
         }
 
@@ -231,8 +230,8 @@ public class ScheduleServiceImpl implements ScheduleService {
         return scheduleRepository.findRoomByDateinAndDateOut(dateIn,dateOut);
     }
 
-    private static Integer dateMinuser(Timestamp left, Timestamp right) // returns difference by dates in DAYS
-    {
+    private static Integer dateMinuser(Timestamp left, Timestamp right){ // returns difference by dates in DAYS
+
         LocalDateTime localLeft = left.toLocalDateTime();
         LocalDateTime localRight = right.toLocalDateTime();
         int resultDays=0;
@@ -248,5 +247,27 @@ public class ScheduleServiceImpl implements ScheduleService {
 
         return resultDays;
     }
+
+    public static Boolean dataComparer(Timestamp leftDate, Timestamp rightDate){
+        String [] leftSplit=leftDate.toString().split("-");
+        String [] rightSplit=rightDate.toString().split("-");
+        Integer leftYear=Integer.parseInt(leftSplit[0]);
+        Integer rightYear=Integer.parseInt(rightSplit[0]);
+        if(leftYear>rightYear) {
+            return false;
+        }
+        Integer leftMonth=Integer.parseInt(leftSplit[1]);
+        Integer rightMonth=Integer.parseInt(rightSplit[1]);
+        if (leftMonth>rightMonth){
+            return false;
+        }
+        Integer leftDay=Integer.parseInt(leftSplit[2].split(" ")[0]);
+        Integer rightDay=Integer.parseInt(rightSplit[2].split(" ")[0]);
+        if (!leftDay.equals(rightDay)) {
+            return false;
+        }
+        return true;
+    }
+
 
 }

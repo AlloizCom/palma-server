@@ -160,7 +160,15 @@ public class ScheduleServiceImpl implements ScheduleService {
                 .withHour(0).withMinute(0).withSecond(0).withNano(0)))
                 .stream().forEach(room -> update(room.setAvailable(false)));
 
-        Schedule schedule = findAll().get(findAll().size()-1);
+        Schedule schedule;
+        try {
+            schedule = findAll().get(findAll().size() - 1);
+        }
+        catch (Exception e)
+        {
+            LOGGER.error(e.getMessage());
+            schedule=new Schedule().setToday(Timestamp.valueOf(LocalDateTime.now().minusDays(1)));
+        }
         LOGGER.info(schedule);
 
 

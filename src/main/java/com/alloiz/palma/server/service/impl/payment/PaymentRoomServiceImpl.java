@@ -45,9 +45,7 @@ public class PaymentRoomServiceImpl implements PaymentRoomService
         List<com.alloiz.palma.server.model.payment.Book> books = paymentBookService.findAllAvailableByRoomType(roomType);
         books = books
                 .stream()
-                .filter(book ->
-                        (book.getDateFrom().after(dateFrom) && book.getDateTo().before(dateFrom)) ||
-                                (book.getDateTo().before(dateTo)&& book.getDateTo().after(dateFrom) )
+                .filter(book ->checkBookByDate(book,dateFrom,dateTo)
                 ).collect(Collectors.toList());
 
         if(books.isEmpty()||books == null)
@@ -72,9 +70,7 @@ public class PaymentRoomServiceImpl implements PaymentRoomService
         books = books
                 .stream()
                 .filter(book ->
-                        (((book.getDateFrom().after(dateFrom) && book.getDateTo().before(dateFrom)) ||
-                                ((book.getDateTo().before(dateTo)&& book.getDateTo().after(dateFrom))))
-                        && (!book.getDateFrom().equals(dateFrom)&& !book.getDateTo().equals(dateTo)))
+                        checkBookByDate(book,dateFrom,dateTo)
                 ).collect(Collectors.toList());
 
         LOGGER.info("books empty "+ books.isEmpty());
@@ -152,5 +148,15 @@ public class PaymentRoomServiceImpl implements PaymentRoomService
     @Override
     public List<Room> findAll() {
         return paymentRoomRepository.findAll();
+    }
+
+    private boolean checkBookByDate(com.alloiz.palma.server.model.payment.Book book, Timestamp dateFrom, Timestamp dateTo) {
+        if(book.getDateFrom().equals(dateFrom)&& book.getDateTo().equals(dateTo))
+            return true;
+        if(book.getDateTo().before(dateTo)&& book.getDateTo().after(dateFrom))
+            return true;
+        if(book.getDateFrom().after(dateFrom) && book.getDateTo().before(dateFrom))
+            return true;
+        return false;
     }
 }

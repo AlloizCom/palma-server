@@ -81,11 +81,13 @@ public class PaymentRoomController
 		com.alloiz.palma.server.model.Room roomDefault = roomService.findByType(type);
 		List<RoomFullDto> rooms =paymentRoomService.findAllByTypeWithDatesAndPlaces(type,dateFrom,dateTo,places)
 				.stream()
-				.map(room ->  map(room, RoomFullDto.class).setDescriptions(roomDefault.getDescriptions().stream()
+				.map(room ->  map(room, RoomFullDto.class)
+						.setDescriptions(roomDefault.getDescriptions().stream()
 						.map(roomDescription -> new Description()
 								.setLanguage(new Language().setLanguagesName(roomDescription.getLanguage().toString()))
 								.setText(roomDescription.getDescription())
-						).collect(Collectors.toList())))
+						).collect(Collectors.toList()))
+				)
 				.collect(Collectors.toList());
 		LOGGER.info("_________________________________");
 		LOGGER.info("FIND BY TYPE AND DATES AND PLACES");
@@ -101,12 +103,14 @@ public class PaymentRoomController
 
 		List<RoomFullDto> rooms =paymentRoomService.findAllByDatesAndPlaces(dateFrom,dateTo,places)
 				.stream()
-				.map(room ->  map(room, RoomFullDto.class).setDescriptions(roomService.findByType(room.getRoomType())
+				.map(room ->  map(room, RoomFullDto.class)
+						.setDescriptions(roomService.findByType(room.getRoomType())
 						.getDescriptions().stream()
 						.map(roomDescription -> new Description()
 								.setLanguage(new Language().setLanguagesName(roomDescription.getLanguage().toString()))
 								.setText(roomDescription.getDescription())
-						).collect(Collectors.toList())))
+						).collect(Collectors.toList()))
+				)
 				.collect(Collectors.toList());
 
 		return ResponseEntity.ok(rooms);
